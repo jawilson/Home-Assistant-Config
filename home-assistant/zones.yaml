@@ -1,22 +1,19 @@
-- name: home
-  latitude: 38.9039
-  longitude: -77.0165
-  radius: 100
+- name: Home
   icon: mdi:home-modern
 
-- name: bline
+- name: B-Line
   latitude: 38.907463
   longitude: -77.043699
   radius: 100
   icon: mdi:domain
 
-- name: blackstone
+- name: Blackstone
   latitude: 38.883844
   longitude: -77.117164
   radius: 150
   icon: mdi:domain
 
-- name: dhs
+- name: DHS
   latitude: 38.885332
   longitude: -77.022973
   radius: 100
