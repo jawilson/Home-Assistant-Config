@@ -1,0 +1,16 @@
+# I only use OpenHab for insteon since they're not handing out API keys anymore. OpenHab requires a
+# username/password for your Insteon Hub, this is the sum total of my config:
+
+folder:items=10,items
+folder:sitemaps=10,sitemap
+folder:rules=10,rules
+folder:scripts=10,script
+folder:persistence=10,persist
+persistence:default=rrd4j
+chart:provider=default
+logging:pattern=%date{ISO8601} - %-25logger: %msg%n
+ntp:hostname=dark-knight.singularity.net
+tcp:refreshinterval=250
+
+# The part that really matters
+insteonplm:port_0=/hub2/user:password@insteonhub.singularity.net:25105,poll_time=1000

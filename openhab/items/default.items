@@ -1,0 +1,11 @@
+Group All
+
+/******** Lights ********/
+
+// LampLinc
+Dimmer Dimmer1 "Dimmer 1" (All) {insteonplm="3A.A0.3E:F00.00.19#dimmer"}
+Dimmer Dimmer2 "Dimmer 2" (All) {insteonplm="3A.9D.7A:F00.00.19#dimmer"}
+
+// SwitchLinc
+Dimmer DimmerSwitch1 "DimmerSwitch 1" (All) {insteonplm="42.76.16:F00.00.01#dimmer"}
+Dimmer DimmerSwitch2 "DimmerSwitch 2" (All) {insteonplm="42.75.F5:F00.00.01#dimmer"}
