@@ -1,7 +1,8 @@
-*.swp
-*~
+letsencrypt/
 
 *.pyc
-
 *.db
 *.log
+
+*.swp
+*~
