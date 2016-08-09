@@ -1,0 +1,37 @@
+# Jeff
+
+- platform: mqtt
+  state_topic: 'person/jeff/alarm'
+  name: 'Jeff Alarm'
+  qos: 1
+  value_template: '{{ value|capitalize }}'
+
+- platform: template
+  sensors:
+    jeff_sleep_state:
+      value_template: |
+        {% if is_state('binary_sensor.jeff_sleeping', 'on') %}
+          Sleeping
+        {% else %}
+          Awake
+        {% endif %}
+      friendly_name: 'Jeff Sleeping'
+
+# AK
+
+- platform: mqtt
+  state_topic: 'person/ak/alarm'
+  name: 'AK Alarm'
+  qos: 1
+  value_template: '{{ value|capitalize }}'
+
+- platform: template
+  sensors:
+    ak_sleep_state:
+      value_template: |
+        {% if is_state('binary_sensor.ak_sleeping', 'on') %}
+          Sleeping
+        {% else %}
+          Awake
+        {% endif %}
+      friendly_name: 'AK Sleeping'

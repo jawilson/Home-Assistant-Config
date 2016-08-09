@@ -1,0 +1,146 @@
+homeassistant:
+  # Name of the location where Home Assistant is running
+  name: Home
+  # Location required to calculate the time the sun rises and sets
+  latitude: 38.9039
+  longitude: -77.0165
+  elevation: 17
+  # C for Celsius, F for Fahrenheit
+  temperature_unit: F
+  # Pick yours from here: http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone: America/New_York
+
+  customize: !include_dir_merge_named customizations
+
+# Web
+http:
+  api_password: !secret http_password
+  ssl_certificate: !secret ssl_certificate
+  ssl_key: !secret ssl_key
+
+# View all events in a logbook
+logbook:
+
+# Enables support for tracking state changes over time.
+history:
+
+# Enables the frontend
+frontend:
+
+# Discover some devices automatically
+#discovery:
+
+# Track the sun
+sun:
+
+# Checks for available updates
+updater:
+
+# Allows you to issue voice commands from the frontend
+conversation:
+
+# If This Then That
+ifttt:
+  key: !secret ifttt_key
+
+# MQTT
+mqtt:
+  broker: mqtt.singularity.net
+  port: 1883
+  username: !secret mqtt_username
+  password: !secret mqtt_password
+  certificate: /config/certs/ca.crt
+
+#
+# Hubs
+#
+nest:
+  username: !secret nest_username
+  password: !secret nest_password
+
+octoprint:
+  host: http://p3steel.singularity.net
+  api_key: !secret octoprint_key
+
+
+# Sensors
+binary_sensor: !include_dir_merge_list binary_sensors
+sensor: !include_dir_merge_list sensors
+
+# Inputs
+input_boolean: !include input_boolean.yaml
+
+#
+# Devices
+#
+thermostat:
+  platform: nest
+
+light: !include lights.yaml
+
+device_tracker:
+  - platform: asuswrt
+    host: dark-knight.singularity.net
+    username: !secret asuswrt_username
+    password: !secret asuswrt_password
+    track_new_devices: no
+    protocol: telnet
+  - platform: owntracks
+
+media_player:
+  - platform: plex
+  - platform: cast
+    host: chromium.singularity.net
+  - platform: cast
+    host: molybdenum.singularity.net
+
+# Cameras
+camera: !include cameras.yaml
+
+# Switches
+switch: !include_dir_merge_list switches
+
+# Notifications
+notify: !include notifications.yaml
+
+# Groups
+group: !include groups.yaml
+
+# Zones
+zone: !include zones.yaml
+
+# Proximity
+proximity:
+  zone: home
+  ignored_zones:
+    - blackstone
+    - bline
+    - dhs
+  devices:
+    - device_tracker.jawilson_oxygen
+    - device_tracker.annekat_reality
+  tolerance: 50
+
+# Scenes
+scene: !include scenes.yaml
+
+# Scripts
+script: !include_dir_named scripts
+
+# Automation
+automation: !include_dir_merge_list automation
+
+#
+# Logger
+#
+logger:
+  default: error
+  logs:
+    homeassistant: !env_var HA_LOG_LEVEL
+    homeassistant.bootstrap: error
+    homeassistant.core: error
+    homeassistant.components.api: error
+    homeassistant.components.recorder: error
+    homeassistant.components.device_tracker.owntracks: debug
+    homeassistant.components.device_tracker.asuswrt: debug
+    homeassistant.components.mqtt: error

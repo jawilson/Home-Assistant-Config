@@ -1,0 +1,4 @@
+switch.presence:
+  icon: mdi:account-location
+switch.guests:
+  icon: mdi:account-multiple

@@ -1,0 +1,70 @@
+#
+# Names
+#
+
+# Groups
+group.all_lights:
+  haaska_name: All Lights
+group.living_room:
+  haaska_name: Living Rooms Lights
+group.kitchen:
+  haaska_name: Kitchen Lights
+group.bedroom:
+  haaska_name: Bedroom Lights
+group.living_room_lamp:
+  haaska_name: Living Room Lamp
+
+# Switches
+switch.apartment_fan:
+  haaska_name: Fan
+
+# Scenes
+scene.dinner:
+  haaska_name: Dinner
+
+
+#
+# Hidden
+#
+
+# Groups
+group.default_view:
+  haaska_hidden: true
+group.admin:
+  haaska_hidden: true
+group.media:
+  haaska_hidden: true
+group.other:
+  haaska_hidden: true
+group.rooms:
+  haaska_hidden: true
+group.entryway:
+  haaska_hidden: true
+group.family:
+  haaska_hidden: true
+group.all_switches:
+  haaska_hidden: true
+group.p3steel:
+  haaska_hidden: true
+group.sleeping:
+  haaska_hidden: true
+group.environment:
+  haaska_hidden: true
+group.people:
+  haaska_hidden: true
+group.weather:
+  haaska_hidden: true
+group.all_devices:
+  haaska_hidden: true
+group.harmony:
+  haaska_hidden: true
+
+# Media Players
+media_player.plex_web_chrome:
+  haaska_hidden: true
+
+# Lights
+light.living_room_lamp_1:
+  haaska_hidden: true
+light.living_room_lamp_2:
+  haaska_hidden: true

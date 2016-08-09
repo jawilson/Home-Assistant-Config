@@ -1,0 +1,19 @@
+# Forecast
+- platform: forecast
+  api_key: !secret forecast_key
+  monitored_conditions:
+    - summary
+    - precip_intensity
+    - temperature
+    - humidity
+
+# Sun
+- platform: template
+  sensors:
+    solar_angle:
+      value_template: '{{ "%+.1f"|format(states.sun.sun.attributes.elevation) }}'
+      friendly_name: 'Sun Angle'
+      unit_of_measurement: '°'
+    sunrise:
+      value_template: '{{ states.sun.sun.attributes.next_rising }}'
+      friendly_name: 'Next Sunrise'

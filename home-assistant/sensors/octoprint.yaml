@@ -1,0 +1,6 @@
+# Octoprint
+- platform: octoprint
+  monitored_conditions:
+    - Current State
+    - Temperatures
+    - Job Percentage

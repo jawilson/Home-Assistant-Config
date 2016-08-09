@@ -1,0 +1,5 @@
+- platform: mqtt
+  state_topic: 'harmony-api/current_activity'
+  name: Harmony
+  qos: 0
+  value_template: '{{ value|replace("-", " ")|capitalize }}'

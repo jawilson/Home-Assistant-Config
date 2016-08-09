@@ -1,0 +1,121 @@
+#
+# Groups
+#
+
+
+Weather:
+  - sensor.weather_temperature
+  - sensor.weather_humidity
+  - sensor.weather_summary
+  - sensor.weather_precip_intensity
+  - sun.sun
+  - sensor.solar_angle
+  - sensor.sunrise
+
+
+P3Steel:
+  - camera.p3steel
+  - sensor.octoprint_current_state
+  - sensor.octoprint_job_percentage
+  - sensor.octoprint_actual_tool0_temp
+  - sensor.octoprint_target_tool0_temp
+  - sensor.octoprint_actual_bed_temp
+  - sensor.octoprint_target_bed_temp
+  - binary_sensor.octoprint_printing
+  - binary_sensor.octoprint_printing_error
+
+
+People:
+  - device_tracker.jawilson_oxygen
+  - sensor.jeff_sleep_state
+  - sensor.jeff_alarm
+  - device_tracker.annekat_reality
+  - sensor.ak_sleep_state
+  - sensor.ak_alarm
+
+
+Family:
+  - device_tracker.jawilson_oxygen
+  - device_tracker.annekat_reality
+
+
+Sleeping:
+  - binary_sensor.jeff_sleeping
+  - binary_sensor.ak_sleeping
+
+
+Entryway:
+  - light.entryway
+
+Kitchen:
+  - light.kitchen
+
+Living Room:
+  - light.dining
+  - light.entertainment
+  - light.living_room_lamp_1
+  - light.living_room_lamp_2
+
+Living Room Lamp:
+  - light.living_room_lamp_1
+  - light.living_room_lamp_2
+
+Bedroom:
+  - light.bedroom
+
+Environment:
+  - thermostat.apartment
+  - sensor.apartment_humidity
+  - sensor.apartment_mode
+  - switch.apartment_home
+  - switch.apartment_fan
+
+
+Harmony:
+  - sensor.harmony
+  - switch.projector
+  - switch.plex
+  - switch.xbox
+  - switch.living_room_chromecast
+  - switch.wii
+
+
+#
+# Views
+#
+
+
+default_view:
+  view: yes
+  entities:
+    - group.weather
+    - group.people
+    - group.environment
+
+Rooms:
+  view: yes
+  entities:
+    - group.entryway
+    - group.kitchen
+    - group.living_room
+    - group.bedroom
+
+Media:
+  view: yes
+  entities:
+  - group.harmony
+  - media_player.bedroom
+  - media_player.living_room
+  - media_player.blue
+
+Other:
+  view: yes
+  entities:
+    - group.p3steel
+
+Admin:
+  view: yes
+  entities:
+    - switch.presence
+    - switch.guests
+    - input_boolean.thermostat_auto

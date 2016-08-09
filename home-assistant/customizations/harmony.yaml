@@ -1,0 +1,12 @@
+sensor.harmony:
+  icon: mdi:remote
+switch.projector:
+  icon: mdi:projector
+switch.plex:
+  icon: mdi:play-circle-outline
+switch.xbox:
+  icon: mdi:xbox
+switch.living_room_chromecast:
+  icon: mdi:cast
+switch.wii:
+  icon: mdi:wii

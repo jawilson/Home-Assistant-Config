@@ -1,0 +1,7 @@
+- platform: pushbullet
+  name: pushbullet_jeff
+  api_key: !secret pushbullet_key
+- platform: slack
+  name: slack
+  api_key: !secret slack_key
+  default_channel: '#general'

@@ -1,0 +1,4 @@
+thermostat_auto:
+  name: Control Thermostat
+  initial: on
+  icon: mdi:nest-thermostat

@@ -1,0 +1,12 @@
+# Hidden states
+
+sensor.solar_angle:
+  hidden: true
+sensor.sunrise:
+  hidden: true
+
+sun.sun:
+  hidden: true
+
+media_player.plex_web_chrome:
+  hidden: true

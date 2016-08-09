@@ -1,0 +1,14 @@
+- alias: 'Media Player Playing'
+  trigger:
+    - platform: state
+      entity_id: media_player.blue
+      to: 'playing'
+  action:
+    service: light.turn_off
+    entity_id:
+      - light.kitchen
+      - light.dining
+      - light.bedroom
+      - light.entryway
+    data:
+      transition: 15

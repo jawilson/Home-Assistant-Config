@@ -1,0 +1,21 @@
+#  Enable or disable presence-based automations. Presence
+#  doesn't always work perfectly, so provie a means to disable
+#  automations that rely on it.
+
+- platform: mqtt
+  name: 'Presence'
+  state_topic: 'homeassistant/admin/presence'
+  command_topic: 'homeassistant/admin/presence'
+  qos: 1
+  payload_on: 'yes'
+  payload_off: 'no'
+  retain: true
+
+- platform: mqtt
+  name: 'Guests'
+  state_topic: 'homeassistant/admin/guests'
+  command_topic: 'homeassistant/admin/guests'
+  qos: 1
+  payload_on: 'yes'
+  payload_off: 'no'
+  retain: true

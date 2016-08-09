@@ -1,0 +1,10 @@
+#
+# Nest
+#
+
+- platform: nest
+  monitored_conditions:
+    - 'temperature'
+    - 'target'
+    - 'humidity'
+    - 'mode'

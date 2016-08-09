@@ -1,0 +1,18 @@
+# Jeff
+
+- platform: mqtt
+  state_topic: 'person/jeff/sleeping'
+  name: 'Jeff Sleeping'
+  qos: 1
+  payload_on: 'yes'
+  payload_off: 'no'
+
+
+# AK
+
+- platform: mqtt
+  state_topic: 'person/ak/sleeping'
+  name: 'AK Sleeping'
+  qos: 1
+  payload_on: 'yes'
+  payload_off: 'no'

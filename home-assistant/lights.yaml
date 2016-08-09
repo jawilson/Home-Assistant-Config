@@ -1,0 +1,23 @@
+# Hue
+- platform: hue
+  host: philipshue.singularity.net
+  allow_unreachable: true
+  filename: hue_hub_token.conf
+
+# Insteon
+- platform: insteondimmeroh
+  name: "Entertainment"
+  resource: http://openhab.singularity.net/rest/items/Dimmer2
+  brightness: "255"
+- platform: insteondimmeroh
+  name: "Bedroom"
+  resource: http://openhab.singularity.net/rest/items/Dimmer1
+  brightness: "255"
+- platform: insteondimmeroh
+  name: "Dining"
+  resource: http://openhab.singularity.net/rest/items/DimmerSwitch1
+  brightness: "255"
+- platform: insteondimmeroh
+  name: "Kitchen"
+  resource: http://openhab.singularity.net/rest/items/DimmerSwitch2
+  brightness: "255"

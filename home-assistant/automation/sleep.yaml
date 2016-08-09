@@ -1,0 +1,68 @@
+- alias: 'Go to Sleep'
+  trigger:
+    - platform: state
+      entity_id:
+        - binary_sensor.ak_sleeping
+        - binary_sensor.jeff_sleeping
+      to: 'on'
+  action:
+    - service: light.turn_off
+      entity_id: light.bedroom
+    - condition: state
+      entity_id: switch.guests
+      state: 'off'
+    - condition: and
+      conditions:
+        - condition: state
+          entity_id: 'binary_sensor.ak_sleeping'
+          state: 'on'
+        - condition: state
+          entity_id: 'binary_sensor.jeff_sleeping'
+          state: 'on'
+    - service: script.turn_on
+      data:
+        entity_id: script.apartment_shutdown
+    - condition: state
+      entity_id: input_boolean.thermostat_auto
+      state: 'on'
+    - service: thermostat.set_temperature
+      data:
+        temperature: 72
+
+
+- alias: 'Wake Up'
+  trigger:
+    - platform: state
+      entity_id: group.sleeping
+      to: 'off'
+  condition:
+    - condition: state
+      entity_id: switch.guests
+      state: 'off'
+    - condition: time
+      after: '6:00:00'
+      before: '9:00:00'
+      weekday:
+        - mon
+        - tue
+        - wed
+        - thu
+        - fri
+  action:
+    - service: light.turn_on
+      entity_id:
+        - light.bedroom
+    - condition: state
+      entity_id: switch.guests
+      state: 'off'
+    - service: light.turn_on
+      entity_id:
+        - light.kitchen
+      data:
+        transition: 15
+    - condition: state
+      entity_id: input_boolean.thermostat_auto
+      state: 'on'
+    - service: thermostat.set_temperature
+      data:
+        temperature: 74
