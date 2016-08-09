@@ -36,7 +36,8 @@ services:
       - ./mqtt/log:/mqtt/log
       - ./mqtt/data:/mqtt/data
   homeassistant:
-    image: homeassistant/home-assistant:latest
+    #image: homeassistant/home-assistant:latest
+    image: jawilson/homeassistant
     restart: always
     dns: 192.168.0.1
     dns_search: singularity.net
