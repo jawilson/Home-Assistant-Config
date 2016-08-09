@@ -1,0 +1,50 @@
+version: '2'
+
+services:
+  openhab:
+    image: peez/openhab
+    restart: always
+    dns: 192.168.0.1
+    dns_search: singularity.net
+    ports:
+      - 8080:8080
+      - 8443:8443
+      - 5555:5555
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
+      - ./openhab/conf:/opt/openhab/configurations
+  harmony:
+    image: jawilson/harmony-api
+    restart: always
+    dns: 192.168.0.1
+    dns_search: singularity.net
+    volumes:
+      - ./harmony-api:/config:ro
+  mqtt:
+    image: toke/mosquitto
+    restart: always
+    dns: 192.168.0.1
+    dns_search: singularity.net
+    user: '119:999'
+    ports:
+      - 1883:1883
+      - 8883:8883
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - ./mqtt/config:/mqtt/config:rw
+      - ./mqtt/log:/mqtt/log
+      - ./mqtt/data:/mqtt/data
+  homeassistant:
+    image: homeassistant/home-assistant:latest
+    restart: always
+    dns: 192.168.0.1
+    dns_search: singularity.net
+    ports:
+      - 8123:8123
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - ./home-assistant:/config
+      - ./letsencrypt:/etc/letsencrypt:ro
+    environment:
+      - HA_LOG_LEVEL=error
