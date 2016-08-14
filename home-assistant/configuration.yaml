@@ -86,6 +86,7 @@ device_tracker:
     track_new_devices: no
     protocol: telnet
   - platform: owntracks
+    max_gps_accuracy: 100
 
 media_player:
   - platform: plex

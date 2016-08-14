@@ -1,4 +1,6 @@
 - name: Home
+  latitude: 38.9039
+  longitude: -77.0165
   icon: mdi:home-modern
 
 - name: B-Line

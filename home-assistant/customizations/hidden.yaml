@@ -10,3 +10,4 @@ sun.sun:
 
 media_player.plex_web_chrome:
   hidden: true
+  haaska_hidden: true
