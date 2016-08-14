@@ -1,0 +1,9 @@
+- platform: wake_on_lan
+  mac_address: 'BC:5F:F4:1D:68:20'
+  name: Feynman
+  host: Feynman.singularity.net
+
+- platform: wake_on_lan
+  mac_address: '00:01:2E:2D:60:04'
+  name: Blue
+  host: Blue.singularity.net
