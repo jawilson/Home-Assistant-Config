@@ -1,5 +1,6 @@
 .HA_VERSION
 *.conf
+*.db-journal
 secrets.yaml
 
 deps/
