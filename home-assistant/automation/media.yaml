@@ -14,3 +14,38 @@
       - group.entryway
     data:
       transition: 15
+
+- alias: 'Living Room Media Players Paused'
+  trigger:
+    - platform: state
+      entity_id:
+        - media_player.blue
+        - media_player.living_room
+      to: 'paused'
+  condition:
+    - condition: state
+      entity_id: group.living_room_lamp
+      state: 'off'
+  action:
+     service: light.turn_on
+     entity_id: group.living_room_lamp
+     data:
+       transition: 10
+       brightness: 50
+
+- alias: 'Projector Off'
+  trigger:
+    - platform: state
+      entity_id: switch.projector
+      from: 'on'
+      to: 'off'
+  condition:
+    - condition: state
+      entity_id: group.living_room
+      state: 'off'
+  action:
+     service: light.turn_on
+     entity_id: group.living_room
+     data:
+       transition: 15
+       brightness: 100

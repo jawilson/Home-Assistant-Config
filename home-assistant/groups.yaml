@@ -29,6 +29,11 @@ Computers:
   - switch.blue
 
 
+Living Room Media Players:
+  - media_player.blue
+  - media_player.living_room
+
+
 People:
   - device_tracker.jawilson_oxygen
   - sensor.jeff_sleep_state
