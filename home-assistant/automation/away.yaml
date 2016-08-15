@@ -36,3 +36,19 @@
   action:
     service: homeassistant.turn_off
     entity_id: switch.apartment_home
+
+
+- alias: Circulate while away
+  trigger:
+    - platform: state
+      entity_id: switch.apartment_home
+      state: 'off'
+      for:
+        hours: 2
+  condition:
+    - condition: state
+      entity_id: input_boolean.thermostat_auto
+      state: 'on'
+  action:
+    service: script.turn_on
+    entity_id: script.cycle_air

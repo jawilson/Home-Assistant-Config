@@ -69,3 +69,17 @@
   action:
     service: homeassistant.turn_on
     entity_id: switch.apartment_home
+
+
+- alias: Stop circulating
+  trigger:
+    - platform: state
+      entity_id: switch.apartment_home
+      state: 'off'
+  condition:
+    - condition: state
+      entity_id: input_boolean.thermostat_auto
+      state: 'on'
+  action:
+    service: script.turn_off
+    entity_id: script.cycle_air

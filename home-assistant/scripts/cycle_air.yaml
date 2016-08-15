@@ -1,0 +1,9 @@
+alias: Cycle Air
+sequence:
+  - service: homeassistant.turn_on
+    data:
+      entity_id: switch.apartment_fan
+  - delay: 02:00
+  - service: script.turn_on
+    data:
+      entity_id: script.cycle_air
