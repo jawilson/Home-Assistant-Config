@@ -1,14 +1,16 @@
-- alias: 'Media Player Playing'
+- alias: 'Living Room Media Players Playing'
   trigger:
     - platform: state
-      entity_id: media_player.blue
+      entity_id:
+        - media_player.blue
+        - media_player.living_room
       to: 'playing'
   action:
     service: light.turn_off
     entity_id:
-      - light.kitchen
+      - group.kitchen
       - light.dining
-      - light.bedroom
-      - light.entryway
+      - group.bedroom
+      - group.entryway
     data:
       transition: 15

@@ -5,8 +5,8 @@
 # Groups
 group.all_lights:
   haaska_name: All Lights
-group.bedroom:
-  haaska_name: Bedroom Lights
+group.tree_lamp:
+  haaska_name: Tree Lamp
 group.living_room_lamp:
   haaska_name: Living Room Lamp
 
@@ -56,6 +56,8 @@ group.entryway:
   haaska_hidden: true
 group.living_room:
   haaska_hidden: true
+group.bedroom:
+  haaska_hidden: true
 group.kitchen:
   haaska_hidden: true
 group.computers:
@@ -65,4 +67,14 @@ group.computers:
 light.living_room_lamp_1:
   haaska_hidden: true
 light.living_room_lamp_2:
+  haaska_hidden: true
+light.tree_lamp_1:
+  haaska_hidden: true
+light.tree_lamp_2:
+  haaska_hidden: true
+light.tree_lamp_3:
+  haaska_hidden: true
+light.tree_lamp_4:
+  haaska_hidden: true
+light.tree_lamp_5:
   haaska_hidden: true

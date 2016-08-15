@@ -15,19 +15,17 @@
       entity_id:
         - light.entryway
         - light.kitchen
+        - group.bedroom
       data:
-        transition: 15
-    - service: homeassistant.turn_on
-      entity_id: light.bedroom
+        transition: 30
     - condition: sun
       after: sunset
       after_offset: '-1:00:00'
     - service: light.turn_on
-      entity_id:
-        - light.living_room_lamp_1
-        - light.living_room_lamp_2
+      entity_id: group.living_room_lamp
       data:
         transition: 15
+        profile: bright
 
 
 - alias: Nest home
