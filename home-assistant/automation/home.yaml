@@ -1,7 +1,7 @@
 - alias: Handle lights when arriving home
   trigger:
     - platform: state
-      entity_id: group.family
+      entity_id: group.all_devices
       state: 'home'
   condition:
     - condition: state
@@ -36,7 +36,7 @@
       entity_id: proximity.home
       below: 500
     - platform: state
-      entity_id: group.family
+      entity_id: group.all_devices
       state: 'home'
       for:
         minutes: 5
@@ -63,7 +63,7 @@
     condition: and
     conditions:
       - condition: state
-        entity_id: group.family
+        entity_id: group.all_devices
         state: 'home'
       - condition: state
         entity_id: input_boolean.thermostat_auto
