@@ -32,10 +32,9 @@
 
 - alias: Nest home
   trigger:
-    - platform: template
-      value_template: "{{ is_state_attr('proximity.home', 'dir_of_travel', 'arrived') }}"
-    - platform: template
-      value_template: "{{ is_state_attr('proximity.home', 'dir_of_travel', 'towards') }}"
+    - platform: numeric_state
+      entity_id: proximity.home
+      below: 500
     - platform: state
       entity_id: group.family
       state: 'home'
@@ -45,12 +44,15 @@
     - condition: state
       entity_id: switch.presence
       state: 'on'
-    - condition: template
-      value_template: "{{ distance(closest('group.family')) < 300 }}"
+    - condition: or
+      conditions:
+        - condition: template
+          value_template: "{{ is_state_attr('proximity.home', 'dir_of_travel', 'arrived') }}"
+        - condition: template
+          value_template: "{{ is_state_attr('proximity.home', 'dir_of_travel', 'towards') }}"
   action:
     service: homeassistant.turn_on
     entity_id: switch.apartment_home
-
 
 
 - alias: Nest while home

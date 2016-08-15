@@ -19,9 +19,7 @@
   trigger:
     - platform: numeric_state
       entity_id: proximity.home
-      above: 0
-    - platform: template
-      value_template: "{{ is_state_attr('proximity.home', 'dir_of_travel', 'away_from') }}"
+      above: 750
   condition:
     - condition: state
       entity_id: switch.presence
@@ -29,8 +27,12 @@
     - condition: state
       entity_id: switch.guests
       state: 'off'
-    - condition: template
-      value_template: "{{ distance(closest('group.family')) > 400 }}"
+    - condition: or
+      conditions:
+        - condition: template
+          value_template: "{{ is_state_attr('proximity.home', 'dir_of_travel', 'away_from') }}"
+        - condition: template
+          value_template: "{{ is_state_attr('proximity.home', 'dir_of_travel', 'stationary') }}"
   action:
     service: homeassistant.turn_off
     entity_id: switch.apartment_home

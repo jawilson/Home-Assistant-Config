@@ -5,8 +5,7 @@ homeassistant:
   latitude: 38.9039
   longitude: -77.0165
   elevation: 17
-  # C for Celsius, F for Fahrenheit
-  temperature_unit: F
+  unit_system: imperial
   # Pick yours from here: http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone: America/New_York
 
@@ -121,6 +120,7 @@ proximity:
     - device_tracker.jawilson_oxygen
     - device_tracker.annekat_reality
   tolerance: 50
+  unit_of_measurement: m
 
 # Scenes
 scene: !include scenes.yaml
