@@ -6,6 +6,17 @@
   qos: 1
   value_template: '{{ value|capitalize }}'
 
+- platform: mqtt
+  state_topic: 'owntracks/jawilson/oxygen'
+  name: 'Jeff Battery'
+  unit_of_measurement: '%'
+  value_template: |
+    {% if value_json.batt %}
+      {{ value_json.batt }}
+    {% else %}
+      {{ states.sensor.ajeff_battery.state }}
+    {% endif %}
+
 - platform: template
   sensors:
     jeff_sleep_state:
@@ -24,6 +35,17 @@
   name: 'AK Alarm'
   qos: 1
   value_template: '{{ value|capitalize }}'
+
+- platform: mqtt
+  state_topic: 'owntracks/annekat/reality'
+  name: 'AK Battery'
+  unit_of_measurement: '%'
+  value_template: |
+    {% if value_json.batt %}
+      {{ value_json.batt }}
+    {% else %}
+      {{ states.sensor.ak_battery.state }}
+    {% endif %}
 
 - platform: template
   sensors:

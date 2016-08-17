@@ -36,9 +36,11 @@ Living Room Media Players:
 
 People:
   - device_tracker.jawilson_oxygen
+  - sensor.jeff_battery
   - sensor.jeff_sleep_state
   - sensor.jeff_alarm
   - device_tracker.annekat_reality
+  - sensor.ak_battery
   - sensor.ak_sleep_state
   - sensor.ak_alarm
 

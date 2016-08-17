@@ -29,6 +29,8 @@ binary_sensor.octoprint_printing_error:
 #
 
 # Jeff
+sensor.jeff_battery:
+  icon: mdi:battery
 sensor.jeff_sleep_state:
   icon: mdi:sleep
 sensor.jeff_alarm:
@@ -36,6 +38,8 @@ sensor.jeff_alarm:
   icon: mdi:alarm
 
 # AK
+sensor.ak_battery:
+  icon: mdi:battery
 sensor.ak_sleep_state:
   icon: mdi:sleep
 sensor.ak_alarm:
