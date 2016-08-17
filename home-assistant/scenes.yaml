@@ -4,12 +4,14 @@
       state: on
     light.entertainment:
       state: on
-      brightness: 100
+      brightness: 77
     light.living_room_lamp_1:
       state: on
-      transition: 15
-      brightness: 75
+      transition: 30
+      profile: nightlight
+      brightness: 65
     light.living_room_lamp_2:
       state: on
-      transition: 15
-      brightness: 75
+      transition: 30
+      profile: nightlight
+      brightness: 65

@@ -6,32 +6,39 @@
         - media_player.living_room
       to: 'playing'
   action:
-    service: light.turn_off
-    entity_id:
-      - group.kitchen
-      - light.dining
-      - group.bedroom
-      - group.entryway
-    data:
-      transition: 15
+    - service: light.turn_off
+      entity_id:
+        - light.entryway
+        - light.bedroom_lamp
+        - light.tree_lamp_1
+        - light.tree_lamp_2
+        - light.tree_lamp_3
+        - light.tree_lamp_4
+        - light.tree_lamp_5
+      data:
+        transition: 30
+    - service: light.turn_off
+      entity_id:
+        - light.kitchen
+        - light.dining
 
-- alias: 'Living Room Media Players Paused'
+- alias: 'Living Room Media Players Idle'
   trigger:
     - platform: state
       entity_id:
         - media_player.blue
         - media_player.living_room
-      to: 'paused'
+      to: 'idle'
   condition:
     - condition: state
       entity_id: group.living_room_lamp
       state: 'off'
   action:
-     service: light.turn_on
-     entity_id: group.living_room_lamp
-     data:
-       transition: 10
-       brightness: 50
+    service: light.turn_on
+    entity_id: group.living_room_lamp
+    data:
+      transition: 15
+      profile: nightlight
 
 - alias: 'Projector Off'
   trigger:
@@ -39,13 +46,14 @@
       entity_id: switch.projector
       from: 'on'
       to: 'off'
-  condition:
-    - condition: state
-      entity_id: group.living_room
-      state: 'off'
   action:
-     service: light.turn_on
-     entity_id: group.living_room
-     data:
-       transition: 15
-       brightness: 100
+    - service: light.turn_on
+      entity_id: group.living_room_lamp
+      data:
+        transition: 30
+        profile: dimmed
+    - service: light.turn_on
+      entity_id:
+        - light.dining
+      data:
+        brightness: 77
