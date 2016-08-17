@@ -36,9 +36,6 @@
       entity_id: group.sleeping
       to: 'off'
   condition:
-    - condition: state
-      entity_id: switch.guests
-      state: 'off'
     - condition: time
       after: '6:00:00'
       before: '9:00:00'
