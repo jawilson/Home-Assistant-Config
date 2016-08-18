@@ -141,7 +141,6 @@ logger:
     homeassistant.bootstrap: error
     homeassistant.core: error
     homeassistant.components.api: error
+    homeassistant.components.http: error
     homeassistant.components.recorder: error
-    homeassistant.components.device_tracker.owntracks: error
     homeassistant.components.device_tracker.asuswrt: error
-    homeassistant.components.mqtt: error
