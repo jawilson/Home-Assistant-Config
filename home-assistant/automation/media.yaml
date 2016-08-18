@@ -62,3 +62,7 @@
         - light.kitchen
       data:
         brightness: 128
+    - delay:
+        seconds: 30
+    - service: switch.turn_on
+      entity_id: switch.living_area_fluxer

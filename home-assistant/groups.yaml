@@ -143,3 +143,5 @@ Admin:
     - switch.presence
     - switch.guests
     - input_boolean.thermostat_auto
+    - switch.living_area_fluxer
+    - switch.bedroom_fluxer

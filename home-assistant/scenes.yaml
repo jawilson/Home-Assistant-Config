@@ -2,6 +2,8 @@
   entities:
     switch.plex:
       state: on
+    switch.living_area_fluxer:
+      state: off
     light.entertainment:
       state: on
       brightness: 77
