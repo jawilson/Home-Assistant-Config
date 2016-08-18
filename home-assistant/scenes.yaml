@@ -7,11 +7,11 @@
       brightness: 77
     light.living_room_lamp_1:
       state: on
-      transition: 30
+      transition: 15
       profile: nightlight
       brightness: 65
     light.living_room_lamp_2:
       state: on
-      transition: 30
+      transition: 15
       profile: nightlight
       brightness: 65
