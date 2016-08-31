@@ -53,13 +53,23 @@
     - service: light.turn_on
       entity_id:
         - light.dining
-      data:
-        brightness: 77
+      data_template:
+        brightness: |
+          {% if is_state('light.dining', 'on') and states.light.dining.attributes.brightness > 77 %}
+          {{states.light.dining.attributes.brightness}}
+          {% else %}
+          77
+          {% endif %}
     - service: light.turn_on
       entity_id:
         - light.kitchen
-      data:
-        brightness: 128
+      data_template:
+        brightness: |
+          {% if is_state('light.kitchen', 'on') and states.light.kitchen.attributes.brightness > 128 %}
+          {{states.light.kitchen.attributes.brightness}}
+          {% else %}
+          128
+          {% endif %}
     - delay:
         seconds: 30
     - service: switch.turn_on
