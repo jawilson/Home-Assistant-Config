@@ -56,7 +56,7 @@
 - alias: Nest while home
   trigger:
     - platform: template
-      value_template: "{{ is_state_attr('thermostat.apartment', 'away_mode', 'on') }}"
+      value_template: "{{ is_state_attr('climate.apartment', 'away_mode', 'on') }}"
   condition:
     condition: and
     conditions:
@@ -64,7 +64,7 @@
         entity_id: group.all_devices
         state: 'home'
       - condition: state
-        entity_id: input_boolean.thermostat_auto
+        entity_id: input_boolean.climate_auto
         state: 'on'
   action:
     service: homeassistant.turn_on
@@ -78,7 +78,7 @@
       state: 'off'
   condition:
     - condition: state
-      entity_id: input_boolean.thermostat_auto
+      entity_id: input_boolean.climate_auto
       state: 'on'
   action:
     service: script.turn_off

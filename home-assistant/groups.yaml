@@ -87,8 +87,8 @@ Tree Lamp:
   - light.tree_lamp_4
   - light.tree_lamp_5
 
-Environment:
-  - thermostat.apartment
+Climate:
+  - climate.apartment
   - sensor.apartment_humidity
   - sensor.apartment_mode
   - switch.apartment_home
@@ -114,7 +114,7 @@ default_view:
   entities:
     - group.weather
     - group.people
-    - group.environment
+    - group.climate
 
 Rooms:
   view: yes
@@ -142,6 +142,6 @@ Admin:
   entities:
     - switch.presence
     - switch.guests
-    - input_boolean.thermostat_auto
+    - input_boolean.climate_auto
     - switch.living_area_fluxer
     - switch.bedroom_fluxer

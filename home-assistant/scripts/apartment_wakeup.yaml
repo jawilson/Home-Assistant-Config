@@ -1,8 +1,8 @@
 alias: Apartment Wake Up
 sequence:
   - condition: state
-    entity_id: input_boolean.thermostat_auto
+    entity_id: input_boolean.climate_auto
     state: 'on'
-  - service: thermostat.set_temperature
+  - service: climate.set_temperature
     data:
       temperature: 74

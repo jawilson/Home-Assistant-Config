@@ -1,5 +1,5 @@
 # Nest
-thermostat.apartment:
+climate.apartment:
   entity_picture: https://lh3.googleusercontent.com/-XvB5gWxVuEA/AAAAAAAAAAI/AAAAAAAAGJs/TO8aiv89Lj4/s0-c-k-no-ns/photo.jpg
   friendly_name: 'Nest'
 

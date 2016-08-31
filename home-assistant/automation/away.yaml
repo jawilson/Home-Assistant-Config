@@ -47,7 +47,7 @@
         hours: 2
   condition:
     - condition: state
-      entity_id: input_boolean.thermostat_auto
+      entity_id: input_boolean.climate_auto
       state: 'on'
   action:
     service: script.turn_on

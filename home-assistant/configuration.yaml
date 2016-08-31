@@ -72,7 +72,7 @@ input_boolean: !include input_boolean.yaml
 #
 # Devices
 #
-thermostat:
+climate:
   platform: nest
 
 light: !include lights.yaml

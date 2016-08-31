@@ -11,7 +11,7 @@ group.living_room_lamp:
   haaska_name: Living Room Lamp
 
 # Inputs
-input_boolean.thermostat_auto:
+input_boolean.climate_auto:
   haaska_desc: Home Assistant Input Boolean (Setting)
 
 # Scenes
@@ -40,7 +40,7 @@ group.p3steel:
   haaska_hidden: true
 group.sleeping:
   haaska_hidden: true
-group.environment:
+group.climate:
   haaska_hidden: true
 group.people:
   haaska_hidden: true

@@ -1,4 +1,4 @@
-thermostat_auto:
-  name: Control Thermostat
+climate_auto:
+  name: Control Climate
   initial: on
   icon: mdi:nest-thermostat
