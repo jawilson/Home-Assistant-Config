@@ -1,0 +1,9 @@
+- alias: Home Assistant Start
+  trigger:
+    platform: event
+    event_type: homeassistant_start
+  action:
+    service: homeassistant.turn_on
+    entity_id:
+      - switch.living_area_fluxer
+      - switch.bedroom_fluxer
