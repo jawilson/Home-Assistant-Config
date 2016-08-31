@@ -1,0 +1,11 @@
+alias: Alarm Ringing
+sequence:
+  - service: switch.turn_off
+    entity_id: switch.bedroom_fluxer
+  - service: light.turn_on
+    data_template:
+      entity_id: '{{ light }}'
+    data:
+      transition: 60
+      color_temp: 153
+      brightness: 120

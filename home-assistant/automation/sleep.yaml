@@ -6,118 +6,18 @@
         - binary_sensor.jeff_sleeping
       to: 'on'
   action:
-    - service: light.turn_off
-      entity_id: group.bedroom
-    - condition: state
-      entity_id: switch.guests
-      state: 'off'
-    - condition: and
-      conditions:
-        - condition: state
-          entity_id: 'binary_sensor.ak_sleeping'
-          state: 'on'
-        - condition: state
-          entity_id: 'binary_sensor.jeff_sleeping'
-          state: 'on'
-    - service: script.turn_on
-      data:
-        entity_id: script.apartment_shutdown
-    - condition: state
-      entity_id: input_boolean.thermostat_auto
-      state: 'on'
-    - service: thermostat.set_temperature
-      data:
-        temperature: 72
-
-
-- alias: 'Jeff Alarm Ringing'
-  trigger:
-    - platform: state
-      entity_id:
-        - sensor.jeff_alarm
-      to: 'Ringing'
-  action:
-    - service: light.turn_on
-      entity_id: light.bedroom_lamp
-      data:
-        transition: 30
-        color_temp: 153
-        brightness: 120
-
-
-- alias: 'Jeff Alarm Snooze'
-  trigger:
-    - platform: state
-      entity_id:
-        - sensor.jeff_alarm
-      to: 'Snoozed'
-  action:
-    - service: light.turn_off
-      entity_id: light.bedroom_lamp
-
-
-- alias: 'Jeff Alarm Dismiss'
-  trigger:
-    - platform: state
-      entity_id:
-        - sensor.jeff_alarm
-      to: 'Dismissed'
-      for:
-        seconds: 5
-  condition:
-    - condition: state
-      entity_id: group.sleeping
-      state: 'on'
-  action:
-    - service: light.turn_off
-      entity_id: light.bedroom_lamp
-
-
-- alias: 'AK Alarm Ringing'
-  trigger:
-    - platform: state
-      entity_id:
-        - sensor.ak_alarm
-      to: 'Ringing'
-  action:
-    - service: light.turn_on
-      entity_id: light.tree_lamp_5
-      data:
-        transition: 30
-        color_temp: 153
-        brightness: 120
-
-
-- alias: 'AK Alarm Snooze'
-  trigger:
-    - platform: state
-      entity_id:
-        - sensor.ak_alarm
-      to: 'Snoozed'
-  action:
-    - service: light.turn_off
-      entity_id: light.tree_lamp_5
-
-
-- alias: 'Jeff Alarm Dismiss'
-  trigger:
-    - platform: state
-      entity_id:
-        - sensor.ak_alarm
-      to: 'Dismissed'
-      for:
-        seconds: 5
-  condition:
-    - condition: state
-      entity_id: group.sleeping
-      state: 'on'
-  action:
-    - service: light.turn_off
-      entity_id: light.tree_lamp_5
+    - service: script.bedroom_sleep
+    - service: script.living_area_sleep
+    - service: script.apartment_sleep
 
 
 - alias: 'Wake Up'
   trigger:
+    - platform: state
+      entity_id:
+        - binary_sensor.ak_sleeping
+        - binary_sensor.jeff_sleeping
+      to: 'on'
     - platform: state
       entity_id: group.sleeping
       to: 'off'
@@ -132,23 +32,66 @@
         - thu
         - fri
   action:
-    - service: light.turn_on
+    - service: script.bedroom_wakeup
+    - service: script.living_area_wakeup
+    - service: script.apartment_wakeup
+
+
+- alias: 'Alarm Ringing'
+  trigger:
+    - platform: state
       entity_id:
-        - group.bedroom
-      data:
-        transition: 15
-        color_temp: 153
-        brightness: 120
-    - condition: state
-      entity_id: switch.guests
-      state: 'off'
-    - service: light.turn_on
+        - sensor.ak_alarm
+        - sensor.jeff_alarm
+      to: 'Ringing'
+  action:
+    - service: script.alarm_ringing
+      data_template:
+        light: |
+          {% if trigger.entity_id == 'sensor.ak_alarm' %}
+          light.tree_lamp_5
+          {% elif trigger.entity_id == 'sensor.jeff_alarm' %}
+          light.bedroom_lamp
+          {% endif %}
+
+
+- alias: 'Alarm Snooze'
+  trigger:
+    - platform: state
       entity_id:
-        - light.kitchen
-        - light.dining
+        - sensor.ak_alarm
+        - sensor.jeff_alarm
+      to: 'Snoozed'
+  action:
+    - service: script.alarm_snooze
+      data_template:
+        light: |
+          {% if trigger.entity_id == 'sensor.ak_alarm' %}
+          light.tree_lamp_5
+          {% elif trigger.entity_id == 'sensor.jeff_alarm' %}
+          light.bedroom_lamp
+          {% endif %}
+
+
+- alias: 'Alarm Dismiss'
+  trigger:
+    - platform: state
+      entity_id:
+        - sensor.ak_alarm
+        - sensor.jeff_alarm
+      to: 'Dismissed'
+      for:
+        seconds: 5
+  condition:
     - condition: state
-      entity_id: input_boolean.thermostat_auto
+      entity_id: group.sleeping
       state: 'on'
-    - service: thermostat.set_temperature
-      data:
-        temperature: 74
+  action:
+    - service: script.alarm_dismiss
+      data_template:
+        light: |
+          {% if trigger.entity_id == 'sensor.ak_alarm' %}
+          light.tree_lamp_5
+          {% elif trigger.entity_id == 'sensor.jeff_alarm' %}
+          light.bedroom_lamp
+          {% endif %}

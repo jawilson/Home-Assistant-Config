@@ -1,0 +1,20 @@
+alias: Living Area Sleep
+sequence:
+  - condition: state
+    entity_id: switch.guests
+    state: 'off'
+  - condition: and
+    conditions:
+      - condition: state
+        entity_id: 'binary_sensor.ak_sleeping'
+        state: 'on'
+      - condition: state
+        entity_id: 'binary_sensor.jeff_sleeping'
+        state: 'on'
+  - service: light.turn_off
+    data:
+      entity_id: group.living_area_lights
+  - service: switch.turn_off
+    data:
+      entity_id:
+        - switch.projector

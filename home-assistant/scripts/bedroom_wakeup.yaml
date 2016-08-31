@@ -1,0 +1,17 @@
+alias: Bedroom Wake Up
+sequence:
+  - condition: state
+    entity_id: group.sleeping
+    state: 'off'
+  - service: switch.turn_off
+    entity_id: switch.bedroom_fluxer
+  - service: light.turn_on
+    entity_id:
+      - group.bedroom
+    data:
+      transition: 120
+      color_temp: 153
+      brightness: 120
+  - delay: 01:00
+  - service: switch.turn_on
+    entity_id: switch.bedroom_fluxer
