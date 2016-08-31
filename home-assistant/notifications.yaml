@@ -5,3 +5,8 @@
   name: slack
   api_key: !secret slack_key
   default_channel: '#general'
+- platform: html5
+  name: html5
+  gcm_api_key: !secret gcm_api_key
+  gcm_sender_id: !secret gcm_project_number
+
