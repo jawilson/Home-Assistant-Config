@@ -62,8 +62,6 @@ group.kitchen:
   haaska_hidden: true
 group.computers:
   haaska_hidden: true
-group.living_room_media_players:
-  haaska_hidden: true
 
 # Lights
 light.living_room_lamp_1:

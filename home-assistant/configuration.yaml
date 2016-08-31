@@ -90,7 +90,7 @@ device_tracker:
 media_player:
   - platform: plex
   - platform: cast
-    host: chromium.singularity.net
+    host: shield.singularity.net
   - platform: cast
     host: molybdenum.singularity.net
 

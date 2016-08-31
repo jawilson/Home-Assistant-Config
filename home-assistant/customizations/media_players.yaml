@@ -1,9 +1,11 @@
 # Media Players
-media_player.living_room:
-  friendly_name: 'Living Room Chromecast'
-  haaska_hidden: true
 media_player.bedroom:
   friendly_name: 'Bedroom Chromecast'
-media_player.blue:
-  friendly_name: 'Plex'
+  emulated_hue: true
+media_player.shield:
+  friendly_name: 'Shield'
+  haaska_hidden: true
+media_player.shield_2:
+  haaska_hidden: true
+media_player.neon:
   haaska_hidden: true

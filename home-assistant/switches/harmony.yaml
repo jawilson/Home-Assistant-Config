@@ -1,39 +1,31 @@
 - platform: mqtt
   name: 'Projector'
-  state_topic: 'harmony-api/state'
-  command_topic: 'harmony-api/activities/watch-plex/command'
+  state_topic: 'home/livingroom/harmony/state'
+  command_topic: 'home/livingroom/harmony/activities/play-shield/command'
   qos: 0
   payload_on: 'on'
   payload_off: 'off'
 
 - platform: mqtt
   name: 'Plex'
-  state_topic: 'harmony-api/activities/watch-plex/state'
-  command_topic: 'harmony-api/activities/watch-plex/command'
+  state_topic: 'home/livingroom/harmony/activities/watch-plex/state'
+  command_topic: 'home/livingroom/harmony/activities/watch-plex/command'
   qos: 0
   payload_on: 'on'
   payload_off: 'off'
 
 - platform: mqtt
   name: 'Xbox'
-  state_topic: 'harmony-api/activities/play-xbox-s/state'
-  command_topic: 'harmony-api/activities/play-xbox-s/command'
-  qos: 0
-  payload_on: 'on'
-  payload_off: 'off'
-
-- platform: mqtt
-  name: 'Living Room Chromecast'
-  state_topic: 'harmony-api/activities/watch-chromecast/state'
-  command_topic: 'harmony-api/activities/watch-chromecast/command'
+  state_topic: 'home/livingroom/harmony/activities/play-xbox-s/state'
+  command_topic: 'home/livingroom/harmony/activities/play-xbox-s/command'
   qos: 0
   payload_on: 'on'
   payload_off: 'off'
 
 - platform: mqtt
   name: 'Wii'
-  state_topic: 'harmony-api/activities/play-wii/state'
-  command_topic: 'harmony-api/activities/play-wii/command'
+  state_topic: 'home/livingroom/harmony/activities/play-wii/state'
+  command_topic: 'home/livingroom/harmony/activities/play-wii/command'
   qos: 0
   payload_on: 'on'
   payload_off: 'off'

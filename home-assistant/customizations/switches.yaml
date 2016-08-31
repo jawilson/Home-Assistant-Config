@@ -8,6 +8,3 @@ switch.guests:
 switch.feynman:
   icon: mdi:desktop-tower
   haaska_desc: Home Assistant Switch (WOL)
-switch.blue:
-  icon: mdi:desktop-tower
-  haaska_desc: Home Assistant Switch (WOL)

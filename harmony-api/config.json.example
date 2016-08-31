@@ -6,6 +6,7 @@
       "password": "password",
       "rejectUnauthorized": false
   },
+  "topic_namespace": "home/livingroom/harmony",
   "hub_ip": "harmonyhub.singularity.net"
 }
 

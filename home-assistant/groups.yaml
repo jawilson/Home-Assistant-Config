@@ -26,12 +26,6 @@ P3Steel:
 
 Computers:
   - switch.feynman
-  - switch.blue
-
-
-Living Room Media Players:
-  - media_player.blue
-  - media_player.living_room
 
 
 People:
@@ -128,8 +122,7 @@ Media:
   entities:
   - group.harmony
   - media_player.bedroom
-  - media_player.living_room
-  - media_player.blue
+  - media_player.shield
 
 Other:
   view: yes
