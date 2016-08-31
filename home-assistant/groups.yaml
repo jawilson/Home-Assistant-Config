@@ -48,6 +48,13 @@ Sleeping:
   - binary_sensor.jeff_sleeping
   - binary_sensor.ak_sleeping
 
+Living Area Lights:
+  - light.entryway
+  - light.kitchen
+  - light.dining
+  - light.entertainment
+  - light.living_room_lamp_1
+  - light.living_room_lamp_2
 
 Entryway:
   - light.entryway
