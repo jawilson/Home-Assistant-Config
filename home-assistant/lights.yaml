@@ -7,13 +7,13 @@
 # Insteon
 - platform: insteondimmeroh
   name: "Entertainment"
-  resource: http://openhab.singularity.net/rest/items/Dimmer2
+  resource: http://openhab:8080/rest/items/Dimmer2
   brightness: "255"
 - platform: insteondimmeroh
   name: "Dining"
-  resource: http://openhab.singularity.net/rest/items/DimmerSwitch1
+  resource: http://openhab:8080/rest/items/DimmerSwitch1
   brightness: "255"
 - platform: insteondimmeroh
   name: "Kitchen"
-  resource: http://openhab.singularity.net/rest/items/DimmerSwitch2
+  resource: http://openhab:8080/rest/items/DimmerSwitch2
   brightness: "255"

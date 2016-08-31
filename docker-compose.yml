@@ -16,11 +16,16 @@ services:
       - ./openhab:/opt/openhab/configurations
   harmony:
     image: jawilson/harmony-api
+    links:
+      - mqtt
     restart: always
     dns: 192.168.0.1
     dns_search: singularity.net
     volumes:
       - ./harmony-api:/config:ro
+      - ./tools:/opt/tools:ro
+    entrypoint: >
+      /opt/tools/wait-for-it/wait-for-it.sh -s mqtt:1883 -- npm start
   mqtt:
     image: toke/mosquitto
     restart: always
@@ -38,6 +43,9 @@ services:
   homeassistant:
     #image: homeassistant/home-assistant:latest
     image: jawilson/homeassistant
+    links:
+      - mqtt
+      - openhab
     restart: always
     dns: 192.168.0.1
     dns_search: singularity.net
@@ -47,5 +55,20 @@ services:
       - /etc/localtime:/etc/localtime:ro
       - ./home-assistant:/config
       - ./letsencrypt:/etc/letsencrypt:ro
+      - ./tools:/opt/tools:ro
     environment:
       - HA_LOG_LEVEL=error
+    entrypoint:
+      - '/opt/tools/wait-for-it/wait-for-it.sh'
+      - '-s'
+      - 'mqtt:1883'
+      - '--'
+      - '/opt/tools/wait-for-it/wait-for-it.sh'
+      - '-s'
+      - 'openhab:8080'
+      - '--'
+      - 'python'
+      - '-m'
+      - 'homeassistant'
+      - '--config'
+      - '/config'
