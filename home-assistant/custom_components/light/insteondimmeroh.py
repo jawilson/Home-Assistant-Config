@@ -69,7 +69,9 @@ class OpenhabLight(Light):
     def is_on(self):
         """Return true if light is on."""
         request = requests.get(self._resource+"/state", timeout=10)
-        if int(float(request.text)) > 0:
+        if request.text == 'Uninitialized':
+            self._state = False
+        elif int(float(request.text)) > 0:
             self._state = True
         else:
             self._state = False
