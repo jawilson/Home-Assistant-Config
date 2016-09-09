@@ -6,4 +6,4 @@ sequence:
   - delay: 02:00
   - service: script.turn_on
     data:
-      entity_id: script.cycle_air
+      entity_id: script.cycle_air_loop

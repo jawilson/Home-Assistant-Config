@@ -1,0 +1,5 @@
+alias: Cycle Air Loop
+sequence:
+  - service: script.turn_on
+    data:
+      entity_id: script.cycle_air

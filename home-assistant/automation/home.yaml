@@ -75,11 +75,13 @@
   trigger:
     - platform: state
       entity_id: switch.apartment_home
-      state: 'off'
+      state: 'on'
   condition:
     - condition: state
       entity_id: input_boolean.climate_auto
       state: 'on'
   action:
     service: script.turn_off
-    entity_id: script.cycle_air
+    entity_id:
+      - script.cycle_air_loop
+      - script.cycle_air
