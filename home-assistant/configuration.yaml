@@ -90,8 +90,6 @@ device_tracker:
 media_player:
   - platform: plex
   - platform: cast
-    host: shield.singularity.net
-  - platform: cast
     host: molybdenum.singularity.net
 
 # Cameras
