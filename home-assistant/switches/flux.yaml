@@ -1,0 +1,24 @@
+- platform: flux
+  lights:
+    - light.entryway
+    - light.living_room_lamp_1
+    - light.living_room_lamp_2
+  name: Living Area Fluxer
+  start_time: '7:00'
+  start_colortemp: 6536
+  sunset_colortemp: 3200
+  stop_time: '23:00'
+
+- platform: flux
+  lights:
+    - light.bedroom_lamp
+    - light.tree_lamp_1
+    - light.tree_lamp_2
+    - light.tree_lamp_3
+    - light.tree_lamp_4
+    - light.tree_lamp_5
+  name: Bedroom Fluxer
+  start_time: '7:00'
+  start_colortemp: 6536
+  sunset_colortemp: 3200
+  mode: mired
