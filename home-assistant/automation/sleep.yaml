@@ -17,7 +17,7 @@
       entity_id:
         - binary_sensor.ak_sleeping
         - binary_sensor.jeff_sleeping
-      to: 'on'
+      to: 'off'
     - platform: state
       entity_id: group.sleeping
       to: 'off'
@@ -33,6 +33,13 @@
         - fri
   action:
     - service: script.bedroom_wakeup
+      data_template:
+        target: |
+          {% if trigger.entity_id == 'binary_sensor.ak_sleeping' %}
+          reality
+          {% elif trigger.entity_id == 'binary_sensor.jeff_sleeping' %}
+          oxygen
+          {% endif %}
     - service: script.living_area_wakeup
     - service: script.apartment_wakeup
 
@@ -52,6 +59,12 @@
           light.tree_lamp_5
           {% elif trigger.entity_id == 'sensor.jeff_alarm' %}
           light.bedroom_lamp
+          {% endif %}
+        target: |
+          {% if trigger.entity_id == 'sensor.ak_alarm' %}
+          reality
+          {% elif trigger.entity_id == 'sensor.jeff_alarm' %}
+          oxygen
           {% endif %}
 
 
@@ -95,3 +108,16 @@
           {% elif trigger.entity_id == 'sensor.jeff_alarm' %}
           light.bedroom_lamp
           {% endif %}
+
+
+- alias: 'Wakup Cancel'
+  trigger:
+    platform: event
+    event_type: html5_notification.clicked
+    event_data:
+      action: wakeup_cancel
+  action:
+    - service: script.wakeup_cancel
+      data_template:
+        target: '{{ trigger.event.data.target }}'
+        script: '{{ trigger.event.data.data.script }}'

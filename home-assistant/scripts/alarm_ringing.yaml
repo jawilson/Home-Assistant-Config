@@ -1,11 +1,23 @@
 alias: Alarm Ringing
 sequence:
+  - service: notify.html5
+    data_template:
+      target: '{{ target }}'
+    data:
+      title: 'Good Morning!'
+      message: 'Turning on your wakeup light'
+      data:
+        tag: 'wakeup'
+        actions:
+          - action: 'wakeup_cancel'
+            title: 'Cancel'
+        script: 'script.alarm_ringing'
   - service: switch.turn_off
     entity_id: switch.bedroom_fluxer
   - service: light.turn_on
     data_template:
       entity_id: '{{ light }}'
     data:
-      transition: 60
+      transition: 80
       color_temp: 153
       brightness: 120

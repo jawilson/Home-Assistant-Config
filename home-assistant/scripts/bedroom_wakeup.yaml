@@ -3,6 +3,19 @@ sequence:
   - condition: state
     entity_id: group.sleeping
     state: 'off'
+  - service: notify.html5
+    data_template:
+      target: '{{ target }}'
+    data:
+      title: 'Good Morning!'
+      message: 'Turning on the bedroom lights'
+      data:
+        tag: 'wakeup'
+        renotify: false
+        actions:
+          - action: 'wakeup_cancel'
+            title: 'Cancel'
+        script: 'script.bedroom_wakeup'
   - service: switch.turn_off
     entity_id: switch.bedroom_fluxer
   - service: light.turn_on
@@ -12,6 +25,7 @@ sequence:
       transition: 120
       color_temp: 153
       brightness: 120
-  - delay: 01:00
+  - delay:
+      minutes: 30
   - service: switch.turn_on
     entity_id: switch.bedroom_fluxer

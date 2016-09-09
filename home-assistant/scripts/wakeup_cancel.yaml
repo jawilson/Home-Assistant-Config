@@ -1,0 +1,19 @@
+alias: Wakeup Cancel
+sequence:
+  - service: notify.html5
+    data:
+      title: 'Sorry!'
+      message: Turning the lights back off
+      data:
+        tag: wakeup
+        renotify: false
+    data_template:
+      target: '{{ target }}'
+  - service: script.turn_off
+    data_template:
+      entity_id: '{{ script }}'
+  - service: light.turn_off
+    data_template:
+      entity_id: group.bedroom
+  - service: switch.turn_on
+    entity_id: switch.bedroom_fluxer

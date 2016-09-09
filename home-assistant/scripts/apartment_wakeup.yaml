@@ -3,6 +3,8 @@ sequence:
   - condition: state
     entity_id: input_boolean.climate_auto
     state: 'on'
+  - delay:
+      minutes: 2
   - service: climate.set_temperature
     data:
       temperature: 74
