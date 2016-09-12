@@ -6,7 +6,7 @@
       state: off
     light.entertainment:
       state: on
-      brightness: 77
+      brightness: 60
     light.living_room_lamp_1:
       state: on
       transition: 15
