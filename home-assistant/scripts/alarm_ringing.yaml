@@ -8,6 +8,7 @@ sequence:
       message: 'Turning on your wakeup light'
       data:
         tag: 'wakeup'
+        renotify: false
         actions:
           - action: 'wakeup_cancel'
             title: 'Cancel'

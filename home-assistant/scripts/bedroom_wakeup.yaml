@@ -24,7 +24,7 @@ sequence:
     data:
       transition: 120
       color_temp: 153
-      brightness: 120
+      brightness: 180
   - delay:
       minutes: 30
   - service: switch.turn_on

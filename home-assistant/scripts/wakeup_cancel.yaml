@@ -5,7 +5,7 @@ sequence:
       title: 'Sorry!'
       message: Turning the lights back off
       data:
-        tag: wakeup
+        tag: 'wakeup'
         renotify: false
     data_template:
       target: '{{ target }}'
