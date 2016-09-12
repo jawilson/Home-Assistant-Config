@@ -19,7 +19,12 @@
   trigger:
     - platform: numeric_state
       entity_id: proximity.home
-      above: 750
+      above: 500
+    - platform: state
+      entity_id: group.all_devices
+      state: 'not_home'
+      for:
+        hours: 1
   condition:
     - condition: state
       entity_id: switch.presence
