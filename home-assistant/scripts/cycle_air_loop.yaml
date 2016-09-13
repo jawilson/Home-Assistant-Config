@@ -1,5 +1,8 @@
 alias: Cycle Air Loop
 sequence:
+  - delay:
+      hours: 1
+      minutes: 45
   - service: script.turn_on
     data:
       entity_id: script.cycle_air
