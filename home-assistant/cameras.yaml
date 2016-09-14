@@ -1,3 +1,14 @@
-- platform: mjpeg
+- name: P3Steel
+  platform: mjpeg
   mjpeg_url: 'http://p3steel.singularity.net/webcam/?action=stream'
-  name: P3Steel
+
+- name: AK Location
+  platform: generic
+  still_image_url: |
+    https://maps.googleapis.com/maps/api/staticmap?center={{ states.device_tracker.annekat_reality.attributes.latitude }},{{ states.device_tracker.annekat_reality.attributes.longitude }}&zoom=15&size=500x500&maptype=roadmap&markers=color:red%7Clabel:A%7C{{ states.device_tracker.annekat_reality.attributes.latitude }},{{ states.device_tracker.annekat_reality.attributes.longitude }}
+  limit_refetch_to_url_change: true
+- name: Jeff Location
+  platform: generic
+  still_image_url: |
+    https://maps.googleapis.com/maps/api/staticmap?center={{ states.device_tracker.jawilson_oxygen.attributes.latitude }},{{ states.device_tracker.jawilson_oxygen.attributes.longitude }}&zoom=15&size=500x500&maptype=roadmap&markers=color:blue%7Clabel:J%7C{{ states.device_tracker.jawilson_oxygen.attributes.latitude }},{{ states.device_tracker.jawilson_oxygen.attributes.longitude }}
+  limit_refetch_to_url_change: true

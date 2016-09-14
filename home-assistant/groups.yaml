@@ -28,15 +28,19 @@ Computers:
   - switch.feynman
 
 
-People:
-  - device_tracker.jawilson_oxygen
-  - sensor.jeff_battery
-  - sensor.jeff_sleep_state
-  - sensor.jeff_alarm
+AK:
   - device_tracker.annekat_reality
+  - camera.ak_location
   - sensor.ak_battery
   - sensor.ak_sleep_state
   - sensor.ak_alarm
+
+Jeff:
+  - device_tracker.jawilson_oxygen
+  - camera.jeff_location
+  - sensor.jeff_battery
+  - sensor.jeff_sleep_state
+  - sensor.jeff_alarm
 
 
 Family:
@@ -112,9 +116,16 @@ Harmony:
 default_view:
   view: yes
   entities:
+    - device_tracker.annekat_reality
+    - device_tracker.jawilson_oxygen
     - group.weather
-    - group.people
     - group.climate
+
+People:
+  view: yes
+  entities:
+    - group.ak
+    - group.jeff
 
 Rooms:
   view: yes
