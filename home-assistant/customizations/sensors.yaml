@@ -4,23 +4,23 @@ climate.apartment:
   friendly_name: 'Nest'
 
 # Octoprint
-sensor.octoprint_current_state:
+sensor.p3steel_current_state:
   friendly_name: 'Machine State'
   icon: mdi:printer-3d
-sensor.octoprint_job_percentage:
+sensor.p3steel_job_percentage:
   friendly_name: 'Job Percentage'
   icon: mdi:worker
-sensor.octoprint_actual_tool0_temp:
+sensor.p3steel_actual_tool0_temp:
   friendly_name: 'Hotend Actual'
-sensor.octoprint_target_tool0_temp:
+sensor.p3steel_target_tool0_temp:
   friendly_name: 'Hotend Target'
-sensor.octoprint_actual_bed_temp:
+sensor.p3steel_actual_bed_temp:
   friendly_name: 'Bed Actual'
-sensor.octoprint_target_bed_temp:
+sensor.p3steel_target_bed_temp:
   friendly_name: 'Bed Target'
-binary_sensor.octoprint_printing:
+binary_sensor.p3steel_printing:
   icon: mdi:printer-3d
-binary_sensor.octoprint_printing_error:
+binary_sensor.p3steel_printing_error:
   icon: mdi:printer-alert
 
 

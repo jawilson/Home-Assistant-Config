@@ -58,7 +58,7 @@ nest:
   password: !secret nest_password
 
 octoprint:
-  host: http://p3steel.singularity.net
+  host: p3steel.singularity.net
   api_key: !secret octoprint_key
 
 

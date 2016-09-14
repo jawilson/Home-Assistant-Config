@@ -15,14 +15,14 @@ Weather:
 
 P3Steel:
   - camera.p3steel
-  - sensor.octoprint_current_state
-  - sensor.octoprint_job_percentage
-  - sensor.octoprint_actual_tool0_temp
-  - sensor.octoprint_target_tool0_temp
-  - sensor.octoprint_actual_bed_temp
-  - sensor.octoprint_target_bed_temp
-  - binary_sensor.octoprint_printing
-  - binary_sensor.octoprint_printing_error
+  - sensor.p3steel_current_state
+  - sensor.p3steel_job_percentage
+  - sensor.p3steel_actual_tool0_temp
+  - sensor.p3steel_target_tool0_temp
+  - sensor.p3steel_actual_bed_temp
+  - sensor.p3steel_target_bed_temp
+  - binary_sensor.p3steel_printing
+  - binary_sensor.p3steel_printing_error
 
 Computers:
   - switch.feynman
