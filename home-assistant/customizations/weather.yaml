@@ -1,0 +1,17 @@
+sensor.pws_temp_f:
+  friendly_name: Temperature
+sensor.pws_feelslike_f:
+  friendly_name: Feels Like
+sensor.pws_weather:
+  friendly_name: Conditions
+sensor.pws_precip_today_in:
+  friendly_name: Precipitation
+  icon: mdi:weather-rainy
+sensor.pws_wind_mph:
+  friendly_name: Wind
+  icon: mdi:weather-windy
+
+sensor.sunrise:
+  icon: mdi:weather-sunset-up
+sensor.sunset:
+  icon: mdi:weather-sunset-down

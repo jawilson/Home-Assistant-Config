@@ -1,5 +1,6 @@
-# Forecast
-- platform: forecast
+# Forecast.io
+- name: forecastio
+  platform: forecast
   api_key: !secret forecast_key
   monitored_conditions:
     - summary
@@ -15,5 +16,22 @@
       friendly_name: 'Sun Angle'
       unit_of_measurement: '°'
     sunrise:
-      value_template: '{{ states.sun.sun.attributes.next_rising }}'
+      value_template: |
+        {{ as_timestamp(states.sun.sun.attributes.next_rising)|timestamp_custom('%I:%M:%S %p') }}
       friendly_name: 'Next Sunrise'
+    sunset:
+      value_template: |
+        {{ as_timestamp(states.sun.sun.attributes.next_setting)|timestamp_custom('%I:%M:%S %p') }}
+      friendly_name: 'Next Sunset'
+
+
+- name: WUndergound
+  platform: wunderground
+  api_key: !secret wunderground_key
+  pws_id: KDCWASHI185
+  monitored_conditions:
+    - weather
+    - temp_f
+    - feelslike_f
+    - wind_mph
+    - precip_today_in
