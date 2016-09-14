@@ -1,0 +1,17 @@
+# Jeff
+sensor.jeff_battery:
+  icon: mdi:battery
+sensor.jeff_sleep_state:
+  icon: mdi:sleep
+sensor.jeff_alarm:
+  friendly_name: "Jeff's Alarm"
+  icon: mdi:alarm
+
+# AK
+sensor.ak_battery:
+  icon: mdi:battery
+sensor.ak_sleep_state:
+  icon: mdi:sleep
+sensor.ak_alarm:
+  friendly_name: "AK's Alarm"
+  icon: mdi:alarm
