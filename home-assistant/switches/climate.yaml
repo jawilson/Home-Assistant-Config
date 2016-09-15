@@ -2,22 +2,22 @@
   switches:
     apartment_fan:
       friendly_name: 'HVAC Fan'
-      value_template: "{{ is_state_attr('climate.apartment', 'fan_mode', 'On') }}"
+      value_template: "{{ is_state_attr('climate.apartment', 'fan_mode', 'on') }}"
       turn_on:
         - service: climate.set_fan_mode
           entity_id: climate.apartment
           data:
-            fan_mode: 'On'
+            fan_mode: 'on'
         - delay: 00:15
         - service: climate.set_fan_mode
           entity_id: climate.apartment
           data:
-            fan_mode: 'Auto'
+            fan_mode: 'auto'
       turn_off:
         service: climate.set_fan_mode
         entity_id: climate.apartment
         data:
-          fan_mode: 'Auto'
+          fan_mode: 'auto'
 
 - platform: template
   switches:

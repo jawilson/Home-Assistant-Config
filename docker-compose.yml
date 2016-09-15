@@ -40,7 +40,7 @@ services:
       - ./mqtt/data:/mqtt/data
   homeassistant:
     #image: homeassistant/home-assistant:latest
-    image: jawilson/homeassistant
+    image: jawilson/homeassistant:0.28.2.jawilson1
     links:
       - mqtt
       - openhab
