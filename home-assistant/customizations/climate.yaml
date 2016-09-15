@@ -12,3 +12,5 @@ sensor.apartment_mode:
 switch.apartment_home:
   icon: mdi:home
   haaska_desc: Home Assistant Switch (Setting)
+input_boolean.climate_auto:
+  haaska_desc: Home Assistant Input Boolean (Setting)

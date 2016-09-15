@@ -1,0 +1,27 @@
+# Haaska Hidden
+script.cycle_air:
+  haaska_hidden: true
+script.cycle_air_loop:
+  haaska_hidden: true
+script.alarm_dismiss:
+  haaska_hidden: true
+script.alarm_ringing:
+  haaska_hidden: true
+script.alarm_snooze:
+  haaska_hidden: true
+script.apartment_shutdown:
+  haaska_hidden: true
+script.apartment_sleep:
+  haaska_hidden: true
+script.apartment_wakeup:
+  haaska_hidden: true
+script.bedroom_sleep:
+  haaska_hidden: true
+script.bedroom_wakeup:
+  haaska_hidden: true
+script.living_area_sleep:
+  haaska_hidden: true
+script.living_area_wakeup:
+  haaska_hidden: true
+script.wakeup_cancel:
+  haaska_hidden: true

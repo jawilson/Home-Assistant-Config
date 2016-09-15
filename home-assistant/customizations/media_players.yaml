@@ -1,11 +1,10 @@
-# Media Players
 media_player.bedroom:
   friendly_name: 'Bedroom Chromecast'
   emulated_hue: true
 media_player.shield:
   friendly_name: 'Shield'
   haaska_hidden: true
-media_player.shield_2:
-  haaska_hidden: true
 media_player.neon:
+  haaska_hidden: true
+media_player.plex_web_chrome:
   haaska_hidden: true
