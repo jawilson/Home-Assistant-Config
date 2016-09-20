@@ -7,4 +7,10 @@ switch.guests:
 
 switch.feynman:
   icon: mdi:desktop-tower
+  haaska_hidden: true
   haaska_desc: Home Assistant Switch (WOL)
+  emulated_hue: false
+
+switch.blue:
+  haaska_hidden: true
+  emulated_hue: false

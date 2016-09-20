@@ -7,6 +7,7 @@ switch.apartment_fan:
   icon: mdi:fan
   haaska_name: Fan
   haaska_desc: Home Assistant Fan (Nest)
+  emulated_hue_name: Fan
 sensor.apartment_mode:
   icon: mdi:fire
 switch.apartment_home:

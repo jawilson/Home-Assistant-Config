@@ -43,12 +43,15 @@ services:
     image: jawilson/homeassistant:0.28.2.jawilson2
     links:
       - mqtt
+      - mqtt:mqtt.singularity.net
       - openhab
     restart: always
     dns: 192.168.0.1
     dns_search: singularity.net
-    ports:
-      - 8123:8123
+    networks:
+      default:
+      macvlan:
+        ipv4_address: 192.168.0.60
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - ./home-assistant:/config
@@ -70,3 +73,14 @@ services:
       - 'homeassistant'
       - '--config'
       - '/config'
+
+networks:
+  default:
+  macvlan:
+    driver: macvlan
+    driver_opts:
+      parent: 'eth1'
+    ipam:
+      config:
+        - subnet: 192.168.0.0/24
+          gateway: 192.168.0.1

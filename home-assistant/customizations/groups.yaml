@@ -1,9 +1,7 @@
 group.all_lights:
   haaska_name: All Lights
-group.tree_lamp:
-  haaska_name: Tree Lamp
-group.living_room_lamp:
-  haaska_name: Living Room Lamp
+  emulated_hue: true
+  emulated_hue_name: All Lights
 
 
 # Haaska Hidden
@@ -50,4 +48,8 @@ group.living_area_lights:
 group.ak:
   haaska_hidden: true
 group.jeff:
+  haaska_hidden: true
+group.living_room_lamp:
+  haaska_hidden: true
+group.tree_lamp:
   haaska_hidden: true
