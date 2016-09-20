@@ -6,12 +6,14 @@ import logging
 import requests
 
 from homeassistant.components.light import (
-    ATTR_BRIGHTNESS, Light)
+    ATTR_BRIGHTNESS, SUPPORT_BRIGHTNESS, Light)
 
 _LOGGER = logging.getLogger(__name__)
 
 DEFAULT_NAME = "Openhab Insteon Dimmer"
 DEFAULT_BRIGHTNESS = "255"
+
+SUPPORT_INSTEON_DIMMER = (SUPPORT_BRIGHTNESS)
 
 def setup_platform(hass, config, add_devices_callback, discovery_info=None):
     """Setup Openhab Insteon Dimmer platform."""
@@ -77,13 +79,27 @@ class OpenhabLight(Light):
             self._state = False
         return self._state
 
+    @property
+    def supported_features(self):
+        """Flag supported features."""
+        return SUPPORT_INSTEON_DIMMER
+
     def turn_on(self, **kwargs):
         """Turn the light on."""
-        onValue = str((kwargs.get(ATTR_BRIGHTNESS, int(self._brightness))/255)*100)
+        try:
+            # Clamp brightness from 0 to 255
+            brightness = \
+                max(0, min(kwargs.get(ATTR_BRIGHTNESS, int(self._brightness)), 255))
+        except ValueError as ex:
+            _LOGGER.warn("Failed to clamp brightness: %s", ex.__str__)
+            return None
+
+        onValue = str((brightness/255)*100)
         request = requests.post(self._resource,
                                 data=onValue,
                                 timeout=10)
         if (request.status_code == 200) or (request.status_code == 201):
+            self._brightness = brightness
             self._state = True
         else:
             _LOGGER.info("HTTP Status Code: %s", request.status_code)
