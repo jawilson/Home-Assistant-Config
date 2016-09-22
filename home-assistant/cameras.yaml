@@ -5,10 +5,16 @@
 - name: AK Location
   platform: generic
   still_image_url: |
-    https://maps.googleapis.com/maps/api/staticmap?center={{ states.device_tracker.annekat_reality.attributes.latitude }},{{ states.device_tracker.annekat_reality.attributes.longitude }}&zoom=15&size=500x500&maptype=roadmap&markers=color:red%7Clabel:A%7C{{ states.device_tracker.annekat_reality.attributes.latitude }},{{ states.device_tracker.annekat_reality.attributes.longitude }}
+    {% set loc = states.zone.home.attributes if is_state('device_tracker.annekat_reality', 'home')
+      else states.device_tracker.annekat_reality.attributes %}
+    https://maps.googleapis.com/maps/api/staticmap?center={{ loc.latitude }},{{ loc.longitude }}
+    &zoom=15&size=500x500&maptype=roadmap&markers=color:red%7Clabel:A%7C{{ loc.latitude }},{{ loc.longitude }}
   limit_refetch_to_url_change: true
 - name: Jeff Location
   platform: generic
   still_image_url: |
-    https://maps.googleapis.com/maps/api/staticmap?center={{ states.device_tracker.jawilson_oxygen.attributes.latitude }},{{ states.device_tracker.jawilson_oxygen.attributes.longitude }}&zoom=15&size=500x500&maptype=roadmap&markers=color:blue%7Clabel:J%7C{{ states.device_tracker.jawilson_oxygen.attributes.latitude }},{{ states.device_tracker.jawilson_oxygen.attributes.longitude }}
+    {% set loc = states.zone.home.attributes if is_state('device_tracker.jawilson_oxygen', 'home')
+      else states.device_tracker.jawilson_oxygen.attributes %}
+    https://maps.googleapis.com/maps/api/staticmap?center={{ loc.latitude }},{{ loc.longitude }}
+    &zoom=15&size=500x500&maptype=roadmap&markers=color:red%7Clabel:A%7C{{ loc.latitude }},{{ loc.longitude }}
   limit_refetch_to_url_change: true
