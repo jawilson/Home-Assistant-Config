@@ -19,6 +19,6 @@ sequence:
     data_template:
       entity_id: '{{ light }}'
     data:
-      transition: 80
-      color_temp: 153
-      brightness: 120
+      transition: 120
+      color_temp: 450
+      brightness: 140

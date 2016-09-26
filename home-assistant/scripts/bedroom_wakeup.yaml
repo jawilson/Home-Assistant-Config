@@ -23,9 +23,18 @@ sequence:
       - group.bedroom
     data:
       transition: 120
+      color_temp: 450
+      brightness: 160
+  - delay:
+      seconds: 120
+  - service: light.turn_on
+    entity_id:
+      - group.bedroom
+    data:
+      transition: 600
       color_temp: 153
       brightness: 180
   - delay:
-      minutes: 30
+      minutes: 23
   - service: switch.turn_on
     entity_id: switch.bedroom_fluxer
