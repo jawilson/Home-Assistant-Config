@@ -1,4 +1,4 @@
-- platform: wake_on_lan
+- platform: asuswrt_wol
   mac_address: 'BC:5F:F4:1D:68:20'
   name: Feynman
   host: Feynman.singularity.net

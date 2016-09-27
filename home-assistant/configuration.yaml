@@ -71,6 +71,12 @@ octoprint:
   host: p3steel.singularity.net
   api_key: !secret octoprint_key
 
+asuswrt:
+  host: dark-knight.singularity.net
+  username: !secret asuswrt_username
+  password: !secret asuswrt_password
+  protocol: telnet
+
 
 # Sensors
 binary_sensor: !include_dir_merge_list binary_sensors
