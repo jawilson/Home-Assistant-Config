@@ -2,16 +2,11 @@ sensor.harmony:
   icon: mdi:remote
 switch.projector:
   icon: mdi:projector
-  haaska_desc: Home Assistant Switch (Logitech Harmony)
 switch.plex:
   icon: mdi:play-circle-outline
-  haaska_desc: Home Assistant Switch (Logitech Harmony Activity)
 switch.xbox:
   icon: mdi:xbox
-  haaska_desc: Home Assistant Switch (Logitech Harmony Activity)
 switch.living_room_chromecast:
   icon: mdi:cast
-  haaska_desc: Home Assistant Switch (Logitech Harmony Activity)
 switch.wii:
   icon: mdi:wii
-  haaska_desc: Home Assistant Switch (Logitech Harmony Activity)
