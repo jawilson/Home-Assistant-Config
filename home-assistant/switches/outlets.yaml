@@ -1,0 +1,6 @@
+- platform: orvibo
+  discovery: false
+  switches:
+  - host: 192.168.0.55
+    mac: 'AC:CF:23:92:F4:98'
+    name: 'Kitchen Outlet'

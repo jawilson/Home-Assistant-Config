@@ -65,6 +65,7 @@ Entryway:
 
 Kitchen:
   - light.kitchen
+  - switch.kitchen_outlet
 
 Living Room:
   - light.dining
