@@ -53,7 +53,7 @@ services:
         ipv4_address: 192.168.0.60
     volumes:
       - /etc/localtime:/etc/localtime:ro
-      - ./home-assistant:/config
+      - ./homeassistant:/config
       - ./letsencrypt:/etc/letsencrypt:ro
       - ./tools:/opt/tools:ro
     environment:
