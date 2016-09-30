@@ -13,7 +13,7 @@ services:
       - /etc/timezone:/etc/timezone:ro
       - ./openhab:/opt/openhab/configurations
   harmony:
-    image: jawilson/harmony-api
+    image: jawilson/harmony-api:latest
     links:
       - mqtt
     restart: always
