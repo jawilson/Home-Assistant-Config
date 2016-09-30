@@ -95,7 +95,6 @@ Tree Lamp:
 Climate:
   - climate.apartment
   - sensor.apartment_humidity
-  - sensor.apartment_mode
   - switch.apartment_home
   - switch.apartment_fan
 
