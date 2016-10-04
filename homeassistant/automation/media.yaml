@@ -32,11 +32,13 @@
       entity_id: group.living_room_lamp
       state: 'off'
   action:
-    service: light.turn_on
-    entity_id: group.living_room_lamp
-    data:
-      transition: 15
-      profile: nightlight
+    - service: switch.turn_off
+      entity_id: switch.living_area_fluxer
+    - service: light.turn_on
+      entity_id: group.living_room_lamp
+      data:
+        transition: 15
+        profile: nightlight
 
 - alias: 'Projector Off'
   trigger:
@@ -55,20 +57,20 @@
         - light.dining
       data_template:
         brightness: |
-          {% if is_state('light.dining', 'on') and states.light.dining.attributes.brightness > 77 %}
+          {% if is_state('light.dining', 'on') and states.light.dining.attributes.brightness > 100 %}
           {{states.light.dining.attributes.brightness}}
           {% else %}
-          77
+          100
           {% endif %}
     - service: light.turn_on
       entity_id:
         - light.kitchen
       data_template:
         brightness: |
-          {% if is_state('light.kitchen', 'on') and states.light.kitchen.attributes.brightness > 128 %}
+          {% if is_state('light.kitchen', 'on') and states.light.kitchen.attributes.brightness > 160 %}
           {{states.light.kitchen.attributes.brightness}}
           {% else %}
-          128
+          160
           {% endif %}
     - delay:
         seconds: 30
