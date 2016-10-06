@@ -21,6 +21,8 @@
         - group.bedroom
       data:
         transition: 30
+    - service: switch.living_area_fluxer_update
+    - service: switch.bedroom_fluxer_update
 
 
 - alias: Nest home

@@ -76,3 +76,4 @@
         seconds: 30
     - service: switch.turn_on
       entity_id: switch.living_area_fluxer
+    - service: switch.living_area_fluxer_update
