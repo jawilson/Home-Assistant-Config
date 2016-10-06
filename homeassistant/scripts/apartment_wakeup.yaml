@@ -7,4 +7,5 @@ sequence:
       minutes: 2
   - service: climate.set_temperature
     data:
+      entity_id: climate.apartment
       temperature: 74
