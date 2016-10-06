@@ -1,0 +1,10 @@
+alias: Nest Home
+sequence:
+  - service: climate.set_away_mode
+    data:
+      entity_id: climate.apartment
+      away_mode: false
+  - service: climate.set_temperature
+    data:
+      entity_id: climate.apartment
+      temperature: 74
