@@ -7,6 +7,10 @@
   action:
     - service: light.turn_off
       entity_id:
+        - light.kitchen
+        - light.dining
+    - service: light.turn_off
+      entity_id:
         - light.entryway
         - light.bedroom_lamp
         - light.tree_lamp_1
@@ -16,10 +20,6 @@
         - light.tree_lamp_5
       data:
         transition: 5
-    - service: light.turn_off
-      entity_id:
-        - light.kitchen
-        - light.dining
 
 - alias: 'Living Room Media Players Idle'
   trigger:
