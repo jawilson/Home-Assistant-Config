@@ -2,11 +2,16 @@
   "mqtt_host": "mqtts://mqtt.singularity.net",
   "mqtt_options": {
       "port": 1883,
-      "username": "username",
-      "password": "password",
+      "username": "someusername",
+      "password": "somepassword",
       "rejectUnauthorized": false
   },
-  "topic_namespace": "home/livingroom/harmony",
-  "hub_ip": "harmonyhub.singularity.net"
+  "topic_namespace": "home/harmony",
+  "hubs": [
+      {
+          "ip": "harmonyhub.singularity.net",
+          "name": "Living Room"
+      }
+  ]
 }
 

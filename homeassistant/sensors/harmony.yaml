@@ -1,5 +1,5 @@
 - platform: mqtt
-  state_topic: 'home/livingroom/harmony/current_activity'
+  state_topic: 'home/harmony/hubs/living-room/current_activity'
   name: Harmony
   qos: 0
   value_template: '{{ value|replace("-", " ")|capitalize }}'
