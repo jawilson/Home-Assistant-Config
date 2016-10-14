@@ -22,6 +22,8 @@ services:
     volumes:
       - ./harmony-api:/config:ro
       - ./tools:/opt/tools:ro
+    ports:
+      - 8282:8282
     entrypoint: >
       /opt/tools/wait-for-it/wait-for-it.sh -s mqtt:1883 -- npm start
   mqtt:
