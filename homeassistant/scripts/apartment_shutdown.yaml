@@ -1,9 +1,6 @@
 alias: Apartment Shutdown
 sequence:
   - service: light.turn_off
-    data:
-      entity_id: group.all_lights
+    entity_id: group.all_lights
   - service: switch.turn_off
-    data:
-      entity_id:
-        - switch.projector
+    entity_id: switch.projector
