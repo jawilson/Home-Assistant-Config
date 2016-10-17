@@ -154,5 +154,6 @@ Admin:
     - switch.presence
     - switch.guests
     - input_boolean.climate_auto
+    - input_boolean.media_automation
     - switch.living_area_fluxer
     - switch.bedroom_fluxer

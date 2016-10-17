@@ -2,3 +2,7 @@ climate_auto:
   name: Control Climate
   initial: on
   icon: mdi:nest-thermostat
+
+media_automation:
+  name: 'Media Automation'
+  initial: on

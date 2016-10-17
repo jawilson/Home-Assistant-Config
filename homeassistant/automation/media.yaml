@@ -4,6 +4,10 @@
       entity_id:
         - media_player.shield
       to: 'playing'
+  condition:
+    - condition: state
+      entity_id: input_boolean.media_automation
+      state: 'on'
   action:
     - service: light.turn_off
       entity_id:
@@ -29,6 +33,9 @@
       to: 'idle'
   condition:
     - condition: state
+      entity_id: input_boolean.media_automation
+      state: 'on'
+    - condition: state
       entity_id: group.living_room_lamp
       state: 'off'
   action:
@@ -46,6 +53,10 @@
       entity_id: switch.projector
       from: 'on'
       to: 'off'
+  condition:
+    - condition: state
+      entity_id: input_boolean.media_automation
+      state: 'on'
   action:
     - service: light.turn_on
       entity_id: group.living_room_lamp
