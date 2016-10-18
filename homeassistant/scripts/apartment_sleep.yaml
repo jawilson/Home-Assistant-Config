@@ -5,5 +5,5 @@ sequence:
     state: 'on'
   - service: climate.set_temperature
     data:
-      entity: climate.apartment
+      entity_id: climate.apartment
       temperature: 72
