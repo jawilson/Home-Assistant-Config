@@ -1,5 +1,7 @@
 alias: Bedroom Wake Up
 sequence:
+  - service: switch.turn_off
+    entity_id: switch.bedroom_fluxer
   - condition: state
     entity_id: group.sleeping
     state: 'off'
@@ -16,8 +18,6 @@ sequence:
           - action: 'wakeup_cancel'
             title: 'Cancel'
         script: 'script.bedroom_wakeup'
-  - service: switch.turn_off
-    entity_id: switch.bedroom_fluxer
   - service: light.turn_on
     entity_id:
       - group.bedroom
@@ -32,7 +32,7 @@ sequence:
       - group.bedroom
     data:
       transition: 600
-      color_temp: 153
+      color_temp: 154
       brightness: 180
   - delay:
       minutes: 23

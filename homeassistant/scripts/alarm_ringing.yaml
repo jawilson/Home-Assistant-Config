@@ -1,5 +1,7 @@
 alias: Alarm Ringing
 sequence:
+  - service: switch.turn_off
+    entity_id: switch.bedroom_fluxer
   - service: notify.html5
     data_template:
       target: '{{ target }}'
@@ -13,8 +15,6 @@ sequence:
           - action: 'wakeup_cancel'
             title: 'Cancel'
         script: 'script.alarm_ringing'
-  - service: switch.turn_off
-    entity_id: switch.bedroom_fluxer
   - service: light.turn_on
     data_template:
       entity_id: '{{ light }}'
