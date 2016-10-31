@@ -56,7 +56,7 @@ services:
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - ./homeassistant:/config
-      - ./letsencrypt:/etc/letsencrypt:ro
+      - ./letsencrypt/config:/etc/letsencrypt:ro
       - ./tools:/opt/tools:ro
     environment:
       - HA_LOG_LEVEL=error
