@@ -125,16 +125,16 @@ zone: !include zones.yaml
 
 # Proximity
 proximity:
-  zone: home
-  ignored_zones:
-    - blackstone
-    - bline
-    - dhs
-  devices:
-    - device_tracker.jawilson_flourine
-    - device_tracker.annekat_reality
-  tolerance: 50
-  unit_of_measurement: m
+  home:
+    ignored_zones:
+      - blackstone
+      - bline
+      - dhs
+    devices:
+      - device_tracker.jawilson_flourine
+      - device_tracker.annekat_reality
+    tolerance: 50
+    unit_of_measurement: m
 
 # Scenes
 scene: !include scenes.yaml
