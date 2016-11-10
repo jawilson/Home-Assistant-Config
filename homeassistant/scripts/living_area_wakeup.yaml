@@ -9,3 +9,7 @@ sequence:
     entity_id:
       - light.kitchen
       - light.dining
+    data:
+      brightness: 255
+  - service: switch.turn_on
+    entity_id: switch.living_room_fluxer

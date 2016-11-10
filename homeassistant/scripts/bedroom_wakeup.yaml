@@ -28,7 +28,7 @@ sequence:
       color_temp: 450
       brightness: 160
   - delay:
-      seconds: 120
+      minutes: 5
   - service: light.turn_on
     entity_id:
       - group.bedroom
