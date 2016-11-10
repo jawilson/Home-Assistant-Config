@@ -1,9 +1,7 @@
 - name: Dinner
   entities:
-    switch.plex:
-      state: on
-    switch.living_area_fluxer:
-      state: off
+    switch.plex: on
+    switch.living_area_fluxer: off
     light.entertainment:
       state: on
       brightness: 60
@@ -17,3 +15,55 @@
       transition: 15
       profile: nightlight
       brightness: 65
+- name: TV Dinner
+  entities:
+    switch.plex: on
+    switch.living_area_fluxer: off
+    light.entertainment:
+      state: on
+      brightness: 60
+    light.living_room_lamp_1:
+      state: on
+      transition: 15
+      profile: nightlight
+      brightness: 65
+    light.living_room_lamp_2:
+      state: on
+      transition: 15
+      profile: nightlight
+      brightness: 65
+    light.kitchen: off
+    light.dining: off
+    light.bedroom: off
+- name: Bedtime
+  entities:
+    switch.living_area_fluxer: off
+    switch.bedroom_fluxer: off
+    light.kitchen: off
+    light.dining: off
+    light.entertainment: off
+    light.entryway:
+      state: on
+      profile: nightlight
+    light.living_room_lamp_1:
+      state: on
+      profile: nightlight
+    light.living_room_lamp_2:
+      state: on
+      profile: nightlight
+    light.bedroom_lamp:
+      state: on
+      profile: nightlight
+    light.tree_lamp_1:
+      state: on
+      profile: nightlight
+    light.tree_lamp_2: off
+    light.tree_lamp_3:
+      state: on
+      profile: nightlight
+    light.tree_lamp_4: off
+    light.tree_lamp_5:
+      state: on
+      profile: nightlight
+    climate.apartment:
+      temperature: 72

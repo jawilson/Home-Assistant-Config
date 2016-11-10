@@ -111,6 +111,8 @@ media_player:
 # Cameras
 camera: !include cameras.yaml
 
+alexa: !include alexa.yaml
+
 # Switches
 switch: !include_dir_merge_list switches
 
