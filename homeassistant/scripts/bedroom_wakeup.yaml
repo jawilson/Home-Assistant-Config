@@ -18,6 +18,8 @@ sequence:
           - action: 'wakeup_cancel'
             title: 'Cancel'
         script: 'script.bedroom_wakeup'
+  - service: switch.turn_off
+    entity_id: switch.orvibo2
   - service: light.turn_on
     entity_id:
       - group.bedroom

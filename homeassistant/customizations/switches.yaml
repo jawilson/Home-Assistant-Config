@@ -10,5 +10,8 @@ switch.feynman:
 switch.blue:
   emulated_hue: false
 
-switch.kitchen_outlet:
+switch.orvibo1:
+  icon: mdi:power-plug
+
+switch.orvibo2:
   icon: mdi:power-plug

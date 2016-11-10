@@ -3,4 +3,7 @@
   switches:
   - host: 192.168.0.55
     mac: 'AC:CF:23:92:F4:98'
-    name: 'Kitchen Outlet'
+    name: 'Orvibo1'
+  - host: 192.168.0.56
+    mac: 'AC:CF:23:8D:35:F8'
+    name: 'Orvibo2'
