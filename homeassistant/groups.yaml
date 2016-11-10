@@ -113,6 +113,53 @@ Harmony:
   - switch.wii
 
 
+Scenes:
+  - scene.bedtime
+  - scene.dinner
+  - scene.romantic
+  - scene.tv_dinner
+
+
+Scripts:
+  - script.bedroom_sleep
+  - script.living_area_sleep
+  - script.apartment_sleep
+  - script.alarm_ringing
+  - script.alarm_snooze
+  - script.alarm_dismiss
+  - script.wakeup_cancel
+  - script.bedroom_wakeup
+  - script.living_area_wakeup
+  - script.apartment_wakeup
+  - script.apartment_cycle_air
+  - script.cycle_air_loop
+  - script.nest_home
+  - script.apartment_shutdown
+
+
+Automations:
+  - automation.go_to_sleep
+  - automation.alarm_ringing
+  - automation.alarm_snooze
+  - automation.alarm_dismiss
+  - automation.wake_up
+  - automation.wakeup_cancel
+  - automation.handle_lights_when_leaving
+  - automation.nest_away
+  - automation.circulate_while_away
+  - automation.stop_circulation
+  - automation.handle_lights_when_arriving_home
+  - automation.nest_home
+  - automation.nest_while_home
+  - automation.home_assistant_start
+  - automation.projector_off
+  - automation.living_room_media_players_idle
+  - automation.living_room_media_players_playing
+  - automation.mqtt_notification
+  - automation.slack_updates
+  - automation.update_available_notification
+
+
 #
 # Views
 #
@@ -125,6 +172,7 @@ default_view:
     - device_tracker.jawilson_flourine
     - group.weather
     - group.climate
+    - group.scenes
 
 People:
   view: yes
@@ -163,3 +211,5 @@ Admin:
     - input_boolean.media_automation
     - switch.living_area_fluxer
     - switch.bedroom_fluxer
+    - group.scripts
+    - group.automations
