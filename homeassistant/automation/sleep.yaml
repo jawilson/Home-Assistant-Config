@@ -38,7 +38,7 @@
           {% if trigger.entity_id == 'binary_sensor.ak_sleeping' %}
           reality
           {% elif trigger.entity_id == 'binary_sensor.jeff_sleeping' %}
-          flourine
+          fluorine
           {% endif %}
     - service: script.living_area_wakeup
     - service: script.apartment_wakeup
@@ -64,7 +64,7 @@
           {% if trigger.entity_id == 'sensor.ak_alarm' %}
           reality
           {% elif trigger.entity_id == 'sensor.jeff_alarm' %}
-          flourine
+          fluorine
           {% endif %}
 
 

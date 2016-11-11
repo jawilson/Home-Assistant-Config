@@ -7,7 +7,7 @@
   value_template: '{{ value|capitalize }}'
 
 - platform: mqtt
-  state_topic: 'owntracks/jawilson/flourine'
+  state_topic: 'owntracks/jawilson/fluorine'
   name: 'Jeff Battery'
   unit_of_measurement: '%'
   value_template: |

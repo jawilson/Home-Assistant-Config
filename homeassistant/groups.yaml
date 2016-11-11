@@ -36,7 +36,7 @@ AK:
   - sensor.ak_alarm
 
 Jeff:
-  - device_tracker.jawilson_flourine
+  - device_tracker.jawilson_fluorine
   - camera.jeff_location
   - sensor.jeff_battery
   - sensor.jeff_sleep_state
@@ -44,7 +44,7 @@ Jeff:
 
 
 Family:
-  - device_tracker.jawilson_flourine
+  - device_tracker.jawilson_fluorine
   - device_tracker.annekat_reality
 
 
@@ -169,7 +169,7 @@ default_view:
   view: yes
   entities:
     - device_tracker.annekat_reality
-    - device_tracker.jawilson_flourine
+    - device_tracker.jawilson_fluorine
     - group.weather
     - group.climate
     - group.scenes
