@@ -1,3 +1,9 @@
 scene.dinner:
   emulated_hue: false
   emulated_hue_name: Dinner
+
+scene.romantic:
+  icon: mdi:candle
+
+scene.bedtime:
+  icon: mdi:hotel
