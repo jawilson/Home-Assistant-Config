@@ -1,2 +1,3 @@
 scene.dinner:
+  emulated_hue: false
   emulated_hue_name: Dinner

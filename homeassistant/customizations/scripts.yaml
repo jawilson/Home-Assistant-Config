@@ -1,0 +1,9 @@
+script.start_dinner:
+  friendly_name: Dinner
+  emulated_hue: true
+  emulated_hue_name: Dinner
+  icon: mdi:silverware-fork
+
+script.start_plex:
+  emulated_hue: true
+  emulated_hue_name: Plex

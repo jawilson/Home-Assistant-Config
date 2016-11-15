@@ -105,8 +105,8 @@ Climate:
 
 
 Scenes:
+  - script.start_dinner
   - scene.bedtime
-  - scene.dinner
   - scene.romantic
   - scene.tv_dinner
 
