@@ -6,7 +6,5 @@ switch.plex:
   icon: mdi:play-circle-outline
 switch.xbox:
   icon: mdi:xbox
-switch.living_room_chromecast:
-  icon: mdi:cast
 switch.wii:
   icon: mdi:wii

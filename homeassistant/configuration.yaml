@@ -103,10 +103,7 @@ device_tracker:
   - platform: owntracks
     max_gps_accuracy: 100
 
-media_player:
-  - platform: plex
-  - platform: cast
-    host: molybdenum.singularity.net
+media_player: !include media_players.yaml
 
 # Cameras
 camera: !include cameras.yaml

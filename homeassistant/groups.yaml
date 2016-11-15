@@ -104,15 +104,6 @@ Climate:
   - switch.apartment_fan
 
 
-Harmony:
-  - sensor.harmony
-  - switch.projector
-  - switch.plex
-  - switch.xbox
-  - switch.living_room_chromecast
-  - switch.wii
-
-
 Scenes:
   - scene.bedtime
   - scene.dinner
@@ -188,13 +179,15 @@ Rooms:
     - group.living_room
     - group.bedroom
     - group.outlets
+    - switch.living_area_fluxer
+    - switch.bedroom_fluxer
 
 Media:
   view: yes
   entities:
-  - group.harmony
-  - media_player.bedroom
-  - media_player.shield
+  - media_player.entertainment_center
+  - media_player.cast_bedroom
+  - media_player.cast_kitchen_home
 
 Other:
   view: yes

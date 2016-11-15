@@ -2,7 +2,7 @@
   trigger:
     - platform: state
       entity_id:
-        - media_player.shield
+        - media_player.plex_shield
       to: 'playing'
   condition:
     - condition: state
@@ -29,7 +29,7 @@
   trigger:
     - platform: state
       entity_id:
-        - media_player.shield
+        - media_player.plex_shield
       to: 'idle'
   condition:
     - condition: state

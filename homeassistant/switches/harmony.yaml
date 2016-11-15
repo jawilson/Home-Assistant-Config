@@ -7,14 +7,6 @@
   payload_off: 'off'
 
 - platform: mqtt
-  name: 'Plex'
-  state_topic: 'home/harmony/hubs/living-room/activities/watch-plex/state'
-  command_topic: 'home/harmony/hubs/living-room/activities/watch-plex/command'
-  qos: 0
-  payload_on: 'on'
-  payload_off: 'off'
-
-- platform: mqtt
   name: 'Xbox'
   state_topic: 'home/harmony/hubs/living-room/activities/play-xbox-s/state'
   command_topic: 'home/harmony/hubs/living-room/activities/play-xbox-s/command'
