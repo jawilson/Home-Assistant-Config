@@ -67,7 +67,7 @@
       entity_id:
         - light.dining
       data_template:
-        brightness: |
+        brightness: >
           {% if is_state('light.dining', 'on') and states.light.dining.attributes.brightness > 100 %}
           {{states.light.dining.attributes.brightness}}
           {% else %}
@@ -77,7 +77,7 @@
       entity_id:
         - light.kitchen
       data_template:
-        brightness: |
+        brightness: >
           {% if is_state('light.kitchen', 'on') and states.light.kitchen.attributes.brightness > 160 %}
           {{states.light.kitchen.attributes.brightness}}
           {% else %}

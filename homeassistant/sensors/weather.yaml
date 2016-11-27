@@ -12,11 +12,11 @@
 - platform: template
   sensors:
     sunrise:
-      value_template: |
+      value_template: >
         {{ as_timestamp(states.sun.sun.attributes.next_rising)|timestamp_custom('%I:%M:%S %p') }}
       friendly_name: 'Next Sunrise'
     sunset:
-      value_template: |
+      value_template: >
         {{ as_timestamp(states.sun.sun.attributes.next_setting)|timestamp_custom('%I:%M:%S %p') }}
       friendly_name: 'Next Sunset'
 

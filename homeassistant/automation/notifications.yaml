@@ -31,7 +31,7 @@
   action:
     service_template: notify.{{ trigger.topic.split('/')[1] }}
     data_template:
-      target: |
+      target: >
         {% if trigger.topic.split('/')[1] == 'slack' %}#{% endif %}
         {% if trigger.topic.split('/')|length <= 2 %}
         {% if trigger.topic.split('/')[1] == 'slack' %}general{% endif %}

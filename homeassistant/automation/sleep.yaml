@@ -34,7 +34,7 @@
   action:
     - service: script.bedroom_wakeup
       data_template:
-        target: |
+        target: >
           {% if trigger.entity_id == 'binary_sensor.ak_sleeping' %}
           reality
           {% elif trigger.entity_id == 'binary_sensor.jeff_sleeping' %}
@@ -48,19 +48,18 @@
   trigger:
     - platform: state
       entity_id:
-        - sensor.ak_alarm
         - sensor.jeff_alarm
       to: 'Ringing'
   action:
     - service: script.alarm_ringing
       data_template:
-        light: |
+        light: >
           {% if trigger.entity_id == 'sensor.ak_alarm' %}
           light.tree_lamp_5
           {% elif trigger.entity_id == 'sensor.jeff_alarm' %}
           light.bedroom_lamp
           {% endif %}
-        target: |
+        target: >
           {% if trigger.entity_id == 'sensor.ak_alarm' %}
           reality
           {% elif trigger.entity_id == 'sensor.jeff_alarm' %}
@@ -78,7 +77,7 @@
   action:
     - service: script.alarm_snooze
       data_template:
-        light: |
+        light: >
           {% if trigger.entity_id == 'sensor.ak_alarm' %}
           light.tree_lamp_5
           {% elif trigger.entity_id == 'sensor.jeff_alarm' %}
@@ -102,7 +101,7 @@
   action:
     - service: script.alarm_dismiss
       data_template:
-        light: |
+        light: >
           {% if trigger.entity_id == 'sensor.ak_alarm' %}
           light.tree_lamp_5
           {% elif trigger.entity_id == 'sensor.jeff_alarm' %}
