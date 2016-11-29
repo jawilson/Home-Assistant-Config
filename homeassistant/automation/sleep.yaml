@@ -109,7 +109,7 @@
           {% endif %}
 
 
-- alias: 'Wakup Cancel'
+- alias: 'Wakeup Cancel'
   trigger:
     platform: event
     event_type: html5_notification.clicked

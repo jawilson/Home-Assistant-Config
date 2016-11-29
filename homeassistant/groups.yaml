@@ -112,6 +112,7 @@ Scenes:
 
 
 Scripts:
+  - script.start_plex
   - script.bedroom_sleep
   - script.living_area_sleep
   - script.apartment_sleep
@@ -123,6 +124,7 @@ Scripts:
   - script.living_area_wakeup
   - script.apartment_wakeup
   - script.apartment_cycle_air
+  - script.cycle_air
   - script.cycle_air_loop
   - script.nest_home
   - script.apartment_shutdown
@@ -138,7 +140,7 @@ Automations:
   - automation.handle_lights_when_leaving
   - automation.nest_away
   - automation.circulate_while_away
-  - automation.stop_circulation
+  - automation.stop_circulating
   - automation.handle_lights_when_arriving_home
   - automation.nest_home
   - automation.nest_while_home
