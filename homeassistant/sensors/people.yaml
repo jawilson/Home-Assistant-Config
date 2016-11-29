@@ -14,7 +14,7 @@
     {% if value_json.batt %}
       {{ value_json.batt }}
     {% else %}
-      {{ states.sensor.ajeff_battery.state }}
+      {{ states.sensor.jeff_battery.state }}
     {% endif %}
 
 - platform: template
