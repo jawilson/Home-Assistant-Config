@@ -12,9 +12,6 @@ sequence:
         entity_id: 'binary_sensor.jeff_sleeping'
         state: 'on'
   - service: light.turn_off
-    data:
-      entity_id: group.living_area_lights
+    entity_id: group.living_area_lights
   - service: switch.turn_off
-    data:
-      entity_id:
-        - switch.projector
+    entity_id: switch.projector

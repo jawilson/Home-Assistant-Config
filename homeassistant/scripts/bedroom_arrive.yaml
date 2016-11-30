@@ -1,0 +1,10 @@
+alias: Bedroom Arrive
+sequence:
+  - condition: state
+    entity_id: group.sleeping
+    state: 'off'
+  - service: switch.turn_on
+    entity_id: switch.bedroom_fluxer
+  - service: light.turn_on
+    entity_id: group.bedroom
+  - service: switch.bedroom_fluxer_update

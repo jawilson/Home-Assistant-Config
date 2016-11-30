@@ -1,0 +1,16 @@
+alias: Living Area Arrive
+sequence:
+  - service: switch.turn_on
+    entity_id: switch.living_area_fluxer
+  - service: light.turn_on
+    entity_id: light.entryway
+  - service: switch.living_area_fluxer_update
+  - condition: state
+    entity_id: group.sleeping
+    state: 'off'
+  - service: light.turn_on
+    entity_id: light.kitchen
+    data:
+      brightness: 255
+  - service: switch.turn_on
+    entity_id: switch.christmas_tree
