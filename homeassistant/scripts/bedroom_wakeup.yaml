@@ -19,7 +19,7 @@ sequence:
             title: 'Cancel'
         script: 'script.bedroom_wakeup'
   - service: switch.turn_off
-    entity_id: switch.orvibo2
+    entity_id: switch.humidifier
   - service: light.turn_on
     entity_id:
       - group.bedroom

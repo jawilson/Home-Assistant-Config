@@ -11,7 +11,15 @@ switch.blue:
   emulated_hue: false
 
 switch.orvibo1:
+  friendly_name: 'Outlet 1'
   icon: mdi:power-plug
+switch.crockpot:
+  icon: mdi:pot
+switch.christmas_tree:
+  icon: mdi:pine-tree
 
 switch.orvibo2:
+  friendly_name: 'Outlet 2'
   icon: mdi:power-plug
+switch.humidifier:
+  icon: mdi:water

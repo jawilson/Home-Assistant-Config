@@ -3,4 +3,6 @@ sequence:
   - service: light.turn_off
     entity_id: group.all_lights
   - service: switch.turn_off
-    entity_id: switch.projector
+    entity_id:
+      - switch.projector
+      - switch.christmas_tree

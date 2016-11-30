@@ -1,0 +1,12 @@
+orvibo1:
+  name: Orvibo Outlet 1
+  icon: mdi:power-plug
+  options:
+    - Crockpot
+    - Christmas Tree
+
+orvibo2:
+  name: Orvibo Outlet 2
+  icon: mdi:power-plug
+  options:
+    - Humidifier

@@ -93,7 +93,9 @@ Tree Lamp:
 
 
 Outlets:
+  - input_select.orvibo1
   - switch.orvibo1
+  - input_select.orvibo2
   - switch.orvibo2
 
 
