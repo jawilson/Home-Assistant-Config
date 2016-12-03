@@ -12,7 +12,7 @@
       state: 'on'
   action:
     - service: script.bedroom_arrive
-    - service: script.living_area_arive
+    - service: script.living_area_arrive
 
 
 - alias: Nest home

@@ -24,6 +24,8 @@
         - light.tree_lamp_5
       data:
         transition: 5
+    - service: switch.turn_off
+      entity_id: switch.christmas_tree
 
 - alias: 'Living Room Media Players Idle'
   trigger:
