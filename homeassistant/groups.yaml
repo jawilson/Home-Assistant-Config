@@ -102,6 +102,7 @@ Outlets:
 Harmony:
   - remote.living_room
   - switch.shield
+  - switch.shield_audio
   - switch.xbox_one
   - switch.xbox_360
   - switch.wii
@@ -157,6 +158,8 @@ Automations:
   - automation.projector_off
   - automation.shield_plex_idle
   - automation.shield_plex_playing
+  - automation.shield_cast_playing
+  - automation.shield_cast_stopped
   - automation.mqtt_notification
   - automation.slack_updates
   - automation.update_available_notification

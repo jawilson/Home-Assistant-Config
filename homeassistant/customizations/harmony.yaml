@@ -2,6 +2,8 @@ remote.harmony:
   icon: mdi:remote
 switch.shield:
   icon: mdi:shield
+switch.shield_audio:
+  icon: mdi:speaker
 switch.plex:
   icon: mdi:plex
 switch.xbox_one:
