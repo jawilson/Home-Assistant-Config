@@ -216,6 +216,7 @@ Other:
   entities:
     - group.p3steel
     - group.computers
+    - sensor.plex
 
 Admin:
   view: yes
