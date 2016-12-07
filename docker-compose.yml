@@ -26,12 +26,23 @@ services:
       - ./mqtt/config:/mqtt/config:rw
       - ./mqtt/log:/mqtt/log
       - ./mqtt/data:/mqtt/data
+  postgres:
+    image: library/postgres:9.6.1
+    restart: always
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - ./postgres:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_USER=hass
+      - POSTGRES_PASSWORD=automatethethings
+      - POSTGRES_DB=homeassistant
   homeassistant:
     image: jawilson/homeassistant:latest
     links:
       - mqtt
       - mqtt:mqtt.singularity.net
       - openhab
+      - postgres:database
     restart: always
     dns: 192.168.0.1
     dns_search: singularity.net
@@ -54,6 +65,10 @@ services:
       - '/opt/tools/wait-for-it/wait-for-it.sh'
       - '-s'
       - 'openhab:8080'
+      - '--'
+      - '/opt/tools/wait-for-it/wait-for-it.sh'
+      - '-s'
+      - 'database:5432'
       - '--'
       - 'python'
       - '-m'

@@ -17,6 +17,10 @@ http:
   ssl_certificate: !secret ssl_certificate
   ssl_key: !secret ssl_key
 
+# Use a postgresql server for recording data
+recorder:
+  db_url: 'postgresql://hass:automatethethings@database/homeassistant'
+
 # View all events in a logbook
 logbook:
 
