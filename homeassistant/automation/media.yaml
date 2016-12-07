@@ -1,8 +1,7 @@
-- alias: 'Living Room Media Players Playing'
+- alias: 'SHIELD Plex Playing'
   trigger:
     - platform: state
-      entity_id:
-        - media_player.plex_shield
+      entity_id: media_player.plex_shield
       to: 'playing'
   condition:
     - condition: state
@@ -27,11 +26,10 @@
     - service: switch.turn_off
       entity_id: switch.christmas_tree
 
-- alias: 'Living Room Media Players Idle'
+- alias: 'SHIELD Plex Idle'
   trigger:
     - platform: state
-      entity_id:
-        - media_player.plex_shield
+      entity_id: media_player.plex_shield
       to: 'idle'
   condition:
     - condition: state
@@ -52,7 +50,7 @@
 - alias: 'Projector Off'
   trigger:
     - platform: state
-      entity_id: switch.projector
+      entity_id: remote.living_room
       from: 'on'
       to: 'off'
   condition:

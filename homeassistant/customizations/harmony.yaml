@@ -1,10 +1,12 @@
-sensor.harmony:
+remote.harmony:
   icon: mdi:remote
-switch.projector:
-  icon: mdi:projector
+switch.shield:
+  icon: mdi:shield
 switch.plex:
-  icon: mdi:play-circle-outline
-switch.xbox:
+  icon: mdi:plex
+switch.xbox_one:
+  icon: mdi:xbox
+switch.xbox_360:
   icon: mdi:xbox
 switch.wii:
   icon: mdi:wii

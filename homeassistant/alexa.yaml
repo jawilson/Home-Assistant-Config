@@ -27,7 +27,7 @@ intents:
     action:
       - service_template: media_player.media_{{ Command }}
         data_template:
-          entity_id: media_player.{{ MediaPlayer|default('entertainment_center')|replace(' ', '_') }}
+          entity_id: media_player.{{ MediaPlayer|default('plex_shield')|replace(' ', '_') }}
     speech:
       type: plaintext
       text: !include alexa_confirm.yaml
@@ -35,7 +35,7 @@ intents:
     action:
       - service: media_player.play_media
         data_template:
-          entity_id: media_player.{{ MediaPlayer|default('entertainment_center')|replace(' ', '_') }}
+          entity_id: media_player.{{ MediaPlayer|default('plex_shield')|replace(' ', '_') }}
           media_content_id: '{{ MediaContent }}'
           media_content_type: '{{ ContentType }}'
     speech:

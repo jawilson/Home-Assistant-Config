@@ -12,20 +12,6 @@ services:
       - /etc/localtime:/etc/localtime:ro
       - /etc/timezone:/etc/timezone:ro
       - ./openhab:/opt/openhab/configurations
-  harmony:
-    image: jawilson/harmony-api:latest
-    links:
-      - mqtt
-    restart: always
-    dns: 192.168.0.1
-    dns_search: singularity.net
-    volumes:
-      - ./harmony-api:/config:ro
-      - ./tools:/opt/tools:ro
-    ports:
-      - 8282:8282
-    entrypoint: >
-      /opt/tools/wait-for-it/wait-for-it.sh -s mqtt:1883 -- npm start
   mqtt:
     image: toke/mosquitto
     restart: always

@@ -3,7 +3,7 @@ media_player.cast_bedroom:
   emulated_hue: true
 media_player.cast_shield:
   friendly_name: 'SHIELD Cast'
+  emulated_hue: true
 media_player.plex_shield:
   friendly_name: 'SHIELD Plex'
-media_player.entertainment_center:
   emulated_hue: true

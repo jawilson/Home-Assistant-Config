@@ -99,6 +99,14 @@ Outlets:
   - switch.orvibo2
 
 
+Harmony:
+  - remote.living_room
+  - switch.shield
+  - switch.xbox_one
+  - switch.xbox_360
+  - switch.wii
+
+
 Climate:
   - climate.apartment
   - sensor.apartment_humidity
@@ -107,14 +115,13 @@ Climate:
 
 
 Scenes:
-  - script.start_dinner
+  - scene.dinner
   - scene.bedtime
   - scene.romantic
   - scene.tv_dinner
 
 
 Scripts:
-  - script.start_plex
   - script.bedroom_sleep
   - script.living_area_sleep
   - script.apartment_sleep
@@ -148,8 +155,8 @@ Automations:
   - automation.nest_while_home
   - automation.home_assistant_start
   - automation.projector_off
-  - automation.living_room_media_players_idle
-  - automation.living_room_media_players_playing
+  - automation.shield_plex_idle
+  - automation.shield_plex_playing
   - automation.mqtt_notification
   - automation.slack_updates
   - automation.update_available_notification
@@ -195,7 +202,9 @@ Rooms:
 Media:
   view: yes
   entities:
-  - media_player.entertainment_center
+  - group.harmony
+  - media_player.plex_shield
+  - media_player.cast_shield
   - media_player.cast_bedroom
   - media_player.cast_kitchen_home
 
