@@ -64,8 +64,8 @@ mqtt:
 # Hubs
 #
 nest:
-  username: !secret nest_username
-  password: !secret nest_password
+  client_id: !secret nest_id
+  client_secret: !secret nest_secret
 
 octoprint:
   host: p3steel.singularity.net
