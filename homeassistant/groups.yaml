@@ -60,13 +60,13 @@ Living Area Lights:
   - light.living_room_lamp_1
   - light.living_room_lamp_2
 
-Entryway:
+Entryway Lights:
   - light.entryway
 
-Kitchen:
+Kitchen Lights:
   - light.kitchen
 
-Living Room:
+Living Room Lights:
   - light.dining
   - light.entertainment
   - light.living_room_lamp_1
@@ -76,7 +76,7 @@ Living Room Lamp:
   - light.living_room_lamp_1
   - light.living_room_lamp_2
 
-Bedroom:
+Bedroom Lights:
   - light.bedroom_lamp
   - light.tree_lamp_1
   - light.tree_lamp_2
@@ -196,10 +196,10 @@ People:
 Rooms:
   view: yes
   entities:
-    - group.entryway
-    - group.kitchen
-    - group.living_room
-    - group.bedroom
+    - group.entryway_lights
+    - group.kitchen_lights
+    - group.living_room_lights
+    - group.bedroom_lights
     - group.outlets
     - switch.living_area_fluxer
     - switch.bedroom_fluxer

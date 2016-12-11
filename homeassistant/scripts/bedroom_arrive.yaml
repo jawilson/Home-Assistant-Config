@@ -6,5 +6,5 @@ sequence:
   - service: switch.turn_on
     entity_id: switch.bedroom_fluxer
   - service: light.turn_on
-    entity_id: group.bedroom
+    entity_id: group.bedroom_lights
   - service: switch.bedroom_fluxer_update
