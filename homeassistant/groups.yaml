@@ -137,6 +137,8 @@ Scripts:
   - script.cycle_air
   - script.cycle_air_loop
   - script.nest_home
+  - script.bedroom_arrive
+  - script.living_area_arrive
   - script.apartment_shutdown
 
 

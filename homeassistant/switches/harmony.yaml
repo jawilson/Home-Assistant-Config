@@ -10,7 +10,7 @@
         service: remote.turn_off
         entity_id: remote.living_room
     shield:
-      friendly_name: 'Shield'
+      friendly_name: 'SHIELD'
       value_template: "{{ is_state_attr('remote.living_room', 'current_activity', 'Play Shield') }}"
       turn_on:
         service: remote.turn_on
@@ -21,7 +21,7 @@
         service: remote.turn_off
         entity_id: remote.living_room
     shield_audio:
-      friendly_name: 'Shield Audio'
+      friendly_name: 'SHIELD Audio'
       value_template: "{{ is_state_attr('remote.living_room', 'current_activity', 'Listen to Shield') }}"
       turn_on:
         service: remote.turn_on
