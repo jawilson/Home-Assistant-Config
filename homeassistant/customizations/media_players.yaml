@@ -1,9 +1,6 @@
 media_player.cast_bedroom:
   friendly_name: 'Bedroom Chromecast'
-  emulated_hue: true
 media_player.cast_shield:
   friendly_name: 'SHIELD Cast'
-  emulated_hue: true
 media_player.plex_shield:
   friendly_name: 'SHIELD Plex'
-  emulated_hue: true

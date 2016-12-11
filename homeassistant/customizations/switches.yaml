@@ -1,13 +1,12 @@
 switch.presence:
   icon: mdi:account-location
+  emulated_hue: false
 switch.guests:
   icon: mdi:account-multiple
+  emulated_hue: false
 
 switch.feynman:
   icon: mdi:desktop-tower
-  emulated_hue: false
-
-switch.blue:
   emulated_hue: false
 
 switch.orvibo1:
@@ -23,3 +22,8 @@ switch.orvibo2:
   icon: mdi:power-plug
 switch.humidifier:
   icon: mdi:water
+
+switch.bedroom_fluxer:
+  emulated_hue: false
+switch.living_area_fluxer:
+  emulated_hue: false

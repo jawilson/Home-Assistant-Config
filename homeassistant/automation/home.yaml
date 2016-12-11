@@ -11,8 +11,8 @@
       entity_id: switch.presence
       state: 'on'
   action:
-    - service: script.bedroom_arrive
     - service: script.living_area_arrive
+    - service: script.bedroom_arrive
 
 
 - alias: Nest home

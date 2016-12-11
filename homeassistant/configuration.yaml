@@ -44,12 +44,12 @@ conversation:
 
 # Hue Emulation
 emulated_hue:
+  type: google_home
   host_ip: 192.168.0.60
-  listen_port: 8300
+  listen_port: 80
   exposed_domains:
     - switch
     - light
-    - input_boolean
     - scene
 
 # If This Then That
