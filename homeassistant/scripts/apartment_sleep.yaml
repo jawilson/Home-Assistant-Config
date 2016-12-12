@@ -6,4 +6,6 @@ sequence:
   - service: climate.set_temperature
     data:
       entity_id: climate.apartment
+      target_temp_high: 72
       temperature: 72
+      target_temp_low: 60

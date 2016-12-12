@@ -4,7 +4,11 @@ sequence:
     data:
       entity_id: climate.apartment
       away_mode: false
+  - delay:
+      seconds: 30
   - service: climate.set_temperature
     data:
       entity_id: climate.apartment
+      target_temp_high: 74
       temperature: 74
+      target_temp_low: 71
