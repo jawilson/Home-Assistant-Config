@@ -24,22 +24,23 @@
         {%- endif %}
 
 
-- alias: MQTT Notification
+- alias: 'Slack Updates'
   trigger:
-    platform: mqtt
-    topic: notify/#
+    - platform: state
+      entity_id: group.all_lights
+      state: 'on'
+  condition:
+    - condition: state
+      entity_id: switch.presence
+      state: 'on'
+    - condition: state
+      entity_id: group.all_devices
+      state: 'not_home'
   action:
-    service_template: notify.{{ trigger.topic.split('/')[1] }}
+    service: notify.slack
     data_template:
-      target: >
-        {% if trigger.topic.split('/')[1] == 'slack' %}#{% endif %}
-        {% if trigger.topic.split('/')|length <= 2 %}
-        {% if trigger.topic.split('/')[1] == 'slack' %}general{% endif %}
-        {% else %}
-        {{ trigger.topic.split('/')[2] }}
-        {% endif %}
       message: >
-        {{ trigger.payload }}
+        Potential entruder, no one is home and a light turned on!
 
 
 - alias: Update Available Notification
