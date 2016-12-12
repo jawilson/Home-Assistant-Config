@@ -8,6 +8,8 @@
       entity_id: input_boolean.media_automation
       state: 'on'
   action:
+    - service: media_player.stop
+      entity_id: media_player.cast_kitchen_home
     - service: light.turn_off
       entity_id:
         - light.kitchen
@@ -73,6 +75,8 @@
     - platform: state
       entity_id: media_player.cast_shield
       to: 'off'
+      for:
+        seconds: 30
   condition:
     - condition: state
       entity_id: input_boolean.media_automation
