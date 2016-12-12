@@ -1,10 +1,21 @@
 alias: Bedroom Wake Up
 sequence:
-  - service: switch.turn_off
-    entity_id: switch.bedroom_fluxer
   - condition: state
     entity_id: group.sleeping
     state: 'off'
+  - service: switch.turn_off
+    entity_id: switch.humidifier
+  - condition: time
+    after: '6:00:00'
+    before: '9:00:00'
+    weekday:
+      - mon
+      - tue
+      - wed
+      - thu
+      - fri
+  - service: switch.turn_off
+    entity_id: switch.bedroom_fluxer
   - service: notify.html5
     data_template:
       target: '{{ target }}'
@@ -18,8 +29,6 @@ sequence:
           - action: 'wakeup_cancel'
             title: 'Cancel'
         script: 'script.bedroom_wakeup'
-  - service: switch.turn_off
-    entity_id: switch.humidifier
   - service: light.turn_on
     entity_id: group.bedroom_lights
     data:

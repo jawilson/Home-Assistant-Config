@@ -4,3 +4,5 @@ sequence:
     entity_id: group.bedroom_lights
   - service: switch.turn_on
     entity_id: switch.humidifier
+  - service: switch.turn_on
+    entity_id: switch.bedroom_fluxer

@@ -12,8 +12,6 @@ sequence:
   - service: script.turn_off
     data_template:
       entity_id: '{{ script }}'
-  - service: light.turn_off
-    data_template:
-      entity_id: group.bedroom_lights
+  - service: script.bedroom_sleep
   - service: switch.turn_on
     entity_id: switch.bedroom_fluxer

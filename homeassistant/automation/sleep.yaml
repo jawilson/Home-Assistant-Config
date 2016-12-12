@@ -21,16 +21,6 @@
     - platform: state
       entity_id: group.sleeping
       to: 'off'
-  condition:
-    - condition: time
-      after: '6:00:00'
-      before: '9:00:00'
-      weekday:
-        - mon
-        - tue
-        - wed
-        - thu
-        - fri
   action:
     - service: script.bedroom_wakeup
       data_template:
