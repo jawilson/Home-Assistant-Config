@@ -5,3 +5,8 @@ group.all_lights:
 group.living_room_lamp:
   emulated_hue: true
   emulated_hue_name: Living Room Lamp
+
+group.bedroom_lights:
+  emulated_hue: true
+group.living_room_lights:
+  emulated_hue: true

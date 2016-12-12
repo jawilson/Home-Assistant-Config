@@ -1,0 +1,8 @@
+light.dining:
+  friendly_name: Dining Light
+light.entertainment:
+  friendly_name: Entertainment Light
+light.entryway:
+  friendly_name: Entryway Light
+light.kitchen:
+  friendly_name: Kitchen Light
