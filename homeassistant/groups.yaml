@@ -169,6 +169,9 @@ Automations:
 
 Guests:
   - device_tracker.kory_iphone
+  - device_tracker.caitlinorjohn_android
+  - device_tracker.johnorcaitlin_android
+  - device_tracker.katie_iphone
   - device_tracker.tony_ipad
   - device_tracker.liza_iphone
   - device_tracker.debbie_android
