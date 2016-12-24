@@ -3,8 +3,6 @@ sequence:
   - condition: state
     entity_id: group.sleeping
     state: 'off'
-  - service: switch.turn_off
-    entity_id: switch.humidifier
   - condition: time
     after: '6:00:00'
     before: '9:00:00'

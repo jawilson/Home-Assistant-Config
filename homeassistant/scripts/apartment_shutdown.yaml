@@ -6,3 +6,4 @@ sequence:
     entity_id:
       - switch.projector
       - switch.christmas_tree
+      - switch.humidifier

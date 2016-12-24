@@ -4,7 +4,9 @@ sequence:
     entity_id: group.sleeping
     state: 'off'
   - service: switch.turn_on
-    entity_id: switch.bedroom_fluxer
+    entity_id:
+      - switch.humidifier
+      - switch.bedroom_fluxer
   - service: light.turn_on
     entity_id: group.bedroom_lights
   - service: switch.bedroom_fluxer_update
