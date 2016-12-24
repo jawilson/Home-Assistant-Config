@@ -12,6 +12,8 @@ sequence:
       - wed
       - thu
       - fri
+  - condition: template
+    value_template: "{{ target != 'reality' }}"
   - service: switch.turn_off
     entity_id: switch.bedroom_fluxer
   - service: notify.html5
