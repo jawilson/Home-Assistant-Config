@@ -164,6 +164,7 @@ Automations:
   - automation.shield_cast_stopped
   - automation.mqtt_notification
   - automation.slack_updates
+  - automation.slack_intruder_alert
   - automation.update_available_notification
 
 Guests:
@@ -227,5 +228,6 @@ Admin:
     - switch.guests
     - input_boolean.climate_auto
     - input_boolean.media_automation
+    - input_boolean.intruder_alerts
     - group.scripts
     - group.automations

@@ -6,3 +6,7 @@ climate_auto:
 media_automation:
   name: 'Media Automation'
   initial: on
+
+intruder_alerts:
+  name: 'Intruder Alerts'
+  initial: on

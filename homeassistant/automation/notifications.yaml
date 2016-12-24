@@ -24,12 +24,17 @@
         {%- endif %}
 
 
-- alias: 'Slack Updates'
+- alias: 'Slack Intruder Alert'
   trigger:
     - platform: state
       entity_id: group.all_lights
       state: 'on'
+      for:
+        seconds: 30
   condition:
+    - condition: state
+      entity_id: input_boolean.intruder_alerts
+      state: 'on'
     - condition: state
       entity_id: switch.presence
       state: 'on'
@@ -38,7 +43,7 @@
       state: 'not_home'
   action:
     service: notify.slack
-    data_template:
+    data:
       message: >
         Potential entruder, no one is home and a light turned on!
 
