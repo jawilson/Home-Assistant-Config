@@ -66,7 +66,6 @@ class AsusWrtWOLSwitch(SwitchDevice):
         """Turn the device on."""
         self._asuswrt.send_command("ether-wake -i br0 {}"\
                 .format(self._mac_address))
-        self.update_ha_state()
 
     def turn_off(self):
         """Do nothing."""
