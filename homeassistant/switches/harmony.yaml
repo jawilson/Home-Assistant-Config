@@ -35,15 +35,22 @@
       friendly_name: 'Plex'
       value_template: "{{ is_state_attr('remote.living_room', 'current_activity', 'Play Shield') }}"
       turn_on:
-        - service: remote.turn_on
-          entity_id: remote.living_room
-          data:
-            activity: 'Play Shield'
         - service: remote.send_command
           entity_id: remote.living_room
           data:
             device: 38026456
             command: 'F1'
+        - delay:
+            seconds: 5
+        - service: remote.send_command
+          entity_id: remote.living_room
+          data:
+            device: 38026456
+            command: 'F1'
+        - service: remote.turn_on
+          entity_id: remote.living_room
+          data:
+            activity: 'Play Shield'
       turn_off:
         service: remote.turn_off
         entity_id: remote.living_room
