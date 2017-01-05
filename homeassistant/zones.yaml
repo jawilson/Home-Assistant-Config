@@ -20,3 +20,15 @@
   longitude: -77.022973
   radius: 100
   icon: mdi:domain
+
+- name: Dusty Spur Ranch
+  latitude: 46.872303
+  longitude: -120.772579
+  radius: 200
+  icon: mdi:home-variant
+
+- name: Dalton Home
+  latitude: 36.574796
+  longitude: -79.409773
+  radius: 100
+  icon: mdi:home-variant
