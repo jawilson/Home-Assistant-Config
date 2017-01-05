@@ -4,7 +4,7 @@ orvibo1:
   options:
     - Crockpot
     - Christmas Tree
-  initial: Christmas Tree
+  initial: Crockpot
 
 orvibo2:
   name: Orvibo Outlet 2
