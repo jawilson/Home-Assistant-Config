@@ -26,6 +26,56 @@ logbook:
 
 # Enables support for tracking state changes over time.
 history:
+  include:
+    domains:
+      - binary_sensor
+      - climate
+      - device_tracker
+      - light
+      - proximity
+      - sensor
+      - switch
+    entities:
+      - media_player.cast_bedroom
+      - media_player.cask_kitchen_home
+      - media_player.cask_shield
+      - media_player.plex_shield
+  exclude:
+    entities:
+      - binary_sensor.ak_sleeping
+      - binary_sensor.apartment_thermostat_has_leaf
+      - binary_sensor.apartment_thermostat_is_locked
+      - binary_sensor.apartment_thermostat_is_using_emergency_heat
+      - binary_sensor.apartment_thermostat_online
+      - binary_sensor.jeff_sleeping
+      - binary_sensor.p3steel_printing
+      - binary_sensor.p3steel_printing_error
+      - light.bedroom
+      - light.entryway_2
+      - light.hgrp0000000006
+      - light.living_room
+      - sensor.p3steel_actual_bed_temp
+      - sensor.p3steel_actual_tool0_temp
+      - sensor.p3steel_job_percentage
+      - sensor.p3steel_target_bed_temp
+      - sensor.p3steel_target_tool0_temp
+      - sensor.sunrise
+      - sensor.sunset
+      - switch.bedroom_fluxer
+      - switch.christmas_tree
+      - switch.feynman
+      - switch.guests
+      - switch.living_area_fluxer
+      - switch.orvibo1
+      - switch.orvibo2
+      - switch.plex
+      - switch.presence
+      - switch.projector
+      - switch.shield
+      - switch.shield_audio
+      - switch.wii
+      - switch.xbox_360
+      - switch.xbox_one
 
 # Enables the frontend
 frontend:
