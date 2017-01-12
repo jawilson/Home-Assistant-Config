@@ -12,6 +12,7 @@ switch.feynman:
 switch.orvibo1:
   friendly_name: 'Outlet 1'
   icon: mdi:power-plug
+  emulated_hue: false
 switch.crockpot:
   icon: mdi:pot
 switch.christmas_tree:
@@ -20,6 +21,7 @@ switch.christmas_tree:
 switch.orvibo2:
   friendly_name: 'Outlet 2'
   icon: mdi:power-plug
+  emulated_hue: false
 switch.humidifier:
   icon: mdi:water
 
