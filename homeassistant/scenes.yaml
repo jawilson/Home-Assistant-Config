@@ -34,7 +34,7 @@
       brightness: 65
     light.kitchen: off
     light.dining: off
-    light.bedroom: off
+    group.bedroom_lights: off
 - name: Bedtime
   entities:
     switch.living_area_fluxer: off
