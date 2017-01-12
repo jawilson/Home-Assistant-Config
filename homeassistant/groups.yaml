@@ -212,10 +212,10 @@ Media:
   view: yes
   entities:
   - group.harmony
-  - media_player.plex_shield
-  - media_player.cast_shield
+  - media_player.shield
   - media_player.cast_bedroom
   - media_player.cast_kitchen_home
+  - remote.living_room
 
 Other:
   view: yes

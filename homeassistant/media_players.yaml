@@ -2,3 +2,38 @@
   entity_namespace: plex
 - platform: cast
   entity_namespace: cast
+- platform: universal
+  name: shield
+  children:
+    - media_player.plex_shield
+    - media_player.cask_shield
+  commands:
+    turn_on:
+      service: remote.turn_on
+      data:
+        entity_id: remote.living_room
+        activity: 'Play Shield'
+    turn_off:
+      service: remote.turn_off
+      data:
+        entity_id: remote.living_room
+    volume_up:
+      service: remote.send_command
+      data:
+        entity_id: remote.living_room
+        device: 31874484
+        command: VolumeUp
+    volume_down:
+      service: remote.send_command
+      data:
+        entity_id: remote.living_room
+        device: 31874484
+        command: VolumeDown
+    volume_mute:
+      service: remote.send_command
+      data:
+        entity_id: remote.living_room
+        device: 31874484
+        command: Mute
+  attributes:
+    state: remote.living_room

@@ -4,3 +4,5 @@ media_player.cast_shield:
   friendly_name: 'SHIELD Cast'
 media_player.plex_shield:
   friendly_name: 'SHIELD Plex'
+media_player.shield:
+  emulated_hue: true
