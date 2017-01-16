@@ -5,12 +5,7 @@
     light.entertainment:
       state: on
       brightness: 60
-    light.living_room_lamp_1:
-      state: on
-      transition: 15
-      profile: nightlight
-      brightness: 65
-    light.living_room_lamp_2:
+    light.living_room:
       state: on
       transition: 15
       profile: nightlight
@@ -22,19 +17,14 @@
     light.entertainment:
       state: on
       brightness: 60
-    light.living_room_lamp_1:
-      state: on
-      transition: 15
-      profile: nightlight
-      brightness: 65
-    light.living_room_lamp_2:
+    light.living_room:
       state: on
       transition: 15
       profile: nightlight
       brightness: 65
     light.kitchen: off
     light.dining: off
-    group.bedroom_lights: off
+    light.bedroom: off
 - name: Bedtime
   entities:
     switch.living_area_fluxer: off
@@ -45,10 +35,7 @@
     light.entryway:
       state: on
       profile: nightlight
-    light.living_room_lamp_1:
-      state: on
-      profile: nightlight
-    light.living_room_lamp_2:
+    light.living_room:
       state: on
       profile: nightlight
     light.bedroom_lamp:

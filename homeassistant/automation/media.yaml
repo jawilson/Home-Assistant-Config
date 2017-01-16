@@ -17,12 +17,7 @@
     - service: light.turn_off
       entity_id:
         - light.entryway
-        - light.bedroom_lamp
-        - light.tree_lamp_1
-        - light.tree_lamp_2
-        - light.tree_lamp_3
-        - light.tree_lamp_4
-        - light.tree_lamp_5
+        - light.bedroom
       data:
         transition: 5
     - service: switch.turn_off
@@ -47,7 +42,7 @@
     - service: switch.turn_off
       entity_id: switch.living_area_fluxer
     - service: light.turn_on
-      entity_id: group.living_room_lamp
+      entity_id: light.living_room
       data:
         transition: 15
         profile: nightlight
@@ -103,7 +98,7 @@
         {{ trigger.from_state.attributes.current_activity != 'Listen to Shield' }}
   action:
     - service: light.turn_on
-      entity_id: group.living_room_lamp
+      entity_id: light.living_room
       data:
         transition: 15
         profile: dimmed

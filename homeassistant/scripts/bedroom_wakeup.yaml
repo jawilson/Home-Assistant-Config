@@ -30,7 +30,7 @@ sequence:
             title: 'Cancel'
         script: 'script.bedroom_wakeup'
   - service: light.turn_on
-    entity_id: group.bedroom_lights
+    entity_id: light.bedroom
     data:
       transition: 120
       color_temp: 450
@@ -38,7 +38,7 @@ sequence:
   - delay:
       minutes: 5
   - service: light.turn_on
-    entity_id: group.bedroom_lights
+    entity_id: light.bedroom
     data:
       transition: 600
       color_temp: 154
