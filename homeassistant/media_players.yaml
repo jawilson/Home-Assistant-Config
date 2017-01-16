@@ -1,7 +1,18 @@
 - platform: plex
   entity_namespace: plex
+
 - platform: cast
   entity_namespace: cast
+  host: Shield.singularity.net
+
+- platform: cast
+  entity_namespace: cast
+  host: GoogleHome.singularity.net
+
+- platform: cast
+  entity_namespace: cast
+  host: Molybdenum.singularity.net
+
 - platform: universal
   name: shield
   children:
