@@ -110,7 +110,7 @@ Harmony:
 
 Climate:
   - climate.apartment
-  - sensor.apartment_humidity
+  - sensor.apartment_thermostat_humidity
   - switch.apartment_home
   - switch.apartment_fan
 

@@ -2,4 +2,3 @@
   monitored_conditions:
     - 'fan'
     - 'is_using_emergency_heat'
-    - 'has_leaf'
