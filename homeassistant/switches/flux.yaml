@@ -6,7 +6,6 @@
   name: Living Area Fluxer
   start_time: '7:00'
   start_colortemp: 6536
-  stop_time: '23:00'
 
 - platform: flux
   lights:
