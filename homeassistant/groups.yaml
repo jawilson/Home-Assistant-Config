@@ -123,6 +123,7 @@ Scenes:
   - scene.bedtime
   - scene.romantic
   - scene.tv_dinner
+  - scene.up_late
 
 
 Scripts:

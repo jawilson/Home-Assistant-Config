@@ -6,3 +6,6 @@ scene.romantic:
 
 scene.bedtime:
   icon: mdi:hotel
+
+scene.up_late:
+  icon: mdi:weather-night
