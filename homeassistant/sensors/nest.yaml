@@ -1,7 +1,0 @@
-#
-# Nest
-#
-
-- platform: nest
-  monitored_conditions:
-    - 'humidity'

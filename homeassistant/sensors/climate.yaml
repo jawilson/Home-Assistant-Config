@@ -1,0 +1,21 @@
+#
+# Nest
+#
+- platform: nest
+  monitored_conditions:
+    - 'humidity'
+
+#
+# MQTT
+#
+- platform: mqtt
+  name: "Sunroom Temperature"
+  state_topic: "esp8266-007461/temperature"
+  qos: 0
+  unit_of_measurement: "°C"
+
+- platform: mqtt
+  name: "Sunroom Humidity"
+  state_topic: "esp8266-007461/humidity"
+  qos: 0
+  unit_of_measurement: "%"
