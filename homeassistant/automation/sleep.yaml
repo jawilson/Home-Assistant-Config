@@ -5,6 +5,23 @@
         - binary_sensor.ak_sleeping
         - binary_sensor.jeff_sleeping
       to: 'on'
+  condition:
+    condition: or
+    conditions:
+      - condition: and
+        conditions:
+          - condition: template
+            value_template: "{{ trigger.entity_id == 'binary_sensor.ak_sleeping' }}"
+          - condition: state
+            entity_id: device_tracker.annekat_reality
+            state: home
+      - condition: and
+        conditions:
+          - condition: template
+            value_template: "{{ trigger.entity_id == 'binary_sensor.jeff_sleeping' }}"
+          - condition: state
+            entity_id: device_tracker.jawilson_fluorine
+            state: home
   action:
     - service: script.bedroom_sleep
     - service: script.living_area_sleep
@@ -21,6 +38,23 @@
     - platform: state
       entity_id: group.sleeping
       to: 'off'
+  condition:
+    condition: or
+    conditions:
+      - condition: and
+        conditions:
+          - condition: template
+            value_template: "{{ trigger.entity_id == 'binary_sensor.ak_sleeping' }}"
+          - condition: state
+            entity_id: device_tracker.annekat_reality
+            state: home
+      - condition: and
+        conditions:
+          - condition: template
+            value_template: "{{ trigger.entity_id == 'binary_sensor.jeff_sleeping' }}"
+          - condition: state
+            entity_id: device_tracker.jawilson_fluorine
+            state: home
   action:
     - service: script.bedroom_wakeup
       data_template:
@@ -40,6 +74,23 @@
       entity_id:
         - sensor.jeff_alarm
       to: 'Ringing'
+  condition:
+    condition: or
+    conditions:
+      - condition: and
+        conditions:
+          - condition: template
+            value_template: "{{ trigger.entity_id == 'sensor.ak_alarm' }}"
+          - condition: state
+            entity_id: device_tracker.annekat_reality
+            state: home
+      - condition: and
+        conditions:
+          - condition: template
+            value_template: "{{ trigger.entity_id == 'sensor.jeff_alarm' }}"
+          - condition: state
+            entity_id: device_tracker.jawilson_fluorine
+            state: home
   action:
     - service: script.alarm_ringing
       data_template:
@@ -64,6 +115,23 @@
         - sensor.ak_alarm
         - sensor.jeff_alarm
       to: 'Snoozed'
+  condition:
+    condition: or
+    conditions:
+      - condition: and
+        conditions:
+          - condition: template
+            value_template: "{{ trigger.entity_id == 'sensor.ak_alarm' }}"
+          - condition: state
+            entity_id: device_tracker.annekat_reality
+            state: home
+      - condition: and
+        conditions:
+          - condition: template
+            value_template: "{{ trigger.entity_id == 'sensor.jeff_alarm' }}"
+          - condition: state
+            entity_id: device_tracker.jawilson_fluorine
+            state: home
   action:
     - service: script.alarm_snooze
       data_template:
@@ -88,6 +156,22 @@
     - condition: state
       entity_id: group.sleeping
       state: 'on'
+    - condition: or
+      conditions:
+        - condition: and
+          conditions:
+            - condition: template
+              value_template: "{{ trigger.entity_id == 'sensor.ak_alarm' }}"
+            - condition: state
+              entity_id: device_tracker.annekat_reality
+              state: home
+        - condition: and
+          conditions:
+            - condition: template
+              value_template: "{{ trigger.entity_id == 'sensor.jeff_alarm' }}"
+            - condition: state
+              entity_id: device_tracker.jawilson_fluorine
+              state: home
   action:
     - service: script.alarm_dismiss
       data_template:
