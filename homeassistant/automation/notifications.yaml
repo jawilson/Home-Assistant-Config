@@ -54,5 +54,5 @@
     entity_id: updater.updater
   action:
     service: notify.slack
-    data:
-      message: 'An update for Home Assistant is available.'
+    data_template:
+      message: 'Version <{{trigger.to_state.attributes.release_notes}}|{{trigger.to_state.state}}> of Home Assistant is available.'
