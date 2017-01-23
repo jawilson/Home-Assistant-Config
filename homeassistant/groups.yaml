@@ -172,12 +172,13 @@ Automations:
 
 Guests:
   - device_tracker.kory_iphone
-  - device_tracker.caitlinorjohn_android
-  - device_tracker.johnorcaitlin_android
+  - device_tracker.caitlin_android
+  - device_tracker.john_android
   - device_tracker.katie_iphone
   - device_tracker.tony_ipad
   - device_tracker.liza_iphone
   - device_tracker.debbie_android
+  - device_tracker.chase_iphone
 
 
 #
@@ -190,6 +191,7 @@ default_view:
   entities:
     - device_tracker.annekat_reality
     - device_tracker.jawilson_fluorine
+    - group.guests
     - group.weather
     - group.climate
     - group.scenes
