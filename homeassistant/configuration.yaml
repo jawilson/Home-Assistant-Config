@@ -131,6 +131,11 @@ asuswrt:
   password: !secret asuswrt_password
   protocol: telnet
 
+insteon_local:
+  host: insteonhub.singularity.net
+  username: !secret insteon_username
+  password: !secret insteon_password
+
 
 # Sensors
 binary_sensor: !include_dir_merge_list binary_sensors

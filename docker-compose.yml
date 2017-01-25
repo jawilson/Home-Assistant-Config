@@ -1,17 +1,6 @@
 version: '2'
 
 services:
-  openhab:
-    image: peez/openhab
-    restart: always
-    dns: 192.168.0.1
-    dns_search: singularity.net
-    expose:
-      - 8080
-    volumes:
-      - /etc/localtime:/etc/localtime:ro
-      - /etc/timezone:/etc/timezone:ro
-      - ./openhab:/opt/openhab/configurations
   mqtt:
     image: toke/mosquitto
     restart: always
@@ -41,7 +30,6 @@ services:
     links:
       - mqtt
       - mqtt:mqtt.singularity.net
-      - openhab
       - postgres:database
     restart: always
     dns: 192.168.0.1
@@ -61,10 +49,6 @@ services:
       - '/opt/tools/wait-for-it/wait-for-it.sh'
       - '-s'
       - 'mqtt:1883'
-      - '--'
-      - '/opt/tools/wait-for-it/wait-for-it.sh'
-      - '-s'
-      - 'openhab:8080'
       - '--'
       - '/opt/tools/wait-for-it/wait-for-it.sh'
       - '-s'

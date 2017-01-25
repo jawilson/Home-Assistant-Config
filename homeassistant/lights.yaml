@@ -5,12 +5,4 @@
   filename: hue_hub_token.conf
 
 # Insteon
-- platform: insteondimmeroh
-  name: "Entertainment"
-  url: http://openhab:8080/rest/items/Dimmer2
-- platform: insteondimmeroh
-  name: "Dining"
-  url: http://openhab:8080/rest/items/DimmerSwitch1
-- platform: insteondimmeroh
-  name: "Kitchen"
-  url: http://openhab:8080/rest/items/DimmerSwitch2
+- platform: insteon_local
