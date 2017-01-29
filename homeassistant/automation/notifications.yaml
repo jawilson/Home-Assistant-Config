@@ -30,7 +30,7 @@
       entity_id: group.all_lights
       state: 'on'
       for:
-        seconds: 30
+        minutes: 5
   condition:
     - condition: state
       entity_id: input_boolean.intruder_alerts
