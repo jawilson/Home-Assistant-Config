@@ -45,7 +45,9 @@ Jeff:
 
 Family:
   - device_tracker.jawilson_fluorine
+  - device_tracker.fluorine
   - device_tracker.annekat_reality
+  - device_tracker.reality
 
 
 Sleeping:
