@@ -48,6 +48,16 @@
         Potential entruder, no one is home and a light turned on!
 
 
+- alias: New Device Notification
+  trigger:
+    platform: event
+    event_type: device_tracker_new_device
+  action:
+    service: notify.slack
+    data_template:
+      message: 'New device detected: {{trigger.event.host_name}} ({{trigger.event.entity_id}})'
+
+
 - alias: Update Available Notification
   trigger:
     platform: state
