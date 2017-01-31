@@ -14,7 +14,7 @@
   host: Molybdenum.singularity.net
 
 - platform: universal
-  name: shield
+  name: Shield
   children:
     - media_player.plex_shield
     - media_player.cask_shield
