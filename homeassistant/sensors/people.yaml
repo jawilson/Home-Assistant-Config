@@ -4,7 +4,7 @@
   state_topic: 'person/jeff/alarm'
   name: 'Jeff Alarm'
   qos: 1
-  value_template: '{{ value|capitalize }}'
+  value_template: "{{ value|capitalize|replace('_',' ') }}"
 
 - platform: mqtt
   state_topic: 'owntracks/jawilson/fluorine'

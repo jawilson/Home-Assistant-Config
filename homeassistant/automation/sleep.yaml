@@ -68,6 +68,64 @@
     - service: script.apartment_wakeup
 
 
+- alias: 'Alarm Bedtime'
+  trigger:
+    - platform: state
+      entity_id:
+        - sensor.ak_alarm
+        - sensor.jeff_alarm
+      to: 'Bedtime'
+  condition:
+    condition: or
+    conditions:
+      - condition: and
+        conditions:
+          - condition: template
+            value_template: "{{ trigger.entity_id == 'sensor.ak_alarm' }}"
+          - condition: state
+            entity_id: device_tracker.annekat_reality
+            state: home
+      - condition: and
+        conditions:
+          - condition: template
+            value_template: "{{ trigger.entity_id == 'sensor.jeff_alarm' }}"
+          - condition: state
+            entity_id: device_tracker.jawilson_fluorine
+            state: home
+  action:
+    - service: switch.turn_on
+      entity_id: switch.humidifier
+    - service: script.apartment_sleep
+
+
+- alias: 'Alarm Smart Period'
+  trigger:
+    - platform: state
+      entity_id:
+        - sensor.ak_alarm
+        - sensor.jeff_alarm
+      to: 'Smart period'
+  condition:
+    condition: or
+    conditions:
+      - condition: and
+        conditions:
+          - condition: template
+            value_template: "{{ trigger.entity_id == 'sensor.ak_alarm' }}"
+          - condition: state
+            entity_id: device_tracker.annekat_reality
+            state: home
+      - condition: and
+        conditions:
+          - condition: template
+            value_template: "{{ trigger.entity_id == 'sensor.jeff_alarm' }}"
+          - condition: state
+            entity_id: device_tracker.jawilson_fluorine
+            state: home
+  action:
+    - service: script.apartment_wakeup
+
+
 - alias: 'Alarm Ringing'
   trigger:
     - platform: state
