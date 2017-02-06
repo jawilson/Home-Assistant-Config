@@ -1,4 +1,7 @@
 letsencrypt/
+*.csr
+*.crt
+*.key
 
 *.pyc
 *.db

@@ -1,7 +1,10 @@
 .HA_VERSION
-*.conf
-*.db-journal
-secrets.yaml
 .uuid
+*.db-journal
+
+known_devices.yaml
+secrets.yaml
+*.conf
 
 deps/
+tts/
