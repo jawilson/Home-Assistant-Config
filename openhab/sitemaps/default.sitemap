@@ -1,6 +1,0 @@
-sitemap default label="Home"
-{
-    Frame label="Apartment" {
-        Group item=All label="All Items" icon="firstfloor"
-    }
-}
