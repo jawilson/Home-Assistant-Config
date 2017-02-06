@@ -41,6 +41,8 @@
     - condition: state
       entity_id: group.all_devices
       state: 'not_home'
+      for:
+        minutes: 5
   action:
     service: notify.slack
     data:
