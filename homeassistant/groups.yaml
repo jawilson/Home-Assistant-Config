@@ -24,9 +24,6 @@ P3Steel:
   - binary_sensor.p3steel_printing
   - binary_sensor.p3steel_printing_error
 
-Computers:
-  - switch.feynman
-
 
 AK:
   - device_tracker.annekat_reality

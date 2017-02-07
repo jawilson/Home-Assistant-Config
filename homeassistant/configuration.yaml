@@ -125,12 +125,6 @@ octoprint:
   host: p3steel.singularity.net
   api_key: !secret octoprint_key
 
-asuswrt:
-  host: dark-knight.singularity.net
-  username: !secret asuswrt_username
-  password: !secret asuswrt_password
-  protocol: telnet
-
 insteon_local:
   host: insteonhub.singularity.net
   username: !secret insteon_username
