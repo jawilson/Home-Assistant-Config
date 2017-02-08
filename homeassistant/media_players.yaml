@@ -17,7 +17,7 @@
   name: Shield
   children:
     - media_player.plex_shield
-    - media_player.cask_shield
+    - media_player.cast_shield
   commands:
     turn_on:
       service: remote.turn_on
