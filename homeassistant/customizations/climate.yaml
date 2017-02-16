@@ -17,5 +17,5 @@ sensor.apartment_mode:
 switch.apartment_home:
   icon: mdi:home
 
-sensor.sunroom_humidity:
+sensor.office_humidity:
   icon: mdi:water-percent
