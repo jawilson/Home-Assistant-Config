@@ -75,6 +75,9 @@ Living Room Lamp:
   - light.living_room_lamp_1
   - light.living_room_lamp_2
 
+Office Lights:
+  - light.office
+
 Bedroom Lights:
   - light.bedroom_lamp
   - light.tree_lamp_1
@@ -208,6 +211,7 @@ Rooms:
     - group.entryway_lights
     - group.kitchen_lights
     - group.living_room_lights
+    - group.office_lights
     - group.bedroom_lights
     - group.outlets
     - switch.living_area_fluxer

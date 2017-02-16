@@ -6,6 +6,8 @@ light.entryway:
   friendly_name: Entryway Light
 light.kitchen:
   friendly_name: Kitchen Light
+light.office:
+  friendly_name: Office Light
 
 light.bedroom:
   hidden: true

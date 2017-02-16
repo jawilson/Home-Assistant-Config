@@ -25,6 +25,7 @@
     light.kitchen: off
     light.dining: off
     light.bedroom: off
+    light.office: off
 - name: Bedtime
   entities:
     switch.living_area_fluxer: off
