@@ -57,7 +57,7 @@
   action:
     service: notify.slack
     data_template:
-      message: 'New device detected: {{trigger.event.host_name}} ({{trigger.event.entity_id}})'
+      message: 'New device detected: {{trigger.event.data.host_name}} ({{trigger.event.data.entity_id}})'
 
 
 - alias: Update Available Notification
