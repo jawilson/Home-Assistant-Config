@@ -13,5 +13,3 @@ sequence:
     data_template:
       entity_id: '{{ script }}'
   - service: script.bedroom_sleep
-  - service: switch.turn_on
-    entity_id: switch.bedroom_fluxer

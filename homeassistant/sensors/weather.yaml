@@ -1,12 +1,17 @@
 # Forecast.io
-- name: forecastio
-  platform: darksky
+- platform: darksky
   api_key: !secret forecast_key
   monitored_conditions:
-    - summary
-    - precip_intensity
     - temperature
     - humidity
+    - precip_probability
+    - precip_intensity
+    - wind_speed
+    - pressure
+    - wind_bearing
+    - apparent_temperature
+    - icon
+    - summary
 
 # Sun
 - platform: template
