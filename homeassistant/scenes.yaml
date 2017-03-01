@@ -59,10 +59,6 @@
       target_temp_low: 60
 - name: Up late
   entities:
-    switch.living_area_fluxer: off
-    light.kitchen: off
-    light.dining: off
-    light.entertainment: off
     light.living_room:
       state: on
       profile: late
@@ -72,3 +68,7 @@
     light.office:
       state: on
       brightness: 100
+    switch.living_area_fluxer: off
+    light.kitchen: off
+    light.dining: off
+    light.entertainment: off
