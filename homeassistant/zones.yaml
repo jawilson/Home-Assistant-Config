@@ -32,3 +32,9 @@
   longitude: -79.409773
   radius: 100
   icon: mdi:home-variant
+
+- name: Hallauer Home
+  latitude: 39.128182
+  longitude: -77.537637
+  radius: 200
+  icon: mdi:home-variant
