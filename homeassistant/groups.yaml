@@ -255,6 +255,8 @@ Other:
     - group.p3steel
     - group.computers
     - sensor.plex
+    - sensor.ups
+    - sensor.415_l_st_nw_apt_633
 
 Admin:
   view: yes

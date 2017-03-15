@@ -1,0 +1,7 @@
+- platform: usps
+  username: !secret usps_username
+  password: !secret usps_password
+
+- platform: ups
+  username: !secret ups_username
+  password: !secret ups_password
