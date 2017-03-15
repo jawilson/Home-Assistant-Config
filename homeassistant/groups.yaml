@@ -62,6 +62,19 @@ Living Area Lights:
 Entryway Lights:
   - light.entryway
 
+Bathroom Lights:
+  - light.bathroom_mirror_1
+  - light.bathroom_mirror_2
+  - light.bathroom_mirror_3
+  - light.bathroom_mirror_4
+  - light.shower
+
+Bathroom Mirror:
+  - light.bathroom_mirror_1
+  - light.bathroom_mirror_2
+  - light.bathroom_mirror_3
+  - light.bathroom_mirror_4
+
 Kitchen Lights:
   - light.kitchen
 
@@ -92,6 +105,12 @@ Tree Lamp:
   - light.tree_lamp_3
   - light.tree_lamp_4
   - light.tree_lamp_5
+
+
+Fluxers:
+  - switch.bedroom_fluxer
+  - switch.bathroom_fluxer
+  - switch.living_area_fluxer
 
 
 Outlets:
@@ -130,6 +149,7 @@ Scenes:
 
 Scripts:
   - script.bedroom_sleep
+  - script.bathroom_sleep
   - script.living_area_sleep
   - script.apartment_sleep
   - script.alarm_ringing
@@ -137,6 +157,7 @@ Scripts:
   - script.alarm_dismiss
   - script.wakeup_cancel
   - script.bedroom_wakeup
+  - script.bathroom_wakeup
   - script.living_area_wakeup
   - script.apartment_wakeup
   - script.apartment_cycle_air
@@ -209,13 +230,13 @@ Rooms:
   view: yes
   entities:
     - group.entryway_lights
+    - group.bathroom_lights
     - group.kitchen_lights
     - group.living_room_lights
     - group.office_lights
     - group.bedroom_lights
     - group.outlets
-    - switch.living_area_fluxer
-    - switch.bedroom_fluxer
+    - group.fluxers
 
 Media:
   view: yes

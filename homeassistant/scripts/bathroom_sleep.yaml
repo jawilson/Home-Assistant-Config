@@ -1,0 +1,25 @@
+alias: Bathroom Sleep
+sequence:
+  - condition: state
+    entity_id: switch.guests
+    state: 'off'
+  - condition: and
+    conditions:
+      - condition: or
+        conditions:
+          - condition: state
+            entity_id: 'binary_sensor.ak_sleeping'
+            state: 'on'
+          - condition: template
+            value_template: '{{ not is_state("device_tracker.annekat_reality", "home") }}'
+      - condition: or
+        conditions:
+          - condition: state
+            entity_id: 'binary_sensor.jeff_sleeping'
+            state: 'on'
+          - condition: template
+            value_template: '{{ not is_state("device_tracker.jawilson_fluorine", "home") }}'
+  - service: light.turn_off
+    entity_id: light.bathroom
+  - service: switch.turn_on
+    entity_id: switch.bathroom_fluxer

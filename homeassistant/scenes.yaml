@@ -68,6 +68,10 @@
     light.office:
       state: on
       brightness: 100
+    light.bathroom_mirror_1:
+      state: on
+      brightness: 13
+      color_temp: 454
     switch.living_area_fluxer: off
     light.kitchen: off
     light.dining: off

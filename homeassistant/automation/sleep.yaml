@@ -24,6 +24,7 @@
             state: home
   action:
     - service: script.bedroom_sleep
+    - service: script.bathroom_sleep
     - service: script.living_area_sleep
     - service: script.apartment_sleep
 
@@ -64,6 +65,7 @@
           {% elif trigger.entity_id == 'binary_sensor.jeff_sleeping' %}
           fluorine
           {% endif %}
+    - service: script.bathroom_wakeup
     - service: script.living_area_wakeup
     - service: script.apartment_wakeup
 

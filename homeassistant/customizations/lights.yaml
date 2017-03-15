@@ -12,6 +12,9 @@ light.office:
 light.bedroom:
   hidden: true
   emulated_hue: false
+light.bathroom:
+  hidden: true
+  emulated_hue: false
 light.entryway_2:
   hidden: true
   emulated_hue: false

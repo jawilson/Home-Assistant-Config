@@ -27,5 +27,7 @@ switch.humidifier:
 
 switch.bedroom_fluxer:
   emulated_hue: false
+switch.bathroom_fluxer:
+  emulated_hue: false
 switch.living_area_fluxer:
   emulated_hue: false

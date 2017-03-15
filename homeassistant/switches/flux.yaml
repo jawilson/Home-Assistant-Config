@@ -19,3 +19,15 @@
   start_time: '7:00'
   start_colortemp: 6536
   mode: mired
+
+- platform: flux
+  lights:
+    - light.bathroom_mirror_1
+    - light.bathroom_mirror_2
+    - light.bathroom_mirror_3
+    - light.bathroom_mirror_4
+    - light.bathroom_shower
+  name: Bathroom Fluxer
+  start_time: '7:00'
+  start_colortemp: 5000
+  mode: mired

@@ -1,0 +1,22 @@
+alias: Bathroom Wake Up
+sequence:
+  - service: switch.turn_off
+    entity_id: switch.bathroom_fluxer
+  - service: light.turn_on
+    entity_id: light.bathroom
+    data:
+      transition: 120
+      color_temp: 450
+      brightness: 160
+  - delay:
+      minutes: 5
+  - service: light.turn_on
+    entity_id: light.bathroom
+    data:
+      transition: 600
+      color_temp: 225
+      brightness: 180
+  - delay:
+      minutes: 23
+  - service: switch.turn_on
+    entity_id: switch.bathroom_fluxer
