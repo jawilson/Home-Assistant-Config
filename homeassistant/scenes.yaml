@@ -67,7 +67,7 @@
       profile: late
     light.office:
       state: on
-      brightness: 100
+      brightness: 50
     light.bathroom_mirror_1:
       state: on
       brightness: 13

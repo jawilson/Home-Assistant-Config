@@ -3,6 +3,9 @@ sequence:
   - condition: state
     entity_id: input_boolean.climate_auto
     state: 'on'
+  - condition: time
+    after: '20:00:00'
+    before: '11:00:00'
   - service: climate.set_temperature
     data:
       entity_id: climate.apartment

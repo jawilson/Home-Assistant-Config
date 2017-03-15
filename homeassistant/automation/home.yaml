@@ -23,8 +23,6 @@
     - platform: state
       entity_id: group.all_devices
       state: 'home'
-      for:
-        minutes: 5
   condition:
     - condition: state
       entity_id: switch.presence

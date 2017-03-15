@@ -155,7 +155,7 @@ device_tracker:
     track_new_devices: no
     protocol: telnet
   - platform: owntracks
-    max_gps_accuracy: 45
+    max_gps_accuracy: 500
 
 media_player: !include media_players.yaml
 

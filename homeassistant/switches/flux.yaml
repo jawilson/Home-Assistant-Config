@@ -5,7 +5,7 @@
     - light.living_room_lamp_2
   name: Living Area Fluxer
   start_time: '7:00'
-  start_colortemp: 6536
+  start_colortemp: 6000
 
 - platform: flux
   lights:
@@ -17,7 +17,7 @@
     - light.tree_lamp_5
   name: Bedroom Fluxer
   start_time: '7:00'
-  start_colortemp: 6536
+  start_colortemp: 6000
   mode: mired
 
 - platform: flux

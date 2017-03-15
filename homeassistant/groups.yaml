@@ -170,7 +170,9 @@ Scripts:
 
 
 Automations:
+  - automation.alarm_bedtime
   - automation.go_to_sleep
+  - automation.alarm_smart_period
   - automation.alarm_ringing
   - automation.alarm_snooze
   - automation.alarm_dismiss

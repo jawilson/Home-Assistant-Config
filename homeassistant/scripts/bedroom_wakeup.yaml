@@ -41,7 +41,7 @@ sequence:
     entity_id: light.bedroom
     data:
       transition: 600
-      color_temp: 154
+      color_temp: 166
       brightness: 180
   - delay:
       minutes: 23

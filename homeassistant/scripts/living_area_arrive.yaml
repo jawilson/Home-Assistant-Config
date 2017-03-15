@@ -14,3 +14,10 @@ sequence:
       brightness: 255
   - service: switch.turn_on
     entity_id: switch.christmas_tree
+  - condition: sun
+    after: sunset
+    after_offset: "-1:00:00"
+  - service: light.turn_on
+    entity_id: light.dining
+    data:
+      brightness: 165
