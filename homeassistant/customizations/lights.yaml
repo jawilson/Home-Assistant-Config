@@ -24,3 +24,6 @@ light.hgrp0000000006:
 light.living_room:
   hidden: true
   emulated_hue: false
+light.closet:
+  hidden: true
+  emulated_hue: false

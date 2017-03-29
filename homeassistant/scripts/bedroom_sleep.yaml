@@ -2,6 +2,8 @@ alias: Bedroom Sleep
 sequence:
   - service: light.turn_off
     entity_id: group.bedroom_lights
+  - service: light.turn_off
+    entity_id: light.closet
   - service: switch.turn_on
     entity_id: switch.humidifier
   - service: switch.turn_on

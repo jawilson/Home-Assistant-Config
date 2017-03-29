@@ -6,7 +6,9 @@ sequence:
   - service: switch.turn_off
     entity_id: switch.bathroom_fluxer
   - service: light.turn_on
-    entity_id: light.bathroom
+    entity_id:
+      - light.bathroom
+      - light.closet_light
     data:
       transition: 120
       color_temp: 450
@@ -14,7 +16,9 @@ sequence:
   - delay:
       minutes: 5
   - service: light.turn_on
-    entity_id: light.bathroom
+    entity_id:
+      - light.bathroom
+      - light.closet_light
     data:
       transition: 600
       color_temp: 225

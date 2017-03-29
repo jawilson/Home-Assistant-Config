@@ -20,6 +20,7 @@
         - light.entryway
         - light.bedroom
         - light.bathroom
+        - light.closet
       data:
         transition: 5
     - service: switch.turn_off

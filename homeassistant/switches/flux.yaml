@@ -27,6 +27,7 @@
     - light.bathroom_mirror_3
     - light.bathroom_mirror_4
     - light.bathroom_shower
+    - light.closet_light
   name: Bathroom Fluxer
   start_time: '7:00'
   start_colortemp: 5000

@@ -106,6 +106,9 @@ Tree Lamp:
   - light.tree_lamp_4
   - light.tree_lamp_5
 
+Closet Lights:
+  - light.closet_light
+
 
 Fluxers:
   - switch.bedroom_fluxer
@@ -232,10 +235,11 @@ Rooms:
   view: yes
   entities:
     - group.entryway_lights
-    - group.bathroom_lights
     - group.kitchen_lights
     - group.living_room_lights
     - group.office_lights
+    - group.bathroom_lights
+    - group.closet_lights
     - group.bedroom_lights
     - group.outlets
     - group.fluxers
