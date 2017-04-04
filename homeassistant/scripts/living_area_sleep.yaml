@@ -1,7 +1,7 @@
 alias: Living Area Sleep
 sequence:
   - condition: state
-    entity_id: switch.guests
+    entity_id: input_boolean.guests
     state: 'off'
   - condition: and
     conditions:

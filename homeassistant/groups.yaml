@@ -265,8 +265,8 @@ Other:
 Admin:
   view: yes
   entities:
-    - switch.presence
-    - switch.guests
+    - input_boolean.presence
+    - input_boolean.guests
     - input_boolean.climate_auto
     - input_boolean.media_automation
     - input_boolean.intruder_alerts

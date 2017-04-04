@@ -4,7 +4,7 @@
       entity_id: device_tracker.jawilson_fluorine, device_tracker.annekat_reality
   condition:
     - condition: state
-      entity_id: switch.presence
+      entity_id: input_boolean.presence
       state: 'on'
     - condition: template
       value_template: >
@@ -36,7 +36,7 @@
       entity_id: input_boolean.intruder_alerts
       state: 'on'
     - condition: state
-      entity_id: switch.presence
+      entity_id: input_boolean.presence
       state: 'on'
     - condition: state
       entity_id: group.all_devices

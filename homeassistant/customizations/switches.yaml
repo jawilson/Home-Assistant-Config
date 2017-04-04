@@ -1,10 +1,3 @@
-switch.presence:
-  icon: mdi:account-location
-  emulated_hue: false
-switch.guests:
-  icon: mdi:account-multiple
-  emulated_hue: false
-
 switch.feynman:
   icon: mdi:desktop-tower
   emulated_hue: false

@@ -1,3 +1,13 @@
+presence:
+  name: Presence
+  initial: on
+  icon: mdi:account-location
+
+guests:
+  name: Guests
+  initial: off
+  icon: mdi:account-multiple
+
 climate_auto:
   name: Control Climate
   initial: on

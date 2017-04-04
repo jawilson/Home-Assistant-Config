@@ -64,12 +64,12 @@ history:
       - switch.bedroom_fluxer
       - switch.christmas_tree
       - switch.feynman
-      - switch.guests
+      - input_boolean.guests
       - switch.living_area_fluxer
       - switch.orvibo1
       - switch.orvibo2
       - switch.plex
-      - switch.presence
+      - input_boolean.presence
       - switch.projector
       - switch.shield
       - switch.shield_audio

@@ -5,10 +5,10 @@
     state: 'not_home'
   condition:
     - condition: state
-      entity_id: switch.guests
+      entity_id: input_boolean.guests
       state: 'off'
     - condition: state
-      entity_id: switch.presence
+      entity_id: input_boolean.presence
       state: 'on'
   action:
     - service: script.turn_on
@@ -27,10 +27,10 @@
         hours: 1
   condition:
     - condition: state
-      entity_id: switch.presence
+      entity_id: input_boolean.presence
       state: 'on'
     - condition: state
-      entity_id: switch.guests
+      entity_id: input_boolean.guests
       state: 'off'
     - condition: or
       conditions:
