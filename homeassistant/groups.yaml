@@ -143,10 +143,12 @@ Climate:
 
 
 Scenes:
+  - script.getting_ready
+  - scene.couch_reading
   - scene.dinner
-  - scene.bedtime
-  - scene.romantic
   - scene.tv_dinner
+  - scene.romantic
+  - scene.bedtime
   - scene.up_late
 
 

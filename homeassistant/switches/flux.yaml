@@ -17,7 +17,7 @@
     - light.tree_lamp_5
   name: Bedroom Fluxer
   start_time: '7:00'
-  start_colortemp: 6000
+  start_colortemp: 5000
   mode: mired
 
 - platform: flux

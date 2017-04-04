@@ -58,8 +58,24 @@
       target_temp_high: 72
       temperature: 72
       target_temp_low: 60
+- name: Couch Reading
+  entities:
+    switch.living_area_fluxer:
+      state: off
+    light.living_room:
+      state: on
+      xy_color: [0.4449, 0.4066]
+      brightness: 173
+    light.entertainment:
+      state: on
+      brightness: 60
+    light.dining:
+      state: on
+      brightness: 100
 - name: Up late
   entities:
+    switch.living_area_fluxer: off
+    switch.bathroom_fluxer: off
     light.living_room:
       state: on
       profile: late
@@ -71,9 +87,38 @@
       brightness: 50
     light.bathroom_mirror_1:
       state: on
-      brightness: 13
+      brightness: 8
       color_temp: 454
-    switch.living_area_fluxer: off
+    light.shower: off
+    light.bathroom_mirror_2: off
+    light.bathroom_mirror_3: off
+    light.bathroom_mirror_4: off
     light.kitchen: off
     light.dining: off
     light.entertainment: off
+- name: Romantic
+  entities:
+    switch.living_area_fluxer: off
+    switch.bedroom_fluxer: off
+    light.entertainment: off
+    light.dining:
+      state: on
+      brightness: 79
+    light.kitchen:
+      state: on
+      brightness: 94
+    light.entryway:
+      state: on
+      transition: 30
+      xy_color: [0.5923,0.3829]
+      brightness: 160
+    light.living_room:
+      state: on
+      transition: 30
+      xy_color: [0.5923,0.3829]
+      brightness: 160
+    light.bedroom:
+      state: on
+      transition: 30
+      xy_color: [0.5923,0.3829]
+      brightness: 160

@@ -10,11 +10,28 @@ sequence:
       - light.bathroom
       - light.closet_light
     data:
-      transition: 120
+      color_temp: 450
+      brightness: 1
+  - service: light.turn_on
+    entity_id:
+      - light.bathroom
+      - light.closet_light
+    data:
+      transition: 480
       color_temp: 450
       brightness: 160
   - delay:
-      minutes: 5
+      minutes: 10
+  - service: light.turn_on
+    entity_id:
+      - light.bathroom
+      - light.closet_light
+    data:
+      transition: 480
+      color_temp: 400
+      brightness: 180
+  - delay:
+      minutes: 10
   - service: light.turn_on
     entity_id:
       - light.bathroom
@@ -24,6 +41,6 @@ sequence:
       color_temp: 225
       brightness: 180
   - delay:
-      minutes: 23
+      minutes: 15
   - service: switch.turn_on
     entity_id: switch.bathroom_fluxer

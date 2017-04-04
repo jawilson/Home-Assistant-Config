@@ -2,8 +2,18 @@ alias: Apartment Shutdown
 sequence:
   - service: light.turn_off
     entity_id: group.all_lights
+  - service: fan.turn_off
+    entity_id: group.all_fans
   - service: switch.turn_off
     entity_id:
       - switch.projector
       - switch.christmas_tree
       - switch.humidifier
+  - delay:
+      minutes: 5
+  - service: switch.turn_on
+    entity_id:
+      - switch.living_room_fluxer
+      - switch.bathroom_fluxer
+      - switch.bedroom_fluxer
+      - switch.cat_water

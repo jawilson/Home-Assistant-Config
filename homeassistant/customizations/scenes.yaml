@@ -9,3 +9,9 @@ scene.bedtime:
 
 scene.up_late:
   icon: mdi:weather-night
+
+scene.couch_reading:
+  icon: mdi:book-open-page-variant
+
+script.getting_ready:
+  icon: mdi:brush
