@@ -16,6 +16,7 @@ sensor.apartment_mode:
   icon: mdi:fire
 switch.apartment_home:
   icon: mdi:home
+  emulated_hue: false
 
 sensor.office_humidity:
   icon: mdi:water-percent
