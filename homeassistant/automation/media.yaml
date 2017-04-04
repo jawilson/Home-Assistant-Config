@@ -24,7 +24,9 @@
       data:
         transition: 5
     - service: switch.turn_off
-      entity_id: switch.christmas_tree
+      entity_id:
+        - switch.christmas_tree
+        - switch.cat_water
 
 - alias: 'SHIELD Plex Idle'
   trigger:
@@ -100,6 +102,8 @@
       value_template: >
         {{ trigger.from_state.attributes.current_activity != 'Listen to Shield' }}
   action:
+    - service: switch.turn_on
+      entity_id: switch.cat_water
     - service: light.turn_on
       entity_id: light.living_room
       data:

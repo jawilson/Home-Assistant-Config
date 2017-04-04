@@ -26,4 +26,6 @@ sequence:
       - switch.projector
       - switch.christmas_tree
   - service: switch.turn_on
-    entity_id: switch.living_area_fluxer
+    entity_id:
+      - switch.living_area_fluxer
+      - switch.cat_water

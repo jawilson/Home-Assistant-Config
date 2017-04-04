@@ -40,6 +40,21 @@
           state: 'Christmas Tree'
         - service: switch.turn_off
           entity_id: switch.orvibo1
+    cat_water:
+      friendly_name: 'Cat Water'
+      value_template: "{{ is_state('input_select.orvibo1', 'Cat Water') and is_state('switch.orvibo1', 'on') }}"
+      turn_on:
+        - condition: state
+          entity_id: 'input_select.orvibo1'
+          state: 'Cat Water'
+        - service: switch.turn_on
+          entity_id: switch.orvibo1
+      turn_off:
+        - condition: state
+          entity_id: 'input_select.orvibo1'
+          state: 'Cat Water'
+        - service: switch.turn_off
+          entity_id: switch.orvibo1
 
 - platform: template
   switches:
