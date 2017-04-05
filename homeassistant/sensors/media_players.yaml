@@ -1,8 +1,0 @@
-# Plex
-- platform: plex
-  name: plex
-  host: faraday.singularity.net
-  port: 32400
-  server: Faraday
-  username: !secret plex_username
-  password: !secret plex_password
