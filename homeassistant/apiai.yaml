@@ -1,36 +1,26 @@
 intents:
   LocateIntent:
-    speech:
-      type: plaintext
-      text: >
-        {%- for state in states.device_tracker -%}
-          {%- if state.name.lower() == User.lower() -%}
-            {{ state.name }} is at {{ state.state }}
-          {%- endif -%}
-        {%- else -%}
-          I am sorry, I do not know where {{ User }} is.
-        {%- endfor -%}
-    card:
-      type: simple
-      title: Location request
-      content: The location of {{ User }} has been queried via Alexa.
+    speech: >
+      {%- for state in states.device_tracker -%}
+        {%- if state.name.lower() == User.lower() -%}
+          {{ state.name }} is at {{ state.state }}
+        {%- endif -%}
+      {%- else -%}
+        I am sorry, I do not know where {{ User }} is.
+      {%- endfor -%}
   LightProfileIntent:
     action:
       - service: light.turn_on
         data_template:
           entity_id: "{{ Domain|default('light') }}.{{ Entity|replace(' ', '_') }}"
           profile: '{{ Profile }}'
-    speech:
-      type: plaintext
-      text: !include voice_confirm.yaml
+    speech: !include voice_confirm.yaml
   MediaControlIntent:
     action:
       - service_template: media_player.media_{{ Command }}
         data_template:
           entity_id: media_player.{{ MediaPlayer|default('plex_shield')|replace(' ', '_') }}
-    speech:
-      type: plaintext
-      text: !include voice_confirm.yaml
+    speech: !include voice_confirm.yaml
   MediaPlayIntent:
     action:
       - service: media_player.play_media
@@ -38,6 +28,4 @@ intents:
           entity_id: media_player.{{ MediaPlayer|default('plex_shield')|replace(' ', '_') }}
           media_content_id: '{{ MediaContent }}'
           media_content_type: '{{ ContentType }}'
-    speech:
-      type: plaintext
-      text: !include voice_confirm.yaml
+    speech: !include voice_confirm.yaml

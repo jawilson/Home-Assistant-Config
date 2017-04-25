@@ -169,6 +169,7 @@ remote:
 camera: !include cameras.yaml
 
 alexa: !include alexa.yaml
+apiai: !include apiai.yaml
 
 # Switches
 switch: !include_dir_merge_list switches
