@@ -21,7 +21,7 @@
       entity_id: proximity.home
       above: 500
     - platform: state
-      entity_id: group.all_devices
+      entity_id: group.wifi_devices
       state: 'not_home'
       for:
         hours: 1
@@ -35,9 +35,13 @@
     - condition: or
       conditions:
         - condition: template
-          value_template: "{{ is_state_attr('proximity.home', 'dir_of_travel', 'away_from') }}"
-        - condition: template
-          value_template: "{{ is_state_attr('proximity.home', 'dir_of_travel', 'stationary') }}"
+          value_template: "{{ trigger.platform == 'state' }}"
+        - condition: or
+          conditions:
+            - condition: template
+              value_template: "{{ is_state_attr('proximity.home', 'dir_of_travel', 'away_from') }}"
+            - condition: template
+              value_template: "{{ is_state_attr('proximity.home', 'dir_of_travel', 'stationary') }}"
   action:
     service: homeassistant.turn_off
     entity_id: switch.apartment_home

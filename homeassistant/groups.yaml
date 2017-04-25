@@ -46,6 +46,11 @@ Family:
   - device_tracker.annekat_reality
   - device_tracker.reality
 
+WiFi Devices:
+  - device_tracker.fluorine
+  - device_tracker.reality
+  - group.guests
+
 
 Sleeping:
   - binary_sensor.jeff_sleeping
