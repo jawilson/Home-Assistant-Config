@@ -1,6 +1,6 @@
 # Forecast.io
 - platform: darksky
-  api_key: !secret forecast_key
+  api_key: !secret darksky_key
   monitored_conditions:
     - temperature
     - humidity
