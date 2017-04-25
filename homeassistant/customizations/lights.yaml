@@ -27,3 +27,11 @@ light.living_room:
 light.closet:
   hidden: true
   emulated_hue: false
+
+group.living_room_lamp:
+  emulated_hue: true
+group.living_area_lights:
+  emulated_hue: true
+group.all_lights:
+  friendly_name: All Lights
+  emulated_hue: true
