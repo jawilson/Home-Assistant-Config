@@ -31,7 +31,10 @@
   entities:
     switch.living_area_fluxer: off
     switch.bedroom_fluxer: off
-    light.kitchen: off
+    switch.bathroom_fluxer: off
+    light.kitchen:
+      state: on
+      brightness: 63
     light.dining: off
     light.entertainment: off
     light.entryway:
@@ -52,6 +55,18 @@
       profile: nightlight
     light.tree_lamp_4: off
     light.tree_lamp_5:
+      state: on
+      profile: nightlight
+    light.shower: off
+    light.bathroom_mirror_1:
+      state: on
+      profile: nightlight
+    light.bathroom_mirror_2: off
+    light.bathroom_mirror_3:
+      state: on
+      profile: nightlight
+    light.bathroom_mirror_4: off
+    light.closet_light:
       state: on
       profile: nightlight
     climate.apartment:
