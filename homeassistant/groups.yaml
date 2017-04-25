@@ -60,6 +60,7 @@ Living Area Lights:
   - light.entryway
   - light.kitchen
   - light.dining
+  - light.liquor_cabinet
   - light.entertainment
   - light.living_room_lamp_1
   - light.living_room_lamp_2
@@ -85,6 +86,7 @@ Kitchen Lights:
 
 Living Room Lights:
   - light.dining
+  - light.liquor_cabinet
   - light.entertainment
   - light.living_room_lamp_1
   - light.living_room_lamp_2
