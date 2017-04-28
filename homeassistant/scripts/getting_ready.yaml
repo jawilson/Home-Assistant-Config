@@ -10,7 +10,7 @@ sequence:
       color_temp: 200
       brightness: 255
   - condition: state
-    entity_id: group.sleeping
+    entity_id: binary_sensor.sleeping_at_home
     state: 'off'
   - service: switch.turn_off
     entity_id: switch.bedroom_fluxer

@@ -1,8 +1,13 @@
 - alias: Handle lights when leaving
   trigger:
-    platform: state
-    entity_id: group.all_devices
-    state: 'not_home'
+    - platform: state
+      entity_id: group.all_devices
+      state: 'not_home'
+    - platform: state
+      entity_id: group.wifi_devices
+      state: 'not_home'
+      for:
+        minutes: 30
   condition:
     - condition: state
       entity_id: input_boolean.guests
@@ -24,7 +29,7 @@
       entity_id: group.wifi_devices
       state: 'not_home'
       for:
-        hours: 1
+        minutes: 30
   condition:
     - condition: state
       entity_id: input_boolean.presence

@@ -6,7 +6,7 @@ sequence:
     entity_id: light.entryway
   - service: switch.living_area_fluxer_update
   - condition: state
-    entity_id: group.sleeping
+    entity_id: binary_sensor.sleeping_at_home
     state: 'off'
   - service: light.turn_on
     entity_id: light.kitchen
