@@ -2,7 +2,7 @@
   entities:
     switch.plex: on
     switch.living_area_fluxer: off
-    light.entertainment:
+    light.entertainment_lights:
       state: on
       brightness: 60
     light.living_room:
@@ -14,7 +14,7 @@
   entities:
     switch.plex: on
     switch.living_area_fluxer: off
-    light.entertainment:
+    light.entertainment_lights:
       state: on
       brightness: 60
     light.living_room:
@@ -22,22 +22,25 @@
       transition: 15
       profile: nightlight
       brightness: 65
-    light.kitchen: off
-    light.dining: off
+    light.entryway: off
+    light.kitchen_lights: off
+    light.dining_lights: off
+    light.bathroom: off
+    light.closet: off
     light.bedroom: off
-    light.office: off
+    light.office_light: off
     switch.cat_water: off
 - name: Bedtime
   entities:
     switch.living_area_fluxer: off
     switch.bedroom_fluxer: off
     switch.bathroom_fluxer: off
-    light.kitchen:
+    light.kitchen_lights:
       state: on
       brightness: 63
-    light.dining: off
-    light.entertainment: off
-    light.entryway:
+    light.dining_lights: off
+    light.entertainment_lights: off
+    light.entryway_light:
       state: on
       profile: nightlight
     light.living_room:
@@ -57,7 +60,7 @@
     light.tree_lamp_5:
       state: on
       profile: nightlight
-    light.shower: off
+    light.shower_light: off
     light.bathroom_mirror_1:
       state: on
       profile: nightlight
@@ -81,10 +84,10 @@
       state: on
       xy_color: [0.4449, 0.4066]
       brightness: 173
-    light.entertainment:
+    light.entertainment_lights:
       state: on
       brightness: 60
-    light.dining:
+    light.dining_lights:
       state: on
       brightness: 100
 - name: Up late
@@ -94,35 +97,35 @@
     light.living_room:
       state: on
       profile: late
-    light.entryway:
+    light.entryway_light:
       state: on
       profile: late
-    light.office:
+    light.office_light:
       state: on
       brightness: 50
     light.bathroom_mirror_1:
       state: on
       brightness: 8
       color_temp: 454
-    light.shower: off
+    light.shower_light: off
     light.bathroom_mirror_2: off
     light.bathroom_mirror_3: off
     light.bathroom_mirror_4: off
-    light.kitchen: off
-    light.dining: off
-    light.entertainment: off
+    light.kitchen_lights: off
+    light.dining_lights: off
+    light.entertainment_lights: off
 - name: Romantic
   entities:
     switch.living_area_fluxer: off
     switch.bedroom_fluxer: off
-    light.entertainment: off
-    light.dining:
+    light.entertainment_lights: off
+    light.dining_lights:
       state: on
       brightness: 79
-    light.kitchen:
+    light.kitchen_lights:
       state: on
       brightness: 94
-    light.entryway:
+    light.entryway_light:
       state: on
       transition: 30
       xy_color: [0.5923,0.3829]
@@ -137,3 +140,9 @@
       transition: 30
       xy_color: [0.5923,0.3829]
       brightness: 160
+- name: Lights Out
+  entities:
+    group.all_lights: off
+    switch.living_area_fluxer: on
+    switch.bedroom_fluxer: on
+    switch.bathroom_fluxer: on

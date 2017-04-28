@@ -1,37 +1,25 @@
-light.dining:
-  friendly_name: Dining Light
-light.entertainment:
-  friendly_name: Entertainment Light
-light.entryway:
-  friendly_name: Entryway Light
-light.kitchen:
-  friendly_name: Kitchen Light
-light.office:
-  friendly_name: Office Light
-
 light.bedroom:
+  hidden: true
+  emulated_hue: false
+light.tree_lamp:
+  emulated_hue: false
+light.closet:
   hidden: true
   emulated_hue: false
 light.bathroom:
   hidden: true
   emulated_hue: false
-light.entryway_2:
-  hidden: true
+light.bathroom_mirror:
   emulated_hue: false
-light.hgrp0000000006:
+light.entryway:
   hidden: true
   emulated_hue: false
 light.living_room:
   hidden: true
   emulated_hue: false
-light.closet:
-  hidden: true
+light.living_room_lamp:
   emulated_hue: false
 
-group.living_room_lamp:
-  emulated_hue: true
-group.living_area_lights:
-  emulated_hue: true
 group.all_lights:
   friendly_name: All Lights
   emulated_hue: true

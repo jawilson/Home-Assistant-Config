@@ -50,10 +50,11 @@ history:
       - binary_sensor.jeff_sleeping
       - binary_sensor.p3steel_printing
       - binary_sensor.p3steel_printing_error
+      - light.bathroom
       - light.bedroom
-      - light.entryway_2
-      - light.hgrp0000000006
+      - light.entryway
       - light.living_room
+      - light.living_room_lamp
       - sensor.p3steel_actual_bed_temp
       - sensor.p3steel_actual_tool0_temp
       - sensor.p3steel_job_percentage

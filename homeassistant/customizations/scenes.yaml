@@ -15,3 +15,6 @@ scene.couch_reading:
 
 script.getting_ready:
   icon: mdi:brush
+
+scene.lights_out:
+  icon: mdi:flashlight-off

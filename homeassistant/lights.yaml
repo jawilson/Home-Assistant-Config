@@ -9,7 +9,7 @@
 
 # Ikea Dioder
 - platform: mqtt_json
-  name: Liquor Cabinet
+  name: "Liquor cabinet lights"
   state_topic: "home/livingroom/liquorcabinet"
   command_topic: "home/livingroom/liquorcabinet/set"
   brightness: true

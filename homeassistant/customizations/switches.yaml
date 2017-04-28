@@ -10,6 +10,8 @@ switch.crockpot:
   icon: mdi:pot
 switch.christmas_tree:
   icon: mdi:pine-tree
+switch.cat_water:
+  icon: mdi:cat
 
 switch.orvibo2:
   friendly_name: 'Outlet 2'
@@ -20,7 +22,10 @@ switch.humidifier:
 
 switch.bedroom_fluxer:
   emulated_hue: false
+  icon: mdi:invert-colors
 switch.bathroom_fluxer:
   emulated_hue: false
+  icon: mdi:invert-colors
 switch.living_area_fluxer:
   emulated_hue: false
+  icon: mdi:invert-colors

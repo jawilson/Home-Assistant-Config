@@ -1,6 +1,6 @@
 - platform: flux
   lights:
-    - light.entryway
+    - light.entryway_light
     - light.living_room_lamp_1
     - light.living_room_lamp_2
   name: Living Area Fluxer
@@ -26,7 +26,7 @@
     - light.bathroom_mirror_2
     - light.bathroom_mirror_3
     - light.bathroom_mirror_4
-    - light.shower
+    - light.shower_light
     - light.closet_light
   name: Bathroom Fluxer
   start_time: '7:00'

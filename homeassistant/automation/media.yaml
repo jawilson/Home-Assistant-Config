@@ -12,9 +12,9 @@
       entity_id: media_player.cast_kitchen_home
     - service: light.turn_off
       entity_id:
-        - light.kitchen
-        - light.dining
-        - light.office
+        - light.kitchen_lights
+        - light.dining_lights
+        - light.office_light
     - service: light.turn_off
       entity_id:
         - light.entryway
@@ -41,7 +41,7 @@
       entity_id: switch.shield_audio
       state: 'off'
     - condition: state
-      entity_id: group.living_room_lamp
+      entity_id: light.living_room_lamp
       state: 'off'
   action:
     - service: switch.turn_off
@@ -108,21 +108,21 @@
       entity_id: light.living_room
     - service: light.turn_on
       entity_id:
-        - light.dining
+        - light.dining_lights
       data_template:
         brightness: >
-          {% if is_state('light.dining', 'on') and states.light.dining.attributes.brightness > 100 %}
-          {{states.light.dining.attributes.brightness}}
+          {% if is_state('light.dining_lights', 'on') and states.light.dining_lights.attributes.brightness > 100 %}
+          {{states.light.dining_lights.attributes.brightness}}
           {% else %}
           100
           {% endif %}
     - service: light.turn_on
       entity_id:
-        - light.kitchen
+        - light.kitchen_lights
       data_template:
         brightness: >
-          {% if is_state('light.kitchen', 'on') and states.light.kitchen.attributes.brightness > 160 %}
-          {{states.light.kitchen.attributes.brightness}}
+          {% if is_state('light.kitchen_lights', 'on') and states.light.kitchen_lights.attributes.brightness > 160 %}
+          {{states.light.kitchen_lights.attributes.brightness}}
           {% else %}
           160
           {% endif %}

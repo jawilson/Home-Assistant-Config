@@ -9,7 +9,7 @@ sequence:
     entity_id: binary_sensor.sleeping_at_home
     state: 'off'
   - service: light.turn_on
-    entity_id: light.kitchen
+    entity_id: light.kitchen_lights
     data:
       brightness: 255
   - service: switch.turn_on
@@ -18,6 +18,6 @@ sequence:
     after: sunset
     after_offset: "-1:00:00"
   - service: light.turn_on
-    entity_id: light.dining
+    entity_id: light.dining_lights
     data:
       brightness: 165

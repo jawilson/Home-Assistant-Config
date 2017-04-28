@@ -3,6 +3,19 @@
 #
 
 
+WiFi Devices:
+  - device_tracker.fluorine
+  - device_tracker.reality
+  - group.guests
+
+Living Area Lights:
+  - group.kitchen_lights
+  - group.living_room_lights
+  - group.office_lights
+
+
+# Home view
+
 Weather:
   - sensor.pws_weather
   - sensor.pws_temp_f
@@ -12,18 +25,43 @@ Weather:
   - sensor.sunrise
   - sensor.sunset
 
+Climate:
+  control: hidden
+  entities:
+    - climate.apartment
+    - switch.apartment_home
+    - switch.apartment_fan
+    - fan.office_fan
+    - switch.humidifier
+    - sensor.apartment_thermostat_temperature
+    - sensor.office_temperature
+    - sensor.apartment_thermostat_humidity
+    - sensor.office_humidity
 
-P3Steel:
-  - camera.p3steel
-  - sensor.p3steel_current_state
-  - sensor.p3steel_job_percentage
-  - sensor.p3steel_actual_tool0_temp
-  - sensor.p3steel_target_tool0_temp
-  - sensor.p3steel_actual_bed_temp
-  - sensor.p3steel_target_bed_temp
-  - binary_sensor.p3steel_printing
-  - binary_sensor.p3steel_printing_error
+Scenes:
+  control: hidden
+  entities:
+    - script.getting_ready
+    - scene.couch_reading
+    - scene.dinner
+    - scene.tv_dinner
+    - scene.romantic
+    - scene.bedtime
+    - scene.up_late
+    - scene.lights_out
 
+Guests:
+  - device_tracker.caitlin_android
+  - device_tracker.chase_iphone
+  - device_tracker.debbie_android
+  - device_tracker.john_android
+  - device_tracker.katie_iphone
+  - device_tracker.kory_iphone
+  - device_tracker.liza_iphone
+  - device_tracker.tony_ipad
+
+
+# People view
 
 AK:
   - device_tracker.annekat_reality
@@ -40,88 +78,83 @@ Jeff:
   - sensor.jeff_alarm
 
 
-Family:
-  - device_tracker.jawilson_fluorine
-  - device_tracker.fluorine
-  - device_tracker.annekat_reality
-  - device_tracker.reality
+# Kitchen view
 
-WiFi Devices:
-  - device_tracker.fluorine
-  - device_tracker.reality
-  - group.guests
+kitchen_view_lights:
+  name: Lights
+  entities:
+    - light.entryway_light
+    - light.kitchen_lights
+    - light.dining_lights
+    - light.liquor_cabinet_lights
 
 
-Sleeping:
-  - binary_sensor.jeff_sleeping
-  - binary_sensor.ak_sleeping
+# Living room view
 
-Living Area Lights:
-  - light.entryway
-  - light.kitchen
-  - light.dining
-  - light.liquor_cabinet
-  - light.entertainment
-  - light.living_room_lamp_1
-  - light.living_room_lamp_2
+living_room_view_lights:
+  name: Lights
+  entities:
+    - light.dining_lights
+    - light.liquor_cabinet_lights
+    - light.entertainment_lights
+    - light.living_room_lamp_1
+    - light.living_room_lamp_2
+    - light.office_light
 
-Entryway Lights:
-  - light.entryway
+
+# Bedroom view
+
+bedroom_view_bedroom_lights:
+  name: Bedroom Lights
+  entities:
+    - light.bedroom_lamp
+    - light.tree_lamp_1
+    - light.tree_lamp_2
+    - light.tree_lamp_3
+    - light.tree_lamp_4
+    - light.tree_lamp_5
+    - light.closet_light
+
+bedroom_view_bathroom_lights:
+  name: Bathroom Lights
+  entities:
+    - light.bathroom_mirror_1
+    - light.bathroom_mirror_2
+    - light.bathroom_mirror_3
+    - light.bathroom_mirror_4
+    - light.shower_light
+
+
+# Rooms view
 
 Bathroom Lights:
-  - light.bathroom_mirror_1
-  - light.bathroom_mirror_2
-  - light.bathroom_mirror_3
-  - light.bathroom_mirror_4
-  - light.shower
-
-Bathroom Mirror:
-  - light.bathroom_mirror_1
-  - light.bathroom_mirror_2
-  - light.bathroom_mirror_3
-  - light.bathroom_mirror_4
+  - light.bathroom_mirror
+  - light.shower_light
 
 Kitchen Lights:
-  - light.kitchen
+  - light.entryway_light
+  - light.kitchen_lights
 
 Living Room Lights:
-  - light.dining
-  - light.liquor_cabinet
-  - light.entertainment
-  - light.living_room_lamp_1
-  - light.living_room_lamp_2
-
-Living Room Lamp:
-  - light.living_room_lamp_1
-  - light.living_room_lamp_2
+  - light.dining_lights
+  - light.liquor_cabinet_lights
+  - light.entertainment_lights
+  - light.living_room_lamp
 
 Office Lights:
-  - light.office
+  - light.office_light
 
 Bedroom Lights:
   - light.bedroom_lamp
-  - light.tree_lamp_1
-  - light.tree_lamp_2
-  - light.tree_lamp_3
-  - light.tree_lamp_4
-  - light.tree_lamp_5
-
-Tree Lamp:
-  - light.tree_lamp_1
-  - light.tree_lamp_2
-  - light.tree_lamp_3
-  - light.tree_lamp_4
-  - light.tree_lamp_5
+  - light.tree_lamp
 
 Closet Lights:
   - light.closet_light
-
 
 Fluxers:
   - switch.bedroom_fluxer
   - switch.bathroom_fluxer
   - switch.living_area_fluxer
-
 
 Outlets:
   - input_select.orvibo1
@@ -129,6 +162,8 @@ Outlets:
   - input_select.orvibo2
   - switch.orvibo2
 
+
+# Media view
 
 Harmony:
   - remote.living_room
@@ -139,25 +174,21 @@ Harmony:
   - switch.wii
 
 
-Climate:
-  - climate.apartment
-  - sensor.apartment_thermostat_temperature
-  - sensor.office_temperature
-  - sensor.apartment_thermostat_humidity
-  - sensor.office_humidity
-  - switch.apartment_home
-  - switch.apartment_fan
+# Other view
+
+P3Steel:
+  - camera.p3steel
+  - sensor.p3steel_current_state
+  - sensor.p3steel_job_percentage
+  - sensor.p3steel_actual_tool0_temp
+  - sensor.p3steel_target_tool0_temp
+  - sensor.p3steel_actual_bed_temp
+  - sensor.p3steel_target_bed_temp
+  - binary_sensor.p3steel_printing
+  - binary_sensor.p3steel_printing_error
 
 
-Scenes:
-  - script.getting_ready
-  - scene.couch_reading
-  - scene.dinner
-  - scene.tv_dinner
-  - scene.romantic
-  - scene.bedtime
-  - scene.up_late
-
+# Admin view
 
 Scripts:
   - script.bedroom_sleep
@@ -208,42 +239,65 @@ Automations:
   - automation.slack_intruder_alert
   - automation.update_available_notification
 
-Guests:
-  - device_tracker.kory_iphone
-  - device_tracker.caitlin_android
-  - device_tracker.john_android
-  - device_tracker.katie_iphone
-  - device_tracker.tony_ipad
-  - device_tracker.liza_iphone
-  - device_tracker.debbie_android
-  - device_tracker.chase_iphone
-
 
 #
 # Views
 #
 
-
 default_view:
   view: yes
+  name: Home
+  icon: mdi:home
   entities:
     - device_tracker.annekat_reality
     - device_tracker.jawilson_fluorine
-    - group.guests
     - group.weather
     - group.climate
     - group.scenes
+    - group.guests
 
 People:
   view: yes
+  icon: mdi:account-multiple
   entities:
     - group.ak
     - group.jeff
+    - group.guests
+
+Kitchen:
+  view: yes
+  icon: mdi:fridge-filled
+  entities:
+    - group.kitchen_view_lights
+    - switch.crockpot
+    - media_player.cast_kitchen_home
+
+Living Room:
+  view: yes
+  icon: mdi:sofa
+  entities:
+    - group.living_room_view_lights
+    - switch.cat_water
+    - switch.living_area_fluxer
+    - media_player.shield
+    - fan.office_fan
+    - group.harmony
+
+Bedroom:
+  view: yes
+  icon: mdi:hotel
+  entities:
+    - group.bedroom_view_bedroom_lights
+    - group.bedroom_view_bathroom_lights
+    - switch.humidifier
+    - switch.bedroom_fluxer
+    - switch.bathroom_fluxer
+    - media_player.cast_bedroom
 
 Rooms:
   view: yes
+  icon: mdi:home-outline
   entities:
-    - group.entryway_lights
     - group.kitchen_lights
     - group.living_room_lights
     - group.office_lights
@@ -255,6 +309,7 @@ Rooms:
 
 Media:
   view: yes
+  icon: mdi:television-guide
   entities:
   - group.harmony
   - media_player.shield
@@ -264,15 +319,15 @@ Media:
 
 Other:
   view: yes
+  icon: mdi:information
   entities:
     - group.p3steel
-    - group.computers
-    - sensor.plex
     - sensor.ups
     - sensor.415_l_st_nw_apt_633
 
 Admin:
   view: yes
+  icon: mdi:settings
   entities:
     - input_boolean.presence
     - input_boolean.guests
