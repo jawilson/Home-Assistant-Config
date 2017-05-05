@@ -10,7 +10,7 @@
         minutes: 30
   condition:
     - condition: state
-      entity_id: input_boolean.guests
+      entity_id: binary_sensor.guests
       state: 'off'
     - condition: state
       entity_id: input_boolean.presence
@@ -35,7 +35,7 @@
       entity_id: input_boolean.presence
       state: 'on'
     - condition: state
-      entity_id: input_boolean.guests
+      entity_id: binary_sensor.guests
       state: 'off'
     - condition: or
       conditions:

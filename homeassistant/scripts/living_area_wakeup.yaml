@@ -1,7 +1,7 @@
 alias: Living Area Wake Up
 sequence:
   - condition: state
-    entity_id: input_boolean.guests
+    entity_id: binary_sensor.guests
     state: 'off'
   - delay:
       minutes: 2
