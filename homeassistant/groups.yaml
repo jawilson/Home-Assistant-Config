@@ -40,9 +40,7 @@ Climate:
     - fan.office_fan
     - switch.humidifier
     - sensor.apartment_thermostat_temperature
-    - sensor.office_temperature
     - sensor.apartment_thermostat_humidity
-    - sensor.office_humidity
 
 Scenes:
   control: hidden
@@ -107,6 +105,12 @@ living_room_view_lights:
     - light.living_room_lamp_2
     - light.office_light
 
+living_room_view_sensors:
+  name: Sensors
+  entities:
+    - sensor.office_temperature
+    - sensor.office_humidity
+
 
 # Bedroom view
 
@@ -121,6 +125,13 @@ bedroom_view_bedroom_lights:
     - light.tree_lamp_5
     - light.closet_light
 
+bedroom_view_bedroom_sensors:
+  name: Bedroom Sensors
+  entities:
+    - sensor.bedroom_temperature_3_1
+    - sensor.bedroom_relative_humidity_3_5
+    - sensor.bedroom_luminance_3_3
+
 bedroom_view_bathroom_lights:
   name: Bathroom Lights
   entities:
@@ -129,6 +140,13 @@ bedroom_view_bathroom_lights:
     - light.bathroom_mirror_3
     - light.bathroom_mirror_4
     - light.shower_light
+
+bedroom_view_bathroom_sensors:
+  name: Bathroom Sensors
+  entities:
+    - sensor.bathroom_temperature_2_1
+    - sensor.bathroom_relative_humidity_2_5
+    - sensor.bathroom_luminance_2_3
 
 
 # Rooms view
@@ -192,6 +210,20 @@ P3Steel:
   - sensor.p3steel_target_bed_temp
   - binary_sensor.p3steel_printing
   - binary_sensor.p3steel_printing_error
+
+Temperatures:
+  - sensor.dark_sky_temperature
+  - sensor.apartment_thermostat_temperature
+  - sensor.bathroom_temperature_2_1
+  - sensor.bedroom_temperature_3_1
+  - sensor.office_temperature
+
+Humidities:
+  - sensor.dark_sky_humidity
+  - sensor.apartment_thermostat_humidity
+  - sensor.bathroom_relative_humidity_2_5
+  - sensor.bedroom_relative_humidity_3_5
+  - sensor.office_humidity
 
 
 # Admin view
@@ -288,13 +320,16 @@ Living Room:
     - media_player.shield
     - fan.office_fan
     - group.harmony
+    - group.living_room_view_sensors
 
 Bedroom:
   view: yes
   icon: mdi:hotel
   entities:
     - group.bedroom_view_bedroom_lights
+    - group.bedroom_view_bedroom_sensors
     - group.bedroom_view_bathroom_lights
+    - group.bedroom_view_bathroom_sensors
     - switch.humidifier
     - switch.bedroom_fluxer
     - switch.bathroom_fluxer
@@ -330,6 +365,8 @@ Other:
     - group.p3steel
     - sensor.ups
     - sensor.415_l_st_nw_apt_633
+    - group.temperatures
+    - group.humidities
 
 Admin:
   view: yes

@@ -38,6 +38,8 @@ services:
       default:
       macvlan:
         ipv4_address: 192.168.0.60
+    devices:
+      - /dev/zwave
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - ./homeassistant:/config

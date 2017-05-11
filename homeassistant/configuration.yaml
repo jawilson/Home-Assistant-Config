@@ -81,6 +81,9 @@ history:
 # Enables the frontend
 frontend:
 
+# Enables configuration panel
+config:
+
 # Discover some devices automatically
 #discovery:
 
@@ -141,6 +144,11 @@ insteon_local:
   host: insteonhub.singularity.net
   username: !secret insteon_username
   password: !secret insteon_password
+
+zwave:
+  usb_path: /dev/zwave
+  device_config: !include zwave_device_config.yaml
+  device_config_glob: !include zwave_device_config_glob.yaml
 
 
 # Sensors
