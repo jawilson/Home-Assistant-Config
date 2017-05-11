@@ -1,0 +1,9 @@
+"sensor.*humidity*":
+  icon: mdi:water-percent
+"sensor.*luminance*":
+  icon: mdi:theme-light-dark
+
+
+"switch.*fluxer*":
+  emulated_hue: false
+  icon: mdi:invert-colors

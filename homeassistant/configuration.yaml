@@ -10,6 +10,7 @@ homeassistant:
   time_zone: America/New_York
 
   customize: !include_dir_merge_named customizations
+  customize_glob: !include customize_glob.yaml
 
 # Web
 http:

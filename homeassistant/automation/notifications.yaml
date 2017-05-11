@@ -24,7 +24,7 @@
         {%- endif %}
 
 
-- alias: 'Slack Intruder Alert'
+- alias: 'Slack Light Intruder Alert'
   trigger:
     - platform: state
       entity_id: group.all_lights

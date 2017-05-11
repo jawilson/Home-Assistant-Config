@@ -1,7 +1,3 @@
-switch.feynman:
-  icon: mdi:desktop-tower
-  emulated_hue: false
-
 switch.orvibo1:
   friendly_name: 'Outlet 1'
   icon: mdi:power-plug
@@ -19,13 +15,3 @@ switch.orvibo2:
   emulated_hue: false
 switch.humidifier:
   icon: mdi:water
-
-switch.bedroom_fluxer:
-  emulated_hue: false
-  icon: mdi:invert-colors
-switch.bathroom_fluxer:
-  emulated_hue: false
-  icon: mdi:invert-colors
-switch.living_area_fluxer:
-  emulated_hue: false
-  icon: mdi:invert-colors

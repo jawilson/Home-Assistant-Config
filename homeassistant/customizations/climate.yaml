@@ -7,16 +7,15 @@ sensor.apartment_thermostat_temperature:
   friendly_name: 'Thermostat Temperature'
 sensor.apartment_thermostat_humidity:
   friendly_name: 'Thermostat Humidity'
-  icon: mdi:water-percent
 
 switch.apartment_fan:
   icon: mdi:fan
-  emulated_hue_name: Fan
+  emulated_hue_name: 'HVAC Fan'
 sensor.apartment_mode:
   icon: mdi:fire
 switch.apartment_home:
   icon: mdi:home
   emulated_hue: false
 
-sensor.office_humidity:
-  icon: mdi:water-percent
+fan.office_fan:
+  emulated_hue_name: 'Sunroom Fan'

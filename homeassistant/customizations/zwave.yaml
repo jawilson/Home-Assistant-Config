@@ -1,0 +1,4 @@
+zwave.bathroom_2:
+  friendly_name: 'Bathroom 4-in-1 sensor'
+zwave.bedroom_3:
+  friendly_name: 'Bedroom 4-in-1 sensor'
