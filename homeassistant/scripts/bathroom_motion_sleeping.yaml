@@ -1,0 +1,13 @@
+alias: Bathroom Motion Sleeping
+sequence:
+  - condition: state
+    entity_id: binary_sensor.everyone_at_home_sleeping
+    state: 'on'
+  - service: switch.turn_off
+    entity_id: switch.bathroom_fluxer
+  - service: light.turn_on
+    entity_id: light.bathroom_mirror_1
+    data:
+      brightness: 8
+      color_temp: 454
+      transition: 10

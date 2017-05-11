@@ -1,0 +1,162 @@
+- alias: Bedroom Motion
+  trigger:
+    - platform: event
+      event_type: zwave.node_event
+      event_data:
+        object_id: bedroom_3
+        basic_level: 255
+  condition:
+    - condition: state
+      entity_id: input_boolean.motion
+      state: 'on'
+    - condition: state
+      entity_id: binary_sensor.presume_home
+      state: 'on'
+    - condition: state
+      entity_id: binary_sensor.sleeping_at_home
+      state: 'off'
+      for:
+        minutes: 30
+    - condition: state
+      entity_id: script.bedroom_wakeup
+      state: 'off'
+    - condition: state
+      entity_id: light.bedroom
+      state: 'off'
+    - condition: numeric_state
+      entity_id: sensor.bedroom_luminance_3_3
+      below: '45'
+  action:
+    - service: light.turn_on
+      entity_id:
+        - light.bedroom
+
+
+- alias: Bedroom No Motion
+  trigger:
+    - platform: state
+      entity_id: sensor.bedroom_alarm_level_3_1
+      state: '0'
+      for:
+        minutes: 10
+  condition:
+    - condition: state
+      entity_id: input_boolean.motion
+      state: 'on'
+    - condition: state
+      entity_id: script.bedroom_wakeup
+      state: 'off'
+    # If fluxer is off, we're probably doing something specific
+    # There may be a better way to handle this
+    - condition: state
+      entity_id: switch.bedroom_fluxer
+      state: 'on'
+  action:
+    - service: light.turn_off
+      entity_id:
+        - light.bedroom
+
+
+- alias: Bathroom Motion
+  trigger:
+    - platform: event
+      event_type: zwave.node_event
+      event_data:
+        object_id: bathroom_2
+        basic_level: 255
+  condition:
+    - condition: state
+      entity_id: input_boolean.motion
+      state: 'on'
+    - condition: state
+      entity_id: binary_sensor.presume_home
+      state: 'on'
+    - condition: state
+      entity_id: script.bathroom_wakeup
+      state: 'off'
+    - condition: state
+      entity_id: light.bathroom
+      state: 'off'
+  action:
+    - service: script.bathroom_motion_awake
+    - service: script.bathroom_motion_sleeping
+
+
+- alias: Bathroom No Motion
+  trigger:
+    - platform: state
+      entity_id: sensor.bathroom_alarm_level_2_1
+      state: '0'
+      for:
+        minutes: 10
+  condition:
+    - condition: state
+      entity_id: input_boolean.motion
+      state: 'on'
+    - condition: state
+      entity_id: script.bathroom_wakeup
+      state: 'off'
+    - condition: or
+      conditions:
+        # If fluxer is off, we're probably doing something specific
+        # There may be a better way to handle this
+        - condition: state
+          entity_id: switch.bathroom_fluxer
+          state: 'on'
+        # If we're sleeping, fluxer will still be off, but we definitely want to turn off
+        - condition: state
+          entity_id: binary_sensor.everyone_at_home_sleeping
+          state: 'on'
+  action:
+    - service: light.turn_off
+      entity_id: light.bathroom
+    - service: switch.turn_on
+      entity_id: switch.bathroom_fluxer
+
+
+- alias: Closet No Motion
+  trigger:
+    - platform: state
+      entity_id: sensor.bedroom_alarm_level_3_1
+      state: '0'
+      for:
+        minutes: 10
+    - platform: state
+      entity_id: sensor.bathroom_alarm_level_2_1
+      state: '0'
+      for:
+        minutes: 10
+  condition:
+    - condition: state
+      entity_id: input_boolean.motion
+      state: 'on'
+    - condition: state
+      entity_id: script.bathroom_wakeup
+      state: 'off'
+    - condition: or
+      conditions:
+        # If fluxer is off, we're probably doing something specific
+        # There may be a better way to handle this
+        - condition: state
+          entity_id: switch.bathroom_fluxer
+          state: 'on'
+        # If we're sleeping, fluxer will still be off, but we definitely want to turn off
+        - condition: state
+          entity_id: binary_sensor.everyone_at_home_sleeping
+          state: 'on'
+    - condition: and
+      conditions:
+        - condition: state
+          entity_id: sensor.bedroom_alarm_level_3_1
+          state: '0'
+          for:
+            minutes: 10
+        - condition: state
+          entity_id: sensor.bathroom_alarm_level_2_1
+          state: '0'
+          for:
+            minutes: 10
+  action:
+    - service: light.turn_off
+      entity_id:
+        - light.closet_light

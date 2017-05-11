@@ -49,6 +49,44 @@
       message: >
         Potential entruder, no one is home and a light turned on!
 
+- alias: 'Slack Motion Intruder Alert'
+  trigger:
+    - platform: event
+      event_type: zwave.node_event
+      event_data:
+        object_id: bathroom_2
+        basic_level: 255
+    - platform: event
+      event_type: zwave.node_event
+      event_data:
+        object_id: bedroom_3
+        basic_level: 255
+  condition:
+    - condition: state
+      entity_id: input_boolean.motion
+      state: 'on'
+    - condition: state
+      entity_id: input_boolean.intruder_alerts
+      state: 'on'
+  action:
+    - delay:
+        minutes: 5
+    - condition: state
+      entity_id: binary_sensor.presume_home
+      state: 'off'
+      for:
+        minutes: 5
+    - service: notify.slack
+      data_template:
+        message: ""
+        data:
+          attachments:
+            - fallback: 'Potential entruder, no one is home and motion was detected'
+              color: 'warning'
+              author_name: '{{ states.zwave[trigger.event.data.object_id].attributes.friendly_name }}'
+              title: 'Potential Intruder Alert!'
+              text: 'No one is home and motion was detected'
+
 
 - alias: New Device Notification
   trigger:

@@ -3,6 +3,11 @@ presence:
   initial: on
   icon: mdi:account-location
 
+motion:
+  name: Motion
+  initial: on
+  icon: mdi:account-alert
+
 guests:
   name: Guests
   initial: off

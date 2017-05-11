@@ -3,9 +3,11 @@
     platform: homeassistant
     event: start
   action:
-    service: homeassistant.turn_on
-    entity_id:
-      - switch.living_area_fluxer
-      - switch.bedroom_fluxer
-      - switch.bathroom_fluxer
-      - switch.cat_water
+    - delay:
+        minutes: 2
+    - service: homeassistant.turn_on
+      entity_id:
+        - switch.living_area_fluxer
+        - switch.bedroom_fluxer
+        - switch.bathroom_fluxer
+        - switch.cat_water

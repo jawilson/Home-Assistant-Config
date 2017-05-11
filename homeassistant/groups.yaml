@@ -373,6 +373,7 @@ Admin:
   icon: mdi:settings
   entities:
     - input_boolean.presence
+    - input_boolean.motion
     - input_boolean.guests
     - input_boolean.climate_auto
     - input_boolean.media_automation

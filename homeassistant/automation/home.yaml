@@ -15,6 +15,23 @@
     - service: script.bedroom_arrive
 
 
+- alias: Handle lights when turned on not home
+  trigger:
+    - platform: state
+      entity_id: group.all_lights
+      state: 'on'
+  condition:
+    - condition: state
+      entity_id: input_boolean.presence
+      state: 'on'
+    - condition: state
+      entity_id: binary_sensor.presume_home
+      state: 'off'
+  action:
+    - service: script.living_area_arrive
+    - service: script.bedroom_arrive
+
+
 - alias: Nest home
   trigger:
     - platform: numeric_state

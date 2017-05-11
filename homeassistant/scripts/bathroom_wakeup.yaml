@@ -1,8 +1,15 @@
 alias: Bathroom Wake Up
 sequence:
-  - condition: state
-    entity_id: group.bathroom_lights
-    state: 'off'
+  - condition: or
+    conditions:
+      - condition: state
+        entity_id: group.bathroom_lights
+        state: 'off'
+      - condition: state
+        entity_id: automation.bathroom_motion
+        state: 'off'
+  - service: automation.turn_off
+    entity_id: automation.bathroom_motion
   - service: switch.turn_off
     entity_id: switch.bathroom_fluxer
   - service: light.turn_on
@@ -44,3 +51,5 @@ sequence:
       minutes: 15
   - service: switch.turn_on
     entity_id: switch.bathroom_fluxer
+  - service: automation.turn_on
+    entity_id: automation.bathroom_motion
