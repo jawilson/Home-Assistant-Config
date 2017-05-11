@@ -39,8 +39,8 @@
       entity_id: input_boolean.presence
       state: 'on'
     - condition: state
-      entity_id: group.all_devices
-      state: 'not_home'
+      entity_id: binary_sensor.presume_home
+      state: 'off'
       for:
         minutes: 5
   action:

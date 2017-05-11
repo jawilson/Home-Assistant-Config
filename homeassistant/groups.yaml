@@ -2,6 +2,12 @@
 # Groups
 #
 
+Family:
+  - device_tracker.annekat_reality
+  - device_tracker.fluorine
+  - device_tracker.annekat_reality
+  - device_tracker.reality
+
 
 WiFi Devices:
   - device_tracker.fluorine
