@@ -121,6 +121,17 @@ mqtt:
 nest:
   client_id: !secret nest_id
   client_secret: !secret nest_secret
+  binary_sensors:
+    monitored_conditions:
+      - 'fan'
+      - 'has_leaf'
+  sensors:
+    monitored_conditions:
+      - 'temperature'
+      - 'target'
+      - 'humidity'
+      - 'operation_mode'
+      - 'hvac_state'
 
 octoprint:
   host: p3steel.singularity.net
