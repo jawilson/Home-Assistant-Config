@@ -28,6 +28,10 @@
         Awake
         {%- endif -%}
 
+- platform: google_reverse_geocode
+  api_key: !secret google_api_key
+  entity_id: device_tracker.jawilson_fluorine
+
 # AK
 
 - platform: mqtt
@@ -57,3 +61,7 @@
         {%- else -%}
         Awake
         {%- endif -%}
+
+- platform: google_reverse_geocode
+  api_key: !secret google_api_key
+  entity_id: device_tracker.annekat_reality

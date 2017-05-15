@@ -2,6 +2,9 @@
   icon: mdi:water-percent
 "sensor.*luminance*":
   icon: mdi:theme-light-dark
+"sensor.google_reverse_geocode*":
+  friendly_name: 'Location'
+  icon: mdi:google-maps
 
 
 "switch.*fluxer*":

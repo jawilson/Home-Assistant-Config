@@ -69,6 +69,7 @@ Guests:
 
 AK:
   - device_tracker.annekat_reality
+  - sensor.google_reverse_geocode__ak
   - camera.ak_location
   - sensor.ak_battery
   - sensor.ak_sleep_state
@@ -76,6 +77,7 @@ AK:
 
 Jeff:
   - device_tracker.jawilson_fluorine
+  - sensor.google_reverse_geocode__jeff
   - camera.jeff_location
   - sensor.jeff_battery
   - sensor.jeff_sleep_state
