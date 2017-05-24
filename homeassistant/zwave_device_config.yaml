@@ -1,7 +1,6 @@
-zwave.aeotec_zw090_zstick_gen5_us_1:
+zwave.sigma_designs_uzb_zwave_usb_adapter_1:
   ignored: true
 binary_sensor.bathroom_sensor_2_0:
   ignored: true
 binary_sensor.bedroom_sensor_3_0:
   ignored: true
-

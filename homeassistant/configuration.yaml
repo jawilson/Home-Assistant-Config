@@ -151,6 +151,10 @@ zwave:
   device_config: !include zwave_device_config.yaml
   device_config_glob: !include zwave_device_config_glob.yaml
 
+zha:
+  usb_path: /dev/zigbee
+  database_path: /config/zigbee.db
+
 
 # Sensors
 binary_sensor: !include_dir_merge_list binary_sensors

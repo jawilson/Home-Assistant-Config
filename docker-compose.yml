@@ -40,6 +40,7 @@ services:
         ipv4_address: 192.168.0.60
     devices:
       - /dev/zwave
+      - /dev/zigbee
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - ./homeassistant:/config
