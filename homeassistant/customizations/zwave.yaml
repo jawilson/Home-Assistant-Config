@@ -1,4 +1,9 @@
 zwave.bathroom_2:
   friendly_name: 'Bathroom 4-in-1 sensor'
+sensor.bathroom_alarm_level_2_1:
+  friendly_name: 'Bathroom Motion'
+
 zwave.bedroom_3:
   friendly_name: 'Bedroom 4-in-1 sensor'
+sensor.bedroom_alarm_level_3_1:
+  friendly_name: 'Bedroom Motion'

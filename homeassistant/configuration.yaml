@@ -211,6 +211,7 @@ proximity:
       - blackstone
       - bline
       - dhs
+      - 650_mass
     devices:
       - device_tracker.jawilson_fluorine
       - device_tracker.annekat_reality

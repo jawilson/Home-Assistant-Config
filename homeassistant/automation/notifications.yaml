@@ -30,7 +30,7 @@
       entity_id: group.all_lights
       state: 'on'
       for:
-        minutes: 5
+        seconds: 30
   condition:
     - condition: state
       entity_id: input_boolean.intruder_alerts
@@ -42,48 +42,51 @@
       entity_id: binary_sensor.presume_home
       state: 'off'
       for:
-        minutes: 5
+        seconds: 30
   action:
-    service: notify.slack
-    data:
-      message: >
-        Potential entruder, no one is home and a light turned on!
+    - service: notify.slack
+      data_template:
+        message: ''
+        data:
+          attachments:
+            - fallback: 'Potential entruder, no one is home and a light turned on'
+              color: 'warning'
+              author_name: '{{trigger.to_state.attributes.friendly_name}}'
+              title: 'Potential Intruder Alert!'
+              text: 'No one is home and a light was turned on'
 
 - alias: 'Slack Motion Intruder Alert'
   trigger:
-    - platform: event
-      event_type: zwave.node_event
-      event_data:
-        object_id: bathroom_2
-        basic_level: 255
-    - platform: event
-      event_type: zwave.node_event
-      event_data:
-        object_id: bedroom_3
-        basic_level: 255
+    - platform: state
+      entity_id: sensor.bedroom_alarm_level_3_1
+      state: '255'
+    - platform: state
+      entity_id: sensor.bathroom_alarm_level_2_1
+      state: '255'
   condition:
+    - condition: state
+      entity_id: input_boolean.intruder_alerts
+      state: 'on'
     - condition: state
       entity_id: input_boolean.motion
       state: 'on'
     - condition: state
-      entity_id: input_boolean.intruder_alerts
+      entity_id: input_boolean.presence
       state: 'on'
-  action:
-    - delay:
-        minutes: 5
     - condition: state
       entity_id: binary_sensor.presume_home
       state: 'off'
       for:
-        minutes: 5
+        seconds: 30
+  action:
     - service: notify.slack
       data_template:
-        message: ""
+        message: ''
         data:
           attachments:
             - fallback: 'Potential entruder, no one is home and motion was detected'
               color: 'warning'
-              author_name: '{{ states.zwave[trigger.event.data.object_id].attributes.friendly_name }}'
+              author_name: '{{trigger.to_state.attributes.friendly_name}}'
               title: 'Potential Intruder Alert!'
               text: 'No one is home and motion was detected'
 
@@ -95,7 +98,19 @@
   action:
     service: notify.slack
     data_template:
-      message: 'New device detected: {{trigger.event.data.host_name}} ({{trigger.event.data.entity_id}})'
+      message: ''
+      data:
+        attachments:
+          - fallback: 'New device detected'
+            color: '##808080'
+            text: 'New device detected'
+            fields:
+              - title: 'Host Name'
+                value: '{{trigger.event.data.host_name}}'
+                short: true
+              - title: 'Entity ID'
+                value: '{{trigger.event.data.entity_id}}'
+                short: true
 
 
 - alias: Update Available Notification

@@ -9,10 +9,15 @@
 
 - platform: template
   sensors:
+    jeff_home:
+      friendly_name: 'Jeff is at Home'
+      value_template: >-
+        {{ is_state('device_tracker.jawilson_fluorine', 'home')
+            or is_state('device_tracker.fluorine', 'home') }}
     jeff_sleeping_at_home:
       friendly_name: 'Jeff Sleeping at Home'
       value_template: >-
-        {{ is_state('device_tracker.jawilson_fluorine', 'home')
+        {{ is_state('binary_sensor.jeff_home', 'on')
             and is_state('binary_sensor.jeff_sleeping', 'on') }}
 
 
@@ -27,10 +32,15 @@
 
 - platform: template
   sensors:
+    ak_home:
+      friendly_name: 'AK is at Home'
+      value_template: >-
+        {{ is_state('device_tracker.annekat_reality', 'home')
+            or is_state('device_tracker.reality', 'home') }}
     ak_sleeping_at_home:
       friendly_name: 'AK Sleeping at Home'
       value_template: >-
-        {{ is_state('device_tracker.annekat_reality', 'home')
+        {{ is_state('binary_sensor.ak_home', 'on')
             and is_state('binary_sensor.ak_sleeping', 'on') }}
 
 
@@ -47,15 +57,15 @@
       value_template: >-
         {{ is_state('group.all_devices', 'home') or is_state('input_boolean.guests', 'on') }}
     sleeping_at_home:
-      friendly_name: 'Anyone sleeping at Home'
+      friendly_name: 'Anyone sleeping at home'
       value_template: >-
         {{ is_state('binary_sensor.jeff_sleeping_at_home', 'on')
             or is_state('binary_sensor.ak_sleeping_at_home', 'on') }}
     everyone_at_home_sleeping:
-      friendly_name: 'Everyone sleeping at Home'
+      friendly_name: 'Everyone at home is sleeping'
       value_template: >-
         {{ is_state('group.family', 'home') and
           (is_state('binary_sensor.ak_sleeping_at_home', 'on') or
-            not is_state('device_tracker.annekat_reality', 'home')) and
+            not is_state('binary_sensor.ak_home', 'on')) and
           (is_state('binary_sensor.jeff_sleeping_at_home', 'on') or
-            not is_state('device_tracker.jawilson_fluorine', 'home')) }}
+            not is_state('binary_sensor.jeff_home', 'on')) }}

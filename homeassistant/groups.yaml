@@ -37,7 +37,6 @@ Climate:
     - climate.apartment
     - switch.apartment_home
     - switch.apartment_fan
-    - fan.office_fan
     - switch.humidifier
     - sensor.apartment_thermostat_temperature
     - sensor.apartment_thermostat_humidity
@@ -249,6 +248,11 @@ Scripts:
   - script.nest_home
   - script.bedroom_arrive
   - script.living_area_arrive
+  - script.bathroom_motion_awake
+  - script.bathroom_motion_sleeping
+  - script.getting_ready
+  - script.nest_home
+  - script.test
   - script.apartment_shutdown
 
 
@@ -266,8 +270,14 @@ Automations:
   - automation.circulate_while_away
   - automation.stop_circulating
   - automation.handle_lights_when_arriving_home
+  - automation.handle_lights_when_turned_on_not_home
   - automation.nest_home
   - automation.nest_while_home
+  - automation.bathroom_motion
+  - automation.bedroom_motion
+  - automation.bathroom_no_motion
+  - automation.bedroom_no_motion
+  - automation.closet_no_motion
   - automation.home_assistant_start
   - automation.projector_off
   - automation.shield_plex_idle
@@ -276,7 +286,9 @@ Automations:
   - automation.shield_cast_stopped
   - automation.mqtt_notification
   - automation.slack_updates
-  - automation.slack_intruder_alert
+  - automation.slack_light_intruder_alert
+  - automation.slack_motion_intruder_alert
+  - automation.new_device_location
   - automation.update_available_notification
 
 

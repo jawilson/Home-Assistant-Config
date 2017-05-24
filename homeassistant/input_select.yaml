@@ -2,13 +2,16 @@ orvibo1:
   name: Orvibo Outlet 1
   icon: mdi:power-plug
   options:
+    - None
     - Crockpot
     - Cat Water
     - Christmas Tree
-  initial: Cat Water
+  initial: None
 
 orvibo2:
   name: Orvibo Outlet 2
   icon: mdi:power-plug
   options:
+    - None
     - Humidifier
+  initial: None

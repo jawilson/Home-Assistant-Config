@@ -7,7 +7,7 @@ sequence:
         state: 'off'
       - condition: state
         entity_id: automation.bathroom_motion
-        state: 'off'
+        state: 'on'
   - service: automation.turn_off
     entity_id: automation.bathroom_motion
   - service: switch.turn_off
