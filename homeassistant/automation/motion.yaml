@@ -36,7 +36,7 @@
   trigger:
     - platform: state
       entity_id: sensor.bedroom_alarm_level_3_1
-      state: '0'
+      to: '0'
       for:
         minutes: 10
   condition:
@@ -86,7 +86,7 @@
   trigger:
     - platform: state
       entity_id: sensor.bathroom_alarm_level_2_1
-      state: '0'
+      to: '0'
       for:
         minutes: 10
   condition:
@@ -118,12 +118,12 @@
   trigger:
     - platform: state
       entity_id: sensor.bedroom_alarm_level_3_1
-      state: '0'
+      to: '0'
       for:
         minutes: 10
     - platform: state
       entity_id: sensor.bathroom_alarm_level_2_1
-      state: '0'
+      to: '0'
       for:
         minutes: 10
   condition:

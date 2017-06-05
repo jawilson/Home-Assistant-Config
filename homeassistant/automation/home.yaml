@@ -2,7 +2,7 @@
   trigger:
     - platform: state
       entity_id: group.all_devices
-      state: 'home'
+      to: 'home'
   condition:
     - condition: state
       entity_id: input_boolean.guests
@@ -19,7 +19,7 @@
   trigger:
     - platform: state
       entity_id: group.all_lights
-      state: 'on'
+      to: 'on'
   condition:
     - condition: state
       entity_id: input_boolean.presence
@@ -39,7 +39,7 @@
       below: 1000
     - platform: state
       entity_id: group.all_devices
-      state: 'home'
+      to: 'home'
   condition:
     - condition: state
       entity_id: input_boolean.presence
@@ -81,7 +81,7 @@
   trigger:
     - platform: state
       entity_id: switch.apartment_home
-      state: 'on'
+      to: 'on'
   condition:
     - condition: state
       entity_id: input_boolean.climate_auto

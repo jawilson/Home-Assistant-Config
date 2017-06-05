@@ -7,7 +7,7 @@
       to: 'on'
     - platform: state
       entity_id: binary_sensor.everyone_at_home_sleeping
-      state: 'on'
+      to: 'on'
   action:
     - service: script.bedroom_sleep
     - service: script.bathroom_sleep

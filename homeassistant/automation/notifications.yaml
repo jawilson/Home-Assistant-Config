@@ -28,7 +28,7 @@
   trigger:
     - platform: state
       entity_id: group.all_lights
-      state: 'on'
+      to: 'on'
       for:
         seconds: 30
   condition:
@@ -59,10 +59,10 @@
   trigger:
     - platform: state
       entity_id: sensor.bedroom_alarm_level_3_1
-      state: '255'
+      from: '0'
     - platform: state
       entity_id: sensor.bathroom_alarm_level_2_1
-      state: '255'
+      from: '0'
   condition:
     - condition: state
       entity_id: input_boolean.intruder_alerts
