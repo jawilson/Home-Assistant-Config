@@ -94,12 +94,14 @@
   entities:
     switch.living_area_fluxer: off
     switch.bathroom_fluxer: off
-    light.living_room:
+    light.kitchen_lights:
+      state: on
+      brightness: 63
+    light.living_room_lamp_1: off
+    light.living_room_lamp_2:
       state: on
       profile: late
-    light.entryway_light:
-      state: on
-      profile: late
+    light.entryway_light: off
     light.office_light:
       state: on
       brightness: 50
@@ -111,7 +113,6 @@
     light.bathroom_mirror_2: off
     light.bathroom_mirror_3: off
     light.bathroom_mirror_4: off
-    light.kitchen_lights: off
     light.dining_lights: off
     light.entertainment_lights: off
 - name: Romantic

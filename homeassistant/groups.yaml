@@ -69,6 +69,7 @@ Guests:
 AK:
   - device_tracker.annekat_reality
   - sensor.google_reverse_geocode__ak
+  - script.annekat_reality_location_update
   - camera.ak_location
   - sensor.ak_battery
   - sensor.ak_sleep_state
@@ -77,6 +78,7 @@ AK:
 Jeff:
   - device_tracker.jawilson_fluorine
   - sensor.google_reverse_geocode__jeff
+  - script.jawilson_fluorine_location_update
   - camera.jeff_location
   - sensor.jeff_battery
   - sensor.jeff_sleep_state
@@ -104,13 +106,12 @@ living_room_view_lights:
     - light.entertainment_lights
     - light.living_room_lamp_1
     - light.living_room_lamp_2
-    - light.office_light
 
 living_room_view_sensors:
   name: Sensors
   entities:
-    - sensor.office_temperature
-    - sensor.office_humidity
+    - sensor.apartment_thermostat_temperature
+    - sensor.apartment_thermostat_humidity
 
 
 # Bedroom view
@@ -148,6 +149,20 @@ bedroom_view_bathroom_sensors:
     - sensor.bathroom_temperature_2_1
     - sensor.bathroom_relative_humidity_2_5
     - sensor.bathroom_luminance_2_3
+
+
+# Office view
+
+office_view_lights:
+  name: Lights
+  entities:
+    - light.office_light
+
+office_view_sensors:
+  name: Sensors
+  entities:
+    - sensor.office_temperature
+    - sensor.office_humidity
 
 
 # Rooms view
@@ -332,7 +347,6 @@ Living Room:
     - switch.cat_water
     - switch.living_area_fluxer
     - media_player.shield
-    - fan.office_fan
     - group.harmony
     - group.living_room_view_sensors
 
@@ -349,6 +363,14 @@ Bedroom:
     - switch.bathroom_fluxer
     - media_player.cast_bedroom
 
+Office:
+  view: yes
+  icon: mdi:laptop
+  entities:
+    - group.office_view_lights
+    - fan.office_fan
+    - group.office_view_sensors
+
 Rooms:
   view: yes
   icon: mdi:home-outline
@@ -362,16 +384,6 @@ Rooms:
     - group.outlets
     - group.fluxers
 
-Media:
-  view: yes
-  icon: mdi:television-guide
-  entities:
-  - group.harmony
-  - media_player.shield
-  - media_player.cast_bedroom
-  - media_player.cast_kitchen_home
-  - remote.living_room
-
 Other:
   view: yes
   icon: mdi:information
@@ -379,6 +391,7 @@ Other:
     - group.p3steel
     - sensor.ups
     - sensor.415_l_st_nw_apt_633
+    - sensor.apartment_temperatures
     - group.temperatures
     - group.humidities
 

@@ -4,8 +4,10 @@
       event_type: zwave.node_event
       event_data:
         object_id: bedroom_3
-        basic_level: 255
   condition:
+    - condition: template
+      value_template: >
+        {{ trigger.event.data.basic_level > 0 }}
     - condition: state
       entity_id: input_boolean.motion
       state: 'on'
@@ -30,6 +32,16 @@
     - service: light.turn_on
       entity_id:
         - light.bedroom
+    # Turn on the closet light if the bathroom light is on
+    - condition: state
+      entity_id: light.bathroom
+      state: 'on'
+    - condition: state
+      entity_id: light.closet_light
+      state: 'off'
+    - service: light.turn_on
+      entity_id:
+        - light.closet_light
 
 
 - alias: Bedroom No Motion
@@ -63,8 +75,10 @@
       event_type: zwave.node_event
       event_data:
         object_id: bathroom_2
-        basic_level: 255
   condition:
+    - condition: template
+      value_template: >
+        {{ trigger.event.data.basic_level > 0 }}
     - condition: state
       entity_id: input_boolean.motion
       state: 'on'

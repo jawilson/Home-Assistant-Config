@@ -6,6 +6,8 @@ sensor.jeff_sleep_state:
 sensor.jeff_alarm:
   friendly_name: "Jeff's Alarm"
   icon: mdi:alarm
+sensor.google_reverse_geocode__jeff:
+  friendly_name: 'Jeff Location'
 
 # AK
 sensor.ak_battery:
@@ -15,3 +17,5 @@ sensor.ak_sleep_state:
 sensor.ak_alarm:
   friendly_name: "AK's Alarm"
   icon: mdi:alarm
+sensor.google_reverse_geocode__ak:
+  friendly_name: 'AK Location'

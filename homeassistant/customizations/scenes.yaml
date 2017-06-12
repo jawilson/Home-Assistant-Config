@@ -15,6 +15,7 @@ scene.couch_reading:
 
 script.getting_ready:
   icon: mdi:brush
+  emulated_hue: true
 
 scene.lights_out:
   icon: mdi:flashlight-off

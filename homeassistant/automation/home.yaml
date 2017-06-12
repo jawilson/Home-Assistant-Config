@@ -36,7 +36,7 @@
   trigger:
     - platform: numeric_state
       entity_id: proximity.home
-      below: 1000
+      below: 500
     - platform: state
       entity_id: group.all_devices
       to: 'home'

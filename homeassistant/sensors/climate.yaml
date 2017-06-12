@@ -18,20 +18,15 @@
   qos: 0
   unit_of_measurement: "%"
 
+
 #
-# Template
+# Statistics
 #
-- platform: template
-  sensors:
-    office_temperature_diff:
-      friendly_name: "Office Temperature Difference"
-      value_template: |
-        {{ (float(states.sensor.office_temperature.state) -
-           float(states.sensor.apartment_thermostat_temperature.state)) | round(2) }}
-      unit_of_measurement: '°F'
-    office_humidity_diff:
-      friendly_name: "Office Humidity Difference"
-      value_template: |
-        {{ (float(states.sensor.office_humidity.state) -
-           float(states.sensor.apartment_thermostat_humidity.state)) | round(2) }}
-      unit_of_measurement: '%'
+- platform: min_max
+  name: Apartment Temperatures
+  type: mean
+  entity_ids:
+    - sensor.apartment_thermostat_temperature
+    - sensor.bathroom_temperature_2_1
+    - sensor.bedroom_temperature_3_1
+    - sensor.office_temperature

@@ -34,6 +34,9 @@
       entity_id: media_player.plex_shield
       to: 'idle'
   condition:
+    - condition: template
+      value_template: >
+        {{ trigger.from_state.state != 'idle' }}
     - condition: state
       entity_id: input_boolean.media_automation
       state: 'on'
@@ -58,6 +61,9 @@
       entity_id: media_player.cast_shield
       to: 'playing'
   condition:
+    - condition: template
+      value_template: >
+        {{ trigger.from_state.state != 'playing' }}
     - condition: state
       entity_id: input_boolean.media_automation
       state: 'on'

@@ -3,10 +3,13 @@
 "sensor.*luminance*":
   icon: mdi:theme-light-dark
 "sensor.google_reverse_geocode*":
-  friendly_name: 'Location'
   icon: mdi:google-maps
 
 
 "switch.*fluxer*":
   emulated_hue: false
   icon: mdi:invert-colors
+
+
+"script.*location_update":
+  icon: mdi:crosshairs-gps

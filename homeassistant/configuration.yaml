@@ -44,34 +44,50 @@ history:
   exclude:
     entities:
       - binary_sensor.ak_sleeping
+      - binary_sensor.ak_sleeping_at_home
       - binary_sensor.apartment_thermostat_has_leaf
-      - binary_sensor.apartment_thermostat_is_locked
-      - binary_sensor.apartment_thermostat_is_using_emergency_heat
-      - binary_sensor.apartment_thermostat_online
+      - binary_sensor.everyone_at_home_sleeping
       - binary_sensor.jeff_sleeping
+      - binary_sensor.jeff_sleeping_at_home
       - binary_sensor.p3steel_printing
       - binary_sensor.p3steel_printing_error
+      - binary_sensor.sleeping_at_home
       - light.bathroom
+      - light.bathroom_mirror
       - light.bedroom
+      - light.closet
       - light.entryway
       - light.living_room
       - light.living_room_lamp
+      - light.tree_lamp
+      - sensor.apartment_max_temperature_diff
+      - sensor.apartment_max_temperature_diff_mean
+      - sensor.dark_sky_icon
+      - sensor.google_reverse_geocode__ak
+      - sensor.google_reverse_geocode__jeff
+      - sensor.office_humidity_diff
+      - sensor.office_humidity_diff_mean
+      - sensor.office_temperature_diff
+      - sensor.office_temperature_diff_mean
+      - sensor.office_temperature_mean
+      - sensor.office_voltage
       - sensor.p3steel_actual_bed_temp
       - sensor.p3steel_actual_tool0_temp
+      - sensor.p3steel_current_state
       - sensor.p3steel_job_percentage
       - sensor.p3steel_target_bed_temp
       - sensor.p3steel_target_tool0_temp
       - sensor.sunrise
       - sensor.sunset
+      - switch.bathroom_fluxer
       - switch.bedroom_fluxer
+      - switch.cat_water
       - switch.christmas_tree
-      - switch.feynman
-      - input_boolean.guests
+      - switch.crockpot
       - switch.living_area_fluxer
       - switch.orvibo1
       - switch.orvibo2
       - switch.plex
-      - input_boolean.presence
       - switch.projector
       - switch.shield
       - switch.shield_audio
@@ -106,6 +122,7 @@ emulated_hue:
     - switch
     - light
     - scene
+    - fan
 
 # If This Then That
 ifttt:
@@ -180,7 +197,7 @@ device_tracker:
     track_new_devices: no
     protocol: telnet
   - platform: owntracks
-    max_gps_accuracy: 500
+    max_gps_accuracy: 250
 
 media_player: !include media_players.yaml
 
@@ -198,6 +215,9 @@ apiai: !include apiai.yaml
 
 # Switches
 switch: !include_dir_merge_list switches
+
+fan:
+  platform: insteon_local
 
 # Notifications
 notify: !include notifications.yaml

@@ -15,3 +15,5 @@ OZW_Log.txt
 pyozw.sqlite
 zwcfg*.xml
 zwscene.xml
+
+.insteon_cache/
