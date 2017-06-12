@@ -1,0 +1,6 @@
+alias: Jeff Location Update
+sequence:
+  - service: script.owntracks_location_update
+    data:
+      user: jawilson
+      device: fluorine

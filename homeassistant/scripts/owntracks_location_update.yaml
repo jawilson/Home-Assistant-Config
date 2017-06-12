@@ -1,0 +1,8 @@
+alias: Owntracks Location Update
+sequence:
+  - service: mqtt.publish
+    data_template:
+      topic: 'owntracks/{{user}}/{{device}}/cmd'
+      payload: '{"_type":"cmd","action":"reportLocation"}'
+      qos: 1
+      retain: false
