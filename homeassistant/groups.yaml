@@ -267,7 +267,6 @@ Scripts:
   - script.bathroom_motion_sleeping
   - script.getting_ready
   - script.nest_home
-  - script.test
   - script.apartment_shutdown
 
 
