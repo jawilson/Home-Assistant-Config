@@ -290,11 +290,13 @@ logger:
   default: error
   logs:
     homeassistant: !env_var HA_LOG_LEVEL
+    homeassistant.core: warning
     homeassistant.bootstrap: error
-    homeassistant.core: error
     homeassistant.components.api: error
     homeassistant.components.http: error
     homeassistant.components.websocket_api: error
     homeassistant.components.recorder: error
     homeassistant.components.remote.harmony: error
     homeassistant.components.device_tracker.asuswrt: error
+    homeassistant.components.insteon_local: warning
+    homeassistant.components.sensor.octoprint: error

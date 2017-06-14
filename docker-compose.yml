@@ -47,7 +47,7 @@ services:
       - ./letsencrypt/config:/etc/letsencrypt:ro
       - ./tools:/opt/tools:ro
     environment:
-      - HA_LOG_LEVEL=error
+      - HA_LOG_LEVEL=warning
     entrypoint:
       - '/opt/tools/wait-for-it/wait-for-it.sh'
       - '-s'
