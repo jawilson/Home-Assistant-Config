@@ -2,16 +2,12 @@
 - platform: darksky
   api_key: !secret darksky_key
   monitored_conditions:
-    - temperature
-    - humidity
-    - precip_probability
-    - precip_intensity
-    - wind_speed
-    - pressure
-    - wind_bearing
-    - apparent_temperature
-    - icon
     - summary
+    - icon
+    - temperature
+    - apparent_temperature
+    - precip_intensity_max
+    - wind_speed
 
 # Sun
 - platform: template
@@ -24,15 +20,3 @@
       value_template: >
         {{ as_timestamp(states.sun.sun.attributes.next_setting)|timestamp_custom('%I:%M:%S %p') }}
       friendly_name: 'Next Sunset'
-
-
-- name: WUndergound
-  platform: wunderground
-  api_key: !secret wunderground_key
-  pws_id: KDCWASHI185
-  monitored_conditions:
-    - weather
-    - temp_f
-    - feelslike_f
-    - wind_mph
-    - precip_today_in
