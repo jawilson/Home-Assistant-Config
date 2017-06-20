@@ -14,11 +14,16 @@
     - condition: state
       entity_id: binary_sensor.presume_home
       state: 'on'
-    - condition: state
-      entity_id: binary_sensor.sleeping_at_home
-      state: 'off'
-      for:
-        minutes: 30
+    - condition: or
+      conditions:
+        - condition: state
+          entity_id: binary_sensor.sleeping_at_home
+          state: 'off'
+          for:
+            minutes: 30
+        - condition: template
+          value_template: >
+            {{ (as_timestamp(now()) - as_timestamp(states.automation.home_assistant_start.attributes.last_triggered))/60 < 30 }}
     - condition: state
       entity_id: script.bedroom_wakeup
       state: 'off'

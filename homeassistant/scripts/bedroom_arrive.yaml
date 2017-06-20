@@ -13,3 +13,7 @@ sequence:
   - service: light.turn_on
     entity_id: group.bedroom_lights
   - service: switch.bedroom_fluxer_update
+  - service: automation.turn_on
+    entity_id:
+      - automation.bedroom_motion
+      - automation.bedroom_no_motion

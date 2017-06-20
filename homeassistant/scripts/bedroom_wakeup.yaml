@@ -16,6 +16,10 @@ sequence:
     value_template: "{{ target != 'reality' }}"
   - service: switch.turn_off
     entity_id: switch.bedroom_fluxer
+  - service: automation.turn_off
+    entity_id:
+      - automation.bedroom_motion
+      - automation.bedroom_no_motion
   - service: notify.html5
     data_template:
       target: '{{ target }}'
@@ -60,3 +64,7 @@ sequence:
       minutes: 15
   - service: switch.turn_on
     entity_id: switch.bedroom_fluxer
+  - service: automation.turn_on
+    entity_id:
+      - automation.bedroom_motion
+      - automation.bedroom_no_motion
