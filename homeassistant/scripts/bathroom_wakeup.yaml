@@ -8,10 +8,13 @@ sequence:
       - condition: state
         entity_id: automation.bathroom_motion
         state: 'on'
-  - service: automation.turn_off
-    entity_id: automation.bathroom_motion
   - service: switch.turn_off
     entity_id: switch.bathroom_fluxer
+  - service: automation.turn_off
+    entity_id:
+      - automation.bathroom_motion
+      - automation.bathroom_no_motion
+      - automation.closet_no_motion
   - service: light.turn_on
     entity_id:
       - light.bathroom
@@ -52,4 +55,7 @@ sequence:
   - service: switch.turn_on
     entity_id: switch.bathroom_fluxer
   - service: automation.turn_on
-    entity_id: automation.bathroom_motion
+    entity_id:
+      - automation.bathroom_motion
+      - automation.bathroom_no_motion
+      - automation.closet_no_motion

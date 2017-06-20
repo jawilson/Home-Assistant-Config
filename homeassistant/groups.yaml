@@ -265,8 +265,7 @@ Scripts:
   - script.nest_home
   - script.bedroom_arrive
   - script.living_area_arrive
-  - script.bathroom_motion_awake
-  - script.bathroom_motion_sleeping
+  - python_script.bathroom_motion
   - script.getting_ready
   - script.nest_home
   - script.apartment_shutdown

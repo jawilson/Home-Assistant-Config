@@ -280,6 +280,7 @@ scene: !include scenes.yaml
 
 # Scripts
 script: !include_dir_named scripts
+python_script:
 
 # Automation
 automation: !include_dir_merge_list automation
