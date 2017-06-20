@@ -1,4 +1,6 @@
 # Jeff
+binary_sensor.jeff_home:
+  device_class: occupancy
 sensor.jeff_battery:
   icon: mdi:battery
 sensor.jeff_sleep_state:
@@ -10,6 +12,8 @@ sensor.google_reverse_geocode__jeff:
   friendly_name: 'Jeff Location'
 
 # AK
+binary_sensor.ak_home:
+  device_class: occupancy
 sensor.ak_battery:
   icon: mdi:battery
 sensor.ak_sleep_state:
@@ -19,3 +23,9 @@ sensor.ak_alarm:
   icon: mdi:alarm
 sensor.google_reverse_geocode__ak:
   friendly_name: 'AK Location'
+
+# Other
+binary_sensor.guests:
+  device_class: occupancy
+binary_sensor.presume_home:
+  device_class: occupancy
