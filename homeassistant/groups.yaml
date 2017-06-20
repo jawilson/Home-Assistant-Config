@@ -130,9 +130,9 @@ bedroom_view_bedroom_lights:
 bedroom_view_bedroom_sensors:
   name: Bedroom Sensors
   entities:
-    - sensor.bedroom_temperature_3_1
-    - sensor.bedroom_relative_humidity_3_5
-    - sensor.bedroom_luminance_3_3
+    - sensor.bedroom_temperature
+    - sensor.bedroom_relative_humidity
+    - sensor.bedroom_luminance
 
 bedroom_view_bathroom_lights:
   name: Bathroom Lights
@@ -146,9 +146,9 @@ bedroom_view_bathroom_lights:
 bedroom_view_bathroom_sensors:
   name: Bathroom Sensors
   entities:
-    - sensor.bathroom_temperature_2_1
-    - sensor.bathroom_relative_humidity_2_5
-    - sensor.bathroom_luminance_2_3
+    - sensor.bathroom_temperature
+    - sensor.bathroom_relative_humidity
+    - sensor.bathroom_luminance
 
 
 # Office view
@@ -230,15 +230,15 @@ P3Steel:
 Temperatures:
   - sensor.dark_sky_temperature
   - sensor.apartment_thermostat_temperature
-  - sensor.bathroom_temperature_2_1
-  - sensor.bedroom_temperature_3_1
+  - sensor.bathroom_temperature
+  - sensor.bedroom_temperature
   - sensor.office_temperature
 
 Humidities:
   - sensor.dark_sky_humidity
   - sensor.apartment_thermostat_humidity
-  - sensor.bathroom_relative_humidity_2_5
-  - sensor.bedroom_relative_humidity_3_5
+  - sensor.bathroom_relative_humidity
+  - sensor.bedroom_relative_humidity
   - sensor.office_humidity
 
 

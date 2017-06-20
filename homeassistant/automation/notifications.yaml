@@ -58,10 +58,10 @@
 - alias: 'Slack Motion Intruder Alert'
   trigger:
     - platform: state
-      entity_id: sensor.bedroom_alarm_level_3_1
+      entity_id: sensor.bedroom_alarm_level
       from: '0'
     - platform: state
-      entity_id: sensor.bathroom_alarm_level_2_1
+      entity_id: sensor.bathroom_alarm_level
       from: '0'
   condition:
     - condition: state

@@ -27,6 +27,6 @@
   type: mean
   entity_ids:
     - sensor.apartment_thermostat_temperature
-    - sensor.bathroom_temperature_2_1
-    - sensor.bedroom_temperature_3_1
+    - sensor.bathroom_temperature
+    - sensor.bedroom_temperature
     - sensor.office_temperature

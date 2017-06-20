@@ -1,14 +1,14 @@
-"sensor.*_alarm_type_*_0":
+"sensor.*_alarm_type":
   ignored: true
-"sensor.*_burglar_*_10":
+"sensor.*_burglar":
   ignored: true
-"sensor.*_clock_*_14":
+"sensor.*_clock":
   ignored: true
-"sensor.*_emergency_*_13":
+"sensor.*_emergency":
   ignored: true
-"sensor.*_power_management_*_11":
+"sensor.*_power_management":
   ignored: true
-"sensor.*_sourcenodeid_*_2":
+"sensor.*_sourcenodeid":
   ignored: true
-"sensor.*_system_*_12":
+"sensor.*_system":
   ignored: true

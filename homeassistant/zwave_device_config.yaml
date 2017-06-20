@@ -1,10 +1,10 @@
-zwave.sigma_designs_uzb_zwave_usb_adapter_1:
+zwave.sigma_designs_uzb_zwave_usb_adapter:
   ignored: true
-binary_sensor.bathroom_sensor_2_0:
+binary_sensor.bathroom_sensor:
   ignored: true
-sensor.bathroom_general_2_2:
+sensor.bathroom_general:
   ignored: true
-sensor.bathroom_power_2_4:
+sensor.bathroom_power:
   ignored: true
-binary_sensor.bedroom_sensor_3_0:
+binary_sensor.bedroom_sensor:
   ignored: true

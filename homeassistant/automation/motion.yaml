@@ -3,7 +3,7 @@
     - platform: event
       event_type: zwave.node_event
       event_data:
-        object_id: bedroom_3
+        object_id: bedroom
   condition:
     - condition: template
       value_template: >
@@ -26,7 +26,7 @@
       entity_id: light.bedroom
       state: 'off'
     - condition: numeric_state
-      entity_id: sensor.bedroom_luminance_3_3
+      entity_id: sensor.bedroom_luminance
       below: '45'
   action:
     - service: light.turn_on
@@ -47,7 +47,7 @@
 - alias: Bedroom No Motion
   trigger:
     - platform: state
-      entity_id: sensor.bedroom_alarm_level_3_1
+      entity_id: sensor.bedroom_alarm_level
       to: '0'
       for:
         minutes: 10
@@ -74,7 +74,7 @@
     - platform: event
       event_type: zwave.node_event
       event_data:
-        object_id: bathroom_2
+        object_id: bathroom
   condition:
     - condition: template
       value_template: >
@@ -99,7 +99,7 @@
 - alias: Bathroom No Motion
   trigger:
     - platform: state
-      entity_id: sensor.bathroom_alarm_level_2_1
+      entity_id: sensor.bathroom_alarm_level
       to: '0'
       for:
         minutes: 10
@@ -131,12 +131,12 @@
 - alias: Closet No Motion
   trigger:
     - platform: state
-      entity_id: sensor.bedroom_alarm_level_3_1
+      entity_id: sensor.bedroom_alarm_level
       to: '0'
       for:
         minutes: 10
     - platform: state
-      entity_id: sensor.bathroom_alarm_level_2_1
+      entity_id: sensor.bathroom_alarm_level
       to: '0'
       for:
         minutes: 10
@@ -161,12 +161,12 @@
     - condition: and
       conditions:
         - condition: state
-          entity_id: sensor.bedroom_alarm_level_3_1
+          entity_id: sensor.bedroom_alarm_level
           state: '0'
           for:
             minutes: 10
         - condition: state
-          entity_id: sensor.bathroom_alarm_level_2_1
+          entity_id: sensor.bathroom_alarm_level
           state: '0'
           for:
             minutes: 10
