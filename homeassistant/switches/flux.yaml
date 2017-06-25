@@ -1,33 +1,18 @@
 - platform: flux
-  lights:
-    - light.entryway_light
-    - light.living_room_lamp_1
-    - light.living_room_lamp_2
   name: Living Area Fluxer
+  lights: !include ../fluxer_lights/living_area.yaml
   start_time: '7:00'
   start_colortemp: 6000
 
 - platform: flux
-  lights:
-    - light.bedroom_lamp
-    - light.tree_lamp_1
-    - light.tree_lamp_2
-    - light.tree_lamp_3
-    - light.tree_lamp_4
-    - light.tree_lamp_5
   name: Bedroom Fluxer
+  lights: !include ../fluxer_lights/bedroom.yaml
   start_time: '7:00'
   start_colortemp: 5000
   mode: mired
 
 - platform: flux
-  lights:
-    - light.bathroom_mirror_1
-    - light.bathroom_mirror_2
-    - light.bathroom_mirror_3
-    - light.bathroom_mirror_4
-    - light.shower_light
-    - light.closet_light
+  lights: !include ../fluxer_lights/bathroom.yaml
   name: Bathroom Fluxer
   start_time: '7:00'
   start_colortemp: 5000

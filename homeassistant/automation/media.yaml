@@ -15,14 +15,10 @@
         - light.kitchen_lights
         - light.dining_lights
         - light.office_light
-    - service: light.turn_off
-      entity_id:
         - light.entryway
         - light.bedroom
         - light.bathroom
         - light.closet
-      data:
-        transition: 5
     - service: switch.turn_off
       entity_id:
         - switch.christmas_tree
@@ -134,4 +130,3 @@
           {% endif %}
     - service: switch.turn_on
       entity_id: switch.living_area_fluxer
-    - service: switch.living_area_fluxer_update

@@ -1,6 +1,6 @@
 alias: Bathroom Wake Up
 sequence:
-  - condition: or
+  - condition: and
     conditions:
       - condition: state
         entity_id: group.bathroom_lights
@@ -8,6 +8,9 @@ sequence:
       - condition: state
         entity_id: automation.bathroom_motion
         state: 'on'
+
+
+  # Disable fluxer
   - service: switch.turn_off
     entity_id: switch.bathroom_fluxer
   - service: automation.turn_off
@@ -15,6 +18,9 @@ sequence:
       - automation.bathroom_motion
       - automation.bathroom_no_motion
       - automation.closet_no_motion
+
+
+  # Turn on lights softly
   - service: light.turn_on
     entity_id:
       - light.bathroom
@@ -32,6 +38,7 @@ sequence:
       brightness: 160
   - delay:
       minutes: 10
+
   - service: light.turn_on
     entity_id:
       - light.bathroom
@@ -42,6 +49,7 @@ sequence:
       brightness: 180
   - delay:
       minutes: 10
+
   - service: light.turn_on
     entity_id:
       - light.bathroom
@@ -52,10 +60,33 @@ sequence:
       brightness: 180
   - delay:
       minutes: 15
+
+
+  # Restore fluxer
   - service: switch.turn_on
     entity_id: switch.bathroom_fluxer
+
+
+  # Re-enable motion automations
   - service: automation.turn_on
     entity_id:
       - automation.bathroom_motion
       - automation.bathroom_no_motion
       - automation.closet_no_motion
+
+
+  # Turn off lights if no motion
+  - condition: state
+    entity_id: sensor.bathroom_alarm_level
+    state: '0'
+    for:
+      minutes: 10
+  - service: light.turn_off
+    entity_id: light.bathroom
+  - condition: state
+    entity_id: sensor.bedroom_alarm_level
+    state: '0'
+    for:
+      minutes: 10
+  - service: light.turn_off
+    entity_id: light.closet

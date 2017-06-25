@@ -3,11 +3,11 @@
     - platform: event
       event_type: zwave.node_event
       event_data:
-        object_id: bedroom
+        entity_id: zwave.bedroom
   condition:
     - condition: template
       value_template: >
-        {{ trigger.event.data.basic_level > 0 }}
+        {{ trigger.event.data.basic_level|int > 0 }}
     - condition: state
       entity_id: input_boolean.motion
       state: 'on'
@@ -29,7 +29,7 @@
             {{ (as_timestamp(now()) - as_timestamp(states.automation.home_assistant_start.attributes.last_triggered))/60 < 30 }}
     - condition: numeric_state
       entity_id: sensor.bedroom_luminance
-      below: '45'
+      below: '50'
   action:
     - service: light.turn_on
       entity_id:
@@ -53,13 +53,23 @@
       to: '0'
       for:
         minutes: 10
+    - platform: state
+      entity_id: light.bedroom
+      to: 'on'
+      for:
+        minutes: 10
   condition:
     - condition: state
       entity_id: input_boolean.motion
       state: 'on'
     - condition: state
       entity_id: light.bedroom
-      state: 'off'
+      state: 'on'
+    - condition: state
+      entity_id: sensor.bedroom_alarm_level
+      state: '0'
+      for:
+        minutes: 10
     # If fluxer is off, we're probably doing something specific
     # There may be a better way to handle this
     - condition: state
@@ -67,8 +77,9 @@
       state: 'on'
   action:
     - service: light.turn_off
-      entity_id:
-        - light.bedroom
+      entity_id: light.bedroom
+    - service: switch.turn_on
+      entity_id: switch.bedroom_fluxer
 
 
 - alias: Bathroom Motion
@@ -76,11 +87,11 @@
     - platform: event
       event_type: zwave.node_event
       event_data:
-        object_id: bathroom
+        entity_id: zwave.bathroom
   condition:
     - condition: template
       value_template: >
-        {{ trigger.event.data.basic_level > 0 }}
+        {{ trigger.event.data.basic_level|int > 0 }}
     - condition: state
       entity_id: input_boolean.motion
       state: 'on'
@@ -106,6 +117,11 @@
       to: '0'
       for:
         minutes: 5
+    - platform: state
+      entity_id: light.bathroom
+      to: 'on'
+      for:
+        minutes: 10
   condition:
     - condition: state
       entity_id: input_boolean.motion
@@ -113,6 +129,15 @@
     - condition: state
       entity_id: light.bathroom
       state: 'on'
+    - condition: state
+      entity_id: sensor.bathroom_alarm_level
+      state: '0'
+      for:
+        minutes: 5
+    # Don't turn off if we're showering
+    - condition: numeric_state
+      entity_id: sensor.bathroom_relative_humidity
+      below: 65
     - condition: or
       conditions:
         - condition: state

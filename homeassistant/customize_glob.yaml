@@ -13,3 +13,7 @@
 
 "script.*location_update":
   icon: mdi:crosshairs-gps
+
+
+"group.*_fluxer_lights":
+  hidden: true
