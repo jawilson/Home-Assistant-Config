@@ -1,5 +1,6 @@
-scene.dinner:
+script.dinner:
   icon: mdi:silverware-fork
+  emulated_hue: true
 
 scene.romantic:
   icon: mdi:candle

@@ -1,0 +1,16 @@
+alias: Dinner
+sequence:
+  - service: switch.turn_on
+    entity_id: switch.plex
+  - service: switch.turn_off
+    entity_id: switch.living_area_fluxer
+  - service: light.turn_on
+    entity_id: light.entertainment_lights
+    data:
+      brightness: 60
+  - service: light.turn_on
+    entity_id: light.living_room_lamp
+    data:
+      profile: nightlight
+      transition: 15
+      brightness: 65

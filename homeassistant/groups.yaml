@@ -51,7 +51,7 @@ Scenes:
   entities:
     - script.getting_ready
     - scene.couch_reading
-    - scene.dinner
+    - script.dinner
     - scene.tv_dinner
     - scene.romantic
     - scene.bedtime
