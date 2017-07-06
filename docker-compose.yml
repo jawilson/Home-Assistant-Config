@@ -2,7 +2,7 @@ version: '2'
 
 services:
   mqtt:
-    image: toke/mosquitto
+    image: eclipse-mosquitto
     restart: always
     dns: 192.168.0.1
     dns_search: singularity.net
@@ -11,10 +11,11 @@ services:
       - 1883:1883
       - 8883:8883
     volumes:
-      - /etc/localtime:/etc/localtime:ro
-      - ./mqtt/config:/mqtt/config:rw
-      - ./mqtt/log:/mqtt/log
-      - ./mqtt/data:/mqtt/data
+      - ./mqtt/mosquitto.conf:/mosquitto/config/mosquitto.conf:ro
+      - ./mqtt/log:/mosquitto/log
+      - ./mqtt/data:/mosquitto/data
+      - ./ssl/certs:/mosquitto/config/certs:ro
+      - ./ssl/private/mqtt.singularity.net.key:/mosquitto/config/private/mqtt.singularity.net.key:ro
   postgres:
     image: library/postgres:9.6.1
     restart: always
@@ -44,8 +45,9 @@ services:
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - ./homeassistant:/config
-      - ./letsencrypt/config:/etc/letsencrypt:ro
+      - ./letsencrypt:/etc/letsencrypt:ro
       - ./tools:/opt/tools:ro
+      - ./ssl/certs:/config/certs:ro
     environment:
       - HA_LOG_LEVEL=warning
     entrypoint:
