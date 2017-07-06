@@ -7,9 +7,9 @@ if hass.states.is_state('binary_sensor.everyone_at_home_sleeping', 'off'):
 
 else:
     hass.services.call('switch', 'turn_off', {'entity_id':
-        'switch.bathroom_fluxer'}, true)
+        'switch.bathroom_fluxer'}, True)
     service_data = {
-        'entity_id': 'light.bathroom',
+        'entity_id': 'light.bathroom_mirror_2',
         'brightness': 8,
         'color_temp': 454,
         'transition': 10

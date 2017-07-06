@@ -6,12 +6,14 @@ else:
     kitchen_light_brightness = 160
 
 dining_lights = hass.states.get('light.dining_lights')
-if dining_lights.state != 'on' or dining_lights.attributes.brightness < dining_light_brightness:
+if dining_lights.state != 'on' or \
+        dining_lights.attributes.get('brightness') < dining_light_brightness:
     hass.services.call('light', 'turn_on', {'entity_id': 'light.dining_lights',
         'brightness': dining_light_brightness})
 
 kitchen_lights = hass.states.get('light.kitchen_lights')
-if kitchen_lights.state != 'on' or kitchen_lights.attributes.brightness < kitchen_light_brightness:
+if kitchen_lights.state != 'on' or \
+        kitchen_lights.attributes.get('brightness') < kitchen_light_brightness:
     hass.services.call('light', 'turn_on', {'entity_id': 'light.kitchen_lights',
         'brightness': kitchen_light_brightness})
 
