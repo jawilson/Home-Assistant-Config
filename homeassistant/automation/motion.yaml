@@ -17,6 +17,9 @@
     - condition: state
       entity_id: light.bedroom
       state: 'off'
+    - condition: state
+      entity_id: binary_sensor.sleeping_at_home
+      state: 'off'
     - condition: or
       conditions:
         - condition: state

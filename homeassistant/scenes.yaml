@@ -1,15 +1,3 @@
-- name: Dinner
-  entities:
-    switch.plex: on
-    switch.living_area_fluxer: off
-    light.entertainment_lights:
-      state: on
-      brightness: 60
-    light.living_room:
-      state: on
-      transition: 15
-      profile: nightlight
-      brightness: 65
 - name: TV Dinner
   entities:
     switch.plex: on

@@ -23,6 +23,12 @@
       entity_id:
         - switch.christmas_tree
         - switch.cat_water
+    # Turn off the rest of the lights if we haven't started dinner in the last hour
+    - condition: template
+      value_template: >
+        {{ (as_timestamp(now()) - as_timestamp(states.script.dinner.attributes.last_triggered))/60 > 60 }}
+    - service: light.turn_off
+      entity_id: group.all_lights
 
 - alias: 'SHIELD Plex Idle'
   trigger:
@@ -104,29 +110,4 @@
       value_template: >
         {{ trigger.from_state.attributes.current_activity != 'Listen to Shield' }}
   action:
-    - service: switch.turn_on
-      entity_id: switch.cat_water
-    - service: light.turn_on
-      entity_id: light.living_room
-    - service: light.turn_on
-      entity_id:
-        - light.dining_lights
-      data_template:
-        brightness: >
-          {% if is_state('light.dining_lights', 'on') and states.light.dining_lights.attributes.brightness > 100 %}
-          {{states.light.dining_lights.attributes.brightness}}
-          {% else %}
-          100
-          {% endif %}
-    - service: light.turn_on
-      entity_id:
-        - light.kitchen_lights
-      data_template:
-        brightness: >
-          {% if is_state('light.kitchen_lights', 'on') and states.light.kitchen_lights.attributes.brightness > 160 %}
-          {{states.light.kitchen_lights.attributes.brightness}}
-          {% else %}
-          160
-          {% endif %}
-    - service: switch.turn_on
-      entity_id: switch.living_area_fluxer
+    - service: python_script.projector_off
