@@ -6,11 +6,13 @@ import logging
 import voluptuous as vol
 
 from homeassistant.components.sensor import PLATFORM_SCHEMA
+from homeassistant.components.zone import active_zone
 from homeassistant.helpers.entity import Entity
 from homeassistant.helpers.event import track_state_change
 from homeassistant.const import (
     CONF_API_KEY, CONF_NAME, CONF_ENTITY_ID, EVENT_HOMEASSISTANT_START,
-    ATTR_LATITUDE, ATTR_LONGITUDE)
+    ATTR_LATITUDE, ATTR_LONGITUDE, ATTR_GPS_ACCURACY, STATE_NOT_HOME,
+    ATTR_ENTITY_PICTURE)
 import homeassistant.helpers.config_validation as cv
 import homeassistant.helpers.location as location
 
@@ -20,6 +22,8 @@ _LOGGER = logging.getLogger(__name__)
 
 ATTR_LOCATION_TYPE = 'location_type'
 ATTR_TYPES = 'types'
+
+LOCATION_TYPE_ZONE = 'zone'
 
 CONF_OPTIONS = 'options'
 
@@ -69,7 +73,7 @@ def setup_platform(hass, config, add_devices_callback, discovery_info=None):
         options = config.get(CONF_OPTIONS)
 
         entity_id = config.get(CONF_ENTITY_ID)
-        entity_name = hass.states.get(entity_id).attributes.get('friendly_name')
+        entity_name = hass.states.get(entity_id).name
         formatted_name = "{} - {}".format(DEFAULT_NAME, entity_name)
         name = config.get(CONF_NAME, formatted_name)
         api_key = config.get(CONF_API_KEY)
@@ -94,6 +98,9 @@ class GoogleReverseGeocodeSensor(Entity):
         self._entity_id = entity_id
         self._options = options
         self.valid_api_connection = True
+        self._entity_picture = None
+        self._zone = None
+        self._geocode = None
 
         # Check if location is a trackable entity
         if entity_id.split('.', 1)[0] in TRACKABLE_DOMAINS:
@@ -122,10 +129,22 @@ class GoogleReverseGeocodeSensor(Entity):
     @property
     def state(self):
         """Return the state of the sensor."""
-        if self._geocode is None:
-            return None
+        if self._zone is not None:
+            _LOGGER.info("%s is in zone %s", self._entity_id, self._zone)
+            return self._zone
 
-        return self._geocode['formatted_address']
+        if self._geocode is not None:
+            _LOGGER.info("%s is at location %s", self._entity_id,
+                    self._geocode['formatted_address'])
+            return self._geocode['formatted_address']
+
+        _LOGGER.warn("%s has no location info", self._entity_id)
+        return None
+
+    @property
+    def entity_picture(self):
+        """Return the picture of the tracked device."""
+        return self._entity_picture
 
     @property
     def name(self):
@@ -135,11 +154,17 @@ class GoogleReverseGeocodeSensor(Entity):
     @property
     def device_state_attributes(self):
         """Return the state attributes."""
+        if self._zone is not None:
+            return {
+                ATTR_LOCATION_TYPE: LOCATION_TYPE_ZONE
+            }
+
         if self._geocode is None:
             return None
 
         return {
-            ATTR_LOCATION_TYPE: self._geocode['geometry']['location_type'],
+            ATTR_LOCATION_TYPE:
+                self._geocode['geometry']['location_type'].lower(),
             ATTR_TYPES: self._geocode['types']
         }
 
@@ -150,38 +175,66 @@ class GoogleReverseGeocodeSensor(Entity):
 
     def update(self):
         """Get the latest data from Google."""
+        entity = self._hass.states.get(self._entity_id)
+
+        if entity is None:
+            _LOGGER.error("Unable to find entity %s", self._entity_id)
+            self.valid_api_connection = False
+            return
+
+        self._entity_picture = entity.attributes.get(ATTR_ENTITY_PICTURE)
+
+        _LOGGER.info("Found entity %s", self._entity_id)
+        if not location.has_location(entity):
+            _LOGGER.warn("Entity %s does not have a location", self._entity_id)
+            return
+
+        zone = self._get_zone_from_entity(entity)
+        if zone is not None:
+            self._zone = zone.name
+            entity = zone
+        else:
+            self._zone = None
+
         options_copy = self._options.copy()
 
         # Convert device_trackers to google friendly location
-        self._location = self._get_location_from_entity(
-            self._entity_id
-        )
+        loc = self._get_location_from_attributes(entity)
 
-        if not self._location:
+        if not loc:
+            _LOGGER.warn("Failed to get location of %s", entity.entity_id)
             self._geocode = None
             return
 
-        results = self._client.reverse_geocode(self._location, **options_copy)
+        _LOGGER.debug("Looking up location %s", loc)
+        results = self._client.reverse_geocode(loc, **options_copy)
         if results:
+            _LOGGER.info("Reverse geocode results for %s: %s", entity.entity_id,
+                    results)
             self._geocode = results[0]
         else:
+            _LOGGER.warn("Failed to reverse geocode location of %s", self._entity_id)
             self._geocode = None
 
-    def _get_location_from_entity(self, entity_id):
-        """Get the location from the entity state or attributes."""
-        entity = self._hass.states.get(entity_id)
-
-        if entity is None:
-            _LOGGER.error("Unable to find entity %s", entity_id)
-            self.valid_api_connection = False
+    def _get_zone_from_entity(self, entity):
+        """Get the zone name from the entity state"""
+        if entity.state == STATE_NOT_HOME:
+            _LOGGER.info("%s is not home, will reverse geocode",
+                    entity.entity_id)
             return None
 
-        # Check if the entity has location attributes
-        if location.has_location(entity):
-            return self._get_location_from_attributes(entity)
+        zone_state = active_zone(self._hass,
+                entity.attributes.get(ATTR_LATITUDE),
+                entity.attributes.get(ATTR_LONGITUDE),
+                entity.attributes.get(ATTR_GPS_ACCURACY, 0))
 
-        # When everything fails just return nothing
-        return None
+        if zone_state is None:
+            _LOGGER.warn("Failed to get state of zone %s for entity %s",
+                    entity.state, entity.entity_id)
+            return None
+
+        _LOGGER.info("%s is in zone %s", entity.entity_id, zone_state.name)
+        return zone_state
 
     @staticmethod
     def _get_location_from_attributes(entity):

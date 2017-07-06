@@ -74,7 +74,6 @@ Guests:
 # People view
 
 AK:
-  - device_tracker.annekat_reality
   - sensor.google_reverse_geocode__ak
   - script.annekat_reality_location_update
   - camera.ak_location
@@ -83,7 +82,6 @@ AK:
   - sensor.ak_alarm
 
 Jeff:
-  - device_tracker.jawilson_fluorine
   - sensor.google_reverse_geocode__jeff
   - script.jawilson_fluorine_location_update
   - camera.jeff_location
