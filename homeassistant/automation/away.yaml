@@ -66,3 +66,32 @@
   action:
     service: script.turn_on
     entity_id: script.cycle_air
+
+
+- alias: Update Locations
+  trigger:
+    - platform: numeric_state
+      entity_id: device_tracker.jawilson_fluorine
+      value_template: >
+        {{ (as_timestamp(now()) - as_timestamp(state.last_updated))/60 }}
+      above: 30
+    - platform: numeric_state
+      entity_id: device_tracker.annekat_reality
+      value_template: >
+        {{ (as_timestamp(now()) - as_timestamp(state.last_updated))/60 }}
+      above: 30
+  action:
+    service: script.owntracks_location_update
+    data_template:
+      user: >
+        {% if trigger.entity_id == 'device_tracker.jawilson_fluorine' %}
+        jawilson
+        {% elif trigger.entity_id == 'device_tracker.annekat_reality' %}
+        annekat
+        {% endif %}
+      device: >
+        {% if trigger.entity_id == 'device_tracker.jawilson_fluorine' %}
+        fluorine
+        {% elif trigger.entity_id == 'device_tracker.annekat_reality' %}
+        reality
+        {% endif %}

@@ -54,11 +54,12 @@ Scenes:
     - script.dinner
     - scene.tv_dinner
     - scene.romantic
-    - scene.bedtime
-    - scene.up_late
-    - scene.lights_out
+    - script.bedtime
+    - script.up_late
+    - script.lights_out
 
 Guests:
+  - device_tracker.brandon_iphone
   - device_tracker.caitlin_android
   - device_tracker.chase_iphone
   - device_tracker.debbie_android
@@ -89,13 +90,17 @@ Jeff:
   - sensor.jeff_sleep_state
   - sensor.jeff_alarm
 
+Gerzelda:
+  - sensor.google_reverse_geocode__gerzelda
+  - camera.gerzelda_location
+
 
 # Kitchen view
 
 kitchen_view_lights:
   name: Lights
   entities:
-    - light.entryway_light
+    - light.osram_lightify_br_tunable_white_0008a2d5_3
     - light.kitchen_lights
     - light.dining_lights
     - light.liquor_cabinet_lights
@@ -108,7 +113,8 @@ living_room_view_lights:
   entities:
     - light.dining_lights
     - light.liquor_cabinet_lights
-    - light.entertainment_lights
+    - light.entertainment_light_1
+    - light.entertainment_light_2
     - light.living_room_lamp_1
     - light.living_room_lamp_2
 
@@ -177,7 +183,7 @@ Bathroom Lights:
   - light.shower_light
 
 Kitchen Lights:
-  - light.entryway_light
+  - light.osram_lightify_br_tunable_white_0008a2d5_3
   - light.kitchen_lights
 
 Living Room Lights:
@@ -330,9 +336,9 @@ People:
   view: yes
   icon: mdi:account-multiple
   entities:
+    - group.guests
     - group.ak
     - group.jeff
-    - group.guests
 
 Kitchen:
   view: yes
@@ -361,9 +367,12 @@ Bedroom:
     - group.bedroom_view_bedroom_sensors
     - group.bedroom_view_bathroom_lights
     - group.bedroom_view_bathroom_sensors
+    - switch.bathroom_fan_switch
     - switch.humidifier
     - switch.bedroom_fluxer
     - switch.bathroom_fluxer
+    - switch.bedroom_motion
+    - switch.bathroom_motion
     - media_player.cast_bedroom
 
 Office:
@@ -386,6 +395,7 @@ Rooms:
     - group.bedroom_lights
     - group.outlets
     - group.fluxers
+    - switch.bathroom_fan_switch
 
 Other:
   view: yes

@@ -4,105 +4,40 @@
     switch.living_area_fluxer: off
     light.entertainment_lights:
       state: on
-      brightness: 60
-    light.living_room:
-      state: on
-      transition: 15
       profile: nightlight
       brightness: 65
-    light.entryway: off
+      transition: 10
+    light.living_room_lamp:
+      state: on
+      profile: nightlight
+      brightness: 65
+      transition: 10
+    light.osram_lightify_br_tunable_white_0008a2d5_3:
+      state: off
+      transition: 5
     light.kitchen_lights: off
     light.dining_lights: off
     light.bathroom: off
     light.closet: off
     light.bedroom: off
     light.office_light: off
+    light.liquor_cabinet_lights: off
     switch.cat_water: off
-- name: Bedtime
-  entities:
-    switch.living_area_fluxer: off
-    switch.bedroom_fluxer: off
-    switch.bathroom_fluxer: off
-    light.kitchen_lights:
-      state: on
-      brightness: 63
-    light.dining_lights: off
-    light.entertainment_lights: off
-    light.entryway_light:
-      state: on
-      profile: nightlight
-    light.living_room:
-      state: on
-      profile: nightlight
-    light.bedroom_lamp:
-      state: on
-      profile: nightlight
-    light.tree_lamp_1:
-      state: on
-      profile: nightlight
-    light.tree_lamp_2: off
-    light.tree_lamp_3:
-      state: on
-      profile: nightlight
-    light.tree_lamp_4: off
-    light.tree_lamp_5:
-      state: on
-      profile: nightlight
-    light.shower_light: off
-    light.bathroom_mirror_1:
-      state: on
-      profile: nightlight
-    light.bathroom_mirror_2: off
-    light.bathroom_mirror_3:
-      state: on
-      profile: nightlight
-    light.bathroom_mirror_4: off
-    light.closet_light:
-      state: on
-      profile: nightlight
-    climate.apartment:
-      target_temp_high: 72
-      temperature: 72
-      target_temp_low: 60
 - name: Couch Reading
   entities:
     switch.living_area_fluxer:
       state: off
-    light.living_room:
+    light.living_room_lamp:
       state: on
       xy_color: [0.4449, 0.4066]
       brightness: 173
     light.entertainment_lights:
       state: on
+      xy_color: [0.4449, 0.4066]
       brightness: 60
     light.dining_lights:
       state: on
       brightness: 100
-- name: Up late
-  entities:
-    switch.living_area_fluxer: off
-    switch.bathroom_fluxer: off
-    light.kitchen_lights:
-      state: on
-      brightness: 63
-    light.living_room_lamp_1: off
-    light.living_room_lamp_2:
-      state: on
-      profile: late
-    light.entryway_light: off
-    light.office_light:
-      state: on
-      brightness: 50
-    light.bathroom_mirror_1:
-      state: on
-      brightness: 8
-      color_temp: 454
-    light.shower_light: off
-    light.bathroom_mirror_2: off
-    light.bathroom_mirror_3: off
-    light.bathroom_mirror_4: off
-    light.dining_lights: off
-    light.entertainment_lights: off
 - name: Romantic
   entities:
     switch.living_area_fluxer: off
@@ -114,24 +49,18 @@
     light.kitchen_lights:
       state: on
       brightness: 94
-    light.entryway_light:
+    light.osram_lightify_br_tunable_white_0008a2d5_3:
       state: on
-      transition: 30
       xy_color: [0.5923,0.3829]
       brightness: 160
-    light.living_room:
-      state: on
       transition: 30
+    light.living_room_lamp:
+      state: on
       xy_color: [0.5923,0.3829]
       brightness: 160
+      transition: 30
     light.bedroom:
       state: on
-      transition: 30
       xy_color: [0.5923,0.3829]
       brightness: 160
-- name: Lights Out
-  entities:
-    group.all_lights: off
-    switch.living_area_fluxer: on
-    switch.bedroom_fluxer: on
-    switch.bathroom_fluxer: on
+      transition: 30

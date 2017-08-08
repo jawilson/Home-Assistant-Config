@@ -5,10 +5,10 @@ script.dinner:
 scene.romantic:
   icon: mdi:candle
 
-scene.bedtime:
+script.bedtime:
   icon: mdi:hotel
 
-scene.up_late:
+script.up_late:
   icon: mdi:weather-night
 
 scene.couch_reading:
@@ -18,5 +18,5 @@ script.getting_ready:
   icon: mdi:brush
   emulated_hue: true
 
-scene.lights_out:
+script.lights_out:
   icon: mdi:flashlight-off

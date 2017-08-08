@@ -32,6 +32,7 @@
   api_key: !secret google_api_key
   entity_id: device_tracker.jawilson_fluorine
 
+
 # AK
 
 - platform: mqtt

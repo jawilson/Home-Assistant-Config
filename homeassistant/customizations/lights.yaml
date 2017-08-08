@@ -11,15 +11,21 @@ light.bathroom:
   emulated_hue: false
 light.bathroom_mirror:
   emulated_hue: false
-light.entryway:
-  hidden: true
-  emulated_hue: false
 light.living_room:
   hidden: true
   emulated_hue: false
 light.living_room_lamp:
   emulated_hue: false
+light.entertainment_lights:
+  emulated_hue: false
 
 group.all_lights:
   friendly_name: All Lights
   emulated_hue: true
+
+light.osram_lightify_br_tunable_white_0008a2d5_3:
+  friendly_name: Entryway light
+
+light.dimmer:
+  hidden: true
+  emulated_hue: false

@@ -9,8 +9,10 @@ sequence:
       - switch.projector
       - switch.christmas_tree
       - switch.humidifier
-  - delay:
-      minutes: 5
+  - service: media_player.turn_off
+    entity_id:
+      - media_player.cast_bedroom
+      - media_player.cast_kitchen_home
   - service: switch.turn_on
     entity_id:
       - switch.living_room_fluxer

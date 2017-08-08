@@ -7,3 +7,7 @@ zwave.bedroom:
   friendly_name: 'Bedroom 4-in-1 sensor'
 sensor.bedroom_alarm_level:
   friendly_name: 'Bedroom Motion'
+
+switch.bathroom_fan_switch:
+  friendly_name: 'Bathroom Fan'
+  icon: mdi:fan

@@ -1,0 +1,58 @@
+alias: Bedtime
+sequence:
+  - service: switch.turn_off
+    entity_id:
+      - switch.living_area_fluxer
+      - switch.bathroom_fluxer
+
+  - service: climate.set_temperature
+    data:
+      entity_id: climate.apartment
+      target_temp_high: 70
+      temperature: 72
+      target_temp_low: 60
+
+  - service: light.turn_off
+    entity_id:
+      - light.dining_lights
+      - light.liquor_cabinet_lights
+      - light.osram_lightify_br_tunable_white_0008a2d5_3
+      - light.tree_lamp_2
+      - light.tree_lamp_4
+      - light.shower_light
+      - light.bathroom_mirror_2
+      - light.bathroom_mirror_4
+    data:
+      transition: 5
+
+  - service: light.turn_on
+    entity_id: light.kitchen_lights
+    data:
+      brightness: 70
+
+  - service: light.turn_on
+    entity_id:
+      - light.living_room_lamp
+      - light.entertainment_lights
+      - light.bathroom_mirror_1
+      - light.bathroom_mirror_3
+    data:
+      profile: nightlight
+      transition: 5
+
+  - condition: state
+    entity_id: binary_sensor.sleeping_at_home
+    state: 'off'
+
+  - service: switch.turn_off
+    entity_id: switch.bedroom_fluxor
+
+  - service: light.turn_on
+    entity_id:
+      - light.bedroom_lamp
+      - light.tree_lamp_1
+      - light.tree_lamp_3
+      - light.tree_lamp_5
+    data:
+      profile: nightlight
+      transition: 5

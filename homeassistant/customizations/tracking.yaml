@@ -24,6 +24,10 @@ sensor.ak_alarm:
 sensor.google_reverse_geocode__ak:
   friendly_name: 'AK Location'
 
+# Gerzelda_
+sensor.google_reverse_geocode__gerzelda:
+  friendly_name: 'Gerzelda Location'
+
 # Other
 binary_sensor.guests:
   device_class: occupancy

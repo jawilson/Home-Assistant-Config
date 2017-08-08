@@ -15,3 +15,8 @@ switch.orvibo2:
   emulated_hue: false
 switch.humidifier:
   icon: mdi:water
+
+switch.bathroom_motion:
+  emulated_hue: false
+switch.bedroom_motion:
+  emulated_hue: false

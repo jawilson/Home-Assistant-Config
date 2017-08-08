@@ -1,0 +1,39 @@
+alias: Up Late
+sequence:
+  - service: switch.turn_off
+    entity_id:
+      - switch.living_area_fluxer
+      - switch.bathroom_fluxer
+
+  - service: light.turn_off
+    entity_id:
+      - light.shower_light
+      - light.bathroom_mirror_2
+      - light.bathroom_mirror_3
+      - light.bathroom_mirror_4
+      - light.dining_lights
+      - light.entertainment_lights
+      - light.living_room_lamp_1
+      - light.osram_lightify_br_tunable_white_0008a2d5_3
+    data:
+      transition: 5
+
+  - service: light.turn_on
+    entity_id: light.office_light
+    data:
+      brightness: 50
+  - service: light.turn_on
+    entity_id: light.living_room_lamp_2
+    data:
+      profile: late
+      transition: 5
+  - service: light.turn_on
+    entity_id: light.kitchen_lights
+    data:
+      brightness: 63
+  - service: light.turn_on
+    entity_id: light.bathroom_mirror_1
+    data:
+      brightness: 8
+      color_temp: 454
+      transition: 5
