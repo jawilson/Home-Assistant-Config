@@ -8,6 +8,9 @@
     - service: automation.turn_off
       entity_id:
         - automation.slack_motion_intruder_alert
+        - automation.living_area_fluxer
+        - automation.bedroom_fluxer
+        - automation.bathroom_fluxer
     - service: switch.turn_on
       entity_id:
         - switch.living_area_fluxer
