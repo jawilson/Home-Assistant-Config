@@ -66,3 +66,9 @@
 - platform: google_reverse_geocode
   api_key: !secret google_api_key
   entity_id: device_tracker.annekat_reality
+
+
+# Gerzelda
+- platform: google_reverse_geocode
+  api_key: !secret google_api_key
+  entity_id: device_tracker.gerzelda

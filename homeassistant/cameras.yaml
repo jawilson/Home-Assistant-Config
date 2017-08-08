@@ -18,3 +18,11 @@
     https://maps.googleapis.com/maps/api/staticmap?center={{ loc.latitude }},{{ loc.longitude -}}
     &zoom=15&size=500x500&maptype=roadmap&markers=color:blue%7Clabel:J%7C{{ loc.latitude }},{{ loc.longitude }}
   limit_refetch_to_url_change: true
+- name: Gerzelda Location
+  platform: generic
+  still_image_url: >
+    {% set loc = states.zone.home.attributes if is_state('device_tracker.gerzelda', 'home')
+      else states.device_tracker.gerzelda.attributes %}
+    https://maps.googleapis.com/maps/api/staticmap?center={{ loc.latitude }},{{ loc.longitude -}}
+    &zoom=15&size=500x500&maptype=roadmap&markers=color:gray%7Clabel:G%7C{{ loc.latitude }},{{ loc.longitude }}
+  limit_refetch_to_url_change: true

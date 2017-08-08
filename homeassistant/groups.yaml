@@ -339,6 +339,7 @@ People:
     - group.guests
     - group.ak
     - group.jeff
+    - group.gerzelda
 
 Kitchen:
   view: yes
