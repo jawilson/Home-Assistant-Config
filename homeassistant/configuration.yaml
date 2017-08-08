@@ -242,8 +242,10 @@ remote:
 # Cameras
 camera: !include cameras.yaml
 
-alexa: !include alexa.yaml
-apiai: !include apiai.yaml
+# Intent services
+alexa:
+apiai:
+intent_script: !include intent_scripts.yaml
 
 # Switches
 switch: !include_dir_merge_list switches
