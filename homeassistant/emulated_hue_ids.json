@@ -31,7 +31,6 @@
     "35": "fan.office_fan",
     "42": "script.lights_out",
     "43": "light.shower_light",
-    "44": "light.bathroom_mirror_2",
     "44": "switch.bathroom_fan_switch",
     "45": "light.bathroom_mirror_1",
     "46": "light.bathroom_mirror_3",
@@ -43,5 +42,6 @@
     "56": "script.apartment_shutdown",
     "57": "script.getting_ready",
     "62": "light.entertainment_light_1",
-    "63": "light.entertainment_light_2"
+    "63": "light.entertainment_light_2",
+    "64": "light.bathroom_mirror_2"
 }
