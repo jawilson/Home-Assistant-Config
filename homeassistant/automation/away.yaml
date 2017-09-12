@@ -1,7 +1,7 @@
 - alias: Handle lights when leaving
   trigger:
     - platform: state
-      entity_id: group.all_devices
+      entity_id: group.everyone
       to: 'not_home'
     - platform: state
       entity_id: group.wifi_devices

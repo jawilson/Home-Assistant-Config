@@ -8,6 +8,9 @@ Family:
   - device_tracker.annekat_reality
   - device_tracker.reality
 
+Everyone:
+  - group.family
+  - group.guests
 
 WiFi Devices:
   - device_tracker.fluorine

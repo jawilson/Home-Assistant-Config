@@ -55,7 +55,7 @@
     presume_home:
       friendly_name: 'Someone presumed home'
       value_template: >-
-        {{ is_state('group.all_devices', 'home') or is_state('input_boolean.guests', 'on') }}
+        {{ is_state('group.everyone', 'home') or is_state('input_boolean.guests', 'on') }}
     sleeping_at_home:
       friendly_name: 'Anyone sleeping at home'
       value_template: >-

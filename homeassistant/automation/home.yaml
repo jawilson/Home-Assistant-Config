@@ -1,7 +1,7 @@
 - alias: Handle lights when arriving home
   trigger:
     - platform: state
-      entity_id: group.all_devices
+      entity_id: group.everyone
       to: 'home'
   condition:
     - condition: state
@@ -38,7 +38,7 @@
       entity_id: proximity.home
       below: 500
     - platform: state
-      entity_id: group.all_devices
+      entity_id: group.everyone
       to: 'home'
   condition:
     - condition: state
@@ -67,7 +67,7 @@
     condition: and
     conditions:
       - condition: state
-        entity_id: group.all_devices
+        entity_id: group.everyone
         state: 'home'
       - condition: state
         entity_id: input_boolean.climate_auto
