@@ -16,7 +16,7 @@ services:
       - ./mqtt/data:/mosquitto/data
       - ./ssl/certs:/mosquitto/config/certs:ro
       - ./ssl/private/mqtt.singularity.net.key:/mosquitto/config/private/mqtt.singularity.net.key:ro
-  postgres:
+  database:
     image: library/postgres:9.6.1
     restart: always
     volumes:
@@ -31,7 +31,7 @@ services:
     links:
       - mqtt
       - mqtt:mqtt.singularity.net
-      - postgres:database
+      - database
     restart: always
     dns: 192.168.0.1
     dns_search: singularity.net
