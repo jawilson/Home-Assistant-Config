@@ -18,4 +18,6 @@ sequence:
       - switch.living_room_fluxer
       - switch.bathroom_fluxer
       - switch.bedroom_fluxer
+      - switch.bathroom_motion
+      - switch.bedroom_motion
       - switch.cat_water
