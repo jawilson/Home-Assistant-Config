@@ -10,5 +10,5 @@ sequence:
     data:
       entity_id: climate.apartment
       target_temp_high: 70
-      temperature: 72
+      temperature: 70
       target_temp_low: 60
