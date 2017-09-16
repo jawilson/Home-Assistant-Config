@@ -1,8 +1,32 @@
 - platform: flux
-  name: Living Area Fluxer
+  name: Living Room Fluxer
   lights: !include ../fluxer_lights/living_area.yaml
   start_time: '7:00'
   start_colortemp: 6000
+
+- platform: flux
+  name: Entryway Fluxer
+  lights: !include ../fluxer_lights/entryway.yaml
+  start_time: '7:00'
+  start_colortemp: 6000
+  mode: mired
+
+- platform: template
+  switches:
+    living_area_fluxer:
+      friendly_name: Living Area Fluxer
+      value_template: >
+        {{is_state('switch.living_room_fluxer', 'on') and is_state('switch.entryway_fluxer', 'on')}}
+      turn_on:
+        service: switch.turn_on
+        entity_id:
+          - switch.living_room_fluxer
+          - switch.entryway_fluxer
+      turn_off:
+        service: switch.turn_off
+        entity_id:
+          - switch.living_room_fluxer
+          - switch.entryway_fluxer
 
 - platform: flux
   name: Bedroom Fluxer

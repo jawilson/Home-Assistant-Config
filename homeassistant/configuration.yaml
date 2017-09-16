@@ -30,7 +30,6 @@ logbook:
     entities:
       - light.bedroom
       - light.living_room
-      - light.entryway
       - light.tree_lamp_1
       - light.tree_lamp_2
       - light.tree_lamp_3
@@ -75,7 +74,6 @@ history:
       - light.bathroom_mirror_4
       - light.bedroom
       - light.closet
-      - light.entryway
       - light.living_room
       - light.living_room_lamp_1
       - light.living_room_lamp_2
