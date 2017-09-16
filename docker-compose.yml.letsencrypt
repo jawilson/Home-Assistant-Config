@@ -1,0 +1,9 @@
+version: '2'
+services:
+  certbot:
+    image: certbot/certbot:latest
+    ports:
+      - 8081:80
+    volumes:
+      - ./letsencrypt/:/etc/letsencrypt
+    command: renew --standalone --preferred-challenges http --email jeff@jeffalwilson.com
