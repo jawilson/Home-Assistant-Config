@@ -25,7 +25,3 @@ group.all_lights:
 
 light.osram_lightify_br_tunable_white_0008a2d5_3:
   friendly_name: Entryway light
-
-light.dimmer:
-  hidden: true
-  emulated_hue: false

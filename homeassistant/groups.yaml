@@ -215,6 +215,7 @@ Outlets:
   - switch.orvibo1
   - input_select.orvibo2
   - switch.orvibo2
+  - light.inovelli_dimmer_level
 
 
 # Media view

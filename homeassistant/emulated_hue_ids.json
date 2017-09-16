@@ -43,5 +43,6 @@
     "57": "script.getting_ready",
     "62": "light.entertainment_light_1",
     "63": "light.entertainment_light_2",
-    "64": "light.bathroom_mirror_2"
+    "64": "light.bathroom_mirror_2",
+    "65": "light.inovelli_dimmer_level"
 }

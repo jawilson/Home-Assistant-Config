@@ -11,3 +11,6 @@ sensor.bedroom_alarm_level:
 switch.bathroom_fan_switch:
   friendly_name: 'Bathroom Fan'
   icon: mdi:fan
+
+light.inovelli_dimmer_level:
+  friendly_name: 'Inovelli Dimmer'
