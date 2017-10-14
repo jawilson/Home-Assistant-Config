@@ -37,3 +37,20 @@ sequence:
       brightness: 8
       color_temp: 454
       transition: 5
+
+  - condition: state
+    entity_id: binary_sensor.sleeping_at_home
+    state: 'off'
+
+  - service: switch.turn_off
+    entity_id: switch.bedroom_fluxer
+
+  - service: light.turn_on
+    entity_id:
+      - light.bedroom_lamp
+      - light.tree_lamp_1
+      - light.tree_lamp_3
+      - light.tree_lamp_5
+    data:
+      profile: nightlight
+      transition: 5

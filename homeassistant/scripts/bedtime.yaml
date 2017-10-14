@@ -14,6 +14,7 @@ sequence:
 
   - service: light.turn_off
     entity_id:
+      - light.office_light
       - light.dining_lights
       - light.liquor_cabinet_lights
       - light.osram_lightify_br_tunable_white_0008a2d5_3
@@ -45,7 +46,7 @@ sequence:
     state: 'off'
 
   - service: switch.turn_off
-    entity_id: switch.bedroom_fluxor
+    entity_id: switch.bedroom_fluxer
 
   - service: light.turn_on
     entity_id:
