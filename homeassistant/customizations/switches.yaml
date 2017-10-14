@@ -1,7 +1,7 @@
 switch.orvibo1:
   friendly_name: 'Outlet 1'
   icon: mdi:power-plug
-  emulated_hue: false
+  emulated_hue_hidden: true
 switch.crockpot:
   icon: mdi:pot
 switch.christmas_tree:
@@ -12,11 +12,11 @@ switch.cat_water:
 switch.orvibo2:
   friendly_name: 'Outlet 2'
   icon: mdi:power-plug
-  emulated_hue: false
+  emulated_hue_hidden: true
 switch.humidifier:
   icon: mdi:water
 
 switch.bathroom_motion:
-  emulated_hue: false
+  emulated_hue_hidden: true
 switch.bedroom_motion:
-  emulated_hue: false
+  emulated_hue_hidden: true

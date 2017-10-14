@@ -1,2 +1,2 @@
 script.apartment_shutdown:
-  emulated_hue: true
+  emulated_hue_hidden: false
