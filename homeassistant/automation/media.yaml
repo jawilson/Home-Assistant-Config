@@ -8,32 +8,13 @@
       entity_id: input_boolean.media_automation
       state: 'on'
   action:
-    - service: media_player.turn_off
-      entity_id: media_player.cast_kitchen_home
-    - service: light.turn_off
-      entity_id:
-        - light.kitchen_lights
-        - light.dining_lights
-        - light.office_light
-    - service: light.turn_off
-      entity_id:
-        - light.liquor_cabinet_lights
-        - light.osram_lightify_br_tunable_white_0008a2d5_3
-        - light.bedroom
-        - light.bathroom
-        - light.closet
-      data:
-        transition: 5
-    - service: switch.turn_off
-      entity_id:
-        - switch.christmas_tree
-        - switch.cat_water
+    - service: python_script.shield_plex_playing
     # Turn off the rest of the lights if we haven't started dinner in the last hour
     - condition: template
       value_template: >
         {{ (as_timestamp(now()) - as_timestamp(states.script.dinner.attributes.last_triggered))/60 > 60 }}
     - service: light.turn_off
-      entity_id: group.all_lights
+      entity_id: light.living_room
 
 - alias: 'SHIELD Plex Idle'
   trigger:
