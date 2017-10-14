@@ -19,6 +19,9 @@ light.living_room_lamp:
 light.entertainment_lights:
   emulated_hue_hidden: true
 
+light.all_hue_lights:
+  emulated_hue_hidden: true
+
 group.all_lights:
   friendly_name: All Lights
   emulated_hue_hidden: false
