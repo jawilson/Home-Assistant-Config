@@ -3,7 +3,7 @@
     platform: homeassistant
     event: start
   action:
-    - service: script.jawilson_fluorine_location_update
+    - service: script.jawilson_phosphorus_location_update
     - service: script.annekat_reality_location_update
     - service: automation.turn_off
       entity_id:

@@ -71,7 +71,7 @@
 - alias: Update Locations
   trigger:
     - platform: numeric_state
-      entity_id: device_tracker.jawilson_fluorine
+      entity_id: device_tracker.jawilson_phosphorus
       value_template: >
         {{ (as_timestamp(now()) - as_timestamp(state.last_updated))/60 }}
       above: 30
@@ -84,14 +84,14 @@
     service: script.owntracks_location_update
     data_template:
       user: >
-        {% if trigger.entity_id == 'device_tracker.jawilson_fluorine' %}
+        {% if trigger.entity_id == 'device_tracker.jawilson_phosphorus' %}
         jawilson
         {% elif trigger.entity_id == 'device_tracker.annekat_reality' %}
         annekat
         {% endif %}
       device: >
-        {% if trigger.entity_id == 'device_tracker.jawilson_fluorine' %}
-        fluorine
+        {% if trigger.entity_id == 'device_tracker.jawilson_phosphorus' %}
+        phosphorus
         {% elif trigger.entity_id == 'device_tracker.annekat_reality' %}
         reality
         {% endif %}

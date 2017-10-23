@@ -271,7 +271,7 @@ proximity:
       - dhs
       - 650_mass
     devices:
-      - device_tracker.jawilson_fluorine
+      - device_tracker.jawilson_phosphorus
       - device_tracker.annekat_reality
     tolerance: 50
     unit_of_measurement: m

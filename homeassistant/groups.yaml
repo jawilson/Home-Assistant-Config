@@ -3,8 +3,8 @@
 #
 
 Family:
-  - device_tracker.jawilson_fluorine
-  - device_tracker.fluorine
+  - device_tracker.jawilson_phosphorus
+  - device_tracker.phosphorus
   - device_tracker.annekat_reality
   - device_tracker.reality
 
@@ -13,7 +13,7 @@ Everyone:
   - group.guests
 
 WiFi Devices:
-  - device_tracker.fluorine
+  - device_tracker.phosphorus
   - device_tracker.reality
   - group.guests
 
@@ -76,7 +76,7 @@ AK:
 
 Jeff:
   - sensor.google_reverse_geocode__jeff
-  - script.jawilson_fluorine_location_update
+  - script.jawilson_phosphorus_location_update
   - camera.jeff_location
   - sensor.jeff_battery
   - sensor.jeff_sleep_state
@@ -319,7 +319,7 @@ default_view:
   icon: mdi:home
   entities:
     - device_tracker.annekat_reality
-    - device_tracker.jawilson_fluorine
+    - device_tracker.jawilson_phosphorus
     - group.weather
     - group.climate
     - group.scenes

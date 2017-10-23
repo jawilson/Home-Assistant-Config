@@ -76,7 +76,7 @@
           {% if trigger.entity_id == 'binary_sensor.ak_sleeping_at_home' %}
           reality
           {% elif trigger.entity_id == 'binary_sensor.jeff_sleeping_at_home' %}
-          fluorine
+          phosphorus
           {% endif %}
     - service: script.bathroom_wakeup
     - service: script.living_area_wakeup
@@ -121,7 +121,7 @@
           - condition: template
             value_template: "{{ trigger.entity_id == 'sensor.jeff_alarm' }}"
           - condition: state
-            entity_id: device_tracker.jawilson_fluorine
+            entity_id: device_tracker.jawilson_phosphorus
             state: home
   action:
     - service: switch.turn_on
@@ -151,7 +151,7 @@
           - condition: template
             value_template: "{{ trigger.entity_id == 'sensor.jeff_alarm' }}"
           - condition: state
-            entity_id: device_tracker.jawilson_fluorine
+            entity_id: device_tracker.jawilson_phosphorus
             state: home
   action:
     - service: script.apartment_wakeup
@@ -178,7 +178,7 @@
           - condition: template
             value_template: "{{ trigger.entity_id == 'sensor.jeff_alarm' }}"
           - condition: state
-            entity_id: device_tracker.jawilson_fluorine
+            entity_id: device_tracker.jawilson_phosphorus
             state: home
   action:
     - service: script.alarm_ringing
@@ -193,7 +193,7 @@
           {% if trigger.entity_id == 'sensor.ak_alarm' %}
           reality
           {% elif trigger.entity_id == 'sensor.jeff_alarm' %}
-          fluorine
+          phosphorus
           {% endif %}
 
 
@@ -219,7 +219,7 @@
           - condition: template
             value_template: "{{ trigger.entity_id == 'sensor.jeff_alarm' }}"
           - condition: state
-            entity_id: device_tracker.jawilson_fluorine
+            entity_id: device_tracker.jawilson_phosphorus
             state: home
   action:
     - service: script.alarm_snooze
@@ -259,7 +259,7 @@
             - condition: template
               value_template: "{{ trigger.entity_id == 'sensor.jeff_alarm' }}"
             - condition: state
-              entity_id: device_tracker.jawilson_fluorine
+              entity_id: device_tracker.jawilson_phosphorus
               state: home
   action:
     - service: script.alarm_dismiss

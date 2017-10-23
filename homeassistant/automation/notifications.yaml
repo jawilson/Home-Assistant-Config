@@ -1,7 +1,7 @@
 - alias: 'Slack Updates'
   trigger:
     - platform: state
-      entity_id: device_tracker.jawilson_fluorine, device_tracker.annekat_reality
+      entity_id: device_tracker.jawilson_phosphorus, device_tracker.annekat_reality
   condition:
     - condition: state
       entity_id: input_boolean.presence
