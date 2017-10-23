@@ -128,6 +128,9 @@ history:
 # Enables the frontend
 frontend:
 
+# Enables map panel
+map:
+
 # Enables configuration panel
 config:
 
