@@ -1,0 +1,4 @@
+google_assistent_sync:
+  url: !secret gcp_api_url
+  content_type: 'application/json'
+  payload: '{"agent_user_id": "homeassistant"}'

@@ -17,6 +17,7 @@
         - switch.bedroom_fluxer
         - switch.bathroom_fluxer
         - switch.cat_water
+    - service: rest_command.google_assistent_sync
 
 
 - alias: Startup Workaround

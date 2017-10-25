@@ -161,6 +161,16 @@ emulated_hue:
     - scene
     - fan
 
+google_assistant:
+  project_id: !secret google_assistant_project_id
+  client_id: !secret google_assistant_client_id
+  access_token: !secret google_assistant_access_token
+  exposed_domains:
+    - switch
+    - light
+    - scene
+    - fan
+
 ifttt:
   key: !secret ifttt_key
 
@@ -282,6 +292,7 @@ scene: !include scenes.yaml
 # Scripts
 script: !include_dir_named scripts
 python_script:
+rest_command: !include rest_commands.yaml
 
 # Automation
 automation: !include_dir_merge_list automation

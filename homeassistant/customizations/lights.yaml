@@ -1,30 +1,41 @@
 light.bedroom:
   hidden: true
   emulated_hue_hidden: true
+  google_assistant: false
 light.tree_lamp:
   emulated_hue_hidden: true
+  google_assistant: false
 light.closet:
   hidden: true
   emulated_hue_hidden: true
+  google_assistant: false
 light.bathroom:
   hidden: true
   emulated_hue_hidden: true
+  google_assistant: false
 light.bathroom_mirror:
   emulated_hue_hidden: true
+  google_assistant: false
 light.living_room:
   hidden: true
   emulated_hue_hidden: true
+  google_assistant: false
 light.living_room_lamp:
   emulated_hue_hidden: true
+  google_assistant: false
 light.entertainment_lights:
   emulated_hue_hidden: true
+  google_assistant: false
 
 light.all_hue_lights:
   emulated_hue_hidden: true
+  google_assistant: false
 
 group.all_lights:
   friendly_name: All Lights
   emulated_hue_hidden: false
+  google_assistant: false
 
 light.osram_lightify_br_tunable_white_0008a2d5_3:
   friendly_name: Entryway light
+  google_assistant_name: Entryway light

@@ -3,6 +3,7 @@ remote.harmony:
 switch.shield:
   icon: mdi:shield
   emulated_hue_hidden: true
+  google_assistant: false
 switch.shield_audio:
   icon: mdi:speaker
 switch.plex:

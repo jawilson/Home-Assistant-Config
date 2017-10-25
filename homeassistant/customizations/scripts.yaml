@@ -1,2 +1,3 @@
 script.apartment_shutdown:
   emulated_hue_hidden: false
+  google_assistant: true

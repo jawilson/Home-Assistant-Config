@@ -2,6 +2,7 @@ switch.orvibo1:
   friendly_name: 'Outlet 1'
   icon: mdi:power-plug
   emulated_hue_hidden: true
+  google_assistant: false
 switch.crockpot:
   icon: mdi:pot
 switch.christmas_tree:
@@ -13,6 +14,7 @@ switch.orvibo2:
   friendly_name: 'Outlet 2'
   icon: mdi:power-plug
   emulated_hue_hidden: true
+  google_assistant: false
 switch.humidifier:
   icon: mdi:water
 
@@ -20,3 +22,13 @@ switch.bathroom_motion:
   emulated_hue_hidden: true
 switch.bedroom_motion:
   emulated_hue_hidden: true
+
+switch.living_room_fluxer:
+  google_assistant: false
+switch.entryway_fluxer:
+  google_assistant: false
+switch.living_area_fluxer:
+  aliases:
+    - Livinge area fluxer
+    - Living room fluxer
+    - Entryway fulxer

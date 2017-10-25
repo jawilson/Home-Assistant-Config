@@ -1,6 +1,17 @@
 script.dinner:
   icon: mdi:silverware-fork
   emulated_hue_hidden: false
+  google_assistant: true
+  aliases:
+    - Dinner
+    - Dinner Time
+    - Lunch
+    - Lunch Time
+    - Breakfast
+    - Breakfast Time
+
+scene.tv_dinner:
+  google_assistant: false
 
 scene.romantic:
   icon: mdi:candle
@@ -8,10 +19,12 @@ scene.romantic:
 script.bedtime:
   icon: mdi:hotel
   emulated_hue_hidden: false
+  google_assistant: true
 
 script.up_late:
   icon: mdi:weather-night
   emulated_hue_hidden: false
+  google_assistant: true
 
 scene.couch_reading:
   icon: mdi:book-open-page-variant
@@ -19,6 +32,7 @@ scene.couch_reading:
 script.getting_ready:
   icon: mdi:brush
   emulated_hue_hidden: false
+  google_assistant: true
 
 script.lights_out:
   icon: mdi:flashlight-off
