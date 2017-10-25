@@ -1,4 +1,4 @@
-- alias: 'Slack Updates'
+- alias: Location Update Notification
   trigger:
     - platform: state
       entity_id: device_tracker.jawilson_phosphorus, device_tracker.annekat_reality
@@ -24,7 +24,7 @@
         {%- endif %}
 
 
-- alias: 'Slack Light Intruder Alert'
+- alias: Light Intruder Alert
   trigger:
     - platform: state
       entity_id: group.all_lights
@@ -55,7 +55,7 @@
               title: 'Potential Intruder Alert!'
               text: 'No one is home and a light was turned on'
 
-- alias: 'Slack Motion Intruder Alert'
+- alias: Motion Intruder Alert
   trigger:
     - platform: state
       entity_id: sensor.bedroom_alarm_level
