@@ -27,7 +27,6 @@ if not bathroom_motion and not showering:
 hass.services.call('switch', 'turn_off', {
     'entity_id': [
         'switch.christmas_tree',
-        'switch.cat_water'
     ]
 })
 

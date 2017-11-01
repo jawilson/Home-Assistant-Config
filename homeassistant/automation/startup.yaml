@@ -4,10 +4,10 @@
     event: start
   action:
     - service: script.jawilson_phosphorus_location_update
-    - service: script.annekat_reality_location_update
     - service: automation.turn_off
       entity_id:
         - automation.motion_intruder_alert
+        - automation.location_update_notification
         - automation.living_area_fluxer
         - automation.bedroom_fluxer
         - automation.bathroom_fluxer
@@ -16,7 +16,6 @@
         - switch.living_area_fluxer
         - switch.bedroom_fluxer
         - switch.bathroom_fluxer
-        - switch.cat_water
     - service: rest_command.google_assistent_sync
 
 

@@ -11,23 +11,6 @@ sensor.jeff_alarm:
 sensor.google_reverse_geocode__jeff:
   friendly_name: 'Jeff Location'
 
-# AK
-binary_sensor.ak_home:
-  device_class: occupancy
-sensor.ak_battery:
-  icon: mdi:battery
-sensor.ak_sleep_state:
-  icon: mdi:sleep
-sensor.ak_alarm:
-  friendly_name: "AK's Alarm"
-  icon: mdi:alarm
-sensor.google_reverse_geocode__ak:
-  friendly_name: 'AK Location'
-
-# Gerzelda_
-sensor.google_reverse_geocode__gerzelda:
-  friendly_name: 'Gerzelda Location'
-
 # Other
 binary_sensor.guests:
   device_class: occupancy

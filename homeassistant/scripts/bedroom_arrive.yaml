@@ -1,7 +1,7 @@
 alias: Bedroom Arrive
 sequence:
   - condition: state
-    entity_id: binary_sensor.sleeping_at_home
+    entity_id: binary_sensor.jeff_sleeping_at_home
     state: 'off'
   - condition: numeric_state
     entity_id: sensor.bedroom_luminance

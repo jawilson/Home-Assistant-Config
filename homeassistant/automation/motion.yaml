@@ -18,12 +18,12 @@
       entity_id: light.bedroom
       state: 'off'
     - condition: state
-      entity_id: binary_sensor.sleeping_at_home
+      entity_id: binary_sensor.jeff_sleeping_at_home
       state: 'off'
     - condition: or
       conditions:
         - condition: state
-          entity_id: binary_sensor.sleeping_at_home
+          entity_id: binary_sensor.jeff_sleeping_at_home
           state: 'off'
           for:
             minutes: 30
@@ -144,7 +144,7 @@
     - condition: or
       conditions:
         - condition: state
-          entity_id: binary_sensor.everyone_at_home_sleeping
+          entity_id: binary_sensor.jeff_sleeping
           state: 'on'
         - condition: and
           conditions:
@@ -193,7 +193,7 @@
           state: 'on'
         # If we're sleeping, fluxer will still be off, but we definitely want to turn off
         - condition: state
-          entity_id: binary_sensor.everyone_at_home_sleeping
+          entity_id: binary_sensor.jeff_sleeping
           state: 'on'
     - condition: and
       conditions:

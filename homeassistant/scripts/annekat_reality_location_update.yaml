@@ -1,6 +1,0 @@
-alias: AK Location Update
-sequence:
-  - service: script.owntracks_location_update
-    data:
-      user: annekat
-      device: reality

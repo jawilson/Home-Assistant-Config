@@ -1,13 +1,8 @@
 alias: Bathroom Wake Up
 sequence:
-  - condition: and
-    conditions:
-      - condition: state
-        entity_id: group.bathroom_lights
-        state: 'off'
-      - condition: state
-        entity_id: automation.bathroom_motion
-        state: 'on'
+  - condition: state
+    entity_id: automation.bathroom_motion
+    state: 'on'
 
 
   # Disable fluxer

@@ -22,7 +22,6 @@
     light.bedroom: off
     light.office_light: off
     light.liquor_cabinet_lights: off
-    switch.cat_water: off
 - name: Couch Reading
   entities:
     switch.living_area_fluxer:

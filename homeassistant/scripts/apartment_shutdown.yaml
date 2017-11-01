@@ -1,23 +1,18 @@
 alias: Apartment Shutdown
 sequence:
-  - service: light.turn_off
-    entity_id: group.all_lights
-  - service: fan.turn_off
-    entity_id: group.all_fans
-  - service: switch.turn_off
+  - service: homeassistant.turn_off
     entity_id:
+      - group.all_lights
+      - group.all_fans
       - switch.projector
       - switch.christmas_tree
       - switch.humidifier
-  - service: media_player.turn_off
-    entity_id:
       - media_player.cast_bedroom
       - media_player.cast_kitchen_home
-  - service: switch.turn_on
+  - service: homeassistant.turn_on
     entity_id:
       - switch.living_room_fluxer
       - switch.bathroom_fluxer
       - switch.bedroom_fluxer
       - switch.bathroom_motion
       - switch.bedroom_motion
-      - switch.cat_water

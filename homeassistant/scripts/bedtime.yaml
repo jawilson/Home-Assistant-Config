@@ -42,7 +42,7 @@ sequence:
       transition: 5
 
   - condition: state
-    entity_id: binary_sensor.sleeping_at_home
+    entity_id: binary_sensor.jeff_sleeping_at_home
     state: 'off'
 
   - service: switch.turn_off

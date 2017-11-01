@@ -86,13 +86,9 @@ history:
       - media_player.shield
   exclude:
     entities:
-      - binary_sensor.ak_sleeping
-      - binary_sensor.ak_sleeping_at_home
       - binary_sensor.apartment_thermostat_has_leaf
-      - binary_sensor.everyone_at_home_sleeping
       - binary_sensor.jeff_sleeping
       - binary_sensor.jeff_sleeping_at_home
-      - binary_sensor.sleeping_at_home
       - light.bathroom
       - light.bathroom_mirror_1
       - light.bathroom_mirror_2
@@ -119,9 +115,7 @@ history:
       - switch.bathroom_motion
       - switch.bedroom_fluxer
       - switch.bedroom_motion
-      - switch.cat_water
       - switch.christmas_tree
-      - switch.crockpot
       - switch.living_area_fluxer
       - switch.plex
       - switch.projector
@@ -282,13 +276,9 @@ zone: !include zones.yaml
 proximity:
   home:
     ignored_zones:
-      - blackstone
       - bline
-      - dhs
-      - 650_mass
     devices:
       - device_tracker.jawilson_phosphorus
-      - device_tracker.annekat_reality
     tolerance: 50
     unit_of_measurement: m
 

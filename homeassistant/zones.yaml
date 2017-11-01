@@ -9,38 +9,8 @@
   radius: 100
   icon: mdi:domain
 
-- name: Blackstone
-  latitude: 38.883844
-  longitude: -77.117164
-  radius: 150
-  icon: mdi:domain
-
-- name: DHS
-  latitude: 38.885332
-  longitude: -77.022973
-  radius: 100
-  icon: mdi:domain
-
-- name: 650 Mass
-  latitude: 38.901579
-  longitude: -77.021507
-  radius: 50
-  icon: mdi:domain
-
 - name: Dusty Spur Ranch
   latitude: 46.872303
   longitude: -120.772579
-  radius: 200
-  icon: mdi:home-variant
-
-- name: "Dalton's Home"
-  latitude: 36.574796
-  longitude: -79.409773
-  radius: 100
-  icon: mdi:home-variant
-
-- name: "Hallauer's Home"
-  latitude: 39.128182
-  longitude: -77.537637
   radius: 200
   icon: mdi:home-variant

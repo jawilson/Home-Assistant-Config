@@ -1,24 +1,5 @@
 alias: Bedroom Wake Up
 sequence:
-  - condition: state
-    entity_id: binary_sensor.sleeping_at_home
-    state: 'off'
-  - condition: time
-    after: '6:00:00'
-    before: '9:00:00'
-    weekday:
-      - mon
-      - tue
-      - wed
-      - thu
-      - fri
-
-
-  # AK hates the lights going on
-  - condition: template
-    value_template: "{{ target != 'reality' }}"
-
-
   # Disable fluxer
   - service: switch.turn_off
     entity_id: switch.bedroom_fluxer

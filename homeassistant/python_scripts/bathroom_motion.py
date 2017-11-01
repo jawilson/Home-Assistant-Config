@@ -1,6 +1,5 @@
-if hass.states.is_state('binary_sensor.everyone_at_home_sleeping', 'on') or (
-        hass.states.is_state('binary_sensor.sleeping_at_home', 'on') and
-        hass.states.is_state('group.all_lights', 'off')):
+if hass.states.is_state('binary_sensor.jeff_sleeping_at_home', 'on') or \
+        hass.states.is_state('group.all_lights', 'off'):
     hass.services.call('switch', 'turn_off', {'entity_id':
         'switch.bathroom_fluxer'}, True)
     service_data = {

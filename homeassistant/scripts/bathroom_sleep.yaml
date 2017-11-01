@@ -3,9 +3,6 @@ sequence:
   - condition: state
     entity_id: binary_sensor.guests
     state: 'off'
-  - condition: state
-    entity_id: binary_sensor.everyone_at_home_sleeping
-    state: 'on'
   - service: light.turn_off
     entity_id: light.bathroom
   - service: switch.turn_on

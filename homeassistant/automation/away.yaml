@@ -24,7 +24,7 @@
   trigger:
     - platform: numeric_state
       entity_id: proximity.home
-      above: 450
+      above: 500
     - platform: state
       entity_id: group.wifi_devices
       to: 'not_home'
@@ -75,23 +75,14 @@
       value_template: >
         {{ (as_timestamp(now()) - as_timestamp(state.last_updated))/60 }}
       above: 30
-    - platform: numeric_state
-      entity_id: device_tracker.annekat_reality
-      value_template: >
-        {{ (as_timestamp(now()) - as_timestamp(state.last_updated))/60 }}
-      above: 30
   action:
     service: script.owntracks_location_update
     data_template:
       user: >
         {% if trigger.entity_id == 'device_tracker.jawilson_phosphorus' %}
         jawilson
-        {% elif trigger.entity_id == 'device_tracker.annekat_reality' %}
-        annekat
         {% endif %}
       device: >
         {% if trigger.entity_id == 'device_tracker.jawilson_phosphorus' %}
         phosphorus
-        {% elif trigger.entity_id == 'device_tracker.annekat_reality' %}
-        reality
         {% endif %}

@@ -12,36 +12,12 @@
     jeff_home:
       friendly_name: 'Jeff is at Home'
       value_template: >-
-        {{ is_state('device_tracker.jawilson_phosphorus', 'home')
-            or is_state('device_tracker.phosphorus', 'home') }}
+        {{ is_state('device_tracker.jawilson_phosphorus', 'home') }}
     jeff_sleeping_at_home:
       friendly_name: 'Jeff Sleeping at Home'
       value_template: >-
         {{ is_state('binary_sensor.jeff_home', 'on')
             and is_state('binary_sensor.jeff_sleeping', 'on') }}
-
-
-# AK
-
-- platform: mqtt
-  state_topic: 'person/ak/sleeping'
-  name: 'AK Sleeping'
-  qos: 1
-  payload_on: 'yes'
-  payload_off: 'no'
-
-- platform: template
-  sensors:
-    ak_home:
-      friendly_name: 'AK is at Home'
-      value_template: >-
-        {{ is_state('device_tracker.annekat_reality', 'home')
-            or is_state('device_tracker.reality', 'home') }}
-    ak_sleeping_at_home:
-      friendly_name: 'AK Sleeping at Home'
-      value_template: >-
-        {{ is_state('binary_sensor.ak_home', 'on')
-            and is_state('binary_sensor.ak_sleeping', 'on') }}
 
 
 # All
@@ -56,16 +32,3 @@
       friendly_name: 'Someone presumed home'
       value_template: >-
         {{ is_state('group.everyone', 'home') or is_state('input_boolean.guests', 'on') }}
-    sleeping_at_home:
-      friendly_name: 'Anyone sleeping at home'
-      value_template: >-
-        {{ is_state('binary_sensor.jeff_sleeping_at_home', 'on')
-            or is_state('binary_sensor.ak_sleeping_at_home', 'on') }}
-    everyone_at_home_sleeping:
-      friendly_name: 'Everyone at home is sleeping'
-      value_template: >-
-        {{ is_state('group.family', 'home') and
-          (is_state('binary_sensor.ak_sleeping_at_home', 'on') or
-            not is_state('binary_sensor.ak_home', 'on')) and
-          (is_state('binary_sensor.jeff_sleeping_at_home', 'on') or
-            not is_state('binary_sensor.jeff_home', 'on')) }}

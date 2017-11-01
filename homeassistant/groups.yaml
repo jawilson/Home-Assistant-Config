@@ -2,19 +2,11 @@
 # Groups
 #
 
-Family:
-  - device_tracker.jawilson_phosphorus
-  - device_tracker.phosphorus
-  - device_tracker.annekat_reality
-  - device_tracker.reality
-
 Everyone:
-  - group.family
+  - device_tracker.jawilson_phosphorus
   - group.guests
 
 WiFi Devices:
-  - device_tracker.phosphorus
-  - device_tracker.reality
   - group.guests
 
 Living Area Lights:
@@ -66,25 +58,10 @@ Guests: !include guest_devices.yaml
 
 # People view
 
-AK:
-  - sensor.google_reverse_geocode__ak
-  - script.annekat_reality_location_update
-  - camera.ak_location
-  - sensor.ak_battery
-  - sensor.ak_sleep_state
-  - sensor.ak_alarm
-
 Jeff:
-  - sensor.google_reverse_geocode__jeff
   - script.jawilson_phosphorus_location_update
-  - camera.jeff_location
-  - sensor.jeff_battery
   - sensor.jeff_sleep_state
   - sensor.jeff_alarm
-
-Gerzelda:
-  - sensor.google_reverse_geocode__gerzelda
-  - camera.gerzelda_location
 
 
 # Kitchen view
@@ -318,7 +295,6 @@ default_view:
   name: Home
   icon: mdi:home
   entities:
-    - device_tracker.annekat_reality
     - device_tracker.jawilson_phosphorus
     - group.weather
     - group.climate
@@ -330,16 +306,13 @@ People:
   icon: mdi:account-multiple
   entities:
     - group.guests
-    - group.ak
     - group.jeff
-    - group.gerzelda
 
 Kitchen:
   view: yes
   icon: mdi:fridge-filled
   entities:
     - group.kitchen_view_lights
-    - switch.crockpot
     - media_player.cast_kitchen_home
 
 Living Room:
@@ -347,7 +320,6 @@ Living Room:
   icon: mdi:sofa
   entities:
     - group.living_room_view_lights
-    - switch.cat_water
     - switch.living_area_fluxer
     - media_player.shield
     - group.harmony

@@ -1,32 +1,8 @@
 - alias: 'Go to Sleep'
   trigger:
-    - platform: state
-      entity_id:
-        - binary_sensor.ak_sleeping
-        - binary_sensor.jeff_sleeping
-      to: 'on'
-    - platform: state
-      entity_id: binary_sensor.everyone_at_home_sleeping
-      to: 'on'
-  condition:
-    - condition: or
-      conditions:
-        - condition: template
-          value_template: "{{ trigger.entity_id == 'binary_sensor.everyone_at_home_sleeping' }}"
-        - condition: and
-          conditions:
-            - condition: template
-              value_template: "{{ trigger.entity_id == 'binary_sensor.ak_sleeping' }}"
-            - condition: state
-              entity_id: binary_sensor.ak_sleeping_at_home
-              state: 'on'
-        - condition: and
-          conditions:
-            - condition: template
-              value_template: "{{ trigger.entity_id == 'binary_sensor.jeff_sleeping' }}"
-            - condition: state
-              entity_id: binary_sensor.jeff_sleeping_at_home
-              state: 'on'
+    platform: state
+    entity_id: binary_sensor.jeff_sleeping_at_home
+    to: 'on'
   action:
     - service: script.turn_off
       entity_id:
@@ -41,28 +17,9 @@
 
 - alias: 'Wake Up'
   trigger:
-    - platform: state
-      entity_id:
-        - binary_sensor.ak_sleeping_at_home
-        - binary_sensor.jeff_sleeping_at_home
-      to: 'off'
-  condition:
-    condition: or
-    conditions:
-      - condition: and
-        conditions:
-          - condition: template
-            value_template: "{{ trigger.entity_id == 'binary_sensor.ak_sleeping_at_home' }}"
-          - condition: state
-            entity_id: binary_sensor.ak_home
-            state: 'on'
-      - condition: and
-        conditions:
-          - condition: template
-            value_template: "{{ trigger.entity_id == 'binary_sensor.jeff_sleeping_at_home' }}"
-          - condition: state
-            entity_id: binary_sensor.jeff_home
-            state: 'on'
+    platform: state
+    entity_id: binary_sensor.jeff_sleeping_at_home
+    to: 'off'
   action:
     - service: switch.turn_off
       entity_id:
@@ -70,26 +27,30 @@
         - script.bathroom_sleep
         - script.living_area_sleep
         - script.apartment_sleep
-    - service: script.bedroom_wakeup
-      data_template:
-        target: >
-          {% if trigger.entity_id == 'binary_sensor.ak_sleeping_at_home' %}
-          reality
-          {% elif trigger.entity_id == 'binary_sensor.jeff_sleeping_at_home' %}
-          phosphorus
-          {% endif %}
     - service: script.bathroom_wakeup
     - service: script.living_area_wakeup
     - service: script.apartment_wakeup
+    - condition: time
+      after: '6:00:00'
+      before: '9:00:00'
+      weekday:
+        - mon
+        - tue
+        - wed
+        - thu
+        - fri
+    - service: script.bedroom_wakeup
+      data:
+        target: phosphorus
 
 
 - alias: 'Awake'
   trigger:
-    - platform: state
-      entity_id: binary_sensor.sleeping_at_home
-      to: 'off'
-      for:
-        hours: 1
+    platform: state
+    entity_id: binary_sensor.jeff_sleeping_at_home
+    to: 'off'
+    for:
+      hours: 1
   action:
     service: switch.turn_on
     entity_id:
@@ -101,28 +62,13 @@
 
 - alias: 'Alarm Bedtime'
   trigger:
-    - platform: state
-      entity_id:
-        - sensor.ak_alarm
-        - sensor.jeff_alarm
-      to: 'Bedtime'
+    platform: state
+    entity_id: sensor.jeff_alarm
+    to: 'Bedtime'
   condition:
-    condition: or
-    conditions:
-      - condition: and
-        conditions:
-          - condition: template
-            value_template: "{{ trigger.entity_id == 'sensor.ak_alarm' }}"
-          - condition: state
-            entity_id: device_tracker.annekat_reality
-            state: home
-      - condition: and
-        conditions:
-          - condition: template
-            value_template: "{{ trigger.entity_id == 'sensor.jeff_alarm' }}"
-          - condition: state
-            entity_id: device_tracker.jawilson_phosphorus
-            state: home
+    condition: state
+    entity_id: device_tracker.jawilson_phosphorus
+    state: 'home'
   action:
     - service: switch.turn_on
       entity_id: switch.humidifier
@@ -131,145 +77,63 @@
 
 - alias: 'Alarm Smart Period'
   trigger:
-    - platform: state
-      entity_id:
-        - sensor.ak_alarm
-        - sensor.jeff_alarm
-      to: 'Smart period'
+    platform: state
+    entity_id: sensor.jeff_alarm
+    to: 'Smart period'
   condition:
-    condition: or
-    conditions:
-      - condition: and
-        conditions:
-          - condition: template
-            value_template: "{{ trigger.entity_id == 'sensor.ak_alarm' }}"
-          - condition: state
-            entity_id: device_tracker.annekat_reality
-            state: home
-      - condition: and
-        conditions:
-          - condition: template
-            value_template: "{{ trigger.entity_id == 'sensor.jeff_alarm' }}"
-          - condition: state
-            entity_id: device_tracker.jawilson_phosphorus
-            state: home
+    condition: state
+    entity_id: device_tracker.jawilson_phosphorus
+    state: 'home'
   action:
-    - service: script.apartment_wakeup
+    service: script.apartment_wakeup
 
 
 - alias: 'Alarm Ringing'
   trigger:
-    - platform: state
-      entity_id:
-        - sensor.jeff_alarm
-      to: 'Ringing'
+    platform: state
+    entity_id: sensor.jeff_alarm
+    to: 'Ringing'
   condition:
-    condition: or
-    conditions:
-      - condition: and
-        conditions:
-          - condition: template
-            value_template: "{{ trigger.entity_id == 'sensor.ak_alarm' }}"
-          - condition: state
-            entity_id: device_tracker.annekat_reality
-            state: home
-      - condition: and
-        conditions:
-          - condition: template
-            value_template: "{{ trigger.entity_id == 'sensor.jeff_alarm' }}"
-          - condition: state
-            entity_id: device_tracker.jawilson_phosphorus
-            state: home
+    condition: state
+    entity_id: device_tracker.jawilson_phosphorus
+    state: 'home'
   action:
-    - service: script.alarm_ringing
-      data_template:
-        light: >
-          {% if trigger.entity_id == 'sensor.ak_alarm' %}
-          light.tree_lamp_5
-          {% elif trigger.entity_id == 'sensor.jeff_alarm' %}
-          light.bedroom_lamp
-          {% endif %}
-        target: >
-          {% if trigger.entity_id == 'sensor.ak_alarm' %}
-          reality
-          {% elif trigger.entity_id == 'sensor.jeff_alarm' %}
-          phosphorus
-          {% endif %}
+    service: script.alarm_ringing
+    data:
+      light: light.bedroom_lamp
+      target: phosphorus
 
 
 - alias: 'Alarm Snooze'
   trigger:
-    - platform: state
-      entity_id:
-        - sensor.ak_alarm
-        - sensor.jeff_alarm
-      to: 'Snoozed'
+    platform: state
+    entity_id: sensor.jeff_alarm
+    to: 'Snoozed'
   condition:
-    condition: or
-    conditions:
-      - condition: and
-        conditions:
-          - condition: template
-            value_template: "{{ trigger.entity_id == 'sensor.ak_alarm' }}"
-          - condition: state
-            entity_id: device_tracker.annekat_reality
-            state: home
-      - condition: and
-        conditions:
-          - condition: template
-            value_template: "{{ trigger.entity_id == 'sensor.jeff_alarm' }}"
-          - condition: state
-            entity_id: device_tracker.jawilson_phosphorus
-            state: home
+    condition: state
+    entity_id: device_tracker.jawilson_phosphorus
+    state: 'home'
   action:
-    - service: script.alarm_snooze
-      data_template:
-        light: >
-          {% if trigger.entity_id == 'sensor.ak_alarm' %}
-          light.tree_lamp_5
-          {% elif trigger.entity_id == 'sensor.jeff_alarm' %}
-          light.bedroom_lamp
-          {% endif %}
+    service: script.alarm_snooze
+    data:
+      light: light.bedroom_lamp
 
 
 - alias: 'Alarm Dismiss'
   trigger:
-    - platform: state
-      entity_id:
-        - sensor.ak_alarm
-        - sensor.jeff_alarm
-      to: 'Dismissed'
-      for:
-        seconds: 5
+    platform: state
+    entity_id: sensor.jeff_alarm
+    to: 'Dismissed'
+    for:
+      seconds: 5
   condition:
-    - condition: state
-      entity_id: binary_sensor.sleeping_at_home
-      state: 'on'
-    - condition: or
-      conditions:
-        - condition: and
-          conditions:
-            - condition: template
-              value_template: "{{ trigger.entity_id == 'sensor.ak_alarm' }}"
-            - condition: state
-              entity_id: device_tracker.annekat_reality
-              state: home
-        - condition: and
-          conditions:
-            - condition: template
-              value_template: "{{ trigger.entity_id == 'sensor.jeff_alarm' }}"
-            - condition: state
-              entity_id: device_tracker.jawilson_phosphorus
-              state: home
+    condition: state
+    entity_id: device_tracker.jawilson_phosphorus
+    state: 'home'
   action:
-    - service: script.alarm_dismiss
-      data_template:
-        light: >
-          {% if trigger.entity_id == 'sensor.ak_alarm' %}
-          light.tree_lamp_5
-          {% elif trigger.entity_id == 'sensor.jeff_alarm' %}
-          light.bedroom_lamp
-          {% endif %}
+    service: script.alarm_dismiss
+    data_template:
+      light: light.bedroom_lamp
 
 
 - alias: 'Wakeup Cancel'
@@ -279,7 +143,7 @@
     event_data:
       action: wakeup_cancel
   action:
-    - service: script.wakeup_cancel
-      data_template:
-        target: '{{ trigger.event.data.target }}'
-        script: '{{ trigger.event.data.data.script }}'
+    service: script.wakeup_cancel
+    data_template:
+      target: '{{ trigger.event.data.target }}'
+      script: '{{ trigger.event.data.data.script }}'
