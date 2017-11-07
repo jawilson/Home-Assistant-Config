@@ -184,7 +184,7 @@ notify: !include notifications.yaml
 
 # Intent services
 alexa:
-apiai:
+dialogflow:
 intent_script: !include intent_scripts.yaml
 
 #
