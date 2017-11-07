@@ -368,6 +368,7 @@ Bedroom:
     - switch.bedroom_motion
     - switch.bathroom_motion
     - media_player.cast_bedroom
+    - script.bedroom_wakeup
 
 Office:
   view: yes
