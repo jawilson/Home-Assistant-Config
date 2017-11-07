@@ -20,17 +20,17 @@
     - service: rest_command.google_assistent_sync
 
 
-- alias: Startup Workaround
-  initial_state: 'on'
-  trigger:
-    - platform: time
-      seconds: '/5'
-  action:
-    - service: automation.turn_off
-      entity_id: automation.startup_workaround
-    - service: automation.trigger
-      entity_id: automation.home_assistant_start
-    - service: logbook.log
-      data:
-        name: 'Startup Workaround'
-        message: 'Workaround triggered'
+#- alias: Startup Workaround
+#  initial_state: 'on'
+#  trigger:
+#    - platform: time
+#      seconds: '/5'
+#  action:
+#    - service: automation.turn_off
+#      entity_id: automation.startup_workaround
+#    - service: automation.trigger
+#      entity_id: automation.home_assistant_start
+#    - service: logbook.log
+#      data:
+#        name: 'Startup Workaround'
+#        message: 'Workaround triggered'
