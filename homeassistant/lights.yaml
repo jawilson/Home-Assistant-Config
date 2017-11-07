@@ -8,11 +8,11 @@
 - platform: insteon_local
 
 # Ikea Dioder
-#- platform: mqtt_json
-#  name: "Liquor cabinet lights"
-#  state_topic: "home/livingroom/liquorcabinet"
-#  command_topic: "home/livingroom/liquorcabinet/set"
-#  brightness: true
-#  rgb: true
-#  optimistic: false
-#  qos: 0
+- platform: mqtt_json
+  name: "Liquor cabinet lights"
+  state_topic: "home/livingroom/liquorcabinet"
+  command_topic: "home/livingroom/liquorcabinet/set"
+  brightness: true
+  rgb: true
+  optimistic: false
+  qos: 0
