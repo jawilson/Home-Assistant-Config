@@ -295,6 +295,7 @@ default_view:
   entities:
     - group.jeff
     - group.climate
+    - vacuum.doomba
     - media_player.cast_home_group
     - group.scenes
     - group.guests
