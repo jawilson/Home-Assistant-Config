@@ -82,7 +82,8 @@ history:
       - switch
     entities:
       - media_player.cast_bedroom
-      - media_player.cast_kitchen_home
+      - media_player.cast_bedroom_mini
+      - media_player.cast_kitchen
       - media_player.shield
   exclude:
     entities:
@@ -135,7 +136,7 @@ map:
 config:
 
 # Discover some devices automatically
-#discovery:
+discovery:
 
 # Track the sun
 sun:

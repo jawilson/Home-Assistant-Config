@@ -295,6 +295,7 @@ default_view:
   entities:
     - group.jeff
     - group.climate
+    - media_player.cast_home_group
     - group.scenes
     - group.guests
 
@@ -303,7 +304,7 @@ Kitchen:
   icon: mdi:fridge-filled
   entities:
     - group.kitchen_view_lights
-    - media_player.cast_kitchen_home
+    - media_player.cast_kitchen
 
 Living Room:
   view: yes
@@ -330,6 +331,7 @@ Bedroom:
     - switch.bedroom_motion
     - switch.bathroom_motion
     - media_player.cast_bedroom
+    - media_player.cast_bedroom_mini
     - script.bedroom_wakeup
 
 Office:
@@ -339,6 +341,7 @@ Office:
     - group.office_view_lights
     - fan.office_fan
     - group.office_view_sensors
+    - media_player.gpm_desktop_player
 
 Rooms:
   view: yes

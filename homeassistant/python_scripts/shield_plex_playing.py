@@ -1,3 +1,11 @@
+hass.services.call('media_player', 'media_stop', {
+    'entity_id': [
+        'media_player.cast_kitchen',
+        'media_player.cast_bedroom_mini',
+        'media_player.gpm_desktop_player'
+    ]
+})
+
 hass.services.call('light', 'turn_off', {
     'entity_id': [
         'light.kitchen_lights',

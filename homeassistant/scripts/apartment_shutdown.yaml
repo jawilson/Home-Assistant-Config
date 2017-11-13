@@ -8,7 +8,8 @@ sequence:
       - switch.christmas_tree
       - switch.humidifier
       - media_player.cast_bedroom
-      - media_player.cast_kitchen_home
+      - media_player.cast_bedroom_mini
+      - media_player.cast_kitchen
   - service: homeassistant.turn_on
     entity_id:
       - switch.living_room_fluxer
