@@ -1,13 +1,8 @@
 - alias: Handle lights when leaving
   trigger:
-    - platform: state
-      entity_id: group.everyone
-      to: 'not_home'
-    - platform: state
-      entity_id: group.wifi_devices
-      to: 'not_home'
-      for:
-        minutes: 30
+    platform: state
+    entity_id: group.everyone
+    to: 'not_home'
   condition:
     - condition: state
       entity_id: binary_sensor.guests
@@ -16,8 +11,8 @@
       entity_id: input_boolean.presence
       state: 'on'
   action:
-    - service: script.turn_on
-      entity_id: script.apartment_shutdown
+    service: script.turn_on
+    entity_id: script.apartment_shutdown
 
 
 - alias: Nest away
@@ -26,7 +21,7 @@
       entity_id: proximity.home
       above: 500
     - platform: state
-      entity_id: group.wifi_devices
+      entity_id: group.everyone
       to: 'not_home'
       for:
         minutes: 30
@@ -52,37 +47,15 @@
     entity_id: switch.apartment_home
 
 
-- alias: Circulate while away
-  trigger:
-    - platform: state
-      entity_id: switch.apartment_home
-      to: 'off'
-      for:
-        hours: 2
-  condition:
-    - condition: state
-      entity_id: input_boolean.climate_auto
-      state: 'on'
-  action:
-    service: script.turn_on
-    entity_id: script.cycle_air
-
-
 - alias: Update Locations
   trigger:
-    - platform: numeric_state
-      entity_id: device_tracker.jawilson_phosphorus
-      value_template: >
-        {{ (as_timestamp(now()) - as_timestamp(state.last_updated))/60 }}
-      above: 30
+    platform: numeric_state
+    entity_id: device_tracker.jawilson_phosphorus
+    value_template: >
+      {{ (as_timestamp(now()) - as_timestamp(state.last_updated))/60 }}
+    above: 30
   action:
     service: script.owntracks_location_update
     data_template:
-      user: >
-        {% if trigger.entity_id == 'device_tracker.jawilson_phosphorus' %}
-        jawilson
-        {% endif %}
-      device: >
-        {% if trigger.entity_id == 'device_tracker.jawilson_phosphorus' %}
-        phosphorus
-        {% endif %}
+      user: jawilson
+      device: phosphorus

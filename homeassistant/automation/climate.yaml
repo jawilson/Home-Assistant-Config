@@ -1,0 +1,32 @@
+- alias: Circulate to even temperature
+  trigger:
+    platform: numeric_state
+    entity_id: sensor.apartment_temperatures
+    value_template: '{{ state.attributes.max_value - state.attributes.min_value }}'
+    above: 3
+  condition:
+    condition: state
+    entity_id: input_boolean.climate_auto
+    state: 'on'
+  action:
+    service: climate.set_fan_mode
+    entity_id: climate.apartment
+    data:
+      fan_mode: 'on'
+
+
+- alias: End circulate to even
+  trigger:
+    platform: numeric_state
+    entity_id: sensor.apartment_temperatures
+    value_template: '{{ state.attributes.max_value - state.attributes.min_value }}'
+    below: 3
+  condition:
+    condition: state
+    entity_id: input_boolean.climate_auto
+    state: 'on'
+  action:
+    service: climate.set_fan_mode
+    entity_id: climate.apartment
+    data:
+      fan_mode: 'auto'

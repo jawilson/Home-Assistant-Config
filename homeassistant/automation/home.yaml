@@ -1,8 +1,8 @@
 - alias: Handle lights when arriving home
   trigger:
-    - platform: state
-      entity_id: group.everyone
-      to: 'home'
+    platform: state
+    entity_id: group.everyone
+    to: 'home'
   condition:
     - condition: state
       entity_id: input_boolean.guests
@@ -17,9 +17,9 @@
 
 - alias: Handle lights when turned on not home
   trigger:
-    - platform: state
-      entity_id: group.all_lights
-      to: 'on'
+    platform: state
+    entity_id: group.all_lights
+    to: 'on'
   condition:
     - condition: state
       entity_id: input_boolean.presence
@@ -61,33 +61,15 @@
 
 - alias: Nest while home
   trigger:
-    - platform: template
-      value_template: "{{ is_state_attr('climate.apartment', 'away_mode', 'on') }}"
+    platform: template
+    value_template: "{{ is_state_attr('climate.apartment', 'away_mode', 'on') }}"
   condition:
-    condition: and
-    conditions:
-      - condition: state
-        entity_id: group.everyone
-        state: 'home'
-      - condition: state
-        entity_id: input_boolean.climate_auto
-        state: 'on'
-  action:
-    service: homeassistant.turn_on
-    entity_id: switch.apartment_home
-
-
-- alias: Stop circulating
-  trigger:
-    - platform: state
-      entity_id: switch.apartment_home
-      to: 'on'
-  condition:
+    - condition: state
+      entity_id: group.everyone
+      state: 'home'
     - condition: state
       entity_id: input_boolean.climate_auto
       state: 'on'
   action:
-    service: script.turn_off
-    entity_id:
-      - script.cycle_air_loop
-      - script.cycle_air
+    service: homeassistant.turn_on
+    entity_id: switch.apartment_home
