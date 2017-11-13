@@ -170,6 +170,7 @@ google_assistant:
     - light
     - scene
     - fan
+    - climate
 
 ifttt:
   key: !secret ifttt_key
