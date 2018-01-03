@@ -27,7 +27,7 @@ services:
       - POSTGRES_PASSWORD=automatethethings
       - POSTGRES_DB=homeassistant
   homeassistant:
-    image: jawilson/homeassistant:latest
+    image: homeassistant/home-assistant:latest
     links:
       - mqtt
       - mqtt:mqtt.singularity.net

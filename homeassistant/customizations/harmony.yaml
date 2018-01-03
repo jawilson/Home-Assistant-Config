@@ -12,5 +12,3 @@ switch.xbox_one:
   icon: mdi:xbox
 switch.xbox_360:
   icon: mdi:xbox
-switch.wii:
-  icon: mdi:wii

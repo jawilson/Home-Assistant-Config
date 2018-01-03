@@ -12,15 +12,11 @@
       profile: nightlight
       brightness: 65
       transition: 10
-    light.osram_lightify_br_tunable_white_0008a2d5_3:
-      state: off
-      transition: 5
-    light.kitchen_lights: off
-    light.dining_lights: off
+    light.kitchen: off
+    light.dining_lights_level: off
     light.bathroom: off
     light.closet: off
     light.bedroom: off
-    light.office_light: off
     light.liquor_cabinet_lights: off
 - name: Couch Reading
   entities:
@@ -34,7 +30,7 @@
       state: on
       xy_color: [0.4449, 0.4066]
       brightness: 60
-    light.dining_lights:
+    light.dining_lights_level:
       state: on
       brightness: 100
 - name: Romantic
@@ -42,17 +38,12 @@
     switch.living_area_fluxer: off
     switch.bedroom_fluxer: off
     light.entertainment_lights: off
-    light.dining_lights:
+    light.dining_lights_level:
       state: on
       brightness: 79
-    light.kitchen_lights:
+    light.kitchen:
       state: on
       brightness: 94
-    light.osram_lightify_br_tunable_white_0008a2d5_3:
-      state: on
-      xy_color: [0.5923,0.3829]
-      brightness: 160
-      transition: 30
     light.living_room_lamp:
       state: on
       xy_color: [0.5923,0.3829]

@@ -14,3 +14,6 @@ switch.bathroom_fan_switch:
 
 light.inovelli_dimmer_level:
   friendly_name: 'Inovelli Dimmer'
+
+light.dining_lights_level:
+  friendly_name: 'Dining lights'

@@ -31,4 +31,4 @@
     presume_home:
       friendly_name: 'Someone presumed home'
       value_template: >-
-        {{ is_state('group.everyone', 'home') or is_state('input_boolean.guests', 'on') }}
+        {{ is_state('input_boolean.guests', 'on') or is_state('group.everyone', 'home') }}

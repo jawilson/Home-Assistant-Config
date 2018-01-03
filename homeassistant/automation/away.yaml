@@ -5,11 +5,11 @@
     to: 'not_home'
   condition:
     - condition: state
-      entity_id: binary_sensor.guests
-      state: 'off'
-    - condition: state
       entity_id: input_boolean.presence
       state: 'on'
+    - condition: state
+      entity_id: binary_sensor.presume_home
+      state: 'off'
   action:
     service: script.turn_on
     entity_id: script.apartment_shutdown
@@ -32,14 +32,19 @@
       entity_id: input_boolean.presence
       state: 'on'
     - condition: state
-      entity_id: binary_sensor.guests
+      entity_id: binary_sensor.presume_home
       state: 'off'
-    - condition: state
-      entity_id: vacuum.doomba
-      state: 'off'
-      # Only run Doomba ounce every 40 hours max
-      for:
-        hours: 40
+    - condition: or
+      conditions:
+        - condition: state
+          entity_id: vacuum.doomba
+          state: 'off'
+          # Only run Doomba ounce every 40 hours max
+          for:
+            hours: 40
+        - condition: template
+          value_template: >
+            {{ (as_timestamp(now()) - as_timestamp(states.automation.run_doomba.attributes.last_triggered))/60/60 < 40 }}
     - condition: or
       conditions:
         - condition: template
@@ -65,12 +70,17 @@
       to: 'not_home'
       for:
         minutes: 30
+    - platform: state
+      entity_id: switch.apartment_home
+      to: 'on'
+      for:
+        minutes: 30
   condition:
     - condition: state
       entity_id: input_boolean.presence
       state: 'on'
     - condition: state
-      entity_id: binary_sensor.guests
+      entity_id: binary_sensor.presume_home
       state: 'off'
     - condition: or
       conditions:
@@ -84,7 +94,9 @@
               value_template: "{{ is_state_attr('proximity.home', 'dir_of_travel', 'stationary') }}"
   action:
     service: homeassistant.turn_off
-    entity_id: switch.apartment_home
+    entity_id:
+      - script.nest_home
+      - switch.apartment_home
 
 
 - alias: Update Locations

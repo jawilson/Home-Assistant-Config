@@ -100,4 +100,5 @@
     data_template:
       title: Home Assistant Update
       message: 'Version {{trigger.to_state.state}} of Home Assistant is available'
-      url: '{{trigger.to_state.attributes.release_notes}}'
+      data:
+        url: '{{trigger.to_state.attributes.release_notes}}'

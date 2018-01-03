@@ -11,6 +11,8 @@
       entity_id: input_boolean.presence
       state: 'on'
   action:
+    - service: homeassistant.turn_off
+      entity_id: script.apartment_shutdown
     - service: script.living_area_arrive
     - service: script.bedroom_arrive
 
@@ -28,6 +30,8 @@
       entity_id: binary_sensor.presume_home
       state: 'off'
   action:
+    - service: homeassistant.turn_off
+      entity_id: script.apartment_shutdown
     - service: script.living_area_arrive
     - service: script.bedroom_arrive
 
@@ -71,6 +75,9 @@
     - condition: state
       entity_id: input_boolean.presence
       state: 'on'
+    - condition: template
+      value_template: >
+        {{ (as_timestamp(now()) - as_timestamp(states.automation.home_assistant_start.attributes.last_triggered))/60 > 5 }}
     - condition: or
       conditions:
         - condition: template

@@ -18,9 +18,3 @@ switch.apartment_home:
   icon: mdi:home
   emulated_hue_hidden: true
   google_assistant: false
-
-fan.office_fan:
-  emulated_hue_name: 'Sunroom Fan'
-  aliases:
-    - Office fan
-    - Sunroom fan

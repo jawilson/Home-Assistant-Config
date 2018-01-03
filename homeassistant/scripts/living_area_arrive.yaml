@@ -2,13 +2,11 @@ alias: Living Area Arrive
 sequence:
   - service: switch.turn_on
     entity_id: switch.living_area_fluxer
-  - service: light.turn_on
-    entity_id: light.osram_lightify_br_tunable_white_0008a2d5_3
   - condition: state
     entity_id: binary_sensor.jeff_sleeping_at_home
     state: 'off'
   - service: light.turn_on
-    entity_id: light.kitchen_lights
+    entity_id: light.kitchen
     data:
       brightness: 255
   - service: switch.turn_on
@@ -17,6 +15,6 @@ sequence:
     after: sunset
     after_offset: "-1:00:00"
   - service: light.turn_on
-    entity_id: light.dining_lights
+    entity_id: light.dining_lights_level
     data:
       brightness: 165

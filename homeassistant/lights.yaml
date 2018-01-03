@@ -4,9 +4,6 @@
   allow_unreachable: true
   filename: hue_hub_token.conf
 
-# Insteon
-- platform: insteon_local
-
 # Ikea Dioder
 - platform: mqtt_json
   name: "Liquor cabinet lights"

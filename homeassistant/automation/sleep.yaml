@@ -15,6 +15,22 @@
     - service: script.apartment_sleep
 
 
+- alias: 'Guests Leave While Sleeping'
+  trigger:
+    platform: state
+    entity_id: group.all_guests
+    to: 'not_home'
+  condition:
+    - condition: state
+      entity_id: binary_sensor.jeff_sleeping_at_home
+      state: 'on'
+    - condition: template
+      value_template: "{{ not is_state('sensor.jeff_alarm', 'Ringing') }}"
+  action:
+  - service: homeassistant.turn_off
+    entity_id: group.all_lights
+
+
 - alias: 'Wake Up'
   trigger:
     platform: state
@@ -127,9 +143,12 @@
     for:
       seconds: 5
   condition:
-    condition: state
-    entity_id: device_tracker.jawilson_phosphorus
-    state: 'home'
+    - condition: state
+      entity_id: device_tracker.jawilson_phosphorus
+      state: 'home'
+    - condition: state
+      entity_id: script.bedroom_wakeup
+      state: 'off'
   action:
     service: script.alarm_dismiss
     data_template:

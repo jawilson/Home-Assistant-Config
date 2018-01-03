@@ -30,3 +30,20 @@
     - sensor.bathroom_temperature
     - sensor.bedroom_temperature
     - sensor.office_temperature
+
+- platform: min_max
+  name: Apartment Humidities
+  type: mean
+  entity_ids:
+    - sensor.apartment_thermostat_humidity
+    - sensor.bathroom_relative_humidity
+    - sensor.bedroom_relative_humidity
+    - sensor.office_humidity
+
+- platform: template
+  sensors:
+    showering_gradient:
+      friendly_name: "Showering Gradient"
+      entity_id: binary_sensor.showering
+      unit_of_measurement: '%'
+      value_template: '{{ states.binary_sensor.showering.attributes.gradient|default(0) }}'

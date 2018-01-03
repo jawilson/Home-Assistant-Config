@@ -26,6 +26,12 @@ light.living_room_lamp:
 light.entertainment_lights:
   emulated_hue_hidden: true
   google_assistant: false
+light.kitchen:
+  emulated_hue_hidden: true
+  google_assistant: false
+
+group.living_area_lights:
+  google_assistant: true
 
 light.all_hue_lights:
   emulated_hue_hidden: true
@@ -36,6 +42,9 @@ group.all_lights:
   emulated_hue_hidden: false
   google_assistant: false
 
-light.osram_lightify_br_tunable_white_0008a2d5_3:
-  friendly_name: Entryway light
-  google_assistant_name: Entryway light
+group.room_lights:
+  order: 1
+group.light_types:
+  order: 2
+group.fluxers:
+  order: 3

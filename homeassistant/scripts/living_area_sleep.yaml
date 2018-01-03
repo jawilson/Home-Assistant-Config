@@ -8,7 +8,6 @@ sequence:
       - group.living_area_lights
       - switch.projector
       - switch.christmas_tree
-      - fan.office_fan
   - service: homeassistant.turn_on
     entity_id:
       - switch.living_area_fluxer

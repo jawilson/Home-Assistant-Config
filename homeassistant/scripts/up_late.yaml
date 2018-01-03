@@ -10,9 +10,8 @@ sequence:
     entity_id:
       - light.entertainment_lights
       - light.living_room_lamp_2
-      - light.dining_lights
+      - light.dining_lights_level
       - light.liquor_cabinet_lights
-      - light.osram_lightify_br_tunable_white_0008a2d5_3
       - light.shower_light
       - light.bathroom_mirror_2
       - light.bathroom_mirror_3
@@ -24,16 +23,12 @@ sequence:
       transition: 5
 
   - service: light.turn_on
-    entity_id: light.office_light
-    data:
-      brightness: 50
-  - service: light.turn_on
     entity_id: light.living_room_lamp_1
     data:
       profile: late
       transition: 5
   - service: light.turn_on
-    entity_id: light.kitchen_lights
+    entity_id: light.kitchen
     data:
       brightness: 63
   - service: light.turn_on

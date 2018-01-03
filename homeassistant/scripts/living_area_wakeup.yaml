@@ -7,8 +7,8 @@ sequence:
       minutes: 2
   - service: light.turn_on
     entity_id:
-      - light.kitchen_lights
-      - light.dining_lights
+      - light.kitchen
+      - light.dining_lights_level
     data:
       brightness: 255
   - service: switch.turn_on

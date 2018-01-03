@@ -122,12 +122,12 @@ history:
       - switch.projector
       - switch.shield
       - switch.shield_audio
-      - switch.wii
       - switch.xbox_360
       - switch.xbox_one
 
 # Enables the frontend
 frontend:
+  javascript_version: latest
 
 # Enables map panel
 map:
@@ -212,11 +212,6 @@ mqtt:
   password: !secret mqtt_password
   certificate: /config/certs/ca.crt
 
-insteon_local:
-  host: insteonhub.singularity.net
-  username: !secret insteon_username
-  password: !secret insteon_password
-
 zwave:
   usb_path: /dev/zwave
   device_config: !include zwave_device_config.yaml
@@ -248,7 +243,7 @@ device_tracker:
     host: dark-knight.singularity.net
     username: !secret asuswrt_username
     password: !secret asuswrt_password
-    track_new_devices: no
+    track_new_devices: yes
     protocol: telnet
   - platform: owntracks
     max_gps_accuracy: 45
@@ -264,9 +259,6 @@ remote:
 camera: !include cameras.yaml
 
 switch: !include_dir_merge_list switches
-
-fan:
-  platform: insteon_local
 
 vacuum:
   - platform: roomba
@@ -317,5 +309,5 @@ logger:
     homeassistant.components.recorder: error
     homeassistant.components.remote.harmony: error
     homeassistant.components.device_tracker.asuswrt: error
-    homeassistant.components.insteon_local: warning
+    homeassistant.components.device_tracker.owntracks: error
     homeassistant.components.sensor.octoprint: error

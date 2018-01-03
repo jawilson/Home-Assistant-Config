@@ -2,14 +2,46 @@
 # Groups
 #
 
+Guests: !include device_groups/guests.yaml
+Other Guests: !include device_groups/other_guests.yaml
+All Guests:
+  name: Guests
+  entities: !include_dir_merge_list device_groups
+
 Everyone:
   - device_tracker.jawilson_phosphorus
+  - group.all_guests
+  - group.others
+
+Visitors:
   - group.guests
+  - group.others
+
+Kitchen Lights:
+  - light.kitchen
+  - light.dining_lights_level
 
 Living Area Lights:
-  - group.kitchen_lights
-  - group.living_room_lights
-  - group.office_lights
+  - light.kitchen
+  - light.dining_lights_level
+  - light.liquor_cabinet_lights
+  - light.entertainment_lights
+  - light.living_room_lamp
+
+Living Room Lights:
+  - light.entertainment_lights
+  - light.living_room_lamp
+
+Bedroom Lights:
+  - light.tree_lamp
+  - light.bedroom_lamp
+
+Closet Lights:
+  - light.closet
+
+Bathroom Lights:
+  - light.shower_light
+  - light.bathroom_mirror
 
 
 Living Area Fluxer Lights: !include fluxer_lights/living_area.yaml
@@ -50,8 +82,6 @@ Scenes:
     - script.up_late
     - script.lights_out
 
-Guests: !include guest_devices.yaml
-
 
 # People view
 
@@ -67,9 +97,21 @@ Jeff:
 kitchen_view_lights:
   name: Lights
   entities:
-    - light.osram_lightify_br_tunable_white_0008a2d5_3
-    - light.kitchen_lights
-    - light.dining_lights
+    - light.kitchen_light_1
+    - light.kitchen_light_2
+    - light.kitchen_light_3
+    - light.kitchen_light_4
+    - light.dining_lights_level
+
+kitchen_view_light_groups:
+  name: Light Groups
+  control: hidden
+  entities:
+    - light.kitchen
+
+kitchen_view_accent_lights:
+  name: Accent Lights
+  entities:
     - light.liquor_cabinet_lights
 
 
@@ -78,12 +120,17 @@ kitchen_view_lights:
 living_room_view_lights:
   name: Lights
   entities:
-    - light.dining_lights
-    - light.liquor_cabinet_lights
     - light.entertainment_light_1
     - light.entertainment_light_2
     - light.living_room_lamp_1
     - light.living_room_lamp_2
+
+living_room_view_light_groups:
+  name: Light Groups
+  control: hidden
+  entities:
+    - light.entertainment_lights
+    - light.living_room_lamp
 
 living_room_view_sensors:
   name: Sensors
@@ -94,26 +141,34 @@ living_room_view_sensors:
 
 # Bedroom view
 
-bedroom_view_bedroom_lights:
-  name: Bedroom Lights
+bedroom_view_lights:
+  name: Lights
   entities:
-    - light.bedroom_lamp
     - light.tree_lamp_1
     - light.tree_lamp_2
     - light.tree_lamp_3
     - light.tree_lamp_4
     - light.tree_lamp_5
-    - light.closet_light
+    - light.bedroom_lamp
 
-bedroom_view_bedroom_sensors:
-  name: Bedroom Sensors
+bedroom_view_light_groups:
+  name: Light Groups
+  control: hidden
+  entities:
+    - light.tree_lamp
+
+bedroom_view_sensors:
+  name: Sensors
   entities:
     - sensor.bedroom_temperature
     - sensor.bedroom_relative_humidity
     - sensor.bedroom_luminance
 
-bedroom_view_bathroom_lights:
-  name: Bathroom Lights
+
+# Bathroom view
+
+bathroom_view_lights:
+  name: Lights
   entities:
     - light.bathroom_mirror_1
     - light.bathroom_mirror_2
@@ -121,65 +176,57 @@ bedroom_view_bathroom_lights:
     - light.bathroom_mirror_4
     - light.shower_light
 
-bedroom_view_bathroom_sensors:
-  name: Bathroom Sensors
+bathroom_view_light_groups:
+  name: Light Groups
+  control: hidden
+  entities:
+    - light.bathroom_mirror
+
+bathroom_view_sensors:
+  name: Sensors
   entities:
     - sensor.bathroom_temperature
     - sensor.bathroom_relative_humidity
     - sensor.bathroom_luminance
 
 
-# Office view
+# Lights view
 
-office_view_lights:
-  name: Lights
-  entities:
-    - light.office_light
-
-office_view_sensors:
-  name: Sensors
-  entities:
-    - sensor.office_temperature
-    - sensor.office_humidity
-
-
-# Rooms view
-
-Bathroom Lights:
-  - light.bathroom_mirror
-  - light.shower_light
-
-Kitchen Lights:
-  - light.osram_lightify_br_tunable_white_0008a2d5_3
-  - light.kitchen_lights
-
-Living Room Lights:
-  - light.dining_lights
-  - light.liquor_cabinet_lights
+Color Lights:
+  - light.kitchen
   - light.entertainment_lights
   - light.living_room_lamp
 
-Office Lights:
-  - light.office_light
-
-Bedroom Lights:
-  - light.bedroom_lamp
+Color Temperature Lights:
   - light.tree_lamp
+  - light.bedroom_lamp
+  - light.closet
+  - light.bathroom_mirror
+  - light.shower
+  - light.kitchen
+  - light.entertainment_lights
+  - light.living_room_lamp
 
-Closet Lights:
-  - light.closet_light
+Light Types:
+  control: hidden
+  entities:
+    - group.color_lights
+    - group.color_temperature_lights
+
+Room Lights:
+  control: hidden
+  entities:
+    - group.kitchen_lights
+    - group.living_room_lights
+    - group.living_area_lights
+    - group.bedroom_lights
+    - group.closet_lights
+    - group.bathroom_lights
 
 Fluxers:
   - switch.bedroom_fluxer
   - switch.bathroom_fluxer
   - switch.living_area_fluxer
-
-Outlets:
-  - input_select.orvibo1
-  - switch.orvibo1
-  - input_select.orvibo2
-  - switch.orvibo2
-  - light.inovelli_dimmer_level
 
 
 # Media view
@@ -190,7 +237,6 @@ Harmony:
   - switch.shield_audio
   - switch.xbox_one
   - switch.xbox_360
-  - switch.wii
 
 
 # Other view
@@ -236,14 +282,10 @@ Scripts:
   - script.bathroom_wakeup
   - script.living_area_wakeup
   - script.apartment_wakeup
-  - script.apartment_cycle_air
-  - script.cycle_air
-  - script.cycle_air_loop
   - script.nest_home
   - script.bedroom_arrive
   - script.living_area_arrive
   - python_script.bathroom_motion
-  - script.getting_ready
   - script.nest_home
   - script.apartment_shutdown
 
@@ -251,32 +293,32 @@ Scripts:
 Automations:
   - automation.alarm_bedtime
   - automation.go_to_sleep
+  - automation.guests_leave_while_sleeping
   - automation.alarm_smart_period
   - automation.alarm_ringing
   - automation.alarm_snooze
   - automation.alarm_dismiss
   - automation.wake_up
   - automation.wakeup_cancel
+  - automation.fan_while_showering
+  - automation.fan_after_showering
   - automation.handle_lights_when_leaving
   - automation.nest_away
-  - automation.circulate_while_away
-  - automation.stop_circulating
   - automation.handle_lights_when_arriving_home
   - automation.handle_lights_when_turned_on_not_home
+  - automation.run_doomba
+  - automation.dock_doomba_when_arriving_home
   - automation.nest_home
   - automation.nest_while_home
-  - automation.bathroom_motion
-  - automation.bedroom_motion
-  - automation.bathroom_no_motion
-  - automation.bedroom_no_motion
-  - automation.closet_no_motion
+  - automation.circulate_to_even_temperature
+  - automation.end_circulate_to_even
   - automation.home_assistant_start
   - automation.projector_off
   - automation.shield_plex_idle
   - automation.shield_plex_playing
   - automation.shield_cast_playing
   - automation.shield_cast_stopped
-  - automation.mqtt_notification
+  - automation.update_locations
   - automation.location_update_notification
   - automation.light_intruder_alert
   - automation.motion_intruder_alert
@@ -298,20 +340,26 @@ default_view:
     - vacuum.doomba
     - media_player.cast_home_group
     - group.scenes
-    - group.guests
+    - group.all_guests
 
 Kitchen:
   view: yes
   icon: mdi:fridge-filled
   entities:
     - group.kitchen_view_lights
+    - group.kitchen_view_light_groups
+    - group.kitchen_view_accent_lights
+    - switch.living_area_fluxer
     - media_player.cast_kitchen
+    - media_player.gpm_desktop_player
+    - group.living_room_view_sensors
 
 Living Room:
   view: yes
   icon: mdi:sofa
   entities:
     - group.living_room_view_lights
+    - group.living_room_view_light_groups
     - switch.living_area_fluxer
     - media_player.shield
     - group.harmony
@@ -321,42 +369,35 @@ Bedroom:
   view: yes
   icon: mdi:hotel
   entities:
-    - group.bedroom_view_bedroom_lights
-    - group.bedroom_view_bedroom_sensors
-    - group.bedroom_view_bathroom_lights
-    - group.bedroom_view_bathroom_sensors
-    - switch.bathroom_fan_switch
+    - group.bedroom_view_lights
+    - group.bedroom_view_light_groups
+    - group.bedroom_view_sensors
     - switch.humidifier
     - switch.bedroom_fluxer
-    - switch.bathroom_fluxer
     - switch.bedroom_motion
-    - switch.bathroom_motion
     - media_player.cast_bedroom
     - media_player.cast_bedroom_mini
     - script.bedroom_wakeup
 
-Office:
+Bathroom:
   view: yes
-  icon: mdi:laptop
+  icon: mdi:scale-bathroom
   entities:
-    - group.office_view_lights
-    - fan.office_fan
-    - group.office_view_sensors
-    - media_player.gpm_desktop_player
-
-Rooms:
-  view: yes
-  icon: mdi:home-outline
-  entities:
-    - group.kitchen_lights
-    - group.living_room_lights
-    - group.office_lights
-    - group.bathroom_lights
-    - group.closet_lights
-    - group.bedroom_lights
-    - group.outlets
-    - group.fluxers
+    - group.bathroom_view_lights
+    - group.bathroom_view_light_groups
+    - group.bathroom_view_sensors
     - switch.bathroom_fan_switch
+    - switch.bathroom_fluxer
+    - switch.bathroom_motion
+    - script.bathroom_wakeup
+
+Lights:
+  view: yes
+  icon: mdi:lightbulb
+  entities:
+    - group.room_lights
+    - group.light_types
+    - group.fluxers
 
 Other:
   view: yes
@@ -366,6 +407,9 @@ Other:
     - sensor.ups
     - sensor.415_l_st_nw_apt_633
     - sensor.apartment_temperatures
+    - sensor.apartment_humidities
+    - binary_sensor.showering
+    - sensor.showering_gradient
     - group.temperatures
     - group.humidities
 

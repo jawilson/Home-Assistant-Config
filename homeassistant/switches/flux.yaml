@@ -2,13 +2,14 @@
   name: Living Room Fluxer
   lights: !include ../fluxer_lights/living_area.yaml
   start_time: '7:00'
-  start_colortemp: 6000
+  start_colortemp: 5000
+  sunset_colortemp: 3500
 
 - platform: flux
   name: Entryway Fluxer
   lights: !include ../fluxer_lights/entryway.yaml
   start_time: '7:00'
-  start_colortemp: 6000
+  start_colortemp: 5000
   mode: mired
 
 - platform: template

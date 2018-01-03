@@ -1,1 +1,10 @@
 - platform: nest
+
+- platform: trend
+  sensors:
+    showering:
+      friendly_name: Showering
+      entity_id: sensor.bedroom_relative_humidity
+      sample_duration: 1200
+      min_gradient: 0.015
+      device_class: moisture

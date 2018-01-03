@@ -8,16 +8,14 @@ hass.services.call('media_player', 'media_stop', {
 
 hass.services.call('light', 'turn_off', {
     'entity_id': [
-        'light.kitchen_lights',
-        'light.dining_lights',
-        'light.office_light'
+        'light.kitchen',
+        'light.dining_lights_level',
     ]
 })
 hass.services.call('light', 'turn_off', {
     'transition': 5,
     'entity_id': [
         'light.liquor_cabinet_lights',
-        'light.osram_lightify_br_tunable_white_0008a2d5_3',
         'light.bedroom',
         'light.closet'
     ]
