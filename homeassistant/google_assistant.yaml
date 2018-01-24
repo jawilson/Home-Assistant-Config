@@ -1,0 +1,84 @@
+project_id: !secret google_assistant_project_id
+client_id: !secret google_assistant_client_id
+access_token: !secret google_assistant_access_token
+agent_user_id: !secret google_assistant_agent_user_id
+api_key:  !secret google_assistant_api_key
+exposed_domains:
+  - switch
+  - light
+  - scene
+  - fan
+  - climate
+entity_config:
+  light.entryway:
+    expose: false
+  light.bedroom:
+    expose: false
+  light.tree_lamp:
+    expose: false
+  light.closet:
+    expose: false
+  light.bathroom:
+    expose: false
+  light.bathroom_mirror:
+    expose: false
+  light.living_room:
+    expose: false
+  light.living_room_lamp:
+    expose: false
+  light.entertainment_lights:
+    expose: false
+  light.kitchen:
+    expose: false
+  light.all_hue_lights:
+    expose: false
+
+  media_player.shield:
+    expose: true
+
+  scene.tv_dinner:
+    expose: false
+
+  script.apartment_shutdown:
+    expose: true
+  script.bedtime:
+    expose: true
+  script.dinner:
+    expose: true
+    name: Dinner
+    aliases:
+      - Dinner Time
+      - Lunch
+      - Lunch Time
+      - Breakfast
+      - Breakfast Time
+  script.getting_ready:
+    expose: true
+  script.cooking:
+    expose: true
+    name: Cooking
+    aliases:
+      - Food prep
+  script.up_late:
+    expose: true
+
+  switch.apartment_fan:
+    name: HVAC Fan
+  switch.apartment_home:
+    expose: false
+  switch.shield:
+    expose: false
+  switch.living_room_fluxer:
+    expose: false
+  switch.entryway_fluxer:
+    expose: false
+  switch.living_area_fluxer:
+    aliases:
+      - Living area fluxer
+      - Living room fluxer
+      - Entryway fluxer
+  switch.orvibo2:
+    expose: false
+
+  group.living_area_lights:
+    expose: true

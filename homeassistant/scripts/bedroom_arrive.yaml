@@ -3,13 +3,13 @@ sequence:
   - condition: state
     entity_id: binary_sensor.jeff_sleeping_at_home
     state: 'off'
-  - condition: numeric_state
-    entity_id: sensor.bedroom_luminance
-    below: '30'
   - service: switch.turn_on
     entity_id:
       - switch.humidifier
       - switch.bedroom_fluxer
+  - condition: numeric_state
+    entity_id: sensor.bedroom_luminance
+    below: '30'
   - service: light.turn_on
     entity_id: group.bedroom_lights
   - service: automation.turn_on

@@ -58,6 +58,9 @@
               value_template: "{{ is_state_attr('proximity.home', 'dir_of_travel', 'arrived') }}"
             - condition: template
               value_template: "{{ is_state_attr('proximity.home', 'dir_of_travel', 'towards') }}"
+    - condition: template
+      value_template: >
+        {{ (as_timestamp(now()) - as_timestamp(states.automation.run_doomba.attributes.last_triggered)|float)/60 > 5 }}
   action:
     service: vacuum.return_to_base
     entity_id: vacuum.doomba

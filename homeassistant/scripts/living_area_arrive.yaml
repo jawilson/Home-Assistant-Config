@@ -1,20 +1,17 @@
 alias: Living Area Arrive
 sequence:
-  - service: switch.turn_on
-    entity_id: switch.living_area_fluxer
   - condition: state
     entity_id: binary_sensor.jeff_sleeping_at_home
     state: 'off'
-  - service: light.turn_on
-    entity_id: light.kitchen
-    data:
-      brightness: 255
   - service: switch.turn_on
-    entity_id: switch.christmas_tree
+    entity_id: switch.living_area_fluxer
+  - service: light.turn_on
+    entity_id:
+      - light.entryway
+      - light.kitchen
+      - light.dining_lights_level
   - condition: sun
     after: sunset
-    after_offset: "-1:00:00"
+    after_offset: "-2:00:00"
   - service: light.turn_on
-    entity_id: light.dining_lights_level
-    data:
-      brightness: 165
+    entity_id: light.living_room

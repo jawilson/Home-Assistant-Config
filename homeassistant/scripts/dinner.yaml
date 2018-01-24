@@ -10,5 +10,5 @@ sequence:
       - light.living_room_lamp
     data:
       profile: nightlight
-      brightness: 70
+      brightness: 100
       transition: 15

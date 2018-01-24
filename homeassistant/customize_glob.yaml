@@ -17,12 +17,3 @@
 
 "group.*_fluxer_lights":
   hidden: true
-
-
-# Google Assistant
-"fan.*":
-  google_assistant_type: switch
-"cover.*":
-  google_assistant_type: switch
-"media_player.*":
-  google_assistant_type: switch

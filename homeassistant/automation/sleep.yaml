@@ -27,8 +27,12 @@
     - condition: template
       value_template: "{{ not is_state('sensor.jeff_alarm', 'Ringing') }}"
   action:
-  - service: homeassistant.turn_off
-    entity_id: group.all_lights
+    - service: script.turn_off
+      entity_id:
+        - script.bathroom_wakeup
+        - script.living_area_wakeup
+    - service: homeassistant.turn_off
+      entity_id: group.all_lights
 
 
 - alias: 'Wake Up'

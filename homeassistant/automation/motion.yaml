@@ -55,12 +55,12 @@
       entity_id: sensor.bedroom_alarm_level
       to: '0'
       for:
-        minutes: 10
+        minutes: 5
     - platform: state
       entity_id: light.bedroom
       to: 'on'
       for:
-        minutes: 10
+        minutes: 5
   condition:
     - condition: state
       entity_id: input_boolean.motion
@@ -72,7 +72,7 @@
       entity_id: sensor.bedroom_alarm_level
       state: '0'
       for:
-        minutes: 10
+        minutes: 3
     # If fluxer is off, we're probably doing something specific
     # There may be a better way to handle this
     - condition: state
@@ -114,17 +114,12 @@
       entity_id: sensor.bathroom_alarm_level
       to: '0'
       for:
-        minutes: 10
-    - platform: state
-      entity_id: sensor.bathroom_alarm_level
-      to: '0'
-      for:
         minutes: 5
     - platform: state
       entity_id: light.bathroom
       to: 'on'
       for:
-        minutes: 10
+        minutes: 5
   condition:
     - condition: state
       entity_id: input_boolean.motion
@@ -136,7 +131,7 @@
       entity_id: sensor.bathroom_alarm_level
       state: '0'
       for:
-        minutes: 5
+        minutes: 3
     # Don't turn off if we're showering
     - condition: numeric_state
       entity_id: sensor.bathroom_relative_humidity
@@ -157,7 +152,7 @@
               entity_id: sensor.bathroom_alarm_level
               state: '0'
               for:
-                minutes: 10
+                minutes: 3
   action:
     - service: light.turn_off
       entity_id: light.bathroom
@@ -171,12 +166,17 @@
       entity_id: sensor.bedroom_alarm_level
       to: '0'
       for:
-        minutes: 10
+        minutes: 5
     - platform: state
       entity_id: sensor.bathroom_alarm_level
       to: '0'
       for:
-        minutes: 10
+        minutes: 5
+    - platform: state
+      entity_id: light.closet
+      to: 'on'
+      for:
+        minutes: 5
   condition:
     - condition: state
       entity_id: input_boolean.motion
@@ -201,12 +201,12 @@
           entity_id: sensor.bedroom_alarm_level
           state: '0'
           for:
-            minutes: 10
+            minutes: 3
         - condition: state
           entity_id: sensor.bathroom_alarm_level
           state: '0'
           for:
-            minutes: 10
+            minutes: 3
   action:
     - service: light.turn_off
       entity_id:

@@ -14,3 +14,8 @@
   longitude: -120.772579
   radius: 200
   icon: mdi:home-variant
+
+- name: Sasha's Apartment
+  latitude: 38.9052575
+  longitude: -77.0063164
+  icon: mdi:home-modern

@@ -16,4 +16,4 @@
         - switch.living_area_fluxer
         - switch.bedroom_fluxer
         - switch.bathroom_fluxer
-    - service: rest_command.google_assistent_sync
+    - service: google_assistant.request_sync

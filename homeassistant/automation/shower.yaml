@@ -1,0 +1,32 @@
+- alias: 'Fan While Showering'
+  trigger:
+    - platform: numeric_state
+      entity_id: sensor.bathroom_relative_humidity
+      above: 80
+  condition:
+    - condition: state
+      entity_id: binary_sensor.presume_home
+      state: 'on'
+    - condition: state
+      entity_id: input_boolean.climate_auto
+      state: 'on'
+  action:
+    - service: switch.turn_on
+      entity_id: switch.bathroom_fan_switch
+
+
+- alias: 'Fan After Showering'
+  trigger:
+    - platform: numeric_state
+      entity_id: sensor.bathroom_relative_humidity
+      below: 80
+  condition:
+    - condition: state
+      entity_id: binary_sensor.presume_home
+      state: 'on'
+    - condition: state
+      entity_id: input_boolean.climate_auto
+      state: 'on'
+  action:
+    - service: switch.turn_off
+      entity_id: switch.bathroom_fan_switch

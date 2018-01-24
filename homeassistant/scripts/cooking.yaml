@@ -1,0 +1,12 @@
+alias: Making Dinner
+sequence:
+  - service: switch.turn_off
+    entity_id: switch.living_area_fluxer
+  - service: light.turn_on
+    entity_id:
+      - light.kitchen
+      - light.entryway
+    data:
+      profile: concentrate
+      brightness: 255
+      transition: 5

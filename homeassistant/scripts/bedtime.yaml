@@ -15,10 +15,11 @@ sequence:
 
   - service: light.turn_off
     entity_id:
-      - light.kitchen_light_2
-      - light.kitchen_light_3
+      - light.entryway_light_2
+      - light.kitchen
       - light.dining_lights_level
       - light.liquor_cabinet_lights
+      - light.entertainment_lights
       - light.shower_light
       - light.bathroom_mirror_2
       - light.bathroom_mirror_4
@@ -31,20 +32,26 @@ sequence:
       transition: 5
 
   - service: light.turn_on
-    entity_id: light.kitchen
+    entity_id: light.dining_lights_level
     data:
-      brightness: 10
+      brightness: 23
+      transition: 5
 
   - service: light.turn_on
     entity_id:
-      - light.kitchen_light_1
-      - light.kitchen_light_3
       - light.living_room_lamp
-      - light.entertainment_lights
+    data:
+      profile: nightlight
+      transition: 5
+
+  - service: light.turn_on
+    entity_id:
+      - light.entryway_light_1
       - light.bathroom_mirror_1
       - light.bathroom_mirror_3
     data:
-      profile: nightlight
+      color_temp: 454
+      brightness: 1
       transition: 5
 
   - condition: state
@@ -59,5 +66,6 @@ sequence:
       - light.bedroom_lamp
       - light.tree_lamp_3
     data:
-      profile: nightlight
+      color_temp: 454
+      brightness: 1
       transition: 5

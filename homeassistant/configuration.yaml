@@ -90,6 +90,12 @@ history:
       - binary_sensor.apartment_thermostat_has_leaf
       - binary_sensor.jeff_sleeping
       - binary_sensor.jeff_sleeping_at_home
+      - light.entryway_light_1
+      - light.entryway_light_2
+      - light.kitchen_light_1
+      - light.kitchen_light_2
+      - light.kitchen_light_3
+      - light.kitchen_light_4
       - light.bathroom
       - light.bathroom_mirror_1
       - light.bathroom_mirror_2
@@ -162,16 +168,7 @@ emulated_hue:
     - scene
     - fan
 
-google_assistant:
-  project_id: !secret google_assistant_project_id
-  client_id: !secret google_assistant_client_id
-  access_token: !secret google_assistant_access_token
-  exposed_domains:
-    - switch
-    - light
-    - scene
-    - fan
-    - climate
+google_assistant: !include google_assistant.yaml
 
 ifttt:
   key: !secret ifttt_key
@@ -201,9 +198,18 @@ nest:
       - 'operation_mode'
       - 'hvac_state'
 
+hue:
+  bridges:
+    - host: philipshue.singularity.net
+      allow_unreachable: true
+      filename: hue_hub_token.conf
+
+
 octoprint:
   host: p3steel.singularity.net
   api_key: !secret octoprint_key
+  bed: true
+  number_of_tools: 1
 
 mqtt:
   broker: mqtt.singularity.net

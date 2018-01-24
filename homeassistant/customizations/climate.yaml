@@ -11,10 +11,8 @@ sensor.apartment_thermostat_humidity:
 switch.apartment_fan:
   icon: mdi:fan
   emulated_hue_name: 'HVAC Fan'
-  google_assistant_name: 'HVAC Fan'
 sensor.apartment_mode:
   icon: mdi:fire
 switch.apartment_home:
   icon: mdi:home
   emulated_hue_hidden: true
-  google_assistant: false

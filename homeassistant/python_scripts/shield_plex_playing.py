@@ -2,6 +2,8 @@ hass.services.call('media_player', 'media_stop', {
     'entity_id': [
         'media_player.cast_kitchen',
         'media_player.cast_bedroom_mini',
+        'media_player.cast_living_room_speaker',
+        'media_player.cast_home_group',
         'media_player.gpm_desktop_player'
     ]
 })
@@ -10,6 +12,7 @@ hass.services.call('light', 'turn_off', {
     'entity_id': [
         'light.kitchen',
         'light.dining_lights_level',
+        'light.entryway'
     ]
 })
 hass.services.call('light', 'turn_off', {
@@ -29,11 +32,3 @@ if not bathroom_motion and not showering:
         'transition': 5,
         'entity_id': 'light.bathroom'
     })
-
-hass.services.call('switch', 'turn_off', {
-    'entity_id': [
-        'switch.christmas_tree',
-    ]
-})
-
-

@@ -17,14 +17,17 @@ Visitors:
   - group.guests
   - group.others
 
+Entryway:
+  - light.entryway
+
 Kitchen Lights:
   - light.kitchen
   - light.dining_lights_level
 
 Living Area Lights:
+  - light.entryway
   - light.kitchen
   - light.dining_lights_level
-  - light.liquor_cabinet_lights
   - light.entertainment_lights
   - light.living_room_lamp
 
@@ -75,6 +78,7 @@ Scenes:
   entities:
     - script.getting_ready
     - scene.couch_reading
+    - script.cooking
     - script.dinner
     - scene.tv_dinner
     - scene.romantic
@@ -108,6 +112,12 @@ kitchen_view_light_groups:
   control: hidden
   entities:
     - light.kitchen
+
+kitchen_view_other_lights:
+  name: Other Lights
+  entities:
+    - light.entryway_light_1
+    - light.entryway_light_2
 
 kitchen_view_accent_lights:
   name: Accent Lights
@@ -157,6 +167,11 @@ bedroom_view_light_groups:
   entities:
     - light.tree_lamp
 
+bedroom_view_other_lights:
+  name: Other Lights
+  entities:
+    - light.closet_light
+
 bedroom_view_sensors:
   name: Sensors
   entities:
@@ -182,6 +197,11 @@ bathroom_view_light_groups:
   entities:
     - light.bathroom_mirror
 
+bathroom_view_other_lights:
+  name: Other Lights
+  entities:
+    - light.closet_light
+
 bathroom_view_sensors:
   name: Sensors
   entities:
@@ -194,10 +214,12 @@ bathroom_view_sensors:
 
 Color Lights:
   - light.kitchen
+  - light.liquor_cabinet_lights
   - light.entertainment_lights
   - light.living_room_lamp
 
 Color Temperature Lights:
+  - light.entryway
   - light.tree_lamp
   - light.bedroom_lamp
   - light.closet
@@ -216,6 +238,7 @@ Light Types:
 Room Lights:
   control: hidden
   entities:
+    - group.entryway
     - group.kitchen_lights
     - group.living_room_lights
     - group.living_area_lights
@@ -228,15 +251,21 @@ Fluxers:
   - switch.bathroom_fluxer
   - switch.living_area_fluxer
 
+Motion Automations:
+  - switch.bedroom_motion
+  - switch.bathroom_motion
+
 
 # Media view
 
 Harmony:
-  - remote.living_room
-  - switch.shield
-  - switch.shield_audio
-  - switch.xbox_one
-  - switch.xbox_360
+  control: hidden
+  entities:
+    - remote.living_room
+    - switch.shield
+    - switch.shield_audio
+    - switch.xbox_one
+    - switch.xbox_360
 
 
 # Other view
@@ -348,6 +377,7 @@ Kitchen:
   entities:
     - group.kitchen_view_lights
     - group.kitchen_view_light_groups
+    - group.kitchen_view_other_lights
     - group.kitchen_view_accent_lights
     - switch.living_area_fluxer
     - media_player.cast_kitchen
@@ -371,6 +401,7 @@ Bedroom:
   entities:
     - group.bedroom_view_lights
     - group.bedroom_view_light_groups
+    - group.bedroom_view_other_lights
     - group.bedroom_view_sensors
     - switch.humidifier
     - switch.bedroom_fluxer
@@ -385,6 +416,7 @@ Bathroom:
   entities:
     - group.bathroom_view_lights
     - group.bathroom_view_light_groups
+    - group.bathroom_view_other_lights
     - group.bathroom_view_sensors
     - switch.bathroom_fan_switch
     - switch.bathroom_fluxer
@@ -398,6 +430,7 @@ Lights:
     - group.room_lights
     - group.light_types
     - group.fluxers
+    - group.motion_automations
 
 Other:
   view: yes

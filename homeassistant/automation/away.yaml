@@ -34,7 +34,7 @@
     - condition: state
       entity_id: binary_sensor.presume_home
       state: 'off'
-    - condition: or
+    - condition: and
       conditions:
         - condition: state
           entity_id: vacuum.doomba

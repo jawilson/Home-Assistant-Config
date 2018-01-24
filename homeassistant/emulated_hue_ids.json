@@ -42,5 +42,8 @@
     "67": "light.kitchen_light_1",
     "68": "light.kitchen_light_4",
     "69": "light.kitchen_light_2",
-    "70": "light.kitchen_light_3"
+    "70": "light.kitchen_light_3",
+    "74": "light.entryway_light_2",
+    "75": "light.entryway_light_1",
+    "76": "script.cooking"
 }
