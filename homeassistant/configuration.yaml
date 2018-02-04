@@ -18,6 +18,9 @@ http:
   ssl_certificate: !secret ssl_certificate
   ssl_key: !secret ssl_key
 
+influxdb:
+  host: influxdb
+
 # Use a postgresql server for recording data
 recorder:
   db_url: 'postgresql://hass:automatethethings@database/homeassistant'
@@ -33,11 +36,8 @@ recorder:
       - sensor.dark_sky_apparent_temperature
       - sensor.dark_sky_daily_max_precip_intensity
       - sensor.dark_sky_icon
-      - sensor.dark_sky_pressure
       - sensor.dark_sky_summary
-      - sensor.dark_sky_wind_bearing
-      - sensor.google_reverse_geocode__ak
-      - sensor.google_reverse_geocode__gerzelda
+      - sensor.dark_sky_wind_speed
       - sensor.google_reverse_geocode__jeff
       - sensor.p3steel_actual_bed_temp
       - sensor.p3steel_actual_tool0_temp

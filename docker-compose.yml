@@ -21,17 +21,24 @@ services:
     restart: always
     volumes:
       - /etc/localtime:/etc/localtime:ro
-      - ./postgres:/var/lib/postgresql/data
+      - ./postgres/data:/var/lib/postgresql/data
+      - ./postgres/initdb.d:/docker-entrypoint-initdb.d:ro
     environment:
       - POSTGRES_USER=hass
       - POSTGRES_PASSWORD=automatethethings
       - POSTGRES_DB=homeassistant
+  influxdb:
+    image: library/influxdb
+    restart: always
+    volumes:
+      - ./influxdb:/var/lib/influxdb
   homeassistant:
     image: homeassistant/home-assistant:latest
     links:
       - mqtt
       - mqtt:mqtt.singularity.net
       - database
+      - influxdb
     restart: always
     dns: 192.168.0.1
     dns_search: singularity.net
@@ -59,11 +66,34 @@ services:
       - '-s'
       - 'database:5432'
       - '--'
+      - '/opt/tools/wait-for-it/wait-for-it.sh'
+      - '-s'
+      - 'influxdb:8086'
+      - '--'
       - 'python'
       - '-m'
       - 'homeassistant'
       - '--config'
       - '/config'
+  grafana:
+    image: grafana/grafana
+    restart: always
+    links:
+      - database
+      - influxdb
+    ports:
+      - 3000:3000
+    volumes:
+      - ./grafana:/etc/grafana
+      - ./tools:/opt/tools:ro
+    environment:
+      - GF_INSTALL_PLUGINS=natel-discrete-panel
+    entrypoint:
+      - '/opt/tools/wait-for-it/wait-for-it.sh'
+      - '-s'
+      - 'database:5432'
+      - '--'
+      - '/run.sh'
 
 networks:
   default:
