@@ -441,8 +441,6 @@ Other:
     - sensor.415_l_st_nw_apt_633
     - sensor.apartment_temperatures
     - sensor.apartment_humidities
-    - binary_sensor.showering
-    - sensor.showering_gradient
     - group.temperatures
     - group.humidities
 

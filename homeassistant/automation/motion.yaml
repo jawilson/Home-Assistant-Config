@@ -133,9 +133,9 @@
       for:
         minutes: 3
     # Don't turn off if we're showering
-    - condition: numeric_state
-      entity_id: sensor.bathroom_relative_humidity
-      below: 65
+    - condition: state
+      entity_id: binary_sensor.showering
+      state: 'off'
     - condition: or
       conditions:
         - condition: state

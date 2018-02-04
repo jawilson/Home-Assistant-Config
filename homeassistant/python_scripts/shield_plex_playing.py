@@ -25,7 +25,7 @@ hass.services.call('light', 'turn_off', {
 })
 
 bathroom_motion = int(hass.states.get('sensor.bathroom_alarm_level').state) > 0
-showering = float(hass.states.get('sensor.bathroom_relative_humidity').state) > 80
+showering = hass.states.is_state('binary_sensor.showering', 'on')
 
 if not bathroom_motion and not showering:
     hass.services.call('light', 'turn_off', {

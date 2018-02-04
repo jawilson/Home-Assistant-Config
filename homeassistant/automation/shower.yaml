@@ -1,8 +1,8 @@
 - alias: 'Fan While Showering'
   trigger:
-    - platform: numeric_state
-      entity_id: sensor.bathroom_relative_humidity
-      above: 80
+    platform: state
+    entity_id: binary_sensor.showering
+    to: 'on'
   condition:
     - condition: state
       entity_id: binary_sensor.presume_home
@@ -17,9 +17,9 @@
 
 - alias: 'Fan After Showering'
   trigger:
-    - platform: numeric_state
-      entity_id: sensor.bathroom_relative_humidity
-      below: 80
+    platform: state
+    entity_id: binary_sensor.showering
+    to: 'off'
   condition:
     - condition: state
       entity_id: binary_sensor.presume_home
