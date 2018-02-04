@@ -3,8 +3,7 @@ hass.services.call('media_player', 'media_stop', {
         'media_player.cast_kitchen',
         'media_player.cast_bedroom_mini',
         'media_player.cast_living_room_speaker',
-        'media_player.cast_home_group',
-        'media_player.gpm_desktop_player'
+        'media_player.cast_home_group'
     ]
 })
 

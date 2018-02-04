@@ -4,9 +4,6 @@
 - platform: cast
   entity_namespace: cast
 
-- platform: gpmdp
-  host: Maxwell.singularity.net
-
 - platform: universal
   name: Shield
   children:

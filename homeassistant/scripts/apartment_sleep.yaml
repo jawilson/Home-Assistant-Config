@@ -11,6 +11,7 @@ sequence:
   - service: climate.set_temperature
     data:
       entity_id: climate.apartment
-      target_temp_high: 70
-      temperature: 70
+    data_template:
+      target_temp_high: "{{ 68 if is_state('group.other_guests', 'home') else 70 }}"
+      temperature: "{{ 68 if is_state('group.other_guests', 'home') else 70 }}"
       target_temp_low: 60

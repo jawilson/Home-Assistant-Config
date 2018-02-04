@@ -2,6 +2,10 @@ zwave.sigma_designs_uzb_zwave_usb_adapter:
   ignored: true
 binary_sensor.bathroom_sensor:
   ignored: true
+sensor.bathroom_co2_level:
+  ignored: true
+sensor.bathroom_direction:
+  ignored: true
 sensor.bathroom_general:
   ignored: true
 sensor.bathroom_power:

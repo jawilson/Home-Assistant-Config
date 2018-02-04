@@ -11,6 +11,7 @@
   sensors:
     jeff_home:
       friendly_name: 'Jeff is at Home'
+      device_class: 'presence'
       value_template: >-
         {{ is_state('device_tracker.jawilson_phosphorus', 'home') }}
     jeff_sleeping_at_home:
@@ -26,9 +27,11 @@
   sensors:
     guests:
       friendly_name: 'Guests Visiting'
+      device_class: 'presence'
       value_template: >-
         {{ is_state('input_boolean.guests', 'on') or is_state('group.guests', 'home') }}
     presume_home:
       friendly_name: 'Someone presumed home'
+      device_class: 'presence'
       value_template: >-
         {{ is_state('input_boolean.guests', 'on') or is_state('group.everyone', 'home') }}

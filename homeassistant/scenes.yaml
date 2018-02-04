@@ -12,12 +12,14 @@
       profile: nightlight
       brightness: 65
       transition: 10
+    light.entryway: off
     light.kitchen: off
     light.dining_lights_level: off
     light.bathroom: off
     light.closet: off
     light.bedroom: off
     light.liquor_cabinet_lights: off
+
 - name: Couch Reading
   entities:
     switch.living_area_fluxer:
@@ -33,6 +35,7 @@
     light.dining_lights_level:
       state: on
       brightness: 100
+
 - name: Romantic
   entities:
     switch.living_area_fluxer: off
