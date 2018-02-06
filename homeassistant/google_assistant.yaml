@@ -47,6 +47,7 @@ entity_config:
     expose: true
     name: Dinner
     aliases:
+      - Dinner
       - Dinner Time
       - Lunch
       - Lunch Time
@@ -58,14 +59,30 @@ entity_config:
     expose: true
     name: Cooking
     aliases:
+      - Cooking
       - Food prep
-  script.up_late:
-    expose: true
 
   switch.apartment_fan:
     name: HVAC Fan
   switch.apartment_home:
     expose: false
+  switch.bathroom_fluxer:
+    aliases:
+      - Bathroom fluxer
+      - Bathroom color
+  switch.bathroom_motion:
+    aliases:
+      - Bathroom motion automations
+      - Bathroom motion
+
+  switch.bedroom_fluxer:
+    aliases:
+      - Bedroom fluxer
+      - Bedroom color
+  switch.bedroom_motion:
+    aliases:
+      - Bedroom motion automations
+      - Bedroom motion
   switch.shield:
     expose: false
   switch.living_room_fluxer:
@@ -74,6 +91,7 @@ entity_config:
     expose: false
   switch.living_area_fluxer:
     aliases:
+      - Living area color
       - Living area fluxer
       - Living room fluxer
       - Entryway fluxer
