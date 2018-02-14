@@ -96,7 +96,12 @@
   action:
     - service: switch.turn_on
       entity_id: switch.humidifier
-    - service: script.apartment_sleep
+    - service: climate.set_temperature
+      data:
+        entity_id: climate.apartment
+        target_temp_high: 70
+        temperature: 70
+        target_temp_low: 60
 
 
 - alias: 'Alarm Smart Period'
