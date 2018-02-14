@@ -92,8 +92,8 @@ entity_config:
     expose: false
   switch.living_area_fluxer:
     aliases:
-      - Living area color
       - Living area fluxer
+      - Living area color
       - Living room fluxer
       - Entryway fluxer
   switch.orvibo2:
