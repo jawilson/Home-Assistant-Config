@@ -61,6 +61,7 @@ entity_config:
     aliases:
       - Cooking
       - Food prep
+      - Dishes
 
   switch.apartment_fan:
     name: HVAC Fan
