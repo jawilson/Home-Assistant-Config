@@ -344,9 +344,6 @@ Automations:
   - automation.home_assistant_start
   - automation.projector_off
   - automation.shield_plex_idle
-  - automation.shield_plex_playing
-  - automation.shield_cast_playing
-  - automation.shield_cast_stopped
   - automation.update_locations
   - automation.location_update_notification
   - automation.light_intruder_alert

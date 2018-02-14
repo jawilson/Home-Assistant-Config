@@ -43,45 +43,6 @@
         profile: nightlight
         transition: 15
 
-- alias: 'SHIELD Cast Playing'
-  trigger:
-    - platform: state
-      entity_id: media_player.cast_shield
-      to: 'playing'
-  condition:
-    - condition: template
-      value_template: >
-        {{ trigger.from_state.state != 'playing' }}
-    - condition: state
-      entity_id: input_boolean.media_automation
-      state: 'on'
-    - condition: state
-      entity_id: remote.living_room
-      state: 'off'
-  action:
-    - service: remote.turn_on
-      entity_id: remote.living_room
-      data:
-        activity: 'Listen to Shield'
-
-- alias: 'SHIELD Cast Stopped'
-  trigger:
-    - platform: state
-      entity_id: media_player.cast_shield
-      to: 'off'
-      for:
-        seconds: 30
-  condition:
-    - condition: state
-      entity_id: input_boolean.media_automation
-      state: 'on'
-    - condition: state
-      entity_id: switch.shield_audio
-      state: 'on'
-  action:
-    - service: remote.turn_off
-      entity_id: remote.living_room
-
 - alias: 'Projector Off'
   trigger:
     - platform: state
