@@ -253,7 +253,7 @@ device_tracker:
     host: dark-knight.singularity.net
     username: !secret asuswrt_username
     password: !secret asuswrt_password
-    track_new_devices: yes
+    track_new_devices: no
     protocol: telnet
   - platform: owntracks
     max_gps_accuracy: 45
