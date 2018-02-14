@@ -8,9 +8,7 @@
       entity_id:
         - automation.motion_intruder_alert
         - automation.location_update_notification
-        - automation.living_area_fluxer
-        - automation.bedroom_fluxer
-        - automation.bathroom_fluxer
+        - automation.handle_lights_when_turned_on_not_home
     - service: switch.turn_on
       entity_id:
         - switch.living_area_fluxer
