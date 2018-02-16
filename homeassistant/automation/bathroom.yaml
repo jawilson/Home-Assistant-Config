@@ -30,3 +30,22 @@
   action:
     - service: switch.turn_off
       entity_id: switch.bathroom_fan_switch
+
+
+- alias: 'Limit Bathroom Fan'
+  trigger:
+    platform: state
+    entity_id: switch.bathroom_fan_switch
+    to: 'on'
+    for:
+      minutes: 15
+  condition:
+    - condition: state
+      entity_id: input_boolean.climate_auto
+      state: 'on'
+    - condition: state
+      entity_id: binary_sensor.showering
+      state: 'off'
+  action:
+    - service: switch.turn_off
+      entity_id: switch.bathroom_fan_switch
