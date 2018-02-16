@@ -3,6 +3,7 @@
 *.db-journal
 
 known_devices.yaml
+entity_registry.yaml
 secrets.yaml
 *.conf
 *.pickle
