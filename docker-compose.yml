@@ -3,10 +3,10 @@ version: '2'
 services:
   mqtt:
     image: eclipse-mosquitto
-    restart: always
+    restart: unless-stopped
     dns: 192.168.0.1
     dns_search: singularity.net
-    user: '119:999'
+    user: '114:118'
     ports:
       - 1883:1883
       - 8883:8883
@@ -17,8 +17,9 @@ services:
       - ./ssl/certs:/mosquitto/config/certs:ro
       - ./ssl/private/mqtt.singularity.net.key:/mosquitto/config/private/mqtt.singularity.net.key:ro
   database:
-    image: library/postgres:9.6.1
-    restart: always
+    image: library/postgres:9
+    restart: unless-stopped
+    user: '114:118'
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - ./postgres/data:/var/lib/postgresql/data
@@ -29,17 +30,18 @@ services:
       - POSTGRES_DB=homeassistant
   influxdb:
     image: library/influxdb
-    restart: always
+    restart: unless-stopped
+    user: '114:118'
     volumes:
       - ./influxdb:/var/lib/influxdb
   homeassistant:
-    image: homeassistant/home-assistant:latest
+    image: homeassistant/home-assistant:0.63.3
     links:
       - mqtt
       - mqtt:mqtt.singularity.net
       - database
       - influxdb
-    restart: always
+    restart: unless-stopped
     dns: 192.168.0.1
     dns_search: singularity.net
     networks:
@@ -77,14 +79,14 @@ services:
       - '/config'
   grafana:
     image: grafana/grafana
-    restart: always
+    restart: unless-stopped
     links:
       - database
       - influxdb
     ports:
       - 3000:3000
     volumes:
-      - ./grafana:/etc/grafana
+      - ./grafana:/etc/grafana:ro
       - ./tools:/opt/tools:ro
     environment:
       - GF_INSTALL_PLUGINS=natel-discrete-panel
@@ -100,7 +102,7 @@ networks:
   macvlan:
     driver: macvlan
     driver_opts:
-      parent: 'eth1'
+      parent: 'enp8s0'
     ipam:
       config:
         - subnet: 192.168.0.0/24
