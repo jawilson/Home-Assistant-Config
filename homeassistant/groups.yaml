@@ -37,7 +37,8 @@ Living Room Lights:
 
 Bedroom Lights:
   - light.tree_lamp
-  - light.bedroom_lamp
+  - light.nightstand_1
+  - light.nightstand_2
 
 Closet Lights:
   - light.closet
@@ -159,7 +160,8 @@ bedroom_view_lights:
     - light.tree_lamp_3
     - light.tree_lamp_4
     - light.tree_lamp_5
-    - light.bedroom_lamp
+    - light.nightstand_1
+    - light.nightstand_2
 
 bedroom_view_light_groups:
   name: Light Groups
@@ -221,7 +223,8 @@ Color Lights:
 Color Temperature Lights:
   - light.entryway
   - light.tree_lamp
-  - light.bedroom_lamp
+  - light.nightstand_1
+  - light.nightstand_2
   - light.closet
   - light.bathroom_mirror
   - light.shower

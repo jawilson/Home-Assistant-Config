@@ -63,7 +63,8 @@ sequence:
 
   - service: light.turn_on
     entity_id:
-      - light.bedroom_lamp
+      - light.nightstand_1
+      - light.nightstand_2
       - light.tree_lamp_3
     data:
       color_temp: 454

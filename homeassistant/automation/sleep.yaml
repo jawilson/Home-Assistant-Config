@@ -129,7 +129,7 @@
   action:
     service: script.alarm_ringing
     data:
-      light: light.bedroom_lamp
+      light: light.nightstand_1
       target: phosphorus
 
 
@@ -145,7 +145,7 @@
   action:
     service: script.alarm_snooze
     data:
-      light: light.bedroom_lamp
+      light: light.nightstand_1
 
 
 - alias: 'Alarm Dismiss'
@@ -165,7 +165,7 @@
   action:
     service: script.alarm_dismiss
     data_template:
-      light: light.bedroom_lamp
+      light: light.nightstand_1
 
 
 - alias: 'Wakeup Cancel'

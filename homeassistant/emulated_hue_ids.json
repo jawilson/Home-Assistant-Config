@@ -1,7 +1,7 @@
 {
     "2": "light.kitchen",
     "3": "script.dinner",
-    "5": "light.bedroom_lamp",
+    "5": "light.nightstand_1",
     "6": "media_player.shield",
     "7": "switch.humidifier",
     "9": "light.tree_lamp_5",
@@ -45,5 +45,6 @@
     "70": "light.kitchen_light_3",
     "74": "light.entryway_light_2",
     "75": "light.entryway_light_1",
-    "76": "script.cooking"
+    "76": "script.cooking",
+    "77": "light.nightstand_2"
 }
