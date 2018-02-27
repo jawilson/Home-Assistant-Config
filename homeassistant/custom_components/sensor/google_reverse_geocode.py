@@ -12,7 +12,7 @@ from homeassistant.helpers.event import track_state_change
 from homeassistant.const import (
     CONF_API_KEY, CONF_NAME, CONF_ENTITY_ID, EVENT_HOMEASSISTANT_START,
     ATTR_LATITUDE, ATTR_LONGITUDE, ATTR_GPS_ACCURACY, STATE_NOT_HOME,
-    ATTR_ENTITY_PICTURE)
+    ATTR_ENTITY_PICTURE, ATTR_ENTITY_ID)
 import homeassistant.helpers.config_validation as cv
 import homeassistant.helpers.location as location
 
@@ -130,15 +130,11 @@ class GoogleReverseGeocodeSensor(Entity):
     def state(self):
         """Return the state of the sensor."""
         if self._zone is not None:
-            _LOGGER.info("%s is in zone %s", self._entity_id, self._zone)
             return self._zone
 
         if self._geocode is not None:
-            _LOGGER.info("%s is at location %s", self._entity_id,
-                    self._geocode['formatted_address'])
             return self._geocode['formatted_address']
 
-        _LOGGER.warn("%s has no location info", self._entity_id)
         return None
 
     @property
@@ -154,19 +150,15 @@ class GoogleReverseGeocodeSensor(Entity):
     @property
     def device_state_attributes(self):
         """Return the state attributes."""
+        attr = {ATTR_ENTITY_ID: self._entity_id}
+
         if self._zone is not None:
-            return {
-                ATTR_LOCATION_TYPE: LOCATION_TYPE_ZONE
-            }
+            attr[ATTR_LOCATION_TYPE] = LOCATION_TYPE_ZONE
+        elif self._geocode is not None:
+            attr[ATTR_LOCATION_TYPE] = self._geocode['geometry']['location_type'].lower()
+            attr[ATTR_TYPES] = self._geocode['types']
 
-        if self._geocode is None:
-            return None
-
-        return {
-            ATTR_LOCATION_TYPE:
-                self._geocode['geometry']['location_type'].lower(),
-            ATTR_TYPES: self._geocode['types']
-        }
+        return attr
 
     @property
     def should_poll(self):
@@ -187,6 +179,8 @@ class GoogleReverseGeocodeSensor(Entity):
         _LOGGER.info("Found entity %s", self._entity_id)
         if not location.has_location(entity):
             _LOGGER.warn("Entity %s does not have a location", self._entity_id)
+            self._zone = None
+            self._geocode = None
             return
 
         zone = self._get_zone_from_entity(entity)
