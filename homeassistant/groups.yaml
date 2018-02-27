@@ -273,6 +273,12 @@ Harmony:
 
 # Other view
 
+UPS:
+  - sensor.ups_status
+  - sensor.ups_battery
+  - sensor.ups_load
+  - sensor.ups_time_left
+
 P3Steel:
   - camera.p3steel
   - sensor.p3steel_current_state
@@ -436,6 +442,7 @@ Other:
   view: yes
   icon: mdi:information
   entities:
+    - group.ups
     - group.p3steel
     - sensor.ups
     - sensor.415_l_st_nw_apt_633

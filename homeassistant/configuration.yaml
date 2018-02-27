@@ -252,6 +252,10 @@ zha:
   usb_path: /dev/zigbee
   database_path: /config/zigbee.db
 
+apcupsd:
+  host: feynman.singularity.net
+  port: 3551
+
 
 # Sensors
 binary_sensor: !include_dir_merge_list binary_sensors
