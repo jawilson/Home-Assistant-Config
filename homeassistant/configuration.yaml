@@ -20,6 +20,26 @@ http:
 
 influxdb:
   host: influxdb
+  exclude:
+    domains:
+      - camera
+      - scene
+      - zone
+    entities:
+      - binary_sensor.p3steel_printing
+      - binary_sensor.p3steel_printing_error
+      - sensor.dark_sky_apparent_temperature
+      - sensor.dark_sky_daily_max_precip_intensity
+      - sensor.dark_sky_icon
+      - sensor.dark_sky_summary
+      - sensor.dark_sky_wind_speed
+      - sensor.p3steel_actual_bed_temp
+      - sensor.p3steel_actual_tool0_temp
+      - sensor.p3steel_job_percentage
+      - sensor.p3steel_target_bed_temp
+      - sensor.p3steel_target_tool0_temp
+      - sensor.sunrise
+      - sensor.sunset
 
 # Use a postgresql server for recording data
 recorder:
@@ -38,7 +58,6 @@ recorder:
       - sensor.dark_sky_icon
       - sensor.dark_sky_summary
       - sensor.dark_sky_wind_speed
-      - sensor.google_reverse_geocode__jeff
       - sensor.p3steel_actual_bed_temp
       - sensor.p3steel_actual_tool0_temp
       - sensor.p3steel_job_percentage
@@ -53,6 +72,8 @@ logbook:
     domains:
       - group
     entities:
+      - binary_sensor.bathroom_humidity_trend
+      - binary_sensor.bathroom_temp_trend
       - light.bedroom
       - light.living_room
       - light.tree_lamp_1
