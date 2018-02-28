@@ -444,8 +444,6 @@ Other:
   entities:
     - group.ups
     - group.p3steel
-    - sensor.ups
-    - sensor.415_l_st_nw_apt_633
     - sensor.apartment_temperatures
     - sensor.apartment_humidities
     - group.temperatures
