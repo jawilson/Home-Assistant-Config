@@ -84,7 +84,7 @@ Scenes:
     - scene.tv_dinner
     - scene.romantic
     - script.bedtime
-    - script.up_late
+    - scene.up_late
     - script.lights_out
 
 

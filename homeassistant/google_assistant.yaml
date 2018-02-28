@@ -38,6 +38,12 @@ entity_config:
 
   scene.tv_dinner:
     expose: false
+  scene.romantic:
+    name: Romantic
+    aliases:
+      - Romantic
+      - Getting freaky
+      - Banging
 
   script.apartment_shutdown:
     expose: true
