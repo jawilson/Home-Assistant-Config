@@ -9,14 +9,14 @@ hass.services.call('media_player', 'media_stop', {
 
 hass.services.call('light', 'turn_off', {
     'entity_id': [
-        'light.kitchen',
         'light.dining_lights_level',
-        'light.entryway'
     ]
 })
 hass.services.call('light', 'turn_off', {
     'transition': 5,
     'entity_id': [
+        'light.entryway'
+        'light.kitchen',
         'light.liquor_cabinet_lights',
         'light.bedroom',
         'light.closet'

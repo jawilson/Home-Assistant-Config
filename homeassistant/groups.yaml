@@ -387,7 +387,6 @@ Kitchen:
     - group.kitchen_view_accent_lights
     - switch.living_area_fluxer
     - media_player.cast_kitchen
-    - media_player.gpm_desktop_player
     - group.living_room_view_sensors
 
 Living Room:
@@ -397,6 +396,7 @@ Living Room:
     - group.living_room_view_lights
     - group.living_room_view_light_groups
     - switch.living_area_fluxer
+    - media_player.cast_living_room_speaker
     - media_player.shield
     - group.harmony
     - group.living_room_view_sensors
