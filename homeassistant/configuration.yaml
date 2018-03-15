@@ -167,7 +167,7 @@ map:
 config:
 
 # Discover some devices automatically
-discovery:
+#discovery:
 
 # Track the sun
 sun:
