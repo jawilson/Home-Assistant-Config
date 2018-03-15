@@ -6,6 +6,7 @@ sequence:
     entity_id:
       - light.kitchen
       - light.entryway
+      - light.dining_lights_level
     data:
       profile: concentrate
       brightness: 255
