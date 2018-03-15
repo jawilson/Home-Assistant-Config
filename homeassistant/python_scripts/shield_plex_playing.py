@@ -1,11 +1,17 @@
-hass.services.call('media_player', 'media_stop', {
-    'entity_id': [
+
+media_players = [
         'media_player.cast_kitchen',
         'media_player.cast_bedroom_mini',
         'media_player.cast_living_room_speaker',
         'media_player.cast_home_group'
     ]
-})
+media_players = [player for player in media_players if
+        hass.states.is_state(player, 'playing')]
+
+if media_players:
+    hass.services.call('media_player', 'media_pause', {
+        'entity_id': media_players
+    })
 
 hass.services.call('light', 'turn_off', {
     'entity_id': [
