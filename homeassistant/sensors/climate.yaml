@@ -7,13 +7,13 @@
 # MQTT
 #
 - platform: mqtt
-  name: "Office Temperature"
+  name: "Living Room Temperature"
   state_topic: "esp8266-007461/temperature"
   qos: 0
   unit_of_measurement: "°C"
 
 - platform: mqtt
-  name: "Office Humidity"
+  name: "Living Room Relative Humidity"
   state_topic: "esp8266-007461/humidity"
   qos: 0
   unit_of_measurement: "%"
@@ -29,7 +29,7 @@
     - sensor.apartment_thermostat_temperature
     - sensor.bathroom_temperature
     - sensor.bedroom_temperature
-    - sensor.office_temperature
+    - sensor.living_room_temperature
 
 - platform: min_max
   name: Apartment Humidities
@@ -38,7 +38,7 @@
     - sensor.apartment_thermostat_humidity
     - sensor.bathroom_relative_humidity
     - sensor.bedroom_relative_humidity
-    - sensor.office_humidity
+    - sensor.living_room_relative_humidity
 
 - platform: statistics
   entity_id: sensor.bathroom_temperature

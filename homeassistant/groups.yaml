@@ -69,8 +69,8 @@ Climate:
     - switch.apartment_home
     - switch.apartment_fan
     - switch.humidifier
-    - sensor.apartment_thermostat_temperature
-    - sensor.apartment_thermostat_humidity
+    - sensor.apartment_temperatures
+    - sensor.apartment_humidities
 
 Scenes:
   control: hidden
@@ -135,8 +135,8 @@ living_room_view_light_groups:
 living_room_view_sensors:
   name: Sensors
   entities:
-    - sensor.apartment_thermostat_temperature
-    - sensor.apartment_thermostat_humidity
+    - sensor.living_room_temperature
+    - sensor.living_room_relative_humidity
 
 
 # Bedroom view
@@ -284,14 +284,14 @@ Temperatures:
   - sensor.apartment_thermostat_temperature
   - sensor.bathroom_temperature
   - sensor.bedroom_temperature
-  - sensor.office_temperature
+  - sensor.living_room_temperature
 
 Humidities:
   - sensor.dark_sky_humidity
   - sensor.apartment_thermostat_humidity
   - sensor.bathroom_relative_humidity
   - sensor.bedroom_relative_humidity
-  - sensor.office_humidity
+  - sensor.living_room_relative_humidity
 
 
 # Admin view
@@ -433,8 +433,6 @@ Other:
   entities:
     - group.ups
     - group.p3steel
-    - sensor.apartment_temperatures
-    - sensor.apartment_humidities
     - group.temperatures
     - group.humidities
 
