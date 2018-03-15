@@ -1,44 +1,96 @@
 - platform: flux
-  name: Living Room Fluxer
-  lights: !include ../fluxer_lights/living_area.yaml
+  name: Entryway Fluxer
+  lights:
+    - light.entryway_light_1
+    - light.entryway_light_2
   start_time: '7:00'
+  stop_time: '22:00'
+  start_colortemp: 5000
+  mode: mired
+
+- platform: flux
+  name: Kitchen Fluxer
+  lights:
+    - light.kitchen_light_1
+    - light.kitchen_light_2
+    - light.kitchen_light_3
+    - light.kitchen_light_4
+  start_time: '7:00'
+  stop_time: '22:00'
   start_colortemp: 5000
   sunset_colortemp: 3500
 
 - platform: flux
-  name: Entryway Fluxer
-  lights: !include ../fluxer_lights/entryway.yaml
+  name: Dining Fluxer
+  lights:
+    - light.dining_lights_level
   start_time: '7:00'
+  stop_time: '22:00'
   start_colortemp: 5000
-  mode: mired
+  sunset_colortemp: 3500
+  stop_colortemp: 1000
+
+- platform: flux
+  name: Living Room Fluxer
+  lights:
+    - light.living_room_lamp_1
+    - light.living_room_lamp_2
+    - light.entertainment_light_1
+    - light.entertainment_light_2
+  start_time: '7:00'
+  stop_time: '22:00'
+  start_colortemp: 5000
+  sunset_colortemp: 3500
 
 - platform: template
   switches:
     living_area_fluxer:
       friendly_name: Living Area Fluxer
-      value_template: >
-        {{is_state('switch.living_room_fluxer', 'on') and is_state('switch.entryway_fluxer', 'on')}}
+      value_template: >-
+        {{ is_state('switch.entryway_fluxer', 'on') and
+          is_state('switch.kitchen_fluxer', 'on') and
+          is_state('switch.dining_fluxer', 'on') and
+          is_state('switch.living_room_fluxer', 'on') }}
       turn_on:
         service: switch.turn_on
         entity_id:
-          - switch.living_room_fluxer
           - switch.entryway_fluxer
+          - switch.kitchen_fluxer
+          - switch.dining_fluxer
+          - switch.living_room_fluxer
       turn_off:
         service: switch.turn_off
         entity_id:
-          - switch.living_room_fluxer
           - switch.entryway_fluxer
+          - switch.kitchen_fluxer
+          - switch.dining_fluxer
+          - switch.living_room_fluxer
 
 - platform: flux
   name: Bedroom Fluxer
-  lights: !include ../fluxer_lights/bedroom.yaml
+  lights:
+    - light.nightstand_1
+    - light.nightstand_2
+    - light.tree_lamp_1
+    - light.tree_lamp_2
+    - light.tree_lamp_3
+    - light.tree_lamp_4
+    - light.tree_lamp_5
+    - light.closet_light
   start_time: '7:00'
+  stop_time: '22:00'
   start_colortemp: 5000
   mode: mired
 
 - platform: flux
-  lights: !include ../fluxer_lights/bathroom.yaml
+  lights:
+    - light.bathroom_mirror_1
+    - light.bathroom_mirror_2
+    - light.bathroom_mirror_3
+    - light.bathroom_mirror_4
+    - light.shower_light
   name: Bathroom Fluxer
   start_time: '7:00'
+  stop_time: '22:00'
   start_colortemp: 5000
   mode: mired

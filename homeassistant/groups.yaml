@@ -48,11 +48,6 @@ Bathroom Lights:
   - light.bathroom_mirror
 
 
-Living Area Fluxer Lights: !include fluxer_lights/living_area.yaml
-Bedroom Fluxer Lights: !include fluxer_lights/bedroom.yaml
-Bathroom Fluxer Lights: !include fluxer_lights/bathroom.yaml
-
-
 # Home view
 
 Jeff:

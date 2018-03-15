@@ -98,9 +98,13 @@ entity_config:
       - Bedroom motion
   switch.shield:
     expose: false
-  switch.living_room_fluxer:
+  switch.dining_fluxer:
     expose: false
   switch.entryway_fluxer:
+    expose: false
+  switch.kitchen_fluxer:
+    expose: false
+  switch.living_room_fluxer:
     expose: false
   switch.living_area_fluxer:
     aliases:
