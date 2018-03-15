@@ -35,7 +35,7 @@ services:
     volumes:
       - ./influxdb:/var/lib/influxdb
   homeassistant:
-    image: homeassistant/home-assistant:0.63.3
+    image: homeassistant/home-assistant:latest
     links:
       - mqtt
       - mqtt:mqtt.singularity.net
