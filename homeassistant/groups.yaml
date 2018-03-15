@@ -64,6 +64,12 @@ Weather:
   - sensor.sunrise
   - sensor.sunset
 
+Vacuum:
+  control: hidden
+  entities:
+    - vacuum.doomba
+    - input_boolean.schedule_vacuum
+
 Climate:
   control: hidden
   entities:
@@ -372,10 +378,10 @@ default_view:
   entities:
     - group.jeff
     - group.climate
-    - vacuum.doomba
-    - media_player.cast_home_group
     - group.scenes
     - group.all_guests
+    - group.vacuum
+    - media_player.cast_home_group
 
 Kitchen:
   view: yes

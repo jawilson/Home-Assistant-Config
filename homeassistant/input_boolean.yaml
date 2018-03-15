@@ -1,3 +1,8 @@
+schedule_vacuum:
+  name: Schedule Vacuum
+  initial: off
+  icon: mdi:calendar-check
+
 presence:
   name: Presence
   initial: on

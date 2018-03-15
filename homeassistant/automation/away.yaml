@@ -34,17 +34,22 @@
     - condition: state
       entity_id: binary_sensor.presume_home
       state: 'off'
-    - condition: and
+    - condition: or
       conditions:
         - condition: state
-          entity_id: vacuum.doomba
-          state: 'off'
-          # Only run Doomba ounce every 40 hours max
-          for:
-            hours: 40
-        - condition: template
-          value_template: >
-            {{ (as_timestamp(now()) - (as_timestamp(states.automation.run_doomba.attributes.last_triggered) or 0))/60/60 > 40 }}
+          entity_id: input_boolean.schedule_vacuum
+          state: 'on'
+        - condition: and
+          conditions:
+            - condition: state
+              entity_id: vacuum.doomba
+              state: 'off'
+              # Only run Doomba ounce every 40 hours max
+              for:
+                hours: 40
+            - condition: template
+              value_template: >
+                {{ (as_timestamp(now()) - (as_timestamp(states.automation.run_doomba.attributes.last_triggered) or 0))/60/60 > 40 }}
     - condition: or
       conditions:
         - condition: template
@@ -56,6 +61,8 @@
             - condition: template
               value_template: "{{ is_state_attr('proximity.home', 'dir_of_travel', 'stationary') }}"
   action:
+    - service: input_boolean.turn_off
+      entity_id: input_boolean.schedule_vacuum
     - service: vacuum.turn_on
       entity_id: vacuum.doomba
 

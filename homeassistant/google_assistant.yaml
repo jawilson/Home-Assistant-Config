@@ -10,6 +10,13 @@ exposed_domains:
   - fan
   - climate
 entity_config:
+  input_boolean:
+    expose: true
+    name: Schedule Vacuum
+    aliases:
+      - Schedule Vacuum
+      - Schedule Cleaning
+
   light.entryway:
     expose: false
   light.bedroom:
@@ -81,7 +88,6 @@ entity_config:
     aliases:
       - Bathroom motion automations
       - Bathroom motion
-
   switch.bedroom_fluxer:
     aliases:
       - Bedroom fluxer
