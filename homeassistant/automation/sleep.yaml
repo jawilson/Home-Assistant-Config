@@ -82,7 +82,7 @@
       state: 'home'
     - condition: time
       after: '6:15:00'
-      before: '10:00:00'
+      before: '9:00:00'
       weekday:
         - mon
         - tue
@@ -96,11 +96,13 @@
         - script.living_area_sleep
     - service: script.bathroom_wakeup
     - service: script.living_area_wakeup
+    - service: switch.turn_on
+      entity_id: switch.bedroom_fluxer
     - service: light.turn_on
       entity_id: light.nightstand_2
       data:
         color_temp: 450
-        brightness: 1
+        brightness: 10
 
 
 - alias: 'Awake'
