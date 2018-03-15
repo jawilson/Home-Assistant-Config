@@ -55,14 +55,11 @@ Bathroom Fluxer Lights: !include fluxer_lights/bathroom.yaml
 
 # Home view
 
-Weather:
-  - sensor.dark_sky_summary
-  - sensor.dark_sky_temperature
-  - sensor.dark_sky_apparent_temperature
-  - sensor.dark_sky_precip_intensity_max
-  - sensor.dark_sky_wind_speed
-  - sensor.sunrise
-  - sensor.sunset
+Jeff:
+  - sensor.google_reverse_geocode__jeff
+  - script.jawilson_phosphorus_location_update
+  - sensor.jeff_sleep_state
+  - sensor.jeff_alarm
 
 Vacuum:
   control: hidden
@@ -92,15 +89,6 @@ Scenes:
     - script.bedtime
     - scene.up_late
     - script.lights_out
-
-
-# People view
-
-Jeff:
-  - sensor.google_reverse_geocode__jeff
-  - script.jawilson_phosphorus_location_update
-  - sensor.jeff_sleep_state
-  - sensor.jeff_alarm
 
 
 # Kitchen view
