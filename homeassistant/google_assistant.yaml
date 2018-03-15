@@ -96,8 +96,6 @@ entity_config:
     aliases:
       - Bedroom motion automations
       - Bedroom motion
-  switch.shield:
-    expose: false
   switch.dining_fluxer:
     expose: false
   switch.entryway_fluxer:
@@ -113,6 +111,8 @@ entity_config:
       - Living room fluxer
       - Entryway fluxer
   switch.orvibo2:
+    expose: false
+  switch.shield:
     expose: false
 
   group.living_area_lights:
