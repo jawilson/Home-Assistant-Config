@@ -10,7 +10,7 @@ exposed_domains:
   - fan
   - climate
 entity_config:
-  input_boolean:
+  input_boolean.schedule_vacuum:
     expose: true
     name: Schedule Vacuum
     aliases:
