@@ -3,7 +3,7 @@
     platform: numeric_state
     entity_id: sensor.apartment_temperatures
     value_template: '{{ state.attributes.max_value - state.attributes.min_value }}'
-    above: 3
+    above: 2
   condition:
     condition: state
     entity_id: input_boolean.climate_auto
@@ -20,7 +20,7 @@
     platform: numeric_state
     entity_id: sensor.apartment_temperatures
     value_template: '{{ state.attributes.max_value - state.attributes.min_value }}'
-    below: 3
+    below: 2
   condition:
     condition: state
     entity_id: input_boolean.climate_auto
