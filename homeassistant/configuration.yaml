@@ -326,7 +326,8 @@ script: !include_dir_named scripts
 python_script:
 
 # Automation
-automation: !include_dir_merge_list automation
+automation: !include automations.yaml
+automation old: !include_dir_merge_list automation
 
 #
 # Logger
