@@ -44,6 +44,10 @@
     platform: state
     entity_id: binary_sensor.jeff_sleeping_at_home
     to: 'off'
+  condition:
+    condition: state
+    entity_id: device_tracker.jawilson_phosphorus
+    state: 'home'
   action:
     - service: switch.turn_off
       entity_id:
