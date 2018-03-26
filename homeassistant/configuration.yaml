@@ -280,7 +280,7 @@ device_tracker:
     password: !secret asuswrt_password
     track_new_devices: no
     protocol: telnet
-  - platform: owntracks
+  - platform: owntracks_http
     max_gps_accuracy: 45
 
 media_player: !include media_players.yaml
