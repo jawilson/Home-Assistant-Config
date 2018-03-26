@@ -6,6 +6,7 @@ sequence:
       - switch.bedroom_fluxer
       - automation.bedroom_motion
       - automation.bedroom_no_motion
+      - automation.closet_no_motion
 
 
   # Provide a way to cancel
@@ -26,12 +27,16 @@ sequence:
 
   # Turn on lights softly
   - service: light.turn_on
-    entity_id: light.bedroom
+    entity_id:
+      - light.bedroom
+      - light.closet_light
     data:
       color_temp: 450
       brightness: 1
   - service: light.turn_on
-    entity_id: light.bedroom
+    entity_id:
+      - light.bedroom
+      - light.closet_light
     data:
       transition: 480
       color_temp: 450
@@ -40,7 +45,9 @@ sequence:
       minutes: 10
 
   - service: light.turn_on
-    entity_id: light.bedroom
+    entity_id:
+      - light.bedroom
+      - light.closet_light
     data:
       transition: 480
       color_temp: 400
@@ -49,7 +56,9 @@ sequence:
       minutes: 10
 
   - service: light.turn_on
-    entity_id: light.bedroom
+    entity_id:
+      - light.bedroom
+      - light.closet_light
     data:
       transition: 600
       color_temp: 225
@@ -68,6 +77,7 @@ sequence:
     entity_id:
       - automation.bedroom_motion
       - automation.bedroom_no_motion
+      - automation.closet_no_motion
 
 
   # Turn off lights if no motion

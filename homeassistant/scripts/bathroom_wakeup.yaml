@@ -13,21 +13,18 @@ sequence:
     entity_id:
       - automation.bathroom_motion
       - automation.bathroom_no_motion
-      - automation.closet_no_motion
 
 
   # Turn on lights softly
   - service: light.turn_on
     entity_id:
       - light.bathroom
-      - light.closet_light
     data:
       color_temp: 450
       brightness: 1
   - service: light.turn_on
     entity_id:
       - light.bathroom
-      - light.closet_light
     data:
       transition: 480
       color_temp: 450
@@ -38,7 +35,6 @@ sequence:
   - service: light.turn_on
     entity_id:
       - light.bathroom
-      - light.closet_light
     data:
       transition: 480
       color_temp: 400
@@ -49,7 +45,6 @@ sequence:
   - service: light.turn_on
     entity_id:
       - light.bathroom
-      - light.closet_light
     data:
       transition: 600
       color_temp: 225
@@ -68,7 +63,6 @@ sequence:
     entity_id:
       - automation.bathroom_motion
       - automation.bathroom_no_motion
-      - automation.closet_no_motion
 
 
   # Turn off lights if no motion
