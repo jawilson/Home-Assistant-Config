@@ -1,6 +1,8 @@
 letsencrypt/
 ssl/
 
+*.env
+
 *.pyc
 *.db
 *.log

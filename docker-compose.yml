@@ -24,10 +24,8 @@ services:
       - /etc/localtime:/etc/localtime:ro
       - ./postgres/data:/var/lib/postgresql/data
       - ./postgres/initdb.d:/docker-entrypoint-initdb.d:ro
-    environment:
-      - POSTGRES_USER=hass
-      - POSTGRES_PASSWORD=automatethethings
-      - POSTGRES_DB=homeassistant
+    env_file:
+      - ./postgres/secrets.env
   influxdb:
     image: library/influxdb
     restart: unless-stopped
