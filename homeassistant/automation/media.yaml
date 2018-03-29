@@ -12,7 +12,7 @@
     # Turn off the rest of the lights if we haven't started dinner in the last hour
     - condition: template
       value_template: >
-        {{ (as_timestamp(now()) - as_timestamp(states.script.dinner.attributes.last_triggered))/60 > 60 }}
+        {{ (as_timestamp(now()) - as_timestamp(states.script.dinner.attributes.last_triggered)|float)/60 > 60 }}
     - service: light.turn_off
       entity_id: light.living_room
 

@@ -49,7 +49,7 @@
                 hours: 40
             - condition: template
               value_template: >
-                {{ (as_timestamp(now()) - (as_timestamp(states.automation.run_doomba.attributes.last_triggered) or 0))/60/60 > 40 }}
+                {{ (as_timestamp(now()) - (as_timestamp(states.automation.run_doomba.attributes.last_triggered)|float))/60/60 > 40 }}
     - condition: or
       conditions:
         - condition: template
