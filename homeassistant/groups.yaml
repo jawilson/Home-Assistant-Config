@@ -326,6 +326,7 @@ Automations:
   - automation.alarm_snooze
   - automation.alarm_dismiss
   - automation.wake_up
+  - automation.guest_wake_up
   - automation.wakeup_cancel
   - automation.fan_while_showering
   - automation.fan_after_showering

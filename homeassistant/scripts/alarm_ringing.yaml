@@ -12,7 +12,7 @@ sequence:
         tag: 'wakeup'
         renotify: false
         actions:
-          - action: 'wakeup_cancel'
+          - action: 'alarm_ringing_cancel'
             title: 'Cancel'
         script: 'script.alarm_ringing'
   - service: light.turn_on

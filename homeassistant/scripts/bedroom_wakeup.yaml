@@ -9,22 +9,6 @@ sequence:
       - automation.closet_no_motion
 
 
-  # Provide a way to cancel
-  - service: notify.html5
-    data_template:
-      target: '{{ target }}'
-    data:
-      title: 'Good Morning!'
-      message: 'Turning on the bedroom lights'
-      data:
-        tag: 'wakeup'
-        renotify: false
-        actions:
-          - action: 'wakeup_cancel'
-            title: 'Cancel'
-        script: 'script.bedroom_wakeup'
-
-
   # Turn on lights softly
   - service: light.turn_on
     entity_id:
