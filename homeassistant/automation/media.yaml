@@ -1,7 +1,7 @@
 - alias: 'SHIELD Plex Playing'
   trigger:
     - platform: state
-      entity_id: media_player.plex_shield
+      entity_id: media_player.shield
       to: 'playing'
   condition:
     - condition: state
@@ -57,4 +57,14 @@
       value_template: >
         {{ trigger.from_state.attributes.current_activity != 'Listen to Shield' }}
   action:
-    - service: python_script.projector_off
+    - service: light.turn_on
+      entity_id:
+        - light.living_room
+        - light.kitchen
+        - light.dining_lights_level
+      data:
+        profile: nightlight
+        transition: 15
+    - service: switch.living_room_fluxer_update
+    - service: switch.kitchen_fluxer_update
+    - service: switch.dining_fluxer_update

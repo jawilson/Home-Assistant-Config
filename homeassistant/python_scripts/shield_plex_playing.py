@@ -1,12 +1,14 @@
-
-media_players = [
+all_media_players = [
         'media_player.cast_kitchen',
         'media_player.cast_bedroom_mini',
         'media_player.cast_living_room_speaker',
         'media_player.cast_home_group'
     ]
-media_players = [player for player in media_players if
-        hass.states.is_state(player, 'playing')]
+
+media_players = []
+for player in all_media_players:
+    if hass.states.is_state(player, 'playing'):
+        media_players.append(player)
 
 if media_players:
     hass.services.call('media_player', 'media_pause', {
@@ -21,7 +23,7 @@ hass.services.call('light', 'turn_off', {
 hass.services.call('light', 'turn_off', {
     'transition': 5,
     'entity_id': [
-        'light.entryway'
+        'light.entryway',
         'light.kitchen',
         'light.liquor_cabinet_lights',
         'light.bedroom',
