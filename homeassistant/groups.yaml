@@ -339,6 +339,8 @@ Automations:
   - automation.nest_while_home
   - automation.circulate_to_even_temperature
   - automation.end_circulate_to_even
+  - automation.humidity_too_low
+  - automation.humidity_too_high
   - automation.home_assistant_start
   - automation.projector_off
   - automation.shield_plex_idle

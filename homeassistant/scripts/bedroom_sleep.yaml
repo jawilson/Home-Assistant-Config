@@ -9,6 +9,4 @@ sequence:
   - service: light.turn_off
     entity_id: light.closet
   - service: switch.turn_on
-    entity_id: switch.humidifier
-  - service: switch.turn_on
     entity_id: switch.bedroom_fluxer

@@ -4,9 +4,7 @@ sequence:
     entity_id: binary_sensor.jeff_sleeping_at_home
     state: 'off'
   - service: switch.turn_on
-    entity_id:
-      - switch.humidifier
-      - switch.bedroom_fluxer
+    entity_id: switch.bedroom_fluxer
   - condition: numeric_state
     entity_id: sensor.bedroom_luminance
     below: '30'

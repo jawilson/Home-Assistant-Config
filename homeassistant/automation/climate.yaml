@@ -30,3 +30,31 @@
     entity_id: climate.apartment
     data:
       fan_mode: 'auto'
+
+
+- alias: Humidity too low
+  trigger:
+    platform: numeric_state
+    entity_id: sensor.apartment_humidities
+    below: 45
+  condition:
+    - condition: state
+      entity_id: input_boolean.climate_auto
+      state: 'on'
+  action:
+    service: switch.turn_on
+    entity_id: switch.humidifier
+
+
+- alias: Humidity too high
+  trigger:
+    platform: numeric_state
+    entity_id: sensor.apartment_humidities
+    above: 50
+  condition:
+    - condition: state
+      entity_id: input_boolean.climate_auto
+      state: 'on'
+  action:
+    service: switch.turn_off
+    entity_id: switch.humidifier

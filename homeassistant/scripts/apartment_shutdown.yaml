@@ -12,7 +12,6 @@ sequence:
       - group.all_lights
       - switch.bathroom_fan
       - switch.projector
-      - switch.humidifier
   - service: homeassistant.turn_on
     entity_id:
       - switch.living_room_fluxer

@@ -135,8 +135,6 @@
     entity_id: device_tracker.jawilson_phosphorus
     state: 'home'
   action:
-    - service: switch.turn_on
-      entity_id: switch.humidifier
     - service: climate.set_temperature
       data:
         entity_id: climate.apartment
