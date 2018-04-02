@@ -10,4 +10,4 @@ sequence:
       entity_id: climate.apartment
       target_temp_high: 74
       temperature: 74
-      target_temp_low: 71
+      target_temp_low: 70

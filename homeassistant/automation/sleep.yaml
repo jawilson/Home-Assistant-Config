@@ -58,20 +58,20 @@
     - service: script.bathroom_wakeup
     - service: script.living_area_wakeup
     - service: script.apartment_wakeup
-  # Provide a way to cancel
-  - service: notify.html5
-    data:
-      target: phosphorus
-      title: 'Good Morning!'
-      message: 'Turning on the bedroom lights'
+    # Provide a way to cancel
+    - service: notify.html5
       data:
-        tag: 'wakeup'
-        renotify: false
-        actions:
-          - action: 'cancel_bedroom_wakeup'
-            title: 'Cancel Bedroom'
-          - action: 'cancel_wakeup'
-            title: 'Cancel All'
+        target: phosphorus
+        title: 'Good Morning!'
+        message: 'Turning on the bedroom lights'
+        data:
+          tag: 'wakeup'
+          renotify: false
+          actions:
+            - action: 'cancel_bedroom_wakeup'
+              title: 'Cancel Bedroom'
+            - action: 'cancel_wakeup'
+              title: 'Cancel All'
     - condition: time
       after: '6:00:00'
       before: '10:00:00'
@@ -112,20 +112,20 @@
       entity_id:
         - script.bathroom_sleep
         - script.living_area_sleep
-  # Provide a way to cancel
-  - service: notify.html5
-    data:
-      target: phosphorus
-      title: 'Good Morning!'
-      message: 'Guests are waking up'
+    # Provide a way to cancel
+    - service: notify.html5
       data:
-        tag: 'wakeup'
-        renotify: false
-        actions:
-          - action: 'cancel_bedroom_wakeup'
-            title: 'Cancel Bedroom'
-          - action: 'cancel_wakeup'
-            title: 'Cancel All'
+        target: phosphorus
+        title: 'Good Morning!'
+        message: 'Guests are waking up'
+        data:
+          tag: 'wakeup'
+          renotify: false
+          actions:
+            - action: 'cancel_bedroom_wakeup'
+              title: 'Cancel Bedroom'
+            - action: 'cancel_wakeup'
+              title: 'Cancel All'
     - service: script.bathroom_wakeup
     - service: script.living_area_wakeup
     - service: switch.turn_off
@@ -181,7 +181,18 @@
     entity_id: device_tracker.jawilson_phosphorus
     state: 'home'
   action:
-    service: script.apartment_wakeup
+    - condition: state
+      entity_id: input_boolean.climate_auto
+      state: 'on'
+    - delay:
+        minutes: 2
+    - service: climate.set_temperature
+      data:
+        entity_id: climate.apartment
+      data_template:
+        target_temp_high: 74
+        temperature: 71
+        target_temp_low: "{{ 68 if is_state('group.other_guests', 'home') else 70 }}"
 
 
 - alias: 'Alarm Ringing'
@@ -251,6 +262,8 @@
         data:
           tag: 'wakeup'
           renotify: false
+    - service: script.turn_off
+      entity_id: script.alarm_ringing
     - service: script.bedroom_sleep
 
 
@@ -270,9 +283,9 @@
         data:
           tag: 'wakeup'
           renotify: false
-        actions:
-          - action: 'cancel_wakeup'
-            title: 'Cancel All'
+          actions:
+            - action: 'cancel_wakeup'
+              title: 'Cancel All'
     - service: script.turn_off
       entity_id: script.bedroom_wakeup
     - service: script.bedroom_sleep
