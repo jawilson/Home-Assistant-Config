@@ -17,4 +17,4 @@
       friendly_name: 'Showering'
       device_class: moisture
       value_template: >-
-        {{ states('sensor.bathroom_relative_humidity')|float > 80 }}
+        {{ states('sensor.bathroom_temperature')|float > 73 }}

@@ -9,7 +9,8 @@ sequence:
     entity_id: sensor.bedroom_luminance
     below: '30'
   - service: light.turn_on
-    entity_id: group.bedroom_lights
+    entity_id: light.bedroom
+  - service: switch.bedroom_fluxer_update
   - service: automation.turn_on
     entity_id:
       - automation.bedroom_motion

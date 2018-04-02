@@ -10,6 +10,9 @@ sequence:
       - light.entryway
       - light.kitchen
       - light.dining_lights_level
+  - service: switch.living_room_fluxer_update
+  - service: switch.kitchen_fluxer_update
+  - service: switch.dining_fluxer_update
   - condition: sun
     after: sunset
     after_offset: "-2:00:00"
