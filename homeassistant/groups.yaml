@@ -362,6 +362,8 @@ default_view:
   name: Home
   icon: mdi:home
   entities:
+    - configurator.philips_hue
+    - configurator.plex_media_server
     - group.jeff
     - group.climate
     - group.scenes

@@ -75,6 +75,16 @@ services:
       - 'homeassistant'
       - '--config'
       - '/config'
+  plexpy2influx:
+    image: matthewvantassel/plexpy2influx
+    restart: unless-stopped
+    links:
+      - influxdb
+    environment:
+      - INFLUX_HOST=influxdb
+      - INFLUX_DB=plex
+      - PLEXPY_HOST=plexpy.singularity.net
+    env_file: ./plexpy.env
   grafana:
     image: grafana/grafana
     restart: unless-stopped
