@@ -33,8 +33,8 @@
 - platform: flux
   name: Living Room Fluxer
   lights:
-    - light.living_room_lamp_1
-    - light.living_room_lamp_2
+    - light.living_room_lamp
+    - light.desk_lamp
     - light.entertainment_light_1
     - light.entertainment_light_2
   start_time: '7:00'

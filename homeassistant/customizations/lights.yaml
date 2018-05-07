@@ -17,8 +17,6 @@ light.bathroom_mirror:
 light.living_room:
   hidden: true
   emulated_hue_hidden: true
-light.living_room_lamp:
-  emulated_hue_hidden: true
 light.entertainment_lights:
   emulated_hue_hidden: true
 light.kitchen:

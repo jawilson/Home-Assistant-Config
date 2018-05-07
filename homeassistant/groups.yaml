@@ -30,10 +30,12 @@ Living Area Lights:
   - light.dining_lights_level
   - light.entertainment_lights
   - light.living_room_lamp
+  - light.desk_lamp
 
 Living Room Lights:
   - light.entertainment_lights
   - light.living_room_lamp
+  - light.desk_lamp
 
 Bedroom Lights:
   - light.tree_lamp
@@ -122,15 +124,14 @@ living_room_view_lights:
   entities:
     - light.entertainment_light_1
     - light.entertainment_light_2
-    - light.living_room_lamp_1
-    - light.living_room_lamp_2
+    - light.living_room_lamp
+    - light.desk_lamp
 
 living_room_view_light_groups:
   name: Light Groups
   control: hidden
   entities:
     - light.entertainment_lights
-    - light.living_room_lamp
 
 living_room_view_sensors:
   name: Sensors
@@ -208,6 +209,7 @@ Color Lights:
   - light.liquor_cabinet_lights
   - light.entertainment_lights
   - light.living_room_lamp
+  - light.desk_lamp
 
 Color Temperature Lights:
   - light.entryway
@@ -220,6 +222,7 @@ Color Temperature Lights:
   - light.kitchen
   - light.entertainment_lights
   - light.living_room_lamp
+  - light.desk_lamp
 
 Light Types:
   control: hidden

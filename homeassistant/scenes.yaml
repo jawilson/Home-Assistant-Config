@@ -2,16 +2,11 @@
   entities:
     switch.plex: on
     switch.living_area_fluxer: off
-    light.entertainment_lights:
+    light.living_room:
       state: on
       profile: nightlight
-      brightness: 65
-      transition: 10
-    light.living_room_lamp:
-      state: on
-      profile: nightlight
-      brightness: 65
-      transition: 10
+      brightness: 100
+      transition: 15
     light.entryway: off
     light.kitchen: off
     light.dining_lights_level: off
@@ -26,6 +21,10 @@
     switch.living_area_fluxer:
       state: off
     light.living_room_lamp:
+      state: on
+      xy_color: [0.4449, 0.4066]
+      brightness: 173
+    light.desk_lamp:
       state: on
       xy_color: [0.4449, 0.4066]
       brightness: 173
@@ -44,10 +43,10 @@
       state: on
       color_temp: 454
       brightness: 1
-    light.living_room_lamp_1:
+    light.living_room_lamp:
       state: on
       profile: late
-    light.living_room_lamp_2:
+    light.desk_lamp:
       state: on
       profile: late
       brightness: 140
@@ -80,6 +79,10 @@
       state: on
       brightness: 25
     light.living_room_lamp:
+      state: on
+      xy_color: [0.5923,0.3829]
+      brightness: 100
+    light.desk_lamp:
       state: on
       xy_color: [0.5923,0.3829]
       brightness: 100

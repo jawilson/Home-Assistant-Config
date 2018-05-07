@@ -5,9 +5,7 @@ sequence:
   - service: switch.turn_off
     entity_id: switch.living_area_fluxer
   - service: light.turn_on
-    entity_id:
-      - light.entertainment_lights
-      - light.living_room_lamp
+    entity_id: light.living_room
     data:
       profile: nightlight
       brightness: 100

@@ -81,8 +81,8 @@ logbook:
       - light.tree_lamp_3
       - light.tree_lamp_4
       - light.tree_lamp_5
-      - light.living_room_lamp_1
-      - light.living_room_lamp_2
+      - light.living_room_lamp
+      - light.desk_lamp
       - light.bathroom_mirror_1
       - light.bathroom_mirror_2
       - light.bathroom_mirror_3
@@ -132,8 +132,8 @@ history:
       - light.entertainment_light_2
       - light.closet
       - light.living_room
-      - light.living_room_lamp_1
-      - light.living_room_lamp_2
+      - light.living_room_lamp
+      - light.desk_lamp
       - light.tree_lamp_1
       - light.tree_lamp_2
       - light.tree_lamp_3
