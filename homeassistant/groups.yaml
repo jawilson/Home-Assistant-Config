@@ -54,7 +54,6 @@ Bathroom Lights:
 
 Jeff:
   - sensor.google_reverse_geocode__jeff
-  - script.jawilson_phosphorus_location_update
   - sensor.jeff_sleep_state
   - sensor.jeff_alarm
 
@@ -368,9 +367,9 @@ default_view:
     - configurator.philips_hue
     - configurator.plex_media_server
     - group.jeff
+    - group.all_guests
     - group.climate
     - group.scenes
-    - group.all_guests
     - group.vacuum
     - media_player.cast_home_group
 
