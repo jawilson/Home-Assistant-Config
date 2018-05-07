@@ -40,6 +40,7 @@ services:
       - database
       - influxdb
     restart: unless-stopped
+    user: '0:118'
     dns: 192.168.0.1
     dns_search: singularity.net
     networks:
