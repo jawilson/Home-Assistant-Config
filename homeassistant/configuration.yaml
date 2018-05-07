@@ -18,6 +18,9 @@ http:
   ssl_certificate: !secret ssl_certificate
   ssl_key: !secret ssl_key
 
+cloud:
+  google_actions: !include google_actions.yaml
+
 influxdb:
   host: influxdb
   exclude:
@@ -185,7 +188,6 @@ conversation:
 #
 
 emulated_hue:
-  type: google_home
   host_ip: 192.168.0.60
   listen_port: 80
   exposed_domains:
@@ -193,8 +195,6 @@ emulated_hue:
     - light
     - scene
     - fan
-
-google_assistant: !include google_assistant.yaml
 
 ifttt:
   key: !secret ifttt_key

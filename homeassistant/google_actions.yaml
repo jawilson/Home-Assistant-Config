@@ -1,0 +1,90 @@
+filter:
+  include_entities:
+    - group.living_area_lights
+    - input_boolean.schedule_vacuum
+    - media_player.shield
+    - script.apartment_shutdown
+    - script.bedtime
+    - script.dinner
+    - script.getting_ready
+    - script.cooking
+
+  include_domains:
+    - switch
+    - light
+    - scene
+    - fan
+    - climate
+
+  exclude_entities:
+    - light.entryway
+    - light.bedroom
+    - light.tree_lamp
+    - light.closet
+    - light.bathroom
+    - light.bathroom_mirror
+    - light.living_room
+    - light.entertainment_lights
+    - light.kitchen
+    - light.all_hue_lights
+    - scene.tv_dinner
+    - switch.apartment_home
+    - switch.dining_fluxer
+    - switch.entryway_fluxer
+    - switch.kitchen_fluxer
+    - switch.living_room_fluxer
+    - switch.orvibo2
+    - switch.shield
+
+entity_config:
+  input_boolean.schedule_vacuum:
+    name: Schedule Vacuum
+    aliases:
+      - Schedule Vacuum
+      - Schedule Cleaning
+
+  scene.romantic:
+    name: Romantic
+    aliases:
+      - Romantic
+      - Getting freaky
+      - Banging
+
+  script.dinner:
+    name: Dinner
+    aliases:
+      - Dinner
+      - Dinner Time
+      - Lunch
+      - Lunch Time
+      - Breakfast
+      - Breakfast Time
+  script.cooking:
+    name: Cooking
+    aliases:
+      - Cooking
+      - Food prep
+      - Dishes
+
+  switch.apartment_fan:
+    name: HVAC Fan
+  switch.bathroom_fluxer:
+    aliases:
+      - Bathroom fluxer
+      - Bathroom color
+  switch.bathroom_motion:
+    aliases:
+      - Bathroom motion automations
+      - Bathroom motion
+  switch.bedroom_fluxer:
+    aliases:
+      - Bedroom fluxer
+      - Bedroom color
+  switch.bedroom_motion:
+    aliases:
+      - Bedroom motion automations
+      - Bedroom motion
+  switch.living_area_fluxer:
+    aliases:
+      - Living area fluxer
+      - Living area color
