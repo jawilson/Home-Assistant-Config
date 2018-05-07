@@ -1,19 +1,13 @@
-all_media_players = [
+hass.services.call('python_script', 'call_service_if_state', {
+    'state': 'playing',
+    'service': 'media_player.media_pause',
+    'entity_id': [
         'media_player.cast_kitchen',
         'media_player.cast_bedroom_mini',
         'media_player.cast_living_room_speaker',
         'media_player.cast_home_group'
     ]
-
-media_players = []
-for player in all_media_players:
-    if hass.states.is_state(player, 'playing'):
-        media_players.append(player)
-
-if media_players:
-    hass.services.call('media_player', 'media_pause', {
-        'entity_id': media_players
-    })
+})
 
 hass.services.call('light', 'turn_off', {
     'entity_id': [
