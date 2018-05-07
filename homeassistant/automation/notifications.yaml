@@ -96,7 +96,7 @@
     platform: state
     entity_id: updater.updater
   action:
-    service: notify.pushbullet_jeff
+    service: notify.html5
     data_template:
       title: Home Assistant Update
       message: 'Version {{trigger.to_state.state}} of Home Assistant is available'
