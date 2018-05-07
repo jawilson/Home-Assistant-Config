@@ -385,6 +385,7 @@ Kitchen:
     - switch.living_area_fluxer
     - media_player.cast_kitchen
     - group.living_room_view_sensors
+    - script.living_area_wakeup
 
 Living Room:
   view: yes
@@ -397,6 +398,7 @@ Living Room:
     - media_player.shield
     - group.harmony
     - group.living_room_view_sensors
+    - script.living_area_wakeup
 
 Bedroom:
   view: yes

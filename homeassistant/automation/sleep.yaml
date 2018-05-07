@@ -63,15 +63,13 @@
       data:
         target: phosphorus
         title: 'Good Morning!'
-        message: 'Turning on the bedroom lights'
+        message: 'Turning on the apartment lights'
         data:
           tag: 'wakeup'
           renotify: false
           actions:
-            - action: 'cancel_bedroom_wakeup'
-              title: 'Cancel Bedroom'
             - action: 'cancel_wakeup'
-              title: 'Cancel All'
+              title: 'Cancel'
     - condition: time
       after: '6:00:00'
       before: '10:00:00'
@@ -84,6 +82,19 @@
     - service: script.bedroom_wakeup
       data:
         target: phosphorus
+    - service: notify.html5
+      data:
+        target: phosphorus
+        title: 'Good Morning!'
+        message: 'Turning on the bedroom and apartment lights'
+        data:
+          tag: 'wakeup'
+          renotify: false
+          actions:
+            - action: 'cancel_bedroom_wakeup'
+              title: 'Cancel Bedroom'
+            - action: 'cancel_wakeup'
+              title: 'Cancel All'
 
 
 - alias: 'Guest Wake Up'
