@@ -28,7 +28,6 @@ filter:
     - light.kitchen
     - light.all_hue_lights
     - scene.tv_dinner
-    - switch.apartment_home
     - switch.dining_fluxer
     - switch.entryway_fluxer
     - switch.kitchen_fluxer

@@ -20,4 +20,3 @@ sensor.apartment_mode:
   icon: mdi:fire
 switch.apartment_home:
   icon: mdi:home
-  emulated_hue_hidden: true
