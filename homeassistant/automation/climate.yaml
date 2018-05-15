@@ -1,3 +1,91 @@
+- alias: Nest home
+  trigger:
+    - platform: numeric_state
+      entity_id: proximity.home
+      below: 1000
+    - platform: state
+      entity_id: group.everyone
+      to: 'home'
+  condition:
+    - condition: state
+      entity_id: input_boolean.presence
+      state: 'on'
+    - condition: template
+      value_template: >
+        {{ (as_timestamp(now()) - as_timestamp(states.automation.home_assistant_start.attributes.last_triggered))/60 > 5 }}
+    - condition: or
+      conditions:
+        - condition: template
+          value_template: "{{ trigger.platform == 'state' }}"
+        - condition: or
+          conditions:
+            - condition: template
+              value_template: "{{ is_state_attr('proximity.home', 'dir_of_travel', 'arrived') }}"
+            - condition: template
+              value_template: "{{ is_state_attr('proximity.home', 'dir_of_travel', 'towards') }}"
+    - condition: state
+      entity_id: binary_sensor.jeff_sleeping_at_home
+      state: 'off'
+  action:
+    service: script.turn_on
+    entity_id: script.nest_home
+
+
+- alias: Nest while home
+  trigger:
+    platform: template
+    value_template: "{{ is_state_attr('climate.apartment', 'away_mode', 'on') }}"
+  condition:
+    - condition: state
+      entity_id: group.everyone
+      state: 'home'
+    - condition: state
+      entity_id: input_boolean.climate_auto
+      state: 'on'
+  action:
+    service: homeassistant.turn_on
+    entity_id: switch.apartment_home
+
+
+- alias: Nest away
+  trigger:
+    - platform: numeric_state
+      entity_id: proximity.home
+      above: 500
+    - platform: state
+      entity_id: group.everyone
+      to: 'not_home'
+      for:
+        minutes: 30
+    - platform: state
+      entity_id: switch.apartment_home
+      to: 'on'
+      for:
+        minutes: 30
+  condition:
+    - condition: state
+      entity_id: input_boolean.presence
+      state: 'on'
+    - condition: state
+      entity_id: binary_sensor.presume_home
+      state: 'off'
+    - condition: or
+      conditions:
+        - condition: template
+          value_template: "{{ trigger.platform == 'state' }}"
+        - condition: or
+          conditions:
+            - condition: template
+              value_template: "{{ is_state_attr('proximity.home', 'dir_of_travel', 'away_from') }}"
+            - condition: template
+              value_template: "{{ is_state_attr('proximity.home', 'dir_of_travel', 'stationary') }}"
+  action:
+    service: homeassistant.turn_off
+    entity_id:
+      - script.nest_home
+      - switch.apartment_home
+
+
 - alias: Circulate to even temperature
   trigger:
     platform: numeric_state
