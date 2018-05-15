@@ -122,7 +122,7 @@
     light.tree_lamp_1: off
     light.tree_lamp_3: off
     light.tree_lamp_5: off
-    light.entry_light_2: off
+    light.entryway_light_2: off
     light.bathroom_mirror_1: off
     light.bathroom_mirror_3: off
     switch.living_area_fluxer: off
