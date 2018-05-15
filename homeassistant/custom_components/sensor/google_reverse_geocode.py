@@ -6,7 +6,7 @@ import logging
 import voluptuous as vol
 
 from homeassistant.components.sensor import PLATFORM_SCHEMA
-from homeassistant.components.zone import active_zone
+from homeassistant.components.zone.zone import active_zone
 from homeassistant.helpers.entity import Entity
 from homeassistant.helpers.event import track_state_change
 from homeassistant.const import (
