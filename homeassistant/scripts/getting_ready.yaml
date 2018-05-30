@@ -7,7 +7,7 @@ sequence:
       - light.bathroom
       - light.closet_light
     data:
-      color_temp: 200
+      color_temp: 313
       brightness: 255
   - condition: state
     entity_id: binary_sensor.jeff_sleeping_at_home
@@ -17,5 +17,5 @@ sequence:
   - service: light.turn_on
     entity_id: light.bedroom
     data:
-      color_temp: 200
+      color_temp: 313
       brightness: 255
