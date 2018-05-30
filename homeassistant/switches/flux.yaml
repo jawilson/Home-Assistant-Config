@@ -3,7 +3,7 @@
   lights:
     - light.entryway_light_1
     - light.entryway_light_2
-  start_time: '7:00'
+  start_time: '6:00'
   stop_time: '22:00'
   start_colortemp: 5000
   mode: mired
@@ -15,7 +15,7 @@
     - light.kitchen_light_2
     - light.kitchen_light_3
     - light.kitchen_light_4
-  start_time: '7:00'
+  start_time: '6:00'
   stop_time: '22:00'
   start_colortemp: 5000
   sunset_colortemp: 4000
@@ -24,7 +24,7 @@
   name: Dining Fluxer
   lights:
     - light.dining_lights_level
-  start_time: '7:00'
+  start_time: '6:00'
   stop_time: '22:00'
   start_colortemp: 5000
   sunset_colortemp: 3500
@@ -37,7 +37,7 @@
     - light.desk_lamp
     - light.entertainment_light_1
     - light.entertainment_light_2
-  start_time: '7:00'
+  start_time: '6:00'
   stop_time: '22:00'
   start_colortemp: 5000
   sunset_colortemp: 3500
@@ -77,7 +77,7 @@
     - light.tree_lamp_4
     - light.tree_lamp_5
     - light.closet_light
-  start_time: '7:00'
+  start_time: '6:00'
   stop_time: '22:00'
   stop_colortemp: 1700
   mode: mired
@@ -90,6 +90,6 @@
     - light.bathroom_mirror_4
     - light.shower_light
   name: Bathroom Fluxer
-  start_time: '7:00'
+  start_time: '6:00'
   stop_time: '22:00'
   mode: mired
