@@ -3,10 +3,16 @@
   lights:
     - light.entryway_light_1
     - light.entryway_light_2
+  mode: mired
+
   start_time: '6:00'
   stop_time: '22:00'
+
   start_colortemp: 5000
-  mode: mired
+  sunset_colortemp: 3000
+  stop_colortemp: 1900
+
+
 
 - platform: flux
   name: Kitchen Fluxer
@@ -15,20 +21,31 @@
     - light.kitchen_light_2
     - light.kitchen_light_3
     - light.kitchen_light_4
+  mode: xy
+
   start_time: '6:00'
   stop_time: '22:00'
+
   start_colortemp: 5000
   sunset_colortemp: 4000
+  stop_colortemp: 1900
+
+
 
 - platform: flux
   name: Dining Fluxer
   lights:
     - light.dining_lights_level
+  mode: xy
+
   start_time: '6:00'
   stop_time: '22:00'
+
   start_colortemp: 5000
   sunset_colortemp: 3500
   stop_colortemp: 1000
+
+
 
 - platform: flux
   name: Living Room Fluxer
@@ -37,10 +54,16 @@
     - light.desk_lamp
     - light.entertainment_light_1
     - light.entertainment_light_2
+  mode: xy
+
   start_time: '6:00'
   stop_time: '22:00'
+
   start_colortemp: 5000
   sunset_colortemp: 3500
+  stop_colortemp: 1900
+
+
 
 - platform: template
   switches:
@@ -66,6 +89,8 @@
           - switch.dining_fluxer
           - switch.living_room_fluxer
 
+
+
 - platform: flux
   name: Bedroom Fluxer
   lights:
@@ -77,19 +102,30 @@
     - light.tree_lamp_4
     - light.tree_lamp_5
     - light.closet_light
-  start_time: '6:00'
-  stop_time: '22:00'
-  stop_colortemp: 1700
   mode: mired
 
+  start_time: '6:00'
+  stop_time: '22:00'
+
+  start_colortemp: 4000
+  sunset_colortemp: 3000
+  stop_colortemp: 1700
+
+
+
 - platform: flux
+  name: Bathroom Fluxer
   lights:
     - light.bathroom_mirror_1
     - light.bathroom_mirror_2
     - light.bathroom_mirror_3
     - light.bathroom_mirror_4
     - light.shower_light
-  name: Bathroom Fluxer
+  mode: mired
+
   start_time: '6:00'
   stop_time: '22:00'
-  mode: mired
+
+  start_colortemp: 3500
+  sunset_colortemp: 3000
+  stop_colortemp: 1900
