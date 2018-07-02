@@ -324,3 +324,5 @@
         - script.living_area_wakeup
         - script.apartment_wakeup
     - service: script.bedroom_sleep
+    - service: script.bathroom_sleep
+    - service: script.living_area_sleep
