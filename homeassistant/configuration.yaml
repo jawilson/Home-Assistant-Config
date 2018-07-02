@@ -179,9 +179,6 @@ sun:
 # Checks for available updates
 updater:
 
-# Allows you to issue voice commands from the frontend
-conversation:
-
 
 #
 # Integrations
@@ -195,9 +192,6 @@ emulated_hue:
     - light
     - scene
     - fan
-
-ifttt:
-  key: !secret ifttt_key
 
 notify:
   - platform: html5
