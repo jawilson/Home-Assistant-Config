@@ -1,9 +1,6 @@
 - platform: plex
   entity_namespace: plex
 
-- platform: cast
-  entity_namespace: cast
-
 - platform: universal
   name: Shield
   children:

@@ -282,6 +282,7 @@ device_tracker:
   - platform: owntracks_http
     max_gps_accuracy: 45
 
+cast:
 media_player: !include media_players.yaml
 
 remote:
