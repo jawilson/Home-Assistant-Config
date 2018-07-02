@@ -45,7 +45,7 @@ sequence:
       - light.closet_light
     data:
       transition: 600
-      color_temp: 225
+      color_temp: 333
       brightness: 180
   - delay:
       minutes: 15
