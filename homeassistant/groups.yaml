@@ -70,6 +70,7 @@ Climate:
     - switch.apartment_home
     - switch.apartment_fan
     - switch.humidifier
+    - sensor.apartment_feels_like
     - sensor.apartment_temperatures
     - sensor.apartment_humidities
 

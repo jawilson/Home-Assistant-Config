@@ -9,8 +9,12 @@ sensor.apartment_thermostat_humidity:
   friendly_name: 'Thermostat Humidity'
 
 sensor.apartment_humidities:
+  friendly_name: 'Humidity'
   icon: mdi:water-percent
 sensor.apartment_temperatures:
+  friendly_name: 'Temperature'
+  icon: mdi:thermometer
+sensor.apartment_feels_like:
   icon: mdi:thermometer
 
 switch.apartment_fan:

@@ -20,6 +20,17 @@
 
 
 #
+# Templates
+#
+- platform: template
+  sensors:
+    apartment_feels_like:
+      friendly_name: 'Feels Like'
+      value_template: '{{ (0.5 * ( (states.sensor.apartment_temperatures.state|float) + 61.0 + ( ((states.sensor.apartment_temperatures.state|float) - 68.0) * 1.2 ) + ((states.sensor.apartment_humidities.state|float) * 0.094) ) )|round(2) }}'
+      unit_of_measurement: '°F'
+
+
+#
 # Statistics
 #
 - platform: min_max
