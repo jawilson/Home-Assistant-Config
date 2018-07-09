@@ -79,6 +79,9 @@
         - wed
         - thu
         - fri
+    - condition: state
+      entity_id: calendar.jawilson_office_closed
+      state: 'off'
     - service: script.bedroom_wakeup
       data:
         target: phosphorus
