@@ -193,6 +193,11 @@ emulated_hue:
     - scene
     - fan
 
+google:
+  client_id: !secret google_calendar_client_id
+  client_secret: !secret google_calendar_secret
+  track_new_calendar: false
+
 notify:
   - platform: html5
     name: html5
