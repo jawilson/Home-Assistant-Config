@@ -1,0 +1,8 @@
+- alias: Force Dining Lights Off
+  trigger:
+    - platform: state
+      entity_id: light.dining_lights_level
+      to: 'off'
+  action:
+    - service: light.turn_off
+      entity_id: light.dining_lights_level
