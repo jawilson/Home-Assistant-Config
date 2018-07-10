@@ -307,7 +307,7 @@ Scripts:
   - script.alarm_ringing
   - script.alarm_snooze
   - script.alarm_dismiss
-  - script.wakeup_cancel
+  - script.cancel_wakeup
   - script.bedroom_wakeup
   - script.bathroom_wakeup
   - script.living_area_wakeup
@@ -330,7 +330,7 @@ Automations:
   - automation.alarm_dismiss
   - automation.wake_up
   - automation.guest_wake_up
-  - automation.wakeup_cancel
+  - automation.cancel_wakeup
   - automation.fan_while_showering
   - automation.fan_after_showering
   - automation.handle_lights_when_leaving
@@ -411,7 +411,6 @@ Bedroom:
     - switch.humidifier
     - switch.bedroom_fluxer
     - switch.bedroom_motion
-    - media_player.cast_bedroom
     - media_player.cast_bedroom_mini
     - script.bedroom_wakeup
 

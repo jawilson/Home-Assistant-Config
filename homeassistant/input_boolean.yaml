@@ -21,7 +21,7 @@ guests:
 climate_auto:
   name: Control Climate
   initial: on
-  icon: mdi:nest-thermostat
+  icon: mdi:thermostat
 
 media_automation:
   name: 'Media Automation'

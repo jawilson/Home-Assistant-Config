@@ -5,6 +5,7 @@
     - summary
     - icon
     - temperature
+    - humidity
     - apparent_temperature
     - precip_intensity_max
     - wind_speed
