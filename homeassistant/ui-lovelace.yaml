@@ -1,0 +1,433 @@
+title: Home
+resources:
+  - url: /local/entity-hidden-filter-card.js
+    type: js
+views:
+  - title: Home
+    icon: mdi:home
+    cards:
+      #
+      # First column
+      #
+      - type: vertical-stack
+        cards:
+#        - type: map
+#          title: Jeff
+#          aspect_ratio: 50%
+#          entities:
+#            - entity: device_tracker.jawilson_phosphorus
+#            - entity: device_tracker.sashag_iphone
+#            - zone.home
+#            - zone.bline
+#            - zone.sashas_apartment
+          - type: entities
+            title: Jeff
+            entities:
+              - entity: sensor.google_reverse_geocode__jeff
+                name: Location
+              - entity: sensor.jeff_sleep_state
+                name: Sleeping
+              - entity: sensor.jeff_alarm
+                name: Alarm
+          - type: 'custom:entity-hidden-filter-card'
+            entities: !include_dir_merge_list device_groups
+            show_empty: false
+            card:
+              type: entities
+              title: Guests
+          - type: entities
+            title: Vacuum
+            show_header_toggle: false
+            entities:
+              - vacuum.doomba
+              - input_boolean.schedule_vacuum
+
+      #
+      # Second column
+      #
+      - type: vertical-stack
+        cards:
+          - type: entities
+            title: Climate
+            show_header_toggle: false
+            entities:
+              - climate.apartment
+              - switch.apartment_home
+              - switch.apartment_fan
+              - switch.humidifier
+              - sensor.apartment_feels_like
+              - sensor.apartment_temperatures
+              - sensor.apartment_humidities
+          - type: media-control
+            entity: media_player.cast_home_group
+
+      #
+      # Third column
+      #
+      - type: vertical-stack
+        cards:
+          - type: entities
+            title: Scenes
+            show_header_toggle: false
+            entities:
+              - script.getting_ready
+              - scene.couch_reading
+              - script.cooking
+              - script.dinner
+              - scene.tv_dinner
+              - scene.romantic
+              - script.bedtime
+              - scene.up_late
+              - script.lights_out
+
+
+  - title: Kitchen
+    icon: mdi:fridge-filled
+    theme: dark-mode
+    cards:
+      - type: entities
+        title: Lights
+        entities:
+          - light.kitchen_light_1
+          - light.kitchen_light_2
+          - light.kitchen_light_3
+          - light.kitchen_light_4
+          - light.dining_lights_level
+      - type: entities
+        title: Light Groups
+        show_header_toggle: false
+        entities:
+          - light.kitchen
+      - type: entities
+        title: Other Lights
+        entities:
+          - light.entryway_light_1
+          - light.entryway_light_2
+      - type: entities
+        title: Accent Lights
+        show_header_toggle: false
+        entities:
+          - light.liquor_cabinet_lights
+      - type: entities
+        title: Sensors
+        entities:
+          - sensor.living_room_temperature
+          - sensor.living_room_relative_humidity
+      - type: entities
+        title: Script
+        show_header_toggle: false
+        entities:
+          - script.living_area_wakeup
+      - type: media-control
+        entity: media_player.cast_kitchen
+      - type: entities
+        title: Switch
+        show_header_toggle: false
+        entities:
+          - switch.living_area_fluxer
+
+
+  - title: Living Room
+    icon: mdi:sofa
+    cards:
+      - type: entities
+        title: Lights
+        entities:
+          - light.entertainment_light_1
+          - light.entertainment_light_2
+          - light.living_room_lamp
+          - light.desk_lamp
+
+      - type: entities
+        title: Light Groups
+        show_header_toggle: false
+        entities:
+          - light.entertainment_lights
+
+      - type: entities
+        title: Harmony
+        show_header_toggle: false
+        entities:
+          - remote.living_room
+          - switch.shield
+          - switch.shield_audio
+          - switch.xbox_one
+          - switch.xbox_360
+
+      - type: entities
+        title: Sensors
+        entities:
+          - sensor.living_room_temperature
+          - sensor.living_room_relative_humidity
+
+      - type: entities
+        title: Switch
+        show_header_toggle: false
+        entities:
+          - switch.living_area_fluxer
+
+      - type: vertical-stack
+        cards:
+          - type: media-control
+            entity: media_player.cast_living_room_speaker
+          - type: media-control
+            entity: media_player.shield
+
+      - type: entities
+        title: Script
+        show_header_toggle: false
+        entities:
+          - script.living_area_wakeup
+
+
+  - title: Bedroom
+    icon: mdi:hotel
+    cards:
+      - type: entities
+        title: Lights
+        entities:
+          - light.tree_lamp_1
+          - light.tree_lamp_2
+          - light.tree_lamp_3
+          - light.tree_lamp_4
+          - light.tree_lamp_5
+          - light.nightstand_1
+          - light.nightstand_2
+
+      - type: entities
+        title: Light Groups
+        show_header_toggle: false
+        entities:
+          - light.tree_lamp
+
+      - type: entities
+        title: Other Lights
+        show_header_toggle: false
+        entities:
+          - light.closet_light
+
+      - type: entities
+        title: Sensors
+        entities:
+          - sensor.bedroom_temperature
+          - sensor.bedroom_relative_humidity
+          - sensor.bedroom_luminance
+
+      - type: entities
+        title: Switch
+        show_header_toggle: false
+        entities:
+          - switch.bedroom_fluxer
+          - switch.bedroom_motion
+          - switch.humidifier
+
+      - type: media-control
+        entity: media_player.cast_bedroom_mini
+
+      - type: entities
+        title: Script
+        show_header_toggle: false
+        entities:
+          - script.bedroom_wakeup
+
+
+  - title: Bathroom
+    icon: mdi:scale-bathroom
+    cards:
+      - type: entities
+        title: Lights
+        entities:
+          - light.bathroom_mirror_1
+          - light.bathroom_mirror_2
+          - light.bathroom_mirror_3
+          - light.bathroom_mirror_4
+          - light.shower_light
+
+      - type: entities
+        title: Light Groups
+        show_header_toggle: false
+        entities:
+          - light.bathroom_mirror
+
+      - type: entities
+        title: Other Lights
+        show_header_toggle: false
+        entities:
+          - light.closet_light
+
+      - type: entities
+        title: Sensors
+        entities:
+          - sensor.bathroom_temperature
+          - sensor.bathroom_relative_humidity
+          - sensor.bathroom_luminance
+
+      - type: entities
+        title: Switch
+        show_header_toggle: false
+        entities:
+          - switch.bathroom_fan_switch
+          - switch.bathroom_fluxer
+          - switch.bathroom_motion
+
+      - type: entities
+        title: Script
+        show_header_toggle: false
+        entities:
+          - script.bathroom_wakeup
+
+
+  - title: Lights
+    icon: mdi:lightbulb
+    cards:
+      - type: entities
+        title: Room Lights
+        show_header_toggle: false
+        entities:
+          - group.entryway
+          - group.kitchen_lights
+          - group.living_room_lights
+          - group.living_area_lights
+          - group.bedroom_lights
+          - group.closet_lights
+          - group.bathroom_lights
+
+      - type: entities
+        title: Light Types
+        show_header_toggle: false
+        entities:
+          - group.color_lights
+          - group.color_temperature_lights
+
+      - type: entities
+        title: Fluxers
+        entities:
+          - switch.bedroom_fluxer
+          - switch.bathroom_fluxer
+          - switch.living_area_fluxer
+
+      - type: entities
+        title: Motion Automations
+        entities:
+          - switch.bedroom_motion
+          - switch.bathroom_motion
+
+
+  - title: Other
+    icon: mdi:information
+    cards:
+      - type: entities
+        title: UPS
+        entities:
+          - sensor.ups_status
+          - sensor.ups_battery
+          - sensor.ups_load
+          - sensor.ups_time_left
+
+      - type: vertical-stack
+        cards:
+          - type: entities
+            title: P3Steel
+            entities:
+              - sensor.p3steel_current_state
+              - sensor.p3steel_job_percentage
+              - sensor.p3steel_actual_tool0_temp
+              - sensor.p3steel_target_tool0_temp
+              - sensor.p3steel_actual_bed_temp
+              - sensor.p3steel_target_bed_temp
+              - binary_sensor.p3steel_printing
+              - binary_sensor.p3steel_printing_error
+
+          - type: picture-entity
+            entity: camera.p3steel
+            camera_image: camera.p3steel
+
+      - type: entities
+        title: Temperatures
+        entities:
+          - sensor.dark_sky_temperature
+          - sensor.apartment_thermostat_temperature
+          - sensor.bathroom_temperature
+          - sensor.bedroom_temperature
+          - sensor.living_room_temperature
+
+      - type: entities
+        title: Humidities
+        entities:
+          - sensor.dark_sky_humidity
+          - sensor.apartment_thermostat_humidity
+          - sensor.bathroom_relative_humidity
+          - sensor.bedroom_relative_humidity
+          - sensor.living_room_relative_humidity
+
+
+  - title: Admin
+    icon: mdi:settings
+    cards:
+      - type: entities
+        title: Scripts
+        entities:
+          - script.bedroom_sleep
+          - script.bathroom_sleep
+          - script.living_area_sleep
+          - script.apartment_sleep
+          - script.alarm_ringing
+          - script.alarm_snooze
+          - script.alarm_dismiss
+          - script.bedroom_wakeup
+          - script.bathroom_wakeup
+          - script.living_area_wakeup
+          - script.apartment_wakeup
+          - script.nest_home
+          - script.bedroom_arrive
+          - script.living_area_arrive
+          - script.nest_home
+          - script.apartment_shutdown
+
+      - type: entities
+        title: Automations
+        entities:
+          - automation.alarm_bedtime
+          - automation.go_to_sleep
+          - automation.guests_leave_while_sleeping
+          - automation.alarm_smart_period
+          - automation.alarm_ringing
+          - automation.alarm_snooze
+          - automation.alarm_dismiss
+          - automation.wake_up
+          - automation.guest_wake_up
+          - automation.cancel_wakeup
+          - automation.fan_while_showering
+          - automation.fan_after_showering
+          - automation.limit_bathroom_fan
+          - automation.handle_lights_when_leaving
+          - automation.nest_away
+          - automation.handle_lights_when_arriving_home
+          - automation.handle_lights_when_turned_on_not_home
+          - automation.run_doomba
+          - automation.dock_doomba_when_arriving_home
+          - automation.nest_home
+          - automation.nest_while_home
+          - automation.circulate_to_even_temperature
+          - automation.end_circulate_to_even
+          - automation.humidity_too_low
+          - automation.humidity_too_high
+          - automation.home_assistant_start
+          - automation.projector_off
+          - automation.shield_plex_idle
+          - automation.update_locations
+          - automation.location_update_notification
+          - automation.light_intruder_alert
+          - automation.motion_intruder_alert
+          - automation.update_available_notification
+
+      - type: entities
+        title: Input boolean
+        show_header_toggle: false
+        entities:
+          - input_boolean.climate_auto
+          - input_boolean.guests
+          - input_boolean.intruder_alerts
+          - input_boolean.media_automation
+          - input_boolean.motion
+          - input_boolean.presence
