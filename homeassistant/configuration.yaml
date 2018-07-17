@@ -184,14 +184,7 @@ updater:
 # Integrations
 #
 
-emulated_hue:
-  host_ip: 192.168.0.60
-  listen_port: 80
-  exposed_domains:
-    - switch
-    - light
-    - scene
-    - fan
+emulated_hue: !include emulated_hue.yaml
 
 google:
   client_id: !secret google_calendar_client_id
@@ -267,7 +260,6 @@ sensor: !include_dir_merge_list sensors
 
 # Inputs
 input_boolean: !include input_boolean.yaml
-input_select: !include input_select.yaml
 
 #
 # Devices

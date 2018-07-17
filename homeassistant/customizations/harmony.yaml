@@ -2,7 +2,6 @@ remote.harmony:
   icon: mdi:remote
 switch.shield:
   icon: mdi:shield
-  emulated_hue_hidden: true
 switch.shield_audio:
   icon: mdi:speaker
 switch.plex:

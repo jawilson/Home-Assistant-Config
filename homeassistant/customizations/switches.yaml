@@ -1,20 +1,2 @@
-switch.christmas_tree:
-  icon: mdi:pine-tree
-
 switch.humidifier:
   icon: mdi:water
-
-switch.bathroom_motion:
-  emulated_hue_hidden: true
-switch.bedroom_motion:
-  emulated_hue_hidden: true
-
-
-switch.dining_fluxer:
-  emulated_hue_hidden: true
-switch.entryway_fluxer:
-  emulated_hue_hidden: true
-switch.kitchen_fluxer:
-  emulated_hue_hidden: true
-switch.living_room_fluxer:
-  emulated_hue_hidden: true

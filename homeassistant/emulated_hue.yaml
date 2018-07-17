@@ -1,0 +1,66 @@
+host_ip: 192.168.0.60
+listen_port: 80
+exposed_domains:
+  - switch
+  - light
+  - scene
+  - fan
+
+entities:
+  group.all_lights:
+    hidden: false
+
+  light.entryway:
+    hidden: true
+  light.bedroom:
+    hidden: true
+  light.tree_lamp:
+    hidden: true
+  light.closet:
+    hidden: true
+  light.bathroom:
+    hidden: true
+  light.bathroom_mirror:
+    hidden: true
+  light.living_room:
+    hidden: true
+  light.entertainment_lights:
+    hidden: true
+  light.kitchen:
+    hidden: true
+
+  media_player.shield:
+    hidden: false
+
+  scene.up_late:
+    hidden: false
+
+  script.apartment_shutdown:
+    hidden: false
+  script.bedtime:
+    hidden: false
+  script.cooking:
+    hidden: false
+  script.dinner:
+    hidden: false
+  script.getting_ready:
+    hidden: false
+  script.lights_out:
+    hidden: false
+
+  switch.apartment_fan:
+    name: 'HVAC Fan'
+  switch.bathroom_motion:
+    hidden: true
+  switch.bedroom_motion:
+    hidden: true
+  switch.dining_fluxer:
+    hidden: true
+  switch.entryway_fluxer:
+    hidden: true
+  switch.kitchen_fluxer:
+    hidden: true
+  switch.living_room_fluxer:
+    hidden: true
+  switch.shield:
+    hidden: true
