@@ -1,7 +1,0 @@
-orvibo2:
-  name: Orvibo Outlet 2
-  icon: mdi:power-plug
-  options:
-    - None
-    - Humidifier
-  initial: Humidifier

@@ -32,7 +32,6 @@ filter:
     - switch.entryway_fluxer
     - switch.kitchen_fluxer
     - switch.living_room_fluxer
-    - switch.orvibo2
     - switch.shield
 
 entity_config:
