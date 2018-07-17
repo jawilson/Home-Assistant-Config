@@ -14,6 +14,7 @@ sensor.apartment_humidities:
 sensor.apartment_temperatures:
   friendly_name: 'Temperature'
   icon: mdi:thermometer
+  unit_of_measurement: '°F'
 sensor.apartment_feels_like:
   icon: mdi:thermometer
 
