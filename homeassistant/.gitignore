@@ -12,7 +12,6 @@ secrets.yaml
 
 deps/
 tts/
-www/
 
 OZW_Log.txt
 pyozw.sqlite

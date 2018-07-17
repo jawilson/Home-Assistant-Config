@@ -1,6 +1,6 @@
 title: Home
 resources:
-  - url: /local/entity-hidden-filter-card.js
+  - url: /local/ui/entity-hidden-filter-card.js
     type: js
 views:
   - title: Home
