@@ -37,15 +37,6 @@
     - service: light.turn_on
       entity_id:
         - light.bedroom
-    # Turn on the closet light if the bathroom light is on
-    - condition: state
-      entity_id: light.bathroom
-      state: 'on'
-    - condition: state
-      entity_id: light.closet_light
-      state: 'off'
-    - service: light.turn_on
-      entity_id:
         - light.closet_light
 
 
