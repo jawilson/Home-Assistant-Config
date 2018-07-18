@@ -1,8 +1,7 @@
 - platform: flux
   name: Entryway Fluxer
   lights:
-    - light.entryway_light_1
-    - light.entryway_light_2
+    - light.entryway
   mode: mired
 
   start_time: '6:00'
@@ -17,10 +16,7 @@
 - platform: flux
   name: Kitchen Fluxer
   lights:
-    - light.kitchen_light_1
-    - light.kitchen_light_2
-    - light.kitchen_light_3
-    - light.kitchen_light_4
+    - light.kitchen
   mode: xy
 
   start_time: '6:00'
@@ -50,10 +46,7 @@
 - platform: flux
   name: Living Room Fluxer
   lights:
-    - light.living_room_lamp
-    - light.desk_lamp
-    - light.entertainment_light_1
-    - light.entertainment_light_2
+    - light.living_room
   mode: xy
 
   start_time: '6:00'
@@ -94,13 +87,7 @@
 - platform: flux
   name: Bedroom Fluxer
   lights:
-    - light.nightstand_1
-    - light.nightstand_2
-    - light.tree_lamp_1
-    - light.tree_lamp_2
-    - light.tree_lamp_3
-    - light.tree_lamp_4
-    - light.tree_lamp_5
+    - light.bedroom
     - light.closet_light
   mode: mired
 
@@ -116,11 +103,7 @@
 - platform: flux
   name: Bathroom Fluxer
   lights:
-    - light.bathroom_mirror_1
-    - light.bathroom_mirror_2
-    - light.bathroom_mirror_3
-    - light.bathroom_mirror_4
-    - light.shower_light
+    - light.bathroom
   mode: mired
 
   start_time: '6:00'
