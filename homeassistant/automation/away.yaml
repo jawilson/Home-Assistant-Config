@@ -15,58 +15,6 @@
     entity_id: script.apartment_shutdown
 
 
-- alias: Run Doomba
-  trigger:
-    - platform: time
-      at: '15:30:00'
-    - platform: numeric_state
-      entity_id: proximity.home
-      above: 500
-    - platform: state
-      entity_id: group.everyone
-      to: 'not_home'
-      for:
-        minutes: 30
-  condition:
-    - condition: state
-      entity_id: input_boolean.presence
-      state: 'on'
-    - condition: state
-      entity_id: binary_sensor.presume_home
-      state: 'off'
-    - condition: or
-      conditions:
-        - condition: state
-          entity_id: input_boolean.schedule_vacuum
-          state: 'on'
-        - condition: and
-          conditions:
-            - condition: state
-              entity_id: vacuum.doomba
-              state: 'off'
-              # Only run Doomba ounce every 40 hours max
-              for:
-                hours: 40
-            - condition: template
-              value_template: >
-                {{ (as_timestamp(now()) - (as_timestamp(states.automation.run_doomba.attributes.last_triggered)|float))/60/60 > 40 }}
-    - condition: or
-      conditions:
-        - condition: template
-          value_template: "{{ trigger.platform != 'numeric_state' }}"
-        - condition: or
-          conditions:
-            - condition: template
-              value_template: "{{ is_state_attr('proximity.home', 'dir_of_travel', 'away_from') }}"
-            - condition: template
-              value_template: "{{ is_state_attr('proximity.home', 'dir_of_travel', 'stationary') }}"
-  action:
-    - service: input_boolean.turn_off
-      entity_id: input_boolean.schedule_vacuum
-    - service: vacuum.turn_on
-      entity_id: vacuum.doomba
-
-
 - alias: Update Locations
   trigger:
     platform: numeric_state
