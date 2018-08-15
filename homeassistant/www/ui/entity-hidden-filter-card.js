@@ -33,11 +33,20 @@ class EntitiesCard extends HTMLElement {
   set hass(hass) {
     const element = this._element;
     if (!element || element.tagName === 'HUI-ERROR-CARD' || !hass) return;
-    const entitiesList = getEntities(hass, this._configEntities);
+    var entitiesList = getEntities(hass, this._configEntities);
 
     if (entitiesList.length === 0 && this._config.show_empty === false) {
       this.style.display = 'none';
       return;
+    }
+
+    if (this._config.secondary_info) {
+      entitiesList = entitiesList.map(e => {
+        return {
+          entity: e.entity || e,
+          secondary_info: this._config.secondary_info
+        };
+      });
     }
 
     this.style.display = 'block';
