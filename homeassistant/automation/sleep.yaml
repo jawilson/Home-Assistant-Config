@@ -102,7 +102,7 @@
               title: 'Cancel All'
 
 
-- alias: 'Guest Wake Up'
+- alias: 'Sasha Wake Up'
   trigger:
     platform: state
     entity_id: light.bathroom
@@ -112,7 +112,7 @@
       entity_id: binary_sensor.jeff_sleeping_at_home
       state: 'on'
     - condition: state
-      entity_id: group.other_guests
+      entity_id: device_tracker.sashag_iphone
       state: 'home'
     - condition: time
       after: '6:15:00'
@@ -123,6 +123,8 @@
         - wed
         - thu
         - fri
+    - condition: template
+      value_template: '{{ (as_timestamp(states.calendar.sashag_gmail.attributes.start_time) - as_timestamp(now()))/60 < 150 }}'
   action:
     - service: switch.turn_off
       entity_id:
@@ -253,15 +255,6 @@
     event_data:
       action: alarm_ringing_cancel
   action:
-    - service: notify.html5
-      data_template:
-        target: '{{ trigger.event.data.target }}'
-      data:
-        title: 'Sorry!'
-        message: Turning the lights back off
-        data:
-          tag: 'wakeup'
-          renotify: false
     - service: script.turn_off
       entity_id: script.alarm_ringing
     - service: script.bedroom_sleep
@@ -298,15 +291,6 @@
     event_data:
       action: reset_sleep_lights
   action:
-    - service: notify.html5
-      data_template:
-        target: '{{ trigger.event.data.target }}'
-      data:
-        title: 'Lights Reset'
-        message: Fluxers and automations have been enabled
-        data:
-          tag: 'wakeup'
-          renotify: false
     - service: switch.turn_on
       entity_id:
         - switch.bathroom_fluxer
@@ -322,15 +306,6 @@
     event_data:
       action: cancel_wakeup
   action:
-    - service: notify.html5
-      data_template:
-        target: '{{ trigger.event.data.target }}'
-      data:
-        title: 'Sorry!'
-        message: Turning the lights back off
-        data:
-          tag: 'wakeup'
-          renotify: false
     - service: script.turn_off
       entity_id:
         - script.bedroom_wakeup
