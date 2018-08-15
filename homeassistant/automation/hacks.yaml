@@ -6,3 +6,21 @@
   action:
     - service: light.turn_off
       entity_id: light.dining_lights_level
+
+- alias: Force Bathroom Fan Off
+  trigger:
+    - platform: state
+      entity_id: switch.bathroom_fan_switch
+      to: 'off'
+  action:
+    - service: light.turn_off
+      entity_id: switch.bathroom_fan_switch
+
+- alias: Force Closet Light Off
+  trigger:
+    - platform: state
+      entity_id: light.closet_light
+      to: 'off'
+  action:
+    - service: light.turn_off
+      entity_id: light.closet_light
