@@ -16,7 +16,9 @@ sequence:
   - service: light.turn_off
     entity_id:
       - light.entryway_light_2
-      - light.kitchen
+      - light.kitchen_light_2
+      - light.kitchen_light_3
+      - light.kitchen_light_4
       - light.dining_lights_level
       - light.liquor_cabinet_lights
       - light.entertainment_lights
@@ -40,6 +42,8 @@ sequence:
   - service: light.turn_on
     entity_id:
       - light.living_room_lamp
+      - light.desk_lamp
+      - light.kitchen_light_1
     data:
       profile: nightlight
       transition: 5

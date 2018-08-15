@@ -11,7 +11,5 @@ if hass.states.is_state('binary_sensor.jeff_sleeping_at_home', 'on') or \
     hass.services.call('light', 'turn_on', service_data)
 
 else:
-    hass.services.call('light', 'turn_on', {'entity_id': [
-        'light.bathroom',
-        'light.closet'
-    ]})
+    hass.services.call('light', 'turn_on', {'entity_id': 'light.bathroom'})
+    hass.services.call('light', 'turn_on', {'entity_id': 'light.closet'})
