@@ -49,6 +49,14 @@
       data:
         title: Potential Intruder Alert!
         message: No one is home and a light was turned on
+        data:
+          tag: 'intruder'
+          renotify: 1
+          service: 'script.turn_on'
+          entity_id: 'script.apartment_shutdown'
+          actions:
+            - action: 'run_script'
+              title: 'Turn off'
 
 - alias: Motion Intruder Alert
   trigger:

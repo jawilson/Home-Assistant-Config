@@ -1,0 +1,10 @@
+- alias: Run Service
+  trigger:
+    - platform: event
+      event_type: html5_notification.clicked
+      event_data:
+        action: run_service
+  action:
+    - service_template: '{{ trigger.event.data.data.service }}'
+      data_template:
+        entity_id: '{{ trigger.event.data.data.entity_id }}'
