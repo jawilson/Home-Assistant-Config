@@ -83,22 +83,21 @@ views:
 
   - title: Kitchen
     icon: mdi:fridge-filled
-    theme: dark-mode
     cards:
       - type: entities
         title: Lights
+        show_header_toggle: false
         entities:
+          - entity: light.kitchen_lights
+            name: All lights
+          - type: divider
+          - light.kitchen
+          - light.dining_lights_level
+          - type: divider
           - light.kitchen_light_1
           - light.kitchen_light_2
           - light.kitchen_light_3
           - light.kitchen_light_4
-          - light.dining_lights_level
-
-      - type: entities
-        title: Light Groups
-        show_header_toggle: false
-        entities:
-          - light.kitchen
 
       - type: entities
         title: Other Lights
@@ -138,17 +137,23 @@ views:
     cards:
       - type: entities
         title: Lights
+        show_header_toggle: false
         entities:
+          - entity: light.living_room_lights
+            name: All lights
+          - type: divider
+          - light.entertainment_lights
+          - type: divider
           - light.entertainment_light_1
           - light.entertainment_light_2
           - light.living_room_lamp
           - light.desk_lamp
 
       - type: entities
-        title: Light Groups
-        show_header_toggle: false
+        title: Other Lights
         entities:
-          - light.entertainment_lights
+          - light.kitchen_lights
+          - light.entryway_lights
 
       - type: entities
         title: Harmony
@@ -175,20 +180,19 @@ views:
           - switch.living_area_fluxer
           - script.living_area_wakeup
 
-      - type: vertical-stack
-        cards:
-          - type: media-control
-            entity: media_player.cast_living_room_speaker
-          - type: media-control
-            entity: media_player.shield
-
 
   - title: Bedroom
     icon: mdi:hotel
     cards:
       - type: entities
         title: Lights
+        show_header_toggle: false
         entities:
+          - entity: light.bedroom_lights
+            name: All lights
+          - type: divider
+          - light.tree_lamp
+          - type: divider
           - light.tree_lamp_1
           - light.tree_lamp_2
           - light.tree_lamp_3
@@ -196,12 +200,6 @@ views:
           - light.tree_lamp_5
           - light.nightstand_1
           - light.nightstand_2
-
-      - type: entities
-        title: Light Groups
-        show_header_toggle: false
-        entities:
-          - light.tree_lamp
 
       - type: entities
         title: Other Lights
@@ -241,18 +239,18 @@ views:
     cards:
       - type: entities
         title: Lights
+        show_header_toggle: false
         entities:
+          - entity: light.bathroom_lights
+            name: All Lights
+          - type: divider
+          - light.bathroom_mirror
+          - light.shower_light
+          - type: divider
           - light.bathroom_mirror_1
           - light.bathroom_mirror_2
           - light.bathroom_mirror_3
           - light.bathroom_mirror_4
-          - light.shower_light
-
-      - type: entities
-        title: Light Groups
-        show_header_toggle: false
-        entities:
-          - light.bathroom_mirror
 
       - type: entities
         title: Other Lights
@@ -291,20 +289,20 @@ views:
         title: Room Lights
         show_header_toggle: false
         entities:
-          - group.entryway
-          - group.kitchen_lights
-          - group.living_room_lights
-          - group.living_area_lights
-          - group.bedroom_lights
-          - group.closet_lights
-          - group.bathroom_lights
+          - light.entryway_lights
+          - light.kitchen_lights
+          - light.living_room_lights
+          - light.living_area_lights
+          - light.bedroom_lights
+          - light.closet_lights
+          - light.bathroom_lights
 
       - type: entities
         title: Light Types
         show_header_toggle: false
         entities:
-          - group.color_lights
-          - group.color_temperature_lights
+          - light.color_lights
+          - light.color_temperature_lights
 
       - type: entities
         title: Fluxers

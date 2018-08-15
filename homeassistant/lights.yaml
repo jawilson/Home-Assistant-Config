@@ -7,3 +7,73 @@
   rgb: true
   optimistic: false
   qos: 0
+
+- platform: group
+  name: Entryway Lights
+  entities:
+    - light.entryway
+
+- platform: group
+  name: Kitchen Lights
+  entities:
+    - light.kitchen
+    - light.dining_lights_level
+
+- platform: group
+  name: Living Area Lights
+  entities:
+    - light.entryway
+    - light.kitchen
+    - light.dining_lights_level
+    - light.entertainment_lights
+    - light.living_room_lamp
+    - light.desk_lamp
+
+- platform: group
+  name: Living Room Lights
+  entities:
+    - light.entertainment_lights
+    - light.living_room_lamp
+    - light.desk_lamp
+
+- platform: group
+  name: Bedroom Lights
+  entities:
+    - light.tree_lamp
+    - light.nightstand_1
+    - light.nightstand_2
+
+- platform: group
+  name: Closet Lights
+  entities:
+    - light.closet
+
+- platform: group
+  name: Bathroom Lights
+  entities:
+    - light.shower_light
+    - light.bathroom_mirror
+
+- platform: group
+  name: Color Lights
+  entities:
+    - light.kitchen
+    - light.liquor_cabinet_lights
+    - light.entertainment_lights
+    - light.living_room_lamp
+    - light.desk_lamp
+
+- platform: group
+  name: Color Temperature Lights
+  entities:
+    - light.entryway
+    - light.tree_lamp
+    - light.nightstand_1
+    - light.nightstand_2
+    - light.closet
+    - light.bathroom_mirror
+    - light.shower
+    - light.kitchen
+    - light.entertainment_lights
+    - light.living_room_lamp
+    - light.desk_lamp

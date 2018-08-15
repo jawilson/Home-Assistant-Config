@@ -10,23 +10,41 @@ entities:
   group.all_lights:
     hidden: false
 
-  light.entryway:
-    hidden: true
-  light.bedroom:
-    hidden: true
-  light.tree_lamp:
-    hidden: true
-  light.closet:
-    hidden: true
   light.bathroom:
+    hidden: true
+  light.bathroom_lights:
     hidden: true
   light.bathroom_mirror:
     hidden: true
-  light.living_room:
+  light.bedroom:
+    hidden: true
+  light.bedroom_lights:
+    hidden: true
+  light.closet:
+    hidden: true
+  light.closet_lights:
+    hidden: true
+  light.color_lights:
+    hidden: true
+  light.color_temperature_lights:
     hidden: true
   light.entertainment_lights:
     hidden: true
+  light.entryway:
+    hidden: true
+  light.entryway_lights:
+    hidden: true
   light.kitchen:
+    hidden: true
+  light.kitchen_lights:
+    hidden: true
+  light.living_area_lights:
+    hidden: true
+  light.living_room:
+    hidden: true
+  light.living_room_lights:
+    hidden: true
+  light.tree_lamp:
     hidden: true
 
   media_player.shield:

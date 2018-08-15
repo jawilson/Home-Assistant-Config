@@ -1,6 +1,6 @@
 filter:
   include_entities:
-    - group.living_area_lights
+    - light.living_area_lights
     - input_boolean.schedule_vacuum
     - media_player.shield
     - script.apartment_shutdown
@@ -18,15 +18,23 @@ filter:
 
   exclude_entities:
     - light.entryway
+    - light.entryway_lights
     - light.bedroom
+    - light.bedroom_lights
     - light.tree_lamp
     - light.closet
+    - light.closet_lights
     - light.bathroom
+    - light.bathroom_lights
     - light.bathroom_mirror
     - light.living_room
+    - light.living_room_lights
     - light.entertainment_lights
     - light.kitchen
+    - light.kitchen_lights
     - light.all_hue_lights
+    - light.color_lights
+    - light.color_temperature_lights
     - scene.tv_dinner
     - switch.dining_fluxer
     - switch.entryway_fluxer

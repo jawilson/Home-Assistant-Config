@@ -5,7 +5,7 @@ sequence:
     state: 'off'
   - service: homeassistant.turn_off
     entity_id:
-      - group.living_area_lights
+      - light.living_area_lights
       - switch.projector
   - service: media_player.media_stop
     entity_id:
