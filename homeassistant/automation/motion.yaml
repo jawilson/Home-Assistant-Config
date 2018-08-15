@@ -74,6 +74,11 @@
       entity_id: light.bedroom
     - service: switch.turn_on
       entity_id: switch.bedroom_fluxer
+    - condition: state
+      entity_id: light.bathroom
+      state: 'off'
+    - service: light.turn_off
+      entity_id: light.closet
 
 
 - alias: Bathroom Motion
@@ -149,6 +154,11 @@
       entity_id: light.bathroom
     - service: switch.turn_on
       entity_id: switch.bathroom_fluxer
+    - condition: state
+      entity_id: light.bedroom
+      state: 'off'
+    - service: light.turn_off
+      entity_id: light.closet
 
 
 - alias: Closet No Motion
