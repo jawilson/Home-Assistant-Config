@@ -61,11 +61,12 @@
     # Provide a way to cancel
     - service: notify.html5
       data:
-        target: phosphorus
+        target: jawilson_phosphorus
         title: 'Good Morning!'
         message: 'Turning on the apartment lights'
         data:
           tag: 'wakeup'
+          virbate: [0]
           renotify: false
           actions:
             - action: 'cancel_wakeup'
@@ -86,14 +87,15 @@
       state: 'off'
     - service: script.bedroom_wakeup
       data:
-        target: phosphorus
+        target: jawilson_phosphorus
     - service: notify.html5
       data:
-        target: phosphorus
+        target: jawilson_phosphorus
         title: 'Good Morning!'
         message: 'Turning on the bedroom and apartment lights'
         data:
           tag: 'wakeup'
+          virbate: [0]
           renotify: false
           actions:
             - action: 'cancel_bedroom_wakeup'
@@ -133,11 +135,12 @@
     # Provide a way to cancel
     - service: notify.html5
       data:
-        target: phosphorus
+        target: jawilson_phosphorus
         title: 'Good Morning!'
         message: 'Guests are waking up'
         data:
           tag: 'wakeup'
+          virbate: [0]
           renotify: false
           actions:
             - action: 'cancel_bedroom_wakeup'
@@ -210,7 +213,7 @@
     service: script.alarm_ringing
     data:
       light: light.nightstand_1
-      target: phosphorus
+      target: jawilson_phosphorus
 
 
 - alias: 'Alarm Snooze'
@@ -275,6 +278,7 @@
         message: Turning the lights back off
         data:
           tag: 'wakeup'
+          virbate: [0]
           renotify: false
           actions:
             - action: 'cancel_wakeup'
