@@ -342,3 +342,4 @@ logger:
     homeassistant.components.device_tracker.asuswrt: error
     homeassistant.components.device_tracker.owntracks: error
     homeassistant.components.sensor.octoprint: error
+    homeassistant.components.switch.orvibo: critical
