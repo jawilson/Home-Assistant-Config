@@ -25,6 +25,33 @@
         {%- endif %}
 
 
+- alias: Sasha Location Update Notification
+  trigger:
+    - platform: state
+      entity_id: device_tracker.sashag_iphone
+  condition:
+    - condition: state
+      entity_id: input_boolean.presence
+      state: 'on'
+    - condition: template
+      value_template: >
+        {{ not is_state('device_tracker.jawilson_phosphorus', 'home') }}
+  action:
+    service: notify.html5
+    data_template:
+      title: Location Update
+      target:
+        - jawilson_phosphorus
+        - jawilson_work
+      message: >
+        {{ trigger.from_state.attributes.friendly_name }}
+        {%- if trigger.to_state.state == 'not_home' %}
+        left {{ trigger.from_state.state }}
+        {%- else %}
+        arrived at {{ trigger.to_state.state }}
+        {%- endif %}
+
+
 - alias: Jeff Stop Working
   trigger:
     - platform: numeric_state
