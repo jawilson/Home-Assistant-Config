@@ -107,7 +107,7 @@
 - alias: 'Sasha Wake Up'
   trigger:
     platform: state
-    entity_id: light.bathroom
+    entity_id: light.bathroom_mirror_1
     to: 'on'
   condition:
     - condition: state
@@ -117,16 +117,14 @@
       entity_id: device_tracker.sashag_iphone
       state: 'home'
     - condition: time
-      after: '6:15:00'
-      before: '9:00:00'
+      after: '6:00:00'
+      before: '7:30:00'
       weekday:
         - mon
         - tue
         - wed
         - thu
         - fri
-    - condition: template
-      value_template: '{{ (as_timestamp(states.calendar.sashag_gmail.attributes.start_time) - as_timestamp(now()))/60 < 150 }}'
   action:
     - service: switch.turn_off
       entity_id:
@@ -137,7 +135,7 @@
       data:
         target: jawilson_phosphorus
         title: 'Good Morning!'
-        message: 'Guests are waking up'
+        message: 'Sasha is waking up'
         data:
           tag: 'wakeup'
           virbate: [0]
