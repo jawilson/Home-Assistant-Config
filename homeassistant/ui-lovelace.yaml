@@ -20,6 +20,32 @@ views:
 #            - zone.home
 #            - zone.bline
 #            - zone.sashas_apartment
+          - type: conditional
+            conditions:
+              - entity: device_tracker.jawilson_phosphorus
+                state: B-Line
+            card:
+              type: glance
+              show_name: false
+              column_width: calc(100% / 2)
+              entities:
+                - entity: sensor.jeff_at_work_this_week
+                  icon: mdi:calendar-range
+                - entity: sensor.jeff_at_work_today
+                  icon: mdi:calendar-today
+          - type: conditional
+            conditions:
+              - entity: device_tracker.jawilson_phosphorus
+                state: not_home
+            card:
+              type: glance
+              title: Travel Times Home
+              show_name: false
+              column_width: calc(100% / 3)
+              entities:
+                - sensor.jeff_drive_home
+                - sensor.jeff_transit_home
+                - sensor.jeff_walk_home
           - type: entities
             title: Jeff
             entities:

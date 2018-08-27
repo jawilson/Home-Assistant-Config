@@ -25,6 +25,30 @@
         {%- endif %}
 
 
+- alias: Jeff Stop Working
+  trigger:
+    - platform: numeric_state
+      entity_id: sensor.jeff_at_work_today
+      above: 8
+    - platform: numeric_state
+      entity_id: sensor.jeff_at_work_this_week
+      above: 40
+  action:
+    service: notify.html5
+    data_template:
+      target:
+        - jawilson_phosphorus
+        - jawilson_work
+      requireInteraction: true
+      vibrate: [500, 250, 500, 250, 500, 250, 500, 250, 500]
+      image: 'https://render.bitstrips.com/v2/cpanel/efd60697-b088-412c-b450-e2d914c2007a-51c44532-b4a5-4f9d-b914-db4ffc9e30c0-v1.png?transparent=1&palette=1'
+      title: Time To Head Home
+      message: >
+        You have been at work for
+        {{ trigger.to_state.attributes.value }}
+        {{ 'today' if trigger.entity_id == 'sensor.jeff_at_work_today' else 'this week' }}
+
+
 - alias: Light Intruder Alert
   trigger:
     - platform: state

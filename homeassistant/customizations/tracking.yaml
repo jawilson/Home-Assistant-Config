@@ -1,6 +1,12 @@
 # Jeff
 binary_sensor.jeff_home:
   device_class: occupancy
+sensor.jeff_drive_home:
+  icon: mdi:car
+sensor.jeff_transit_home:
+  icon: mdi:bus
+sensor.jeff_walk_home:
+  icon: mdi:walk
 sensor.jeff_battery:
   icon: mdi:battery
 sensor.jeff_sleep_state:
