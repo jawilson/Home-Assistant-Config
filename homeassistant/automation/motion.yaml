@@ -46,7 +46,7 @@
       entity_id: sensor.bedroom_alarm_level
       to: '0'
       for:
-        minutes: 5
+        minutes: 3
     - platform: state
       entity_id: light.bedroom
       to: 'on'
@@ -110,7 +110,7 @@
       entity_id: sensor.bathroom_alarm_level
       to: '0'
       for:
-        minutes: 5
+        minutes: 3
     - platform: state
       entity_id: light.bathroom
       to: 'on'
@@ -167,12 +167,12 @@
       entity_id: sensor.bedroom_alarm_level
       to: '0'
       for:
-        minutes: 5
+        minutes: 3
     - platform: state
       entity_id: sensor.bathroom_alarm_level
       to: '0'
       for:
-        minutes: 5
+        minutes: 3
     - platform: state
       entity_id: light.closet
       to: 'on'
