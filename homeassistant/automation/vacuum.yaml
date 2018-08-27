@@ -87,14 +87,33 @@
   trigger:
     platform: state
     entity_id: vacuum.doomba
-    to: 'off'
-    from: 'on'
   condition:
     - condition: state
       entity_id: binary_sensor.jeff_home
       state: 'off'
+    - condition: template
+      value_template: >
+        {{ trigger.from_state.attributes.status|lower in ['new mission', 'running', 'user docking', 'docking', 'docking - end mission'] and trigger.to_state.attributes.status|lower in ['charging', 'recharging', 'stuck', 'cancelled', 'stopped', 'paused', 'end mission'] }}
   action:
-    - service: notify.html5_phosphorus
+    - service: notify.html5
       data_template:
-        title: 'Doomba stopped'
-        message: 'Doomba has stopped running and is now {{ states.vacuum.doomba.attributes.status|lower }}'
+        title: 'Doomba Stopped'
+        message: >
+          Doomba has stopped {{ trigger.from_state.attributes.status }} and is now {{ states[trigger.to_state.domain][trigger.to_state.object_id].attributes.status|lower }}
+
+
+- alias: Notify Roomba Error
+  trigger:
+    platform: state
+    entity_id: vacuum.doomba
+  condition:
+    - condition: state
+      entity_id: binary_sensor.jeff_home
+      state: 'off'
+    - condition: template
+      value_template: "{{ 'error' in trigger.to_state.attributes }}"
+  action:
+    - service: notify.html5
+      data_template:
+        title: 'Doomba Error!'
+        message: "Doomba encountered error: {{ trigger.to_state.attributes.error }}"
