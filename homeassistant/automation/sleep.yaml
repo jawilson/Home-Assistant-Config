@@ -196,8 +196,8 @@
         entity_id: climate.apartment
       data_template:
         target_temp_high: 74
-        temperature: 71
-        target_temp_low: "{{ 68 if is_state('group.other_guests', 'home') else 70 }}"
+        temperature: 70
+        target_temp_low: 70
 
 
 - alias: 'Alarm Ringing'
