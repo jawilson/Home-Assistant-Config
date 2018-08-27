@@ -62,6 +62,9 @@
     - condition: state
       entity_id: input_boolean.presence
       state: 'on'
+    - condition: state
+      entity_id: vacuum.doomba
+      state: 'on'
     - condition: or
       conditions:
         - condition: template
@@ -74,7 +77,7 @@
               value_template: "{{ is_state_attr('proximity.home', 'dir_of_travel', 'towards') }}"
     - condition: template
       value_template: >
-        {{ (as_timestamp(now()) - as_timestamp(states.automation.run_doomba.attributes.last_triggered)|float)/60 > 5 }}
+        {{ (as_timestamp(now()) - as_timestamp(states.automation.run_doomba.attributes.last_triggered)|float)/60 > 10 }}
   action:
     service: vacuum.turn_off
     entity_id: vacuum.doomba
