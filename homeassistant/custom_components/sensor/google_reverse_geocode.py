@@ -7,6 +7,7 @@ import voluptuous as vol
 
 from homeassistant.components.sensor import PLATFORM_SCHEMA
 from homeassistant.components.zone.zone import active_zone
+from homeassistant.components.device_tracker import ATTR_SOURCE_TYPE
 from homeassistant.helpers.entity import Entity
 from homeassistant.helpers.event import track_state_change
 from homeassistant.const import (
@@ -99,6 +100,7 @@ class GoogleReverseGeocodeSensor(Entity):
         self._options = options
         self.valid_api_connection = True
         self._entity_picture = None
+        self._dev_attrs = {}
         self._zone = None
         self._geocode = None
 
@@ -150,7 +152,7 @@ class GoogleReverseGeocodeSensor(Entity):
     @property
     def device_state_attributes(self):
         """Return the state attributes."""
-        attr = {ATTR_ENTITY_ID: self._entity_id}
+        attr = {ATTR_ENTITY_ID: self._entity_id, **self._dev_attrs}
 
         if self._zone is not None:
             attr[ATTR_LOCATION_TYPE] = LOCATION_TYPE_ZONE
@@ -176,6 +178,16 @@ class GoogleReverseGeocodeSensor(Entity):
 
         self._entity_picture = entity.attributes.get(ATTR_ENTITY_PICTURE)
 
+        self._dev_attrs = {key: value for key, value in
+                           ((ATTR_SOURCE_TYPE,
+                               entity.attributes.get(ATTR_SOURCE_TYPE)),
+                            (ATTR_LATITUDE,
+                                entity.attributes.get(ATTR_LATITUDE)),
+                            (ATTR_LONGITUDE,
+                                entity.attributes.get(ATTR_LONGITUDE)),
+                            (ATTR_GPS_ACCURACY,
+                                entity.attributes.get(ATTR_GPS_ACCURACY))) if value is not None}
+
         _LOGGER.info("Found entity %s", self._entity_id)
         if not location.has_location(entity):
             _LOGGER.warn("Entity %s does not have a location", self._entity_id)
@@ -190,8 +202,6 @@ class GoogleReverseGeocodeSensor(Entity):
         else:
             self._zone = None
 
-        options_copy = self._options.copy()
-
         # Convert device_trackers to google friendly location
         loc = self._get_location_from_attributes(entity)
 
@@ -201,6 +211,7 @@ class GoogleReverseGeocodeSensor(Entity):
             return
 
         _LOGGER.debug("Looking up location %s", loc)
+        options_copy = self._options.copy()
         results = self._client.reverse_geocode(loc, **options_copy)
         if results:
             _LOGGER.info("Reverse geocode results for %s: %s", entity.entity_id,

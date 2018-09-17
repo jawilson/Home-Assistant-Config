@@ -20,6 +20,7 @@ sensor.jeff_alarm:
   icon: mdi:alarm
 sensor.google_reverse_geocode__jeff:
   friendly_name: 'Jeff Location'
+  custom_ui_more_info: more-info-map
 
 # Other
 binary_sensor.guests:

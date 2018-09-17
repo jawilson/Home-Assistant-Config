@@ -2,6 +2,8 @@ title: Home
 resources:
   - url: /local/ui/entity-hidden-filter-card.js
     type: js
+  - url: /local/ui/more-info-map.js
+    type: module
 views:
   - title: Home
     icon: mdi:home
