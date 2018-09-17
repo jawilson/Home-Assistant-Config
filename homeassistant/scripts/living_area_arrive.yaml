@@ -16,6 +16,6 @@ sequence:
   - condition: numeric_state
     entity_id: sun.sun
     value_template: "{{ state.attributes.elevation }}"
-    below: 10
+    below: 12
   - service: light.turn_on
     entity_id: light.living_room

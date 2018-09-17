@@ -17,7 +17,7 @@ sequence:
       - light.kitchen
     data:
       color_temp: 450
-      brightness: 1
+      brightness: 3
   - service: light.turn_on
     entity_id:
       - light.dining_lights_level
