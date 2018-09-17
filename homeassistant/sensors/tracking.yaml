@@ -6,17 +6,6 @@
   qos: 1
   value_template: "{{ value|capitalize|replace('_',' ') }}"
 
-- platform: mqtt
-  state_topic: 'owntracks/jawilson/phosphorus'
-  name: 'Jeff Battery'
-  unit_of_measurement: '%'
-  value_template: >-
-    {%- if value_json.batt -%}
-    {{ value_json.batt }}
-    {%- else -%}
-    {{ states.sensor.jeff_battery.state }}
-    {%- endif -%}
-
 - platform: template
   sensors:
     jeff_sleep_state:
