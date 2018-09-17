@@ -27,6 +27,11 @@
         {%- else -%}
         Awake
         {%- endif -%}
+    jeff_leave_work_today:
+      friendly_name: 'Jeff leave work today'
+      value_template: >
+        {{(as_timestamp(now())+(8 - states.sensor.jeff_at_work_today.state|float)*60*60)|timestamp_custom('%-I:%M %p')}}
+
 
 - platform: google_reverse_geocode
   api_key: !secret google_api_key

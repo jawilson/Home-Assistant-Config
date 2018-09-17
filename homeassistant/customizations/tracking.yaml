@@ -1,6 +1,12 @@
 # Jeff
 binary_sensor.jeff_home:
   device_class: occupancy
+sensor.jeff_at_work_this_week:
+  icon: mdi:calendar-range
+sensor.jeff_at_work_today:
+  icon: mdi:calendar-today
+sensor.jeff_leave_work_today:
+  icon: mdi:walk
 sensor.jeff_drive_home:
   icon: mdi:car
 sensor.jeff_transit_home:

@@ -27,12 +27,11 @@ views:
             card:
               type: glance
               show_name: false
-              column_width: calc(100% / 2)
+              column_width: calc(100% / 3)
               entities:
-                - entity: sensor.jeff_at_work_this_week
-                  icon: mdi:calendar-range
-                - entity: sensor.jeff_at_work_today
-                  icon: mdi:calendar-today
+                - sensor.jeff_at_work_this_week
+                - sensor.jeff_at_work_today
+                - sensor.jeff_leave_work_today
           - type: conditional
             conditions:
               - entity: device_tracker.jawilson_phosphorus
