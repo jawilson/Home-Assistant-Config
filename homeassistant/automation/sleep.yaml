@@ -74,7 +74,7 @@
             - action: 'reset_sleep_lights'
               title: 'Reset Sleep Lights'
     - condition: time
-      after: '6:00:00'
+      after: '5:00:00'
       before: '10:00:00'
       weekday:
         - mon
@@ -86,8 +86,6 @@
       entity_id: calendar.jawilson_office_closed
       state: 'off'
     - service: script.bedroom_wakeup
-      data:
-        target: jawilson_phosphorus
     - service: notify.html5
       data:
         target: jawilson_phosphorus
@@ -154,6 +152,10 @@
       data:
         color_temp: 450
         brightness: 10
+    - condition: state
+      entity_id: binary_sensor.jeff_home
+      state: 'false'
+    - service: script.bedroom_wakeup
 
 
 - alias: 'Alarm Bedtime'

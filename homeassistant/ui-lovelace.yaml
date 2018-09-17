@@ -107,7 +107,13 @@ views:
               - scene.tv_dinner
               - scene.romantic
               - script.bedtime
-              - scene.up_late
+              - type: call-service
+                name: Go to sleep
+                icon: mdi:sleep
+                action_name: Trigger
+                service: automation.trigger
+                service_data:
+                  entity_id: automation.go_to_sleep
               - script.lights_out
 
 
@@ -433,7 +439,6 @@ views:
         title: Automations
         entities:
           - automation.alarm_bedtime
-          - automation.go_to_sleep
           - automation.guests_leave_while_sleeping
           - automation.alarm_smart_period
           - automation.alarm_ringing
