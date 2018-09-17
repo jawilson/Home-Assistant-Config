@@ -66,7 +66,7 @@
         message: 'Turning on the apartment lights'
         data:
           tag: 'wakeup'
-          virbate: [0]
+          vibrate: [0]
           renotify: false
           actions:
             - action: 'cancel_wakeup'
@@ -95,7 +95,7 @@
         message: 'Turning on the bedroom and apartment lights'
         data:
           tag: 'wakeup'
-          virbate: [0]
+          vibrate: [0]
           renotify: false
           actions:
             - action: 'cancel_bedroom_wakeup'
@@ -138,7 +138,7 @@
         message: 'Sasha is waking up'
         data:
           tag: 'wakeup'
-          virbate: [0]
+          vibrate: [0]
           renotify: false
           actions:
             - action: 'cancel_bedroom_wakeup'
@@ -276,7 +276,7 @@
         message: Turning the lights back off
         data:
           tag: 'wakeup'
-          virbate: [0]
+          vibrate: [0]
           renotify: false
           actions:
             - action: 'cancel_wakeup'
