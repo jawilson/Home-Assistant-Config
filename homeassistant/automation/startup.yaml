@@ -1,16 +1,19 @@
 - alias: Home Assistant Start
   trigger:
-    platform: homeassistant
-    event: start
+    - platform: homeassistant
+      event: start
+    - platform: state
+      entity_id: automation.home_assistant_start
+      to: 'on'
   action:
     - service: automation.turn_off
       entity_id:
         - automation.motion_intruder_alert
-        - automation.update_locations
-        - automation.location_update_notification
         - automation.handle_lights_when_turned_on_not_home
     - service: switch.turn_on
       entity_id:
         - switch.living_area_fluxer
         - switch.bedroom_fluxer
         - switch.bathroom_fluxer
+    - service: automation.turn_off
+      entity_id: automation.home_assistant_start
