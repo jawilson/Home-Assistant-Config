@@ -1,4 +1,4 @@
-alias: Bathroom Wake Up
+alias: Bathroom Wake-Up
 sequence:
   # Don't allow script to run on top of itself
   - condition: state

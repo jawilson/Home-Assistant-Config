@@ -1,4 +1,4 @@
-alias: Bedroom Wake Up
+alias: Bedroom Wake-Up
 sequence:
   - service: homeassistant.turn_off
     entity_id:

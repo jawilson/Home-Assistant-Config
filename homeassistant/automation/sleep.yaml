@@ -39,7 +39,7 @@
         - automation.bathroom_motion
 
 
-- alias: 'Wake Up'
+- alias: 'Wake-Up'
   trigger:
     platform: state
     entity_id: binary_sensor.jeff_sleeping_at_home
@@ -69,10 +69,10 @@
           vibrate: [0]
           renotify: false
           actions:
+            - action: 'wakeup_bedroom'
+              title: 'Wake-Up Bedroom'
             - action: 'cancel_wakeup'
-              title: 'Cancel'
-            - action: 'reset_sleep_lights'
-              title: 'Reset Sleep Lights'
+              title: 'Cancel All'
     - condition: time
       after: '5:00:00'
       before: '10:00:00'
@@ -102,7 +102,7 @@
               title: 'Cancel All'
 
 
-- alias: 'Sasha Wake Up'
+- alias: 'Sasha Wake-Up'
   trigger:
     platform: state
     entity_id: light.bathroom_mirror_1
@@ -288,19 +288,29 @@
     - service: script.bedroom_sleep
 
 
-- alias: 'Reset Sleep Lights'
+- alias: 'Wake-Up Bedroom'
   trigger:
     platform: event
     event_type: html5_notification.clicked
     event_data:
       action: reset_sleep_lights
   action:
-    - service: switch.turn_on
-      entity_id:
-        - switch.bathroom_fluxer
-        - switch.bedroom_fluxer
-        - switch.bathroom_motion
-        - switch.bedroom_motion
+    - service: script.bedroom_wakeup
+    - service: notify.html5
+      data_template:
+        target: '{{ trigger.event.data.target }}'
+      data:
+        title: 'Good Morning!'
+        message: 'Turning on the bedroom and apartment lights'
+        data:
+          tag: 'wakeup'
+          vibrate: [0]
+          renotify: false
+          actions:
+            - action: 'cancel_bedroom_wakeup'
+              title: 'Cancel Bedroom'
+            - action: 'cancel_wakeup'
+              title: 'Cancel All'
 
 
 - alias: 'Cancel Wakeup'

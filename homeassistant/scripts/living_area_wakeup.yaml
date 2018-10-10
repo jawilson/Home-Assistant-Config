@@ -1,4 +1,4 @@
-alias: Living Area Wake Up
+alias: Living Area Wake-Up
 sequence:
   - condition: state
     entity_id: binary_sensor.guests

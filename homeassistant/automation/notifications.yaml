@@ -87,7 +87,7 @@
           service: 'script.turn_on'
           entity_id: 'script.apartment_shutdown'
           actions:
-            - action: 'run_script'
+            - action: 'run_service'
               title: 'Turn off'
 
 - alias: Motion Intruder Alert

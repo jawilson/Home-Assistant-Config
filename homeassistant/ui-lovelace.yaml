@@ -163,10 +163,11 @@ views:
         title: Control
         show_header_toggle: false
         entities:
-          - entity: script.living_area_wakeup
-            name: Wake Up
           - entity: switch.living_area_fluxer
             name: Fluxer
+          - entity: script.living_area_wakeup
+            name: Wake-Up
+            icon: mdi:sleep-off
 
       - type: glance
         title: Sensors
@@ -235,7 +236,8 @@ views:
         show_header_toggle: false
         entities:
           - switch.living_area_fluxer
-          - script.living_area_wakeup
+          - entity: script.living_area_wakeup
+            icon: mdi:sleep-off
 
 
   - title: Bedroom
@@ -282,8 +284,18 @@ views:
             name: Fluxer
           - entity: switch.bedroom_motion
             name: Motion
+          - type: call-service
+            name: Go to sleep
+            icon: mdi:sleep
+            action_name: Trigger
+            service: automation.trigger
+            service_data:
+              entity_id: automation.go_to_sleep
           - entity: script.bedroom_wakeup
-            name: Wake Up
+            name: Wake-Up
+            icon: mdi:sleep-off
+          - entity: automation.sunrise_wakeup
+            icon: mdi:weather-sunset-up
 
       - type: media-control
         entity: media_player.cast_bedroom_mini
@@ -332,7 +344,8 @@ views:
           - entity: switch.bathroom_motion
             name: Motion
           - entity: script.bathroom_wakeup
-            name: Wake Up
+            name: Wake-Up
+            icon: mdi:sleep-off
 
 
   - title: Lights
@@ -452,9 +465,8 @@ views:
           - automation.alarm_ringing
           - automation.alarm_snooze
           - automation.alarm_dismiss
-          - automation.wake_up
-          - automation.sasha_wake_up
-          - automation.reset_sleep_lights
+          - automation.wakeup
+          - automation.sasha_wakeup
           - automation.cancel_wakeup
           - automation.cancel_alarm_ringing
           - automation.cancel_bedroom_wakeup

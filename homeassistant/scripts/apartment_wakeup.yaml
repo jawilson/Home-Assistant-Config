@@ -1,4 +1,4 @@
-alias: Apartment Wake Up
+alias: Apartment Wake-Up
 sequence:
   - condition: state
     entity_id: input_boolean.climate_auto
