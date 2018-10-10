@@ -459,6 +459,7 @@ views:
       - type: entities
         title: Automations
         entities:
+          - automation.home_assistant_start
           - automation.alarm_bedtime
           - automation.guests_leave_while_sleeping
           - automation.alarm_smart_period
@@ -485,7 +486,6 @@ views:
           - automation.end_circulate_to_even
           - automation.humidity_too_low
           - automation.humidity_too_high
-          - automation.home_assistant_start
           - automation.projector_off
           - automation.shield_plex_idle
           - automation.location_update_notification
