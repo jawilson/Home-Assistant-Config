@@ -1,0 +1,32 @@
+alias: Sunrise Wake-Up
+sequence:
+  - condition: state
+    entity_id: binary_sensor.jeff_sleeping_at_home
+    state: 'on'
+  - service: notify.html5
+    data:
+      target: jawilson_phosphorus
+      title: 'Good Morning!'
+      message: 'The sun is rising'
+      data:
+        tag: 'wakeup'
+        vibrate: [0]
+        renotify: false
+        actions:
+          - action: 'cancel_bedroom_wakeup'
+            title: 'Cancel Bedroom'
+  - service: switch.turn_off
+    entity_id: switch.bedroom_fluxer
+  - service: light.turn_on
+    entity_id: light.tree_lamp_3
+    data:
+      color_temp: 454
+      brightness: 1
+  - service: light.turn_on
+    entity_id: light.tree_lamp_3
+    data:
+      color_temp: 333
+      brightness_pct: 30
+    data_template:
+      transition: >
+        {{ (as_timestamp(strptime(state_attr('sensor.jeff_alarm', 'next_alarm'), '%Y-%m-%d %H:%M')) - as_timestamp(now()))|int + 300 }}
