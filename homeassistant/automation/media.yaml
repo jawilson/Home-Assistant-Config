@@ -29,9 +29,6 @@
       entity_id: input_boolean.media_automation
       state: 'on'
     - condition: state
-      entity_id: switch.shield_audio
-      state: 'off'
-    - condition: state
       entity_id: light.living_room_lamp
       state: 'off'
   action:
@@ -53,9 +50,6 @@
     - condition: state
       entity_id: input_boolean.media_automation
       state: 'on'
-    - condition: template
-      value_template: >
-        {{ trigger.from_state.attributes.current_activity != 'Listen to Shield' }}
   action:
     - service: light.turn_on
       entity_id:

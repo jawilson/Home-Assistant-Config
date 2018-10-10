@@ -156,7 +156,6 @@ history:
       - switch.plex
       - switch.projector
       - switch.shield
-      - switch.shield_audio
       - switch.xbox_360
       - switch.xbox_one
 

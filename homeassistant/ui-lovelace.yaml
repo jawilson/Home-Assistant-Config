@@ -217,7 +217,6 @@ views:
                 entity: remote.living_room
                 secondary_info: last-changed
               - switch.shield
-              - switch.shield_audio
               - switch.xbox_one
               - switch.xbox_360
 
