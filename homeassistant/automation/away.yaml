@@ -13,17 +13,3 @@
   action:
     service: script.turn_on
     entity_id: script.apartment_shutdown
-
-
-- alias: Update Locations
-  trigger:
-    platform: numeric_state
-    entity_id: device_tracker.jawilson_phosphorus
-    value_template: >
-      {{ (as_timestamp(now()) - as_timestamp(state.last_updated))/60 }}
-    above: 30
-  action:
-    service: script.owntracks_location_update
-    data_template:
-      user: jawilson
-      device: phosphorus

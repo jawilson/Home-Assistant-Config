@@ -3,28 +3,34 @@
 - platform: mqtt
   state_topic: 'person/jeff/alarm'
   name: 'Jeff Alarm'
+  icon: mdi:alarm
   qos: 1
-  value_template: "{{ value|capitalize|replace('_',' ') }}"
+  value_template: "{{ value_json.alarm_state|capitalize|replace('_',' ') }}"
+  json_attributes:
+    - sleep_state
+    - next_alarm
 
 - platform: template
   sensors:
     jeff_sleep_state:
       friendly_name: 'Jeff Sleeping'
-      value_template: >-
-        {%- if is_state('binary_sensor.jeff_sleeping', 'on') -%}
-        Sleeping
-        {%- else -%}
-        Awake
-        {%- endif -%}
+      value_template: "{{ state_attr('sensor.jeff_alarm', 'sleep_state')|capitalize }}"
     jeff_leave_work_today:
       friendly_name: 'Jeff leave work today'
       value_template: >
-        {{(as_timestamp(now())+(8 - states.sensor.jeff_at_work_today.state|float)*60*60)|timestamp_custom('%-I:%M %p')}}
+        {{ (
+              as_timestamp(states.sensor.jeff_at_work_today.last_changed) +
+              (8 - states.sensor.jeff_at_work_today.state|float) * 60 * 60
+           )|timestamp_custom('%-I:%M %p') }}
 
 
 - platform: google_reverse_geocode
   api_key: !secret google_api_key
   entity_id: device_tracker.jawilson_phosphorus
+
+- platform: google_reverse_geocode
+  api_key: !secret google_api_key
+  entity_id: device_tracker.sashag_iphone
 
 - platform: history_stats
   name: Jeff at work today

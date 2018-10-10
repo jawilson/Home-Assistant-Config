@@ -13,15 +13,16 @@ views:
       #
       - type: vertical-stack
         cards:
-#        - type: map
-#          title: Jeff
-#          aspect_ratio: 50%
-#          entities:
-#            - entity: device_tracker.jawilson_phosphorus
-#            - entity: device_tracker.sashag_iphone
-#            - zone.home
-#            - zone.bline
-#            - zone.sashas_apartment
+          - type: map
+            title: Locations
+            aspect_ratio: 50%
+            entities:
+              - entity: device_tracker.jawilson_phosphorus
+              - entity: device_tracker.sashag_iphone
+              - zone.home
+              - zone.bline
+              - zone.sashas_apartment
+              - zone.river
           - type: conditional
             conditions:
               - entity: device_tracker.jawilson_phosphorus
@@ -57,8 +58,14 @@ views:
                 name: Sleeping
               - entity: sensor.jeff_alarm
                 name: Alarm
+          - type: entities
+            title: Sasha
+            entities:
+              - entity: sensor.google_reverse_geocode__sasha
+                name: Location
+                secondary_info: last-changed
           - type: 'custom:entity-hidden-filter-card'
-            entities: !include_dir_merge_list device_groups
+            entities: !include device_groups/guests.yaml
             show_empty: false
             secondary_info: last-changed
             card:
@@ -470,7 +477,6 @@ views:
           - automation.home_assistant_start
           - automation.projector_off
           - automation.shield_plex_idle
-          - automation.update_locations
           - automation.location_update_notification
           - automation.light_intruder_alert
           - automation.motion_intruder_alert

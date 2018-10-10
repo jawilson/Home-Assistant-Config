@@ -16,6 +16,11 @@
   icon: mdi:home-variant
 
 - name: Sasha's Apartment
-  latitude: 38.9052575
-  longitude: -77.0063164
+  latitude: 38.9005275
+  longitude: -77.0185820
   icon: mdi:home-modern
+
+- name: River
+  latitude: 38.917846
+  longitude: -77.097927
+  icon: mdi:school

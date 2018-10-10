@@ -135,7 +135,7 @@
     - condition: or
       conditions:
         - condition: state
-          entity_id: binary_sensor.jeff_sleeping
+          entity_id: binary_sensor.jeff_sleeping_at_home
           state: 'on'
         - condition: and
           conditions:
@@ -194,7 +194,7 @@
           state: 'on'
         # If we're sleeping, fluxer will still be off, but we definitely want to turn off
         - condition: state
-          entity_id: binary_sensor.jeff_sleeping
+          entity_id: binary_sensor.jeff_sleeping_at_home
           state: 'on'
     - condition: and
       conditions:
