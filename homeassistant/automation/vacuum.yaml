@@ -93,14 +93,51 @@
       state: 'off'
     - condition: template
       value_template: >
-        {{ trigger.from_state.attributes.status|lower in ['new mission', 'running', 'user docking', 'docking', 'docking - end mission'] and trigger.to_state.attributes.status|lower in ['charging', 'recharging', 'stuck', 'cancelled', 'stopped', 'paused', 'end mission'] }}
+        {{ trigger.from_state.attributes.status|lower in ['new mission', 'running', 'user docking', 'docking', 'docking - end mission'] and trigger.to_state.attributes.status|lower in ['charging', 'recharging', 'stuck', 'cancelled', 'stopped', 'paused', 'user docking', 'docking - end mission', 'end mission'] }}
   action:
-    - service: notify.html5
+    - service: notify.html5_jawilson_phosphorus
       data_template:
         title: 'Doomba Stopped'
         message: >
-          Doomba has stopped {{ trigger.from_state.attributes.status }} and is now {{ states[trigger.to_state.domain][trigger.to_state.object_id].attributes.status|lower }}
+          Doomba has stopped {{ trigger.from_state.attributes.status|lower }} and is now {{ states[trigger.to_state.domain][trigger.to_state.object_id].attributes.status|lower }}
+        data:
+          tag: 'doomba'
+          vibrate: [0]
 
+
+- alias: Notify Roomba Not Docked
+  trigger:
+    platform: state
+    entity_id:
+      - device_tracker.jawilson_phosphorus
+      - device_tracker.sashag_iphone
+    to: 'home'
+  condition:
+    - condition: state
+      entity_id: input_boolean.presence
+      state: 'on'
+    - condition: template
+      value_template: "{{ not is_state_attr('vacuum.doomba', 'status', 'Charging') }}"
+    - condition: or
+      conditions:
+        - condition: template
+          value_template: "{{ is_state_attr('vacuum.doomba', 'status', 'Stuck') }}"
+        - condition: and
+          conditions:
+            - condition: template
+              value_template: "{{ state_attr('vacuum.doomba', 'status')|lower in ['user docking', 'docking - end mission'] }}"
+            - condition: template
+              value_template: "{{ is_state_attr('vacuum.doomba', 'battery_level', 0) }}"
+  action:
+    service_template: >-
+      {% if trigger.entity_id == 'device_tracker.sashag_iphone' -%}
+      notify.ios_sashag_iphone
+      {%- else -%}
+      notify.html5_jawilson_phosphorus
+      {%- endif %}
+    data:
+      title: Doomba Not Docked
+      message: Welcome home, it looks like Doomba isn't docked and charging. Can you help it out?
 
 - alias: Notify Roomba Error
   trigger:

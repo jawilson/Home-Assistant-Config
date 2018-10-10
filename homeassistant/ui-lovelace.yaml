@@ -71,15 +71,6 @@ views:
             card:
               type: entities
               title: Guests
-          - type: entities
-            title: Vacuum
-            show_header_toggle: false
-            entities:
-              - entity: vacuum.doomba
-                secondary_info: last-changed
-              - entity: automation.run_doomba
-                name: Automatically Run
-              - input_boolean.schedule_vacuum
 
       #
       # Second column
@@ -97,6 +88,15 @@ views:
               - sensor.apartment_feels_like
               - sensor.apartment_temperatures
               - sensor.apartment_humidities
+          - type: entities
+            title: Vacuum
+            show_header_toggle: false
+            entities:
+              - entity: vacuum.doomba
+                secondary_info: last-changed
+              - entity: automation.run_doomba
+                name: Automatically Run
+              - input_boolean.schedule_vacuum
           - type: media-control
             entity: media_player.cast_home_group
 
