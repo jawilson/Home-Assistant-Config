@@ -1,7 +1,0 @@
-# Octoprint
-- platform: octoprint
-  name: P3Steel
-  monitored_conditions:
-    - Current State
-    - Temperatures
-    - Job Percentage
