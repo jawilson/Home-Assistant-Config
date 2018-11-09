@@ -65,7 +65,29 @@ views:
                 name: Location
                 secondary_info: last-changed
           - type: 'custom:entity-hidden-filter-card'
-            entities: !include device_groups/guests.yaml
+            entities:
+              - device_tracker.akd_android
+              - device_tracker.aminaab_iphone
+              - device_tracker.berniep_android
+              - device_tracker.brandonf_iphone
+              - device_tracker.caitlinh_android
+              - device_tracker.chased_iphone
+              - device_tracker.cjw_android
+              - device_tracker.cjw_ipad
+              - device_tracker.debbiel_android
+              - device_tracker.johnh_android
+              - device_tracker.johnw_android
+              - device_tracker.karenh_iphone
+              - device_tracker.kated_android
+              - device_tracker.katiel_iphone
+              - device_tracker.kazs_iphone
+              - device_tracker.koryk_iphone
+              - device_tracker.lizaf_iphone
+              - device_tracker.marciad_iphone
+              - device_tracker.ryanp_iphone
+              - device_tracker.samb_iphone
+              - device_tracker.tonyf_ipad
+              - device_tracker.tomd_android
             show_empty: false
             secondary_info: last-changed
             card:
@@ -123,7 +145,13 @@ views:
                 service: automation.trigger
                 service_data:
                   entity_id: automation.go_to_sleep
-              - script.lights_out
+              - type: call-service
+                name: Lights Out
+                icon: mdi:flashlight-off
+                action_name: Execute
+                service: script.turn_on
+                service_data:
+                  entity_id: script.lights_out
 
 
   - title: Kitchen
@@ -167,7 +195,6 @@ views:
             name: Fluxer
           - entity: script.living_area_wakeup
             name: Wake-Up
-            icon: mdi:sleep-off
 
       - type: glance
         title: Sensors
@@ -236,8 +263,7 @@ views:
         show_header_toggle: false
         entities:
           - switch.living_area_fluxer
-          - entity: script.living_area_wakeup
-            icon: mdi:sleep-off
+          - script.living_area_wakeup
 
 
   - title: Bedroom
@@ -261,20 +287,6 @@ views:
           - light.nightstand_2
 
       - type: entities
-        title: Other Lights
-        show_header_toggle: false
-        entities:
-          - light.closet_light
-
-      - type: glance
-        title: Sensors
-        show_name: false
-        entities:
-          - sensor.bedroom_temperature
-          - sensor.bedroom_relative_humidity
-          - sensor.bedroom_luminance
-
-      - type: entities
         title: Control
         show_header_toggle: false
         entities:
@@ -293,9 +305,31 @@ views:
               entity_id: automation.go_to_sleep
           - entity: script.bedroom_wakeup
             name: Wake-Up
-            icon: mdi:sleep-off
-          - entity: automation.sunrise_wakeup
+          - entity: script.sunrise_wakeup
             icon: mdi:weather-sunset-up
+
+      - type: glance
+        title: Sensors
+        show_name: false
+        entities:
+          - sensor.bedroom_temperature
+          - sensor.bedroom_relative_humidity
+          - sensor.bedroom_luminance
+
+      - type: entities
+        title: Other Lights
+        show_header_toggle: false
+        entities:
+          - light.closet_light
+
+      - type: entities
+        title: Other Control
+        show_header_toggle: false
+        entities:
+          - switch.closet_fluxer
+          - entity: switch.closet_motion
+            name: Closet Motion
+          - script.closet_wakeup
 
       - type: media-control
         entity: media_player.cast_bedroom_mini
@@ -320,20 +354,6 @@ views:
           - light.bathroom_mirror_4
 
       - type: entities
-        title: Other Lights
-        show_header_toggle: false
-        entities:
-          - light.closet_light
-
-      - type: glance
-        title: Sensors
-        show_name: false
-        entities:
-          - sensor.bathroom_temperature
-          - sensor.bathroom_relative_humidity
-          - sensor.bathroom_luminance
-
-      - type: entities
         title: Control
         show_header_toggle: false
         entities:
@@ -345,7 +365,29 @@ views:
             name: Motion
           - entity: script.bathroom_wakeup
             name: Wake-Up
-            icon: mdi:sleep-off
+
+      - type: glance
+        title: Sensors
+        show_name: false
+        entities:
+          - sensor.bathroom_temperature
+          - sensor.bathroom_relative_humidity
+          - sensor.bathroom_luminance
+
+      - type: entities
+        title: Other Lights
+        show_header_toggle: false
+        entities:
+          - light.closet_light
+
+      - type: entities
+        title: Other Control
+        show_header_toggle: false
+        entities:
+          - switch.closet_fluxer
+          - entity: switch.closet_motion
+            name: Closet Motion
+          - script.closet_wakeup
 
 
   - title: Lights
@@ -355,45 +397,91 @@ views:
         title: Room Lights
         show_header_toggle: false
         entities:
-          - light.entryway_lights
-          - light.kitchen_lights
-          - light.living_room_lights
-          - light.living_area_lights
-          - light.bedroom_lights
-          - light.closet_lights
-          - light.bathroom_lights
+          - entity: light.entryway_lights
+            name: Entryway
+          - entity: light.kitchen_lights
+            name: Kitchen
+          - entity: light.living_area_lights
+            name: Living Area
+          - entity: light.living_room_lights
+            name: Living Room
+          - entity: light.bedroom_lights
+            name: Bedroom
+          - entity: light.closet_lights
+            name: Closet
+          - entity: light.bathroom_lights
+            name: Bathroom
 
       - type: entities
         title: Light Types
         show_header_toggle: false
         entities:
-          - light.color_lights
-          - light.color_temperature_lights
+          - entity: light.color_lights
+            name: Color
+          - entity: light.color_temperature_lights
+            name: Color Temperature
 
       - type: entities
         title: Fluxers
         entities:
-          - switch.bedroom_fluxer
-          - switch.bathroom_fluxer
-          - switch.living_area_fluxer
+          - entity: switch.bedroom_fluxer
+            name: Bedroom
+          - entity: switch.closet_fluxer
+            name: Closet
+          - entity: switch.bathroom_fluxer
+            name: Bathroom
+          - entity: switch.living_area_fluxer
+            name: Living Area
 
       - type: entities
         title: Motion Automations
         entities:
-          - switch.bedroom_motion
-          - switch.bathroom_motion
+          - entity: switch.bedroom_motion
+            name: Bedroom
+          - entity: switch.closet_motion
+            name: Closet
+          - entity: switch.bathroom_motion
+            name: Bathroom
+
+      - type: entities
+        title: Wake-Up Scripts
+        entities:
+          - entity: script.bedroom_wakeup
+            name: Bedroom
+          - entity: script.closet_wakeup
+            name: Closet
+          - entity: script.bathroom_wakeup
+            name: Bathroom
+          - entity: script.living_area_wakeup
+            name: Living Area
+          - entity: script.living_room_wakeup
+            name: Living Room
+          - entity: script.apartment_wakeup
+            name: Apartment
 
 
   - title: Other
     icon: mdi:information
     cards:
-      - type: entities
-        title: UPS
-        entities:
-          - sensor.ups_status
-          - sensor.ups_battery
-          - sensor.ups_load
-          - sensor.ups_time_left
+      - type: vertical-stack
+        cards:
+          - type: entities
+            title: Temperatures
+            entities:
+              - sensor.dark_sky_temperature
+              - sensor.apartment_thermostat_temperature
+              - sensor.bathroom_temperature
+              - sensor.bedroom_temperature
+              - sensor.living_room_temperature
+
+          - type: entities
+            title: Humidities
+            entities:
+              - sensor.dark_sky_humidity
+              - sensor.apartment_thermostat_humidity
+              - sensor.bathroom_relative_humidity
+              - sensor.bedroom_relative_humidity
+              - sensor.living_room_relative_humidity
 
       - type: vertical-stack
         cards:
@@ -415,22 +503,12 @@ views:
             show_state: false
 
       - type: entities
-        title: Temperatures
+        title: UPS
         entities:
-          - sensor.dark_sky_temperature
-          - sensor.apartment_thermostat_temperature
-          - sensor.bathroom_temperature
-          - sensor.bedroom_temperature
-          - sensor.living_room_temperature
-
-      - type: entities
-        title: Humidities
-        entities:
-          - sensor.dark_sky_humidity
-          - sensor.apartment_thermostat_humidity
-          - sensor.bathroom_relative_humidity
-          - sensor.bedroom_relative_humidity
-          - sensor.living_room_relative_humidity
+          - sensor.ups_status
+          - sensor.ups_battery
+          - sensor.ups_load
+          - sensor.ups_time_left
 
 
   - title: Admin

@@ -6,4 +6,6 @@ sequence:
   - service: light.turn_off
     entity_id: light.bathroom
   - service: switch.turn_on
-    entity_id: switch.bathroom_fluxer
+    entity_id:
+      - switch.bathroom_fluxer
+      - switch.bathroom_motion

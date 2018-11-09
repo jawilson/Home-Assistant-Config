@@ -7,7 +7,10 @@
     - service: script.turn_off
       entity_id:
         - script.bedroom_wakeup
+        - script.closet_wakeup
+        - script.bathroom_wakeup
         - script.living_area_wakeup
+        - script.living_room_wakeup
         - script.apartment_wakeup
     - service: script.bedroom_sleep
     - service: script.bathroom_sleep
@@ -29,8 +32,11 @@
   action:
     - service: script.turn_off
       entity_id:
+        - script.bedroom_wakeup
+        - script.closet_wakeup
         - script.bathroom_wakeup
         - script.living_area_wakeup
+        - script.living_room_wakeup
     - service: homeassistant.turn_off
       entity_id: group.all_lights
     - service: homeassistant.turn_on
@@ -85,6 +91,7 @@
     - condition: state
       entity_id: calendar.jawilson_office_closed
       state: 'off'
+    - service: script.closet_wakeup
     - service: script.bedroom_wakeup
     - service: notify.html5
       data:
@@ -109,13 +116,21 @@
     to: 'on'
   condition:
     - condition: state
-      entity_id: binary_sensor.jeff_sleeping_at_home
-      state: 'on'
+      entity_id: script.bathroom_wakeup
+      state: 'off'
     - condition: state
       entity_id: device_tracker.sashag_iphone
       state: 'home'
+    - condition: or
+      conditions:
+        - condition: state
+          entity_id: binary_sensor.jeff_sleeping_at_home
+          state: 'on'
+        - condition: state
+          entity_id: binary_sensor.jeff_home
+          state: 'off'
     - condition: time
-      after: '6:00:00'
+      after: '4:00:00'
       before: '7:30:00'
       weekday:
         - mon
@@ -144,6 +159,7 @@
             - action: 'cancel_wakeup'
               title: 'Cancel All'
     - service: script.bathroom_wakeup
+    - service: script.closet_wakeup
     - service: script.living_area_wakeup
     - service: switch.turn_off
       entity_id: switch.bedroom_fluxer
@@ -154,7 +170,7 @@
         brightness: 10
     - condition: state
       entity_id: binary_sensor.jeff_home
-      state: 'false'
+      state: 'off'
     - service: script.bedroom_wakeup
 
 
@@ -293,8 +309,9 @@
     platform: event
     event_type: html5_notification.clicked
     event_data:
-      action: reset_sleep_lights
+      action: wakeup_bedroom
   action:
+    - service: script.closet_wakeup
     - service: script.bedroom_wakeup
     - service: notify.html5
       data_template:
@@ -323,7 +340,10 @@
     - service: script.turn_off
       entity_id:
         - script.bedroom_wakeup
+        - script.closet_wakeup
+        - script.bathroom_wakeup
         - script.living_area_wakeup
+        - script.living_room_wakeup
         - script.apartment_wakeup
     - service: script.bedroom_sleep
     - service: script.bathroom_sleep

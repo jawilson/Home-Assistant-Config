@@ -3,10 +3,14 @@ sequence:
   - service: media_player.media_stop
     entity_id: media_player.cast_bedroom_mini
   - service: automation.turn_off
-    entity_id: automation.bedroom_motion
+    entity_id:
+      - automation.bedroom_motion
+      - automation.closet_motion
   - service: light.turn_off
     entity_id:
       - light.bedroom
       - light.closet
   - service: switch.turn_on
-    entity_id: switch.bedroom_fluxer
+    entity_id:
+      - switch.bedroom_fluxer
+      - switch.closet_fluxer

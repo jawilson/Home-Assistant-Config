@@ -30,6 +30,10 @@
         {%- else %}
         arrived at {{ trigger.to_state.state }}
         {%- endif %}
+      data:
+        tag: 'location-update'
+        push:
+          thread-id: 'location-update'
 
 
 - alias: Jeff Stop Working

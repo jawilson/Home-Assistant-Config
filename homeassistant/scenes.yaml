@@ -128,5 +128,7 @@
     switch.living_area_fluxer: off
     switch.bedroom_fluxer: off
     switch.bedroom_motion: off
+    switch.closet_fluxer: off
+    switch.closet_motion: off
     switch.bathroom_fluxer: off
     switch.bathroom_motion: off

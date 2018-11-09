@@ -15,6 +15,7 @@ filter:
     - scene
     - fan
     - climate
+    - vacuum
 
   exclude_entities:
     - light.entryway
@@ -90,6 +91,14 @@ entity_config:
     aliases:
       - Bedroom motion automations
       - Bedroom motion
+  switch.closet_fluxer:
+    aliases:
+      - Closet fluxer
+      - Closet color
+  switch.closet_motion:
+    aliases:
+      - Closet motion automations
+      - Closet motion
   switch.living_area_fluxer:
     aliases:
       - Living area fluxer

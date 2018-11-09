@@ -1,33 +1,28 @@
-alias: Living Area Wake-Up
+alias: Living Room Wake-Up
 sequence:
   - condition: state
     entity_id: binary_sensor.guests
     state: 'off'
-
-  - service: script.living_room_wakeup
+  - condition: numeric_state
+    entity_id: sun.sun
+    value_template: "{{ state.attributes.elevation }}"
+    below: -5
 
   # Disable fluxer
   - service: switch.turn_off
-    entity_id:
-      - switch.dining_fluxer
-      - switch.entryway_fluxer
-      - switch.kitchen_fluxer
+    entity_id: switch.living_room_fluxer
 
 
   # Turn on lights softly
   - service: light.turn_on
     entity_id:
-      - light.dining_lights_level
-      - light.entryway
-      - light.kitchen
+      - light.living_room
     data:
       color_temp: 450
       brightness: 3
   - service: light.turn_on
     entity_id:
-      - light.dining_lights_level
-      - light.entryway
-      - light.kitchen
+      - light.living_room
     data:
       transition: 480
       color_temp: 450
@@ -37,9 +32,7 @@ sequence:
 
   - service: light.turn_on
     entity_id:
-      - light.dining_lights_level
-      - light.entryway
-      - light.kitchen
+      - light.living_room
     data:
       transition: 480
       color_temp: 400
@@ -49,9 +42,7 @@ sequence:
 
   - service: light.turn_on
     entity_id:
-      - light.dining_lights_level
-      - light.entryway
-      - light.kitchen
+      - light.living_room
     data:
       transition: 600
       color_temp: 225
@@ -62,7 +53,4 @@ sequence:
 
   # Restore fluxer
   - service: switch.turn_on
-    entity_id:
-      - switch.dining_fluxer
-      - switch.entryway_fluxer
-      - switch.kitchen_fluxer
+    entity_id: switch.living_room_fluxer

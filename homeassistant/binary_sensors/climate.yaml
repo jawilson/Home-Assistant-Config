@@ -2,19 +2,15 @@
 
 - platform: trend
   sensors:
-    bathroom_humidity_trend:
+    showering:
       friendly_name: Bathroom Humidity Trend
-      entity_id: sensor.bedroom_relative_humidity
+      entity_id: sensor.bathroom_relative_humidity
       device_class: moisture
+      max_samples: 10
+      sample_duration: 900
+      min_gradient: 0.009
     bathroom_temp_trend:
       friendly_name: Bathroom Temperature Trend
-      entity_id: sensor.bedroom_temperature
+      entity_id: sensor.bathroom_temperature
       device_class: heat
-
-- platform: template
-  sensors:
-    showering:
-      friendly_name: 'Showering'
-      device_class: moisture
-      value_template: >-
-        {{ states('sensor.bathroom_temperature')|float > 73 }}
+      sample_duration: 900

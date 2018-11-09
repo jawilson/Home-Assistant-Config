@@ -68,6 +68,7 @@ recorder:
       - sensor.p3steel_target_tool0_temp
       - sensor.sunrise
       - sensor.sunset
+      - sensor.jeff_leave_work_today
 
 # View all events in a logbook
 logbook:
@@ -75,23 +76,46 @@ logbook:
     domains:
       - group
     entities:
+      - binary_sensor.jeff_home
+      - binary_sensor.sasha_home
       - binary_sensor.bathroom_humidity_trend
       - binary_sensor.bathroom_temp_trend
+      - light.living_area_lights
+      - light.entryway_lights
+      - light.entryway_light_1
+      - light.entryway_light_2
+      - light.kitchen_lights
+      - light.kitchen_light_1
+      - light.kitchen_light_2
+      - light.kitchen_light_3
+      - light.kitchen_light_4
       - light.bedroom
-      - light.living_room
+      - light.bedroom_lights
       - light.tree_lamp_1
       - light.tree_lamp_2
       - light.tree_lamp_3
       - light.tree_lamp_4
       - light.tree_lamp_5
-      - light.living_room_lamp
-      - light.desk_lamp
+      - light.living_room
+      - light.living_room_lights
+      - light.entertainment_light_1
+      - light.entertainment_light_2
+      - light.bathroom
+      - light.bathroom_lights
       - light.bathroom_mirror_1
       - light.bathroom_mirror_2
       - light.bathroom_mirror_3
       - light.bathroom_mirror_4
+      - light.closet_lights
+      - light.color_lights
+      - light.color_temperature_lights
       - sensor.sunrise
       - sensor.sunset
+      - sensor.google_reverse_geocode__jeff
+      - sensor.google_reverse_geocode__sasha
+      - sensor.jeff_sleeping_at_home
+      - sensor.alexandras_iphone_battery_level
+      - sensor.alexandras_iphone_battery_state
       - switch.apartment_fan
   include:
     entities:
@@ -117,41 +141,63 @@ history:
   exclude:
     entities:
       - binary_sensor.apartment_thermostat_has_leaf
-      - binary_sensor.jeff_sleeping
+      - binary_sensor.jeff_home
+      - binary_sensor.sasha_home
       - binary_sensor.jeff_sleeping_at_home
+      - binary_sensor.bathroom_humidity_trend
+      - binary_sensor.bathroom_temperature_trend
+      - light.entryway
       - light.entryway_light_1
       - light.entryway_light_2
+      - light.kitchen
+      - light.kitchen_lights
       - light.kitchen_light_1
       - light.kitchen_light_2
       - light.kitchen_light_3
       - light.kitchen_light_4
       - light.bathroom
+      - light.bathroom_lights
       - light.bathroom_mirror_1
       - light.bathroom_mirror_2
       - light.bathroom_mirror_3
       - light.bathroom_mirror_4
-      - light.bedroom
-      - light.entertainment_light_1
-      - light.entertainment_light_2
+      - light.shower
       - light.closet
-      - light.living_room
-      - light.living_room_lamp
-      - light.desk_lamp
+      - light.closet_lights
+      - light.bedroom
+      - light.bedroom_lights
+      - light.nightstand_1
+      - light.nightstand_2
       - light.tree_lamp_1
       - light.tree_lamp_2
       - light.tree_lamp_3
       - light.tree_lamp_4
       - light.tree_lamp_5
+      - light.living_room
+      - light.living_room_lights
+      - light.living_area_lights
+      - light.entertainment_light_1
+      - light.entertainment_light_2
+      - light.living_room_lamp
+      - light.desk_lamp
+      - light.color_lights
+      - light.color_temperature_lights
       - sensor.apartment_temperatures
       - sensor.apartment_thermostat_humidity
       - sensor.apartment_thermostat_target
       - sensor.apartment_thermostat_temperature
+      - sensor.apartment_feels_like
+      - sensor.google_reverse_geocode__jeff
+      - sensor.google_reverse_geocode__sasha
+      - sensor.alexandras_iphone_battery_level
+      - sensor.alexandras_iphone_battery_state
       - switch.apartment_fan
       - switch.bathroom_fluxer
       - switch.bathroom_motion
       - switch.bedroom_fluxer
       - switch.bedroom_motion
-      - switch.christmas_tree
+      - switch.closet_fluxer
+      - switch.closet_motion
       - switch.living_area_fluxer
       - switch.plex
       - switch.projector

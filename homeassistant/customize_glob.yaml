@@ -1,3 +1,19 @@
+"automation.*_motion":
+  icon: mdi:walk
+
+
+"group.*_fluxer_lights":
+  hidden: true
+
+
+"script.*location_update":
+  icon: mdi:crosshairs-gps
+"script.*_wakeup":
+  icon: mdi:sleep-off
+"script.*_sleep":
+  icon: mdi:sleep
+
+
 "sensor.*humidity*":
   icon: mdi:water-percent
 "sensor.*luminance*":
@@ -9,11 +25,5 @@
 "switch.*fluxer*":
   emulated_hue_hidden: true
   icon: mdi:invert-colors
-
-
-"script.*location_update":
-  icon: mdi:crosshairs-gps
-
-
-"group.*_fluxer_lights":
-  hidden: true
+"switch.*_motion":
+  icon: mdi:walk

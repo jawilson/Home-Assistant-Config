@@ -24,7 +24,7 @@
   condition:
     - condition: template
       value_template: >
-        {{ trigger.from_state.state != 'idle' }}
+        {{ trigger.from_state.state != 'idle' and trigger.from_state.state != 'unavailable' }}
     - condition: state
       entity_id: input_boolean.media_automation
       state: 'on'
@@ -56,10 +56,15 @@
         - light.living_room
         - light.kitchen
         - light.entryway
-        - light.dining_lights_level
       data:
         profile: nightlight
         transition: 15
+    - service: light.turn_on
+      entity_id: light.dining_lights_level
+      data:
+        brightness_pct: 2
+    - service: switch.turn_on
+      entity_id: switch.living_area_fluxer
     - service: switch.entryway_fluxer_update
     - service: switch.living_room_fluxer_update
     - service: switch.kitchen_fluxer_update

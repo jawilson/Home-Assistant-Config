@@ -22,9 +22,6 @@
     to: 'off'
   condition:
     - condition: state
-      entity_id: binary_sensor.presume_home
-      state: 'on'
-    - condition: state
       entity_id: input_boolean.climate_auto
       state: 'on'
   action:

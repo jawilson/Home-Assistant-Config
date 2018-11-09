@@ -4,14 +4,14 @@ sequence:
     entity_id: binary_sensor.jeff_sleeping_at_home
     state: 'off'
   - service: switch.turn_on
-    entity_id: switch.bedroom_fluxer
+    entity_id:
+      - switch.bedroom_fluxer
+      - switch.bedroom_motion
+      - switch.closet_fluxer
+      - switch.closet_motion
   - condition: numeric_state
     entity_id: sensor.bedroom_luminance
     below: '30'
   - service: light.turn_on
     entity_id: light.bedroom
   - service: switch.bedroom_fluxer_update
-  - service: automation.turn_on
-    entity_id:
-      - automation.bedroom_motion
-      - automation.bedroom_no_motion
