@@ -16,7 +16,7 @@
       entity_id:
         - automation.motion_intruder_alert
         - automation.handle_lights_when_turned_on_not_home
-        - automation.notify_rooomba_error
+        - automation.notify_roomba_error
     - service: switch.turn_on
       entity_id:
         - switch.living_area_fluxer
