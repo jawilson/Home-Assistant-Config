@@ -17,15 +17,15 @@ views:
             title: Locations
             aspect_ratio: 50%
             entities:
-              - entity: device_tracker.jawilson_phosphorus
-              - entity: device_tracker.sashag_iphone
+              - entity: device_tracker.jawilson_phone
+              - entity: device_tracker.sashag_phone
               - zone.home
               - zone.bline
               - zone.sashas_apartment
               - zone.river
           - type: conditional
             conditions:
-              - entity: device_tracker.jawilson_phosphorus
+              - entity: device_tracker.jawilson_phone
                 state: B-Line
             card:
               type: glance
@@ -37,7 +37,7 @@ views:
                 - sensor.jeff_leave_work_today
           - type: conditional
             conditions:
-              - entity: device_tracker.jawilson_phosphorus
+              - entity: device_tracker.jawilson_phone
                 state: not_home
             card:
               type: glance
@@ -66,28 +66,29 @@ views:
                 secondary_info: last-changed
           - type: 'custom:entity-hidden-filter-card'
             entities:
-              - device_tracker.akd_android
-              - device_tracker.aminaab_iphone
-              - device_tracker.berniep_android
-              - device_tracker.brandonf_iphone
-              - device_tracker.caitlinh_android
-              - device_tracker.chased_iphone
-              - device_tracker.cjw_android
+              - device_tracker.akd_phone
+              - device_tracker.aminaab_phone
+              - device_tracker.berniep_phone
+              - device_tracker.brandonf_phone
+              - device_tracker.caitlinh_phone
+              - device_tracker.chased_phone
+              - device_tracker.cjw_phone
               - device_tracker.cjw_ipad
-              - device_tracker.debbiel_android
-              - device_tracker.johnh_android
-              - device_tracker.johnw_android
-              - device_tracker.karenh_iphone
-              - device_tracker.kated_android
-              - device_tracker.katiel_iphone
-              - device_tracker.kazs_iphone
-              - device_tracker.koryk_iphone
-              - device_tracker.lizaf_iphone
-              - device_tracker.marciad_iphone
-              - device_tracker.ryanp_iphone
-              - device_tracker.samb_iphone
+              - device_tracker.debbiel_phone
+              - device_tracker.johnh_phone
+              - device_tracker.johnw_phone
+              - device_tracker.karenh_phone
+              - device_tracker.kated_phone
+              - device_tracker.katiel_phone
+              - device_tracker.kazs_phone
+              - device_tracker.koryk_phone
+              - device_tracker.lizaf_phone
+              - device_tracker.marciad_phone
+              - device_tracker.rachels_phone
+              - device_tracker.ryanp_phone
+              - device_tracker.samb_phone
               - device_tracker.tonyf_ipad
-              - device_tracker.tomd_android
+              - device_tracker.tomd_phone
             show_empty: false
             secondary_info: last-changed
             card:

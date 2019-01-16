@@ -24,10 +24,10 @@ sensor.google_reverse_geocode__jeff:
 # Sasha
 binary_sensor.sasha_home:
   device_class: occupancy
-sensor.alexandras_iphone_battery_level:
+sensor.sashag_phone_battery_level:
   friendly_name: Sasha's Phone Battery Level
   hidden: true
-sensor.alexandras_iphone_battery_state:
+sensor.sashag_phone_battery_state:
   friendly_name: Sasha's Phone Battery State
   hidden: true
 sensor.google_reverse_geocode__sasha:

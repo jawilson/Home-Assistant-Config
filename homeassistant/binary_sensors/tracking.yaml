@@ -2,21 +2,11 @@
 
 - platform: template
   sensors:
-    jeff_home:
-      friendly_name: 'Jeff is at Home'
-      device_class: 'presence'
-      value_template: >-
-        {{ is_state('device_tracker.jawilson_phosphorus', 'home') }}
     jeff_sleeping_at_home:
       friendly_name: 'Jeff Sleeping at Home'
       value_template: >-
-        {{ is_state('binary_sensor.jeff_home', 'on')
+        {{ is_state('device_tracker.jawilson_phone', 'home')
             and is_state_attr('sensor.jeff_alarm', 'sleep_state', 'sleeping') }}
-    sasha_home:
-      friendly_name: 'Sasha is at Home'
-      device_class: 'presence'
-      value_template: >-
-        {{ is_state('device_tracker.sashag_iphone', 'home') }}
 
 
 # All

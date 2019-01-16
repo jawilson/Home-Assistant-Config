@@ -9,5 +9,5 @@ All Guests:
   entities: !include_dir_merge_list device_groups
 
 Everyone:
-  - device_tracker.jawilson_phosphorus
+  - device_tracker.jawilson_phone
   - group.all_guests

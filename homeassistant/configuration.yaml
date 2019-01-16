@@ -116,8 +116,8 @@ logbook:
       - sensor.google_reverse_geocode__jeff
       - sensor.google_reverse_geocode__sasha
       - sensor.jeff_sleeping_at_home
-      - sensor.alexandras_iphone_battery_level
-      - sensor.alexandras_iphone_battery_state
+      - sensor.sashag_phone_battery_level
+      - sensor.sashag_phone_battery_state
       - switch.apartment_fan
   include:
     entities:
@@ -191,8 +191,8 @@ history:
       - sensor.apartment_feels_like
       - sensor.google_reverse_geocode__jeff
       - sensor.google_reverse_geocode__sasha
-      - sensor.alexandras_iphone_battery_level
-      - sensor.alexandras_iphone_battery_state
+      - sensor.sashag_phone_battery_level
+      - sensor.sashag_phone_battery_state
       - switch.apartment_fan
       - switch.bathroom_fluxer
       - switch.bathroom_motion
@@ -374,7 +374,7 @@ proximity:
     ignored_zones:
       - bline
     devices:
-      - device_tracker.jawilson_phosphorus
+      - device_tracker.jawilson_phone
     tolerance: 50
     unit_of_measurement: m
 

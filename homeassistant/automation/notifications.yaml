@@ -1,9 +1,9 @@
 - alias: Location Update Notification
   trigger:
     - platform: state
-      entity_id: device_tracker.jawilson_phosphorus
+      entity_id: device_tracker.jawilson_phone
     - platform: state
-      entity_id: device_tracker.sashag_iphone
+      entity_id: device_tracker.sashag_phone
   condition:
     - condition: state
       entity_id: input_boolean.presence
@@ -16,10 +16,10 @@
         {{ trigger.from_state.state != 'unknown' or trigger.to_state.state != 'not_home' }}
   action:
     service_template: >-
-      {% if trigger.entity_id == 'device_tracker.jawilson_phosphorus' -%}
-      notify.ios_sashag_iphone
+      {% if trigger.entity_id == 'device_tracker.jawilson_phone' -%}
+      notify.ios_sashag_phone
       {%- else -%}
-      notify.html5_jawilson_phosphorus
+      notify.html5_jawilson_phone
       {%- endif %}
     data_template:
       title: Location Update
@@ -48,7 +48,7 @@
     service: notify.html5
     data_template:
       target:
-        - jawilson_phosphorus
+        - jawilson_phone
         - jawilson_work
       title: Time To Head Home
       message: >

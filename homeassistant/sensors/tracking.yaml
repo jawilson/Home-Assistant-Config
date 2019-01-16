@@ -26,15 +26,15 @@
 
 - platform: google_reverse_geocode
   api_key: !secret google_api_key
-  entity_id: device_tracker.jawilson_phosphorus
+  entity_id: device_tracker.jawilson_phone
 
 - platform: google_reverse_geocode
   api_key: !secret google_api_key
-  entity_id: device_tracker.sashag_iphone
+  entity_id: device_tracker.sashag_phone
 
 - platform: history_stats
   name: Jeff at work today
-  entity_id: device_tracker.jawilson_phosphorus
+  entity_id: device_tracker.jawilson_phone
   state: 'B-Line'
   type: time
   start: '{{ now().replace(hour=0).replace(minute=0).replace(second=0) }}'
@@ -42,7 +42,7 @@
 
 - platform: history_stats
   name: Jeff at work this week
-  entity_id: device_tracker.jawilson_phosphorus
+  entity_id: device_tracker.jawilson_phone
   state: 'B-Line'
   type: time
   start: '{{ as_timestamp( now().replace(hour=0).replace(minute=0).replace(second=0) ) - now().weekday() * 86400 }}'
@@ -51,7 +51,7 @@
 - platform: google_travel_time
   name: Jeff walk home
   api_key: !secret google_api_key
-  origin: device_tracker.jawilson_phosphorus
+  origin: device_tracker.jawilson_phone
   destination: zone.home
   options:
     mode: walking
@@ -59,7 +59,7 @@
 - platform: google_travel_time
   name: Jeff transit home
   api_key: !secret google_api_key
-  origin: device_tracker.jawilson_phosphorus
+  origin: device_tracker.jawilson_phone
   destination: zone.home
   options:
     mode: transit
@@ -67,7 +67,7 @@
 - platform: google_travel_time
   name: Jeff drive home
   api_key: !secret google_api_key
-  origin: device_tracker.jawilson_phosphorus
+  origin: device_tracker.jawilson_phone
   destination: zone.home
   options:
     mode: driving

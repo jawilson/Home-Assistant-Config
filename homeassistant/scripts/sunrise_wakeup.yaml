@@ -5,7 +5,7 @@ sequence:
     state: 'on'
   - service: notify.html5
     data:
-      target: jawilson_phosphorus
+      target: jawilson_phone
       title: 'Good Morning!'
       message: 'The sun is rising'
       data:

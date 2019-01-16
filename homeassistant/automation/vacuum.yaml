@@ -88,14 +88,13 @@
     platform: state
     entity_id: vacuum.doomba
   condition:
-    - condition: state
-      entity_id: binary_sensor.jeff_home
-      state: 'off'
+    - condition: template
+      value_template: "{{ not is_state('device_tracker.jawilson_phone', 'home') }}"
     - condition: template
       value_template: >
         {{ trigger.from_state.attributes.status|lower in ['new mission', 'running', 'user docking', 'docking', 'docking - end mission'] and trigger.to_state.attributes.status|lower in ['charging', 'recharging', 'stuck', 'cancelled', 'stopped', 'paused', 'user docking', 'docking - end mission', 'end mission'] }}
   action:
-    - service: notify.html5_jawilson_phosphorus
+    - service: notify.html5_jawilson_phone
       data_template:
         title: 'Doomba Stopped'
         message: >
@@ -109,8 +108,8 @@
   trigger:
     platform: state
     entity_id:
-      - device_tracker.jawilson_phosphorus
-      - device_tracker.sashag_iphone
+      - device_tracker.jawilson_phone
+      - device_tracker.sashag_phone
     to: 'home'
   condition:
     - condition: state
@@ -130,10 +129,10 @@
               value_template: "{{ is_state_attr('vacuum.doomba', 'battery_level', 0) }}"
   action:
     service_template: >-
-      {% if trigger.entity_id == 'device_tracker.sashag_iphone' -%}
-      notify.ios_sashag_iphone
+      {% if trigger.entity_id == 'device_tracker.sashag_phone' -%}
+      notify.ios_sashag_phone
       {%- else -%}
-      notify.html5_jawilson_phosphorus
+      notify.html5_jawilson_phone
       {%- endif %}
     data:
       title: Doomba Not Docked
@@ -144,9 +143,8 @@
     platform: state
     entity_id: vacuum.doomba
   condition:
-    - condition: state
-      entity_id: binary_sensor.jeff_home
-      state: 'off'
+    - condition: template
+      value_template: "{{ not is_state('device_tracker.jawilson_phone', 'home') }}"
     - condition: template
       value_template: "{{ 'error' in trigger.to_state.attributes }}"
   action:
