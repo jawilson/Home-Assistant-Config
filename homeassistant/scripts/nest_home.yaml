@@ -9,6 +9,7 @@ sequence:
   - service: climate.set_temperature
     data:
       entity_id: climate.apartment
-      target_temp_high: 74
-      temperature: 72
-      target_temp_low: 70
+    data_template:
+      target_temp_high: "{{ 74 if not is_state('sensor.jeff_alarm', 'Bedtime') else 71 }}"
+      temperature: "{{ 72 if not is_state('sensor.jeff_alarm', 'Bedtime') else 70 }}"
+      target_temp_low: "{{ 70 if not is_state('sensor.jeff_alarm', 'Bedtime') else 68 }}"
