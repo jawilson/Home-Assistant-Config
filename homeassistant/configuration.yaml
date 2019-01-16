@@ -14,9 +14,11 @@ homeassistant:
 
 # Web
 http:
+  server_host: 192.168.0.60
   api_password: !secret http_password
-  ssl_certificate: !secret ssl_certificate
-  ssl_key: !secret ssl_key
+  base_url: !secret http_base_url
+  use_x_forwarded_for: true
+  trusted_proxies: 192.168.0.100
 
 cloud:
   google_actions: !include google_actions.yaml
