@@ -56,6 +56,7 @@ services:
       - ./letsencrypt:/etc/letsencrypt:ro
       - ./tools:/opt/tools:ro
       - ./ssl/certs:/config/certs:ro
+      - ./.ssh:/config/.ssh:ro
     environment:
       - HA_LOG_LEVEL=warning
     entrypoint:

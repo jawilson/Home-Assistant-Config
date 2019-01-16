@@ -328,14 +328,14 @@ climate:
 light: !include lights.yaml
 
 device_tracker:
-  - platform: asuswrt
-    host: dark-knight.singularity.net
-    username: !secret asuswrt_username
-    password: !secret asuswrt_password
-    track_new_devices: no
-    protocol: telnet
-  - platform: owntracks_http
-    max_gps_accuracy: 45
+
+asuswrt:
+  host: 192.168.0.1
+  username: !secret asuswrt_username
+  protocol: ssh
+  port: 22
+  mode: router
+  ssh_key: /config/.ssh/asuswrt_id_rsa
 
 cast:
 media_player: !include media_players.yaml
