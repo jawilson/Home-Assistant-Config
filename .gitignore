@@ -1,5 +1,6 @@
 letsencrypt/
 ssl/
+.ssh/
 
 *.env
 
