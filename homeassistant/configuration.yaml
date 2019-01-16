@@ -229,6 +229,9 @@ updater:
 # Integrations
 #
 
+tts:
+  - platform: google
+
 emulated_hue: !include emulated_hue.yaml
 
 google:

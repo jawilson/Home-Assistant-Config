@@ -34,3 +34,27 @@
       entity_id: script.apartment_shutdown
     - service: script.living_area_arrive
     - service: script.bedroom_arrive
+
+
+- alias: Front door open
+  trigger:
+    platform: state
+    entity_id: binary_sensor.front_door_sensor
+    to: 'on'
+  condition:
+    - condition: state
+      entity_id: input_boolean.guests
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean.presence
+      state: 'on'
+    - condition: state
+      entity_id: binary_sensor.presume_home
+      state: 'off'
+  action:
+    - service: automation.trigger
+      entity_id: automation.handle_lights_when_arriving_home
+    - service: tts.google_say
+      entity_id: media_player.cast_kitchen
+      data:
+        message: 'Welcome home.'

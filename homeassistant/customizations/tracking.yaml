@@ -39,3 +39,5 @@ binary_sensor.guests:
   device_class: occupancy
 binary_sensor.presume_home:
   device_class: occupancy
+binary_sensor.front_door_sensor:
+  device_class: door

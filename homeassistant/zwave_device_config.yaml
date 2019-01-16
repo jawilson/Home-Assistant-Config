@@ -12,3 +12,9 @@ sensor.bathroom_power:
   ignored: true
 binary_sensor.bedroom_sensor:
   ignored: true
+sensor.neo_coolcam_doorwindow_detector_access_control:
+  ignored: true
+  polling_intensity: 0
+sensor.neo_coolcam_doorwindow_detector_alarm_level:
+  ignored: true
+  polling_intensity: 0
