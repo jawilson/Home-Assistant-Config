@@ -155,7 +155,7 @@ views:
 
 
   - title: Kitchen
-    icon: mdi:fridge-filled
+    icon: mdi:fridge
     cards:
       - type: entities
         title: Lights
