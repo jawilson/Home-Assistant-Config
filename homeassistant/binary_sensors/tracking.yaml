@@ -23,3 +23,6 @@
       device_class: 'presence'
       value_template: >-
         {{ is_state('input_boolean.guests', 'on') or is_state('group.everyone', 'home') }}
+
+- platform: workday
+  country: US

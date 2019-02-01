@@ -128,15 +128,12 @@
           state: 'on'
         - condition: template
           value_template: "{{ not is_state('device_tracker.jawilson_phone', 'home') }}"
+    - condition: state
+      entity_id: 'binary_sensor.workday_sensor'
+      state: 'on'
     - condition: time
       after: '4:00:00'
       before: '7:30:00'
-      weekday:
-        - mon
-        - tue
-        - wed
-        - thu
-        - fri
   action:
     - service: switch.turn_off
       entity_id:
