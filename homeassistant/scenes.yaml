@@ -90,6 +90,10 @@
       state: on
       xy_color: [0.5923,0.3829]
       brightness: 50
+    light.closet_light:
+      state: on
+      color_temp: 454
+      brightness: 1
     light.nightstand_1:
       state: on
       color_temp: 454

@@ -337,6 +337,9 @@ light: !include lights.yaml
 
 device_tracker:
 
+owntracks:
+  max_gps_accuracy: 45
+
 asuswrt:
   host: 192.168.0.1
   username: !secret asuswrt_username

@@ -109,6 +109,25 @@
               title: 'Cancel All'
 
 
+- alias: 'Sasha Warm-Up'
+  trigger:
+    platform: time
+    at: '05:30:00'
+  condition:
+    - condition: state
+      entity_id: device_tracker.sashag_phone
+      state: 'home'
+    - condition: template
+      value_template: "{{ not is_state('device_tracker.jawilson_phone', 'home') }}"
+    - condition: template
+      value_template: "{{ as_timestamp(now()) < as_timestamp(state_attr('calendar.sashag_school_end', 'end_time'))|default(0, true) }}"
+    - condition: state
+      entity_id: 'binary_sensor.workday_sensor'
+      state: 'on'
+  action:
+    - service: script.apartment_wakeup
+
+
 - alias: 'Sasha Wake-Up'
   trigger:
     platform: state
@@ -164,6 +183,7 @@
       data:
         color_temp: 450
         brightness: 10
+    - service: script.apartment_wakeup
     - condition: template
       value_template: "{{ not is_state('device_tracker.jawilson_phone', 'home') }}"
     - service: script.bedroom_wakeup
