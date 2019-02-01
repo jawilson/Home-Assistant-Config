@@ -1,6 +1,7 @@
 # Ikea Dioder
-- platform: mqtt_json
+- platform: mqtt
   name: "Liquor cabinet lights"
+  schema: json
   state_topic: "home/livingroom/liquorcabinet"
   command_topic: "home/livingroom/liquorcabinet/set"
   brightness: true

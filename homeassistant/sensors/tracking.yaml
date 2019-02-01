@@ -6,9 +6,7 @@
   icon: mdi:alarm
   qos: 1
   value_template: "{{ value_json.alarm_state|capitalize|replace('_',' ') }}"
-  json_attributes:
-    - sleep_state
-    - next_alarm
+  json_attributes_topic: 'person/jeff/alarm'
 
 - platform: template
   sensors:

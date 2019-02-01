@@ -51,7 +51,7 @@ views:
           - type: entities
             title: Jeff
             entities:
-              - entity: sensor.google_reverse_geocode__jeff
+              - entity: sensor.google_reverse_geocode_jeff
                 name: Location
                 secondary_info: last-changed
               - entity: sensor.jeff_sleep_state
@@ -61,7 +61,7 @@ views:
           - type: entities
             title: Sasha
             entities:
-              - entity: sensor.google_reverse_geocode__sasha
+              - entity: sensor.google_reverse_geocode_sasha
                 name: Location
                 secondary_info: last-changed
           - type: 'custom:entity-hidden-filter-card'

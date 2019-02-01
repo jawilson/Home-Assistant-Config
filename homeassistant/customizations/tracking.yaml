@@ -17,7 +17,7 @@ sensor.jeff_sleep_state:
   icon: mdi:sleep
 sensor.jeff_alarm:
   friendly_name: "Jeff's Alarm"
-sensor.google_reverse_geocode__jeff:
+sensor.google_reverse_geocode_jeff:
   friendly_name: 'Jeff Location'
   custom_ui_more_info: more-info-map
 
@@ -30,7 +30,7 @@ sensor.sashag_phone_battery_level:
 sensor.sashag_phone_battery_state:
   friendly_name: Sasha's Phone Battery State
   hidden: true
-sensor.google_reverse_geocode__sasha:
+sensor.google_reverse_geocode_sasha:
   friendly_name: 'Sasha Location'
   custom_ui_more_info: more-info-map
 

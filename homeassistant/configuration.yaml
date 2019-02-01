@@ -20,6 +20,9 @@ http:
   use_x_forwarded_for: true
   trusted_proxies: 192.168.0.100
 
+lovelace:
+  mode: yaml
+
 cloud:
   google_actions: !include google_actions.yaml
 
@@ -113,8 +116,8 @@ logbook:
       - light.color_temperature_lights
       - sensor.sunrise
       - sensor.sunset
-      - sensor.google_reverse_geocode__jeff
-      - sensor.google_reverse_geocode__sasha
+      - sensor.google_reverse_geocode_jeff
+      - sensor.google_reverse_geocode_sasha
       - sensor.jeff_sleeping_at_home
       - sensor.sashag_phone_battery_level
       - sensor.sashag_phone_battery_state
@@ -189,8 +192,8 @@ history:
       - sensor.apartment_thermostat_target
       - sensor.apartment_thermostat_temperature
       - sensor.apartment_feels_like
-      - sensor.google_reverse_geocode__jeff
-      - sensor.google_reverse_geocode__sasha
+      - sensor.google_reverse_geocode_jeff
+      - sensor.google_reverse_geocode_sasha
       - sensor.sashag_phone_battery_level
       - sensor.sashag_phone_battery_state
       - switch.apartment_fan
