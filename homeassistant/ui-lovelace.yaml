@@ -65,30 +65,7 @@ views:
                 name: Location
                 secondary_info: last-changed
           - type: 'custom:entity-hidden-filter-card'
-            entities:
-              - device_tracker.akd_phone
-              - device_tracker.aminaab_phone
-              - device_tracker.berniep_phone
-              - device_tracker.brandonf_phone
-              - device_tracker.caitlinh_phone
-              - device_tracker.chased_phone
-              - device_tracker.cjw_phone
-              - device_tracker.cjw_ipad
-              - device_tracker.debbiel_phone
-              - device_tracker.johnh_phone
-              - device_tracker.johnw_phone
-              - device_tracker.karenh_phone
-              - device_tracker.kated_phone
-              - device_tracker.katiel_phone
-              - device_tracker.kazs_phone
-              - device_tracker.koryk_phone
-              - device_tracker.lizaf_phone
-              - device_tracker.marciad_phone
-              - device_tracker.rachels_phone
-              - device_tracker.ryanp_phone
-              - device_tracker.samb_phone
-              - device_tracker.tonyf_ipad
-              - device_tracker.tomd_phone
+            entities: !include /config/device_groups/guests.yaml
             show_empty: false
             secondary_info: last-changed
             card:

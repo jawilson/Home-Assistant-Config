@@ -2,12 +2,9 @@
 # Groups
 #
 
+Family: !include device_groups/family.yaml
 Guests: !include device_groups/guests.yaml
-Other Guests: !include device_groups/other_guests.yaml
-All Guests:
-  name: Guests
-  entities: !include_dir_merge_list device_groups
 
 Everyone:
-  - device_tracker.jawilson_phone
-  - group.all_guests
+  - group.family
+  - group.guests

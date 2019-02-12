@@ -18,11 +18,14 @@
     - service: script.apartment_sleep
 
 
-- alias: 'Guests Leave While Sleeping'
+- alias: 'Someone Leaves While Jeff Sleeping'
   trigger:
-    platform: state
-    entity_id: group.all_guests
-    to: 'not_home'
+    - platform: state
+      entity_id: group.guests
+      to: 'not_home'
+    - platform: state
+      entity_id: device_tracker.sashag_phone
+      from: 'home'
   condition:
     - condition: state
       entity_id: binary_sensor.jeff_sleeping_at_home
