@@ -194,7 +194,7 @@ views:
         entities:
           - entity: switch.living_area_fluxer
             name: Fluxer
-          - entity: script.living_area_wakeup
+          - entity: script.living_area_wake_up
             name: Wake-Up
 
       - type: glance
@@ -264,7 +264,7 @@ views:
         show_header_toggle: false
         entities:
           - switch.living_area_fluxer
-          - script.living_area_wakeup
+          - script.living_area_wake_up
 
 
   - title: Bedroom
@@ -304,9 +304,9 @@ views:
             service: automation.trigger
             service_data:
               entity_id: automation.go_to_sleep
-          - entity: script.bedroom_wakeup
+          - entity: script.bedroom_wake_up
             name: Wake-Up
-          - entity: script.sunrise_wakeup
+          - entity: script.sunrise_wake_up
             icon: mdi:weather-sunset-up
 
       - type: glance
@@ -330,7 +330,7 @@ views:
           - switch.closet_fluxer
           - entity: switch.closet_motion
             name: Closet Motion
-          - script.closet_wakeup
+          - script.closet_wake_up
 
       - type: media-control
         entity: media_player.cast_bedroom_mini
@@ -364,7 +364,7 @@ views:
             name: Fluxer
           - entity: switch.bathroom_motion
             name: Motion
-          - entity: script.bathroom_wakeup
+          - entity: script.bathroom_wake_up
             name: Wake-Up
 
       - type: glance
@@ -388,7 +388,7 @@ views:
           - switch.closet_fluxer
           - entity: switch.closet_motion
             name: Closet Motion
-          - script.closet_wakeup
+          - script.closet_wake_up
 
 
   - title: Lights
@@ -447,17 +447,17 @@ views:
       - type: entities
         title: Wake-Up Scripts
         entities:
-          - entity: script.bedroom_wakeup
+          - entity: script.bedroom_wake_up
             name: Bedroom
-          - entity: script.closet_wakeup
+          - entity: script.closet_wake_up
             name: Closet
-          - entity: script.bathroom_wakeup
+          - entity: script.bathroom_wake_up
             name: Bathroom
-          - entity: script.living_area_wakeup
+          - entity: script.living_area_wake_up
             name: Living Area
-          - entity: script.living_room_wakeup
+          - entity: script.living_room_wake_up
             name: Living Room
-          - entity: script.apartment_wakeup
+          - entity: script.apartment_wake_up
             name: Apartment
 
 
@@ -525,10 +525,10 @@ views:
           - script.alarm_ringing
           - script.alarm_snooze
           - script.alarm_dismiss
-          - script.bedroom_wakeup
-          - script.bathroom_wakeup
-          - script.living_area_wakeup
-          - script.apartment_wakeup
+          - script.bedroom_wake_up
+          - script.bathroom_wake_up
+          - script.living_area_wake_up
+          - script.apartment_wake_up
           - script.nest_home
           - script.bedroom_arrive
           - script.living_area_arrive
@@ -545,11 +545,11 @@ views:
           - automation.alarm_ringing
           - automation.alarm_snooze
           - automation.alarm_dismiss
-          - automation.wakeup
-          - automation.sasha_wakeup
-          - automation.cancel_wakeup
+          - automation.wake_up
+          - automation.sasha_wake_up
+          - automation.cancel_wake_up
           - automation.cancel_alarm_ringing
-          - automation.cancel_bedroom_wakeup
+          - automation.cancel_bedroom_wake_up
           - automation.fan_while_showering
           - automation.fan_after_showering
           - automation.limit_bathroom_fan

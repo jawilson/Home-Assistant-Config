@@ -9,11 +9,11 @@ sequence:
       title: 'Good Morning!'
       message: 'The sun is rising'
       data:
-        tag: 'wakeup'
+        tag: 'wake-up'
         vibrate: [0]
         renotify: false
         actions:
-          - action: 'cancel_bedroom_wakeup'
+          - action: 'cancel_bedroom_wake_up'
             title: 'Cancel Bedroom'
   - service: switch.turn_off
     entity_id: switch.bedroom_fluxer

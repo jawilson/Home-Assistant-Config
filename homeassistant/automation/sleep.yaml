@@ -6,12 +6,12 @@
   action:
     - service: script.turn_off
       entity_id:
-        - script.bedroom_wakeup
-        - script.closet_wakeup
-        - script.bathroom_wakeup
-        - script.living_area_wakeup
-        - script.living_room_wakeup
-        - script.apartment_wakeup
+        - script.bedroom_wake_up
+        - script.closet_wake_up
+        - script.bathroom_wake_up
+        - script.living_area_wake_up
+        - script.living_room_wake_up
+        - script.apartment_wake_up
     - service: script.bedroom_sleep
     - service: script.bathroom_sleep
     - service: script.living_area_sleep
@@ -32,11 +32,11 @@
   action:
     - service: script.turn_off
       entity_id:
-        - script.bedroom_wakeup
-        - script.closet_wakeup
-        - script.bathroom_wakeup
-        - script.living_area_wakeup
-        - script.living_room_wakeup
+        - script.bedroom_wake_up
+        - script.closet_wake_up
+        - script.bathroom_wake_up
+        - script.living_area_wake_up
+        - script.living_room_wake_up
     - service: homeassistant.turn_off
       entity_id: group.all_lights
     - service: homeassistant.turn_on
@@ -61,9 +61,9 @@
         - script.bathroom_sleep
         - script.living_area_sleep
         - script.apartment_sleep
-    - service: script.bathroom_wakeup
-    - service: script.living_area_wakeup
-    - service: script.apartment_wakeup
+    - service: script.bathroom_wake_up
+    - service: script.living_area_wake_up
+    - service: script.apartment_wake_up
     # Provide a way to cancel
     - service: notify.html5
       data:
@@ -71,13 +71,13 @@
         title: 'Good Morning!'
         message: 'Turning on the apartment lights'
         data:
-          tag: 'wakeup'
+          tag: 'wake-up'
           vibrate: [0]
           renotify: false
           actions:
-            - action: 'wakeup_bedroom'
+            - action: 'wake_up_bedroom'
               title: 'Wake-Up Bedroom'
-            - action: 'cancel_wakeup'
+            - action: 'cancel_wake_up'
               title: 'Cancel All'
     - condition: time
       after: '5:00:00'
@@ -91,21 +91,21 @@
     - condition: state
       entity_id: calendar.jawilson_office_closed
       state: 'off'
-    - service: script.closet_wakeup
-    - service: script.bedroom_wakeup
+    - service: script.closet_wake_up
+    - service: script.bedroom_wake_up
     - service: notify.html5
       data:
         target: jawilson_phone
         title: 'Good Morning!'
         message: 'Turning on the bedroom and apartment lights'
         data:
-          tag: 'wakeup'
+          tag: 'wake-up'
           vibrate: [0]
           renotify: false
           actions:
-            - action: 'cancel_bedroom_wakeup'
+            - action: 'cancel_bedroom_wake_up'
               title: 'Cancel Bedroom'
-            - action: 'cancel_wakeup'
+            - action: 'cancel_wake_up'
               title: 'Cancel All'
 
 
@@ -125,7 +125,7 @@
       entity_id: 'binary_sensor.workday_sensor'
       state: 'on'
   action:
-    - service: script.apartment_wakeup
+    - service: script.apartment_wake_up
 
 
 - alias: 'Sasha Wake-Up'
@@ -135,7 +135,7 @@
     to: 'on'
   condition:
     - condition: state
-      entity_id: script.bathroom_wakeup
+      entity_id: script.bathroom_wake_up
       state: 'off'
     - condition: state
       entity_id: device_tracker.sashag_phone
@@ -165,17 +165,17 @@
         title: 'Good Morning!'
         message: 'Sasha is waking up'
         data:
-          tag: 'wakeup'
+          tag: 'wake-up'
           vibrate: [0]
           renotify: false
           actions:
-            - action: 'cancel_bedroom_wakeup'
+            - action: 'cancel_bedroom_wake_up'
               title: 'Cancel Bedroom'
-            - action: 'cancel_wakeup'
+            - action: 'cancel_wake_up'
               title: 'Cancel All'
-    - service: script.bathroom_wakeup
-    - service: script.closet_wakeup
-    - service: script.living_area_wakeup
+    - service: script.bathroom_wake_up
+    - service: script.closet_wake_up
+    - service: script.living_area_wake_up
     - service: switch.turn_off
       entity_id: switch.bedroom_fluxer
     - service: light.turn_on
@@ -183,10 +183,10 @@
       data:
         color_temp: 450
         brightness: 10
-    - service: script.apartment_wakeup
+    - service: script.apartment_wake_up
     - condition: template
       value_template: "{{ not is_state('device_tracker.jawilson_phone', 'home') }}"
-    - service: script.bedroom_wakeup
+    - service: script.bedroom_wake_up
 
 
 - alias: 'Alarm Bedtime'
@@ -274,7 +274,7 @@
       entity_id: device_tracker.jawilson_phone
       state: 'home'
     - condition: state
-      entity_id: script.bedroom_wakeup
+      entity_id: script.bedroom_wake_up
       state: 'off'
   action:
     service: script.alarm_dismiss
@@ -294,12 +294,12 @@
     - service: script.bedroom_sleep
 
 
-- alias: 'Cancel Bedroom Wakeup'
+- alias: 'Cancel Bedroom Wake-Up'
   trigger:
     platform: event
     event_type: html5_notification.clicked
     event_data:
-      action: cancel_bedroom_wakeup
+      action: cancel_bedroom_wake_up
   action:
     - service: notify.html5
       data_template:
@@ -308,14 +308,14 @@
         title: 'Sorry!'
         message: Turning the lights back off
         data:
-          tag: 'wakeup'
+          tag: 'wake-up'
           vibrate: [0]
           renotify: false
           actions:
-            - action: 'cancel_wakeup'
+            - action: 'cancel_wake_up'
               title: 'Cancel All'
     - service: script.turn_off
-      entity_id: script.bedroom_wakeup
+      entity_id: script.bedroom_wake_up
     - service: script.bedroom_sleep
 
 
@@ -324,10 +324,10 @@
     platform: event
     event_type: html5_notification.clicked
     event_data:
-      action: wakeup_bedroom
+      action: wake_up_bedroom
   action:
-    - service: script.closet_wakeup
-    - service: script.bedroom_wakeup
+    - service: script.closet_wake_up
+    - service: script.bedroom_wake_up
     - service: notify.html5
       data_template:
         target: '{{ trigger.event.data.target }}'
@@ -335,31 +335,31 @@
         title: 'Good Morning!'
         message: 'Turning on the bedroom and apartment lights'
         data:
-          tag: 'wakeup'
+          tag: 'wake-up'
           vibrate: [0]
           renotify: false
           actions:
-            - action: 'cancel_bedroom_wakeup'
+            - action: 'cancel_bedroom_wake_up'
               title: 'Cancel Bedroom'
-            - action: 'cancel_wakeup'
+            - action: 'cancel_wake_up'
               title: 'Cancel All'
 
 
-- alias: 'Cancel Wakeup'
+- alias: 'Cancel Wake-Up'
   trigger:
     platform: event
     event_type: html5_notification.clicked
     event_data:
-      action: cancel_wakeup
+      action: cancel_wake_up
   action:
     - service: script.turn_off
       entity_id:
-        - script.bedroom_wakeup
-        - script.closet_wakeup
-        - script.bathroom_wakeup
-        - script.living_area_wakeup
-        - script.living_room_wakeup
-        - script.apartment_wakeup
+        - script.bedroom_wake_up
+        - script.closet_wake_up
+        - script.bathroom_wake_up
+        - script.living_area_wake_up
+        - script.living_room_wake_up
+        - script.apartment_wake_up
     - service: script.bedroom_sleep
     - service: script.bathroom_sleep
     - service: script.living_area_sleep

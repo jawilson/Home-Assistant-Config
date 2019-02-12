@@ -4,7 +4,7 @@ sequence:
     entity_id: binary_sensor.guests
     state: 'off'
 
-  - service: script.living_room_wakeup
+  - service: script.living_room_wake_up
 
   # Disable fluxer
   - service: switch.turn_off

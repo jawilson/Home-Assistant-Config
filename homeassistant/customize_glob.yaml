@@ -8,7 +8,7 @@
 
 "script.*location_update":
   icon: mdi:crosshairs-gps
-"script.*_wakeup":
+"script.*_wake_up":
   icon: mdi:sleep-off
 "script.*_sleep":
   icon: mdi:sleep
