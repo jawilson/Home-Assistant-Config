@@ -83,7 +83,7 @@
     entity_id: vacuum.doomba
 
 
-- alias: Notify Roomba Ran
+- alias: Notify Doomba Ran
   trigger:
     platform: state
     entity_id: vacuum.doomba
@@ -104,7 +104,7 @@
           vibrate: [0]
 
 
-- alias: Notify Roomba Not Docked
+- alias: Notify Doomba Not Docked
   trigger:
     platform: state
     entity_id:
@@ -138,7 +138,7 @@
       title: Doomba Not Docked
       message: Welcome home, it looks like Doomba isn't docked and charging. Can you help it out?
 
-- alias: Notify Roomba Error
+- alias: Notify Doomba Error
   trigger:
     platform: state
     entity_id: vacuum.doomba
