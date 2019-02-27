@@ -379,8 +379,10 @@ proximity:
   home:
     ignored_zones:
       - bline
+      - river
     devices:
       - device_tracker.jawilson_phone
+      - device_tracker.sashag_phone
     tolerance: 50
     unit_of_measurement: m
 
