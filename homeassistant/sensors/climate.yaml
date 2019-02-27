@@ -3,21 +3,6 @@
 #
 - platform: nest
 
-#
-# MQTT
-#
-- platform: mqtt
-  name: "Living Room Temperature"
-  state_topic: "esp8266-007461/temperature"
-  qos: 0
-  unit_of_measurement: "°C"
-
-- platform: mqtt
-  name: "Living Room Relative Humidity"
-  state_topic: "esp8266-007461/humidity"
-  qos: 0
-  unit_of_measurement: "%"
-
 
 #
 # Templates

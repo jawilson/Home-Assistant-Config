@@ -12,6 +12,8 @@ homeassistant:
   customize: !include_dir_merge_named customizations
   customize_glob: !include customize_glob.yaml
 
+system_health:
+
 # Web
 http:
   server_host: 192.168.0.60
@@ -221,7 +223,7 @@ map:
 config:
 
 # Discover some devices automatically
-#discovery:
+discovery:
 
 # Track the sun
 sun:
@@ -395,6 +397,9 @@ python_script:
 
 # Automation
 automation old: !include_dir_merge_list automation
+
+# Rest Commands
+rest_command: !include rest_command.yaml
 
 #
 # Logger

@@ -1,0 +1,4 @@
+shield_start_plex:
+  url: 'http://shield:1817/?message=start_plex'
+shield_start_netflix:
+  url: 'http://shield:1817/?message=start_netflix'

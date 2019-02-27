@@ -50,6 +50,7 @@ views:
                 - sensor.jeff_walk_home
           - type: entities
             title: Jeff
+            show_header_toggle: false
             entities:
               - entity: sensor.google_reverse_geocode_jeff
                 name: Location
@@ -60,6 +61,7 @@ views:
                 name: Alarm
           - type: entities
             title: Sasha
+            show_header_toggle: false
             entities:
               - entity: sensor.google_reverse_geocode_sasha
                 name: Location
@@ -71,6 +73,7 @@ views:
             card:
               type: entities
               title: Guests
+              show_header_toggle: false
 
       #
       # Second column
@@ -367,6 +370,9 @@ views:
             name: Closet Motion
           - script.closet_wake_up
 
+      - type: media-control
+        entity: media_player.cast_bathroom_speaker
+
 
   - title: Lights
     icon: mdi:lightbulb
@@ -445,6 +451,7 @@ views:
         cards:
           - type: entities
             title: Temperatures
+            show_header_toggle: false
             entities:
               - sensor.dark_sky_temperature
               - sensor.apartment_thermostat_temperature
@@ -454,6 +461,7 @@ views:
 
           - type: entities
             title: Humidities
+            show_header_toggle: false
             entities:
               - sensor.dark_sky_humidity
               - sensor.apartment_thermostat_humidity
@@ -465,6 +473,7 @@ views:
         cards:
           - type: entities
             title: P3Steel
+            show_header_toggle: false
             entities:
               - sensor.p3steel_current_state
               - sensor.p3steel_job_percentage
@@ -482,6 +491,7 @@ views:
 
       - type: entities
         title: UPS
+        show_header_toggle: false
         entities:
           - sensor.ups_status
           - sensor.ups_battery
@@ -494,6 +504,7 @@ views:
     cards:
       - type: entities
         title: Scripts
+        show_header_toggle: false
         entities:
           - script.bedroom_sleep
           - script.bathroom_sleep
@@ -514,15 +525,18 @@ views:
 
       - type: entities
         title: Automations
+        show_header_toggle: false
         entities:
           - automation.home_assistant_start
           - automation.alarm_bedtime
-          - automation.guests_leave_while_sleeping
+          - automation.someone_leaves_while_jeff_sleeping
           - automation.alarm_smart_period
           - automation.alarm_ringing
           - automation.alarm_snooze
           - automation.alarm_dismiss
           - automation.wake_up
+          - automation.wake_up_bedroom
+          - automation.sasha_warm_up
           - automation.sasha_wake_up
           - automation.cancel_wake_up
           - automation.cancel_alarm_ringing
@@ -532,14 +546,18 @@ views:
           - automation.limit_bathroom_fan
           - automation.handle_lights_when_leaving
           - automation.nest_away
+          - automation.front_door_open
           - automation.handle_lights_when_arriving_home
           - automation.handle_lights_when_turned_on_not_home
           - automation.run_doomba
           - automation.dock_doomba_when_arriving_home
+          - automation.notify_doomba_ran
+          - automation.notify_doomba_not_docked
+          - automation.notify_doomba_error
           - automation.nest_home
           - automation.nest_while_home
-          - automation.circulate_to_even_temperature
-          - automation.end_circulate_to_even
+          - automation.circulate_air
+          - automation.end_circulate_air
           - automation.humidity_too_low
           - automation.humidity_too_high
           - automation.projector_off
@@ -548,6 +566,7 @@ views:
           - automation.light_intruder_alert
           - automation.motion_intruder_alert
           - automation.update_available_notification
+          - automation.jeff_stop_working
 
       - type: entities
         title: Input boolean
@@ -561,12 +580,4 @@ views:
           - input_boolean.presence
 
 
-excluded_entities:
-  - automation.bathroom_motion
-  - automation.bathroom_no_motion
-  - automation.bedroom_motion
-  - automation.bedroom_no_motion
-  - automation.closet_no_motion
-  - automation.force_dining_lights_off
-  - automation.new_device_notification
-  - automation.shield_plex_playing
+excluded_entities: !include /config/www/ui/excluded_entities.yaml

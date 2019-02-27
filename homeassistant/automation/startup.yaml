@@ -7,12 +7,6 @@
       to: 'on'
   action:
     - service: automation.turn_off
-      entity_id: automation.home_assistant_start
-    - service: logbook.log
-      data:
-        name: Home Assistant Start
-        message: Running...
-    - service: automation.turn_off
       entity_id:
         - automation.motion_intruder_alert
         - automation.handle_lights_when_turned_on_not_home
@@ -26,7 +20,3 @@
         - switch.closet_motion
         - switch.bathroom_fluxer
         - switch.bathroom_motion
-    - service: logbook.log
-      data:
-        name: Home Assistant Start
-        message: Ran
