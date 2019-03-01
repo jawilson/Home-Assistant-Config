@@ -12,7 +12,7 @@ homeassistant:
   customize: !include_dir_merge_named customizations
   customize_glob: !include customize_glob.yaml
 
-system_health:
+default_config:
 
 # Web
 http:
@@ -212,25 +212,6 @@ history:
       - switch.xbox_360
       - switch.xbox_one
 
-# Enables the frontend
-frontend:
-  javascript_version: latest
-
-# Enables map panel
-map:
-
-# Enables configuration panel
-config:
-
-# Discover some devices automatically
-discovery:
-
-# Track the sun
-sun:
-
-# Checks for available updates
-updater:
-
 
 #
 # Integrations
@@ -337,6 +318,8 @@ climate:
 
 light: !include lights.yaml
 
+person: !include people.yaml
+
 device_tracker:
 
 owntracks:
@@ -383,8 +366,8 @@ proximity:
       - bline
       - river
     devices:
-      - device_tracker.jawilson_phone
-      - device_tracker.sashag_phone
+      - person.jeff
+      - person.sasha
     tolerance: 50
     unit_of_measurement: m
 

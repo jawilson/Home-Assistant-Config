@@ -1,0 +1,11 @@
+- name: Jeff
+  id: jawilson
+  user_id: 94f1fb97e8374becb77c3979bbd3fc0b
+  device_trackers:
+    - device_tracker.jawilson_phone
+
+- name: Sasha
+  id: sashag
+  user_id: 5eb7be7d843f4a2b956b1112f617855f
+  device_trackers:
+    - device_tracker.sashag_phone

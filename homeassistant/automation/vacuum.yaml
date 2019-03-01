@@ -89,7 +89,7 @@
     entity_id: vacuum.doomba
   condition:
     - condition: template
-      value_template: "{{ not is_state('device_tracker.jawilson_phone', 'home') }}"
+      value_template: "{{ not is_state('person.jeff', 'home') }}"
     - condition: template
       value_template: >
         {{ trigger.from_state.attributes.status|lower in ['new mission', 'running', 'user docking', 'docking', 'docking - end mission'] and trigger.to_state.attributes.status|lower in ['charging', 'recharging', 'stuck', 'cancelled', 'stopped', 'paused', 'user docking', 'docking - end mission', 'end mission'] }}
@@ -108,8 +108,8 @@
   trigger:
     platform: state
     entity_id:
-      - device_tracker.jawilson_phone
-      - device_tracker.sashag_phone
+      - person.jeff
+      - person.sasha
     to: 'home'
   condition:
     - condition: state
@@ -129,7 +129,7 @@
               value_template: "{{ is_state_attr('vacuum.doomba', 'battery_level', 0) }}"
   action:
     service_template: >-
-      {% if trigger.entity_id == 'device_tracker.sashag_phone' -%}
+      {% if trigger.entity_id == 'person.sasha' -%}
       notify.ios_sashag_phone
       {%- else -%}
       notify.html5_jawilson_phone
@@ -144,7 +144,7 @@
     entity_id: vacuum.doomba
   condition:
     - condition: template
-      value_template: "{{ not is_state('device_tracker.jawilson_phone', 'home') }}"
+      value_template: "{{ not is_state('person.jeff', 'home') }}"
     - condition: template
       value_template: "{{ 'error' in trigger.to_state.attributes }}"
   action:

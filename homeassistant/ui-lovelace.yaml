@@ -17,15 +17,15 @@ views:
             title: Locations
             aspect_ratio: 50%
             entities:
-              - entity: device_tracker.jawilson_phone
-              - entity: device_tracker.sashag_phone
+              - entity: person.jeff
+              - entity: person.sasha
               - zone.home
               - zone.bline
               - zone.sashas_apartment
               - zone.river
           - type: conditional
             conditions:
-              - entity: device_tracker.jawilson_phone
+              - entity: person.jeff
                 state: B-Line
             card:
               type: glance
@@ -37,7 +37,7 @@ views:
                 - sensor.jeff_leave_work_today
           - type: conditional
             conditions:
-              - entity: device_tracker.jawilson_phone
+              - entity: person.jeff
                 state: not_home
             card:
               type: glance

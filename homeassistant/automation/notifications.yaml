@@ -1,9 +1,9 @@
 - alias: Location Update Notification
   trigger:
     - platform: state
-      entity_id: device_tracker.jawilson_phone
+      entity_id: person.jeff
     - platform: state
-      entity_id: device_tracker.sashag_phone
+      entity_id: person.sasha
   condition:
     - condition: state
       entity_id: input_boolean.presence
@@ -16,7 +16,7 @@
         {{ trigger.from_state.state != 'unknown' or trigger.to_state.state != 'not_home' }}
   action:
     service_template: >-
-      {% if trigger.entity_id == 'device_tracker.jawilson_phone' -%}
+      {% if trigger.entity_id == 'person.jeff' -%}
       notify.ios_sashag_phone
       {%- else -%}
       notify.html5_jawilson_phone

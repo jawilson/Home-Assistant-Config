@@ -24,7 +24,7 @@
       entity_id: group.guests
       to: 'not_home'
     - platform: state
-      entity_id: device_tracker.sashag_phone
+      entity_id: person.sasha
       from: 'home'
   condition:
     - condition: state
@@ -55,7 +55,7 @@
     to: 'off'
   condition:
     condition: state
-    entity_id: device_tracker.jawilson_phone
+    entity_id: person.jeff
     state: 'home'
   action:
     - service: switch.turn_off
@@ -118,10 +118,10 @@
     at: '05:30:00'
   condition:
     - condition: state
-      entity_id: device_tracker.sashag_phone
+      entity_id: person.sasha
       state: 'home'
     - condition: template
-      value_template: "{{ not is_state('device_tracker.jawilson_phone', 'home') }}"
+      value_template: "{{ not is_state('person.jeff', 'home') }}"
     - condition: template
       value_template: "{{ as_timestamp(now()) < as_timestamp(state_attr('calendar.sashag_school_end', 'end_time'))|default(0, true) }}"
     - condition: state
@@ -141,7 +141,7 @@
       entity_id: script.bathroom_wake_up
       state: 'off'
     - condition: state
-      entity_id: device_tracker.sashag_phone
+      entity_id: person.sasha
       state: 'home'
     - condition: or
       conditions:
@@ -149,7 +149,7 @@
           entity_id: binary_sensor.jeff_sleeping_at_home
           state: 'on'
         - condition: template
-          value_template: "{{ not is_state('device_tracker.jawilson_phone', 'home') }}"
+          value_template: "{{ not is_state('person.jeff', 'home') }}"
     - condition: state
       entity_id: 'binary_sensor.workday_sensor'
       state: 'on'
@@ -188,7 +188,7 @@
         brightness: 10
     - service: script.apartment_wake_up
     - condition: template
-      value_template: "{{ not is_state('device_tracker.jawilson_phone', 'home') }}"
+      value_template: "{{ not is_state('person.jeff', 'home') }}"
     - service: script.bedroom_wake_up
 
 
@@ -199,7 +199,7 @@
     to: 'Bedtime'
   condition:
     condition: state
-    entity_id: device_tracker.jawilson_phone
+    entity_id: person.jeff
     state: 'home'
   action:
     - service: climate.set_temperature
@@ -217,7 +217,7 @@
     to: 'Smart period'
   condition:
     condition: state
-    entity_id: device_tracker.jawilson_phone
+    entity_id: person.jeff
     state: 'home'
   action:
     - condition: state
@@ -241,7 +241,7 @@
     to: 'Ringing'
   condition:
     condition: state
-    entity_id: device_tracker.jawilson_phone
+    entity_id: person.jeff
     state: 'home'
   action:
     service: script.alarm_ringing
@@ -257,7 +257,7 @@
     to: 'Snoozed'
   condition:
     condition: state
-    entity_id: device_tracker.jawilson_phone
+    entity_id: person.jeff
     state: 'home'
   action:
     service: script.alarm_snooze
@@ -274,7 +274,7 @@
       seconds: 5
   condition:
     - condition: state
-      entity_id: device_tracker.jawilson_phone
+      entity_id: person.jeff
       state: 'home'
     - condition: state
       entity_id: script.bedroom_wake_up

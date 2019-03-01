@@ -61,7 +61,7 @@ PLATFORM_SCHEMA = PLATFORM_SCHEMA.extend({
         }))
 })
 
-TRACKABLE_DOMAINS = ['device_tracker', 'sensor']
+TRACKABLE_DOMAINS = ['device_tracker', 'sensor', 'person']
 
 
 def setup_platform(hass, config, add_devices_callback, discovery_info=None):

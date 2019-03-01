@@ -12,6 +12,6 @@ sequence:
     data:
       entity_id: climate.apartment
     data_template:
-      target_temp_high: "{{ 68 if is_state('device_tracker.jawilson_phone', 'home') and is_state('device_tracker.sashag_phone', 'home') else 70 }}"
-      temperature: "{{ 68 if is_state('device_tracker.jawilson_phone', 'home') and is_state('device_tracker.sashag_phone', 'home') else 70 }}"
+      target_temp_high: "{{ 68 if is_state('person.jeff', 'home') and is_state('person.sasha', 'home') else 70 }}"
+      temperature: "{{ 68 if is_state('person.jeff', 'home') and is_state('person.sasha', 'home') else 70 }}"
       target_temp_low: 60
