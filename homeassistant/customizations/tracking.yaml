@@ -1,4 +1,6 @@
 # Jeff
+person.jeff:
+  entity_picture: https://en.gravatar.com/userimage/33556910/b05bfd27aeea0439321ab1ca3c488c1f.jpg?size=400
 binary_sensor.jeff_home:
   device_class: occupancy
 sensor.jeff_at_work_this_week:
@@ -22,6 +24,8 @@ sensor.google_reverse_geocode_jeff:
   custom_ui_more_info: more-info-map
 
 # Sasha
+person.sasha:
+  entity_picture: /local/people/sasha_grunza.jpg
 binary_sensor.sasha_home:
   device_class: occupancy
 sensor.sashag_phone_battery_level:
