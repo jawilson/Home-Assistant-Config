@@ -81,7 +81,7 @@
       for:
         minutes: 2
   action:
-    - service: notify.html5
+    - service: notify.jeff
       data:
         title: Potential Intruder Alert!
         message: No one is home and a light was turned on
@@ -118,7 +118,7 @@
       for:
         seconds: 30
   action:
-    - service: notify.html5
+    - service: notify.jeff
       data:
         title: Potential Intruder Alert!
         message: No one is home and motion was detected
@@ -129,7 +129,7 @@
     platform: event
     event_type: device_tracker_new_device
   action:
-    - service: notify.html5
+    - service: notify.jeff
       data_template:
         title: New Device Detected
         message: '{{trigger.event.data.host_name}} with id {{trigger.event.data.entity_id}}'
@@ -140,7 +140,7 @@
     platform: state
     entity_id: updater.updater
   action:
-    service: notify.html5
+    service: notify.jeff
     data_template:
       title: 'Home Assistant Update'
       message: 'Version {{trigger.to_state.state}} of Home Assistant is available'

@@ -234,6 +234,26 @@ notify:
     gcm_sender_id: !secret gcm_project_number
   - platform: ios
     name: ios
+  - platform: group
+    name: jeff
+    services:
+      - service: html5_jawilson_phone
+      - service: html5_jawilson_work
+      - service: html5_jawilson_maxwell
+  - platform: group
+    name: sasha
+    services:
+      - service: ios_sashag_phone
+  - platform: group
+    name: family
+    services:
+      - service: jeff
+      - service: sasha
+  - platform: group
+    name: family_phones
+    services:
+      - service: html5_jawilson_phone
+      - service: ios_sashag_phone
 
 # Intent services
 alexa:
