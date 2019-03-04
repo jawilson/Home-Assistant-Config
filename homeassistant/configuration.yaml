@@ -337,10 +337,6 @@ cast:
 media_player: !include media_players.yaml
 
 remote:
-  - platform: harmony
-    name: Living Room
-    host: harmonyhub.singularity.net
-    activity: 'Play Shield'
 
 camera: !include cameras.yaml
 
