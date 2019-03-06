@@ -49,3 +49,12 @@
   sampling_size: 400
   max_age:
     hours: 12
+
+- platform: history_stats
+  name: HVAC Fan Runtime
+  entity_id: binary_sensor.apartment_thermostat_fan
+  state: 'on'
+  type: time
+  end: '{{ now() }}'
+  duration:
+    hours: 4

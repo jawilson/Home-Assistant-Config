@@ -86,16 +86,34 @@
       - switch.apartment_home
 
 
-- alias: Circulate to even temperature
+- alias: Circulate air
   trigger:
-    platform: numeric_state
-    entity_id: sensor.apartment_temperatures
-    value_template: '{{ state.attributes.max_value - state.attributes.min_value }}'
-    above: 2
+    - platform: numeric_state
+      entity_id: sensor.hvac_fan_runtime
+      below: 0.15
+    - platform: numeric_state
+      entity_id: sensor.apartment_temperatures
+      value_template: '{{ state.attributes.max_value - state.attributes.min_value }}'
+      above: 1.5
+    - platform: state
+      entity_id: binary_sensor.apartment_thermostat_fan
+      to: 'off'
   condition:
-    condition: state
-    entity_id: input_boolean.climate_auto
-    state: 'on'
+    - condition: state
+      entity_id: input_boolean.climate_auto
+      state: 'on'
+    - condition: or
+      conditions:
+        - condition: numeric_state
+          entity_id: sensor.hvac_fan_runtime
+          below: 0.25
+        - condition: numeric_state
+          entity_id: sensor.apartment_temperatures
+          value_template: '{{ state.attributes.max_value - state.attributes.min_value }}'
+          above: 1.5
+    - condition: numeric_state
+      entity_id: sensor.hvac_fan_runtime
+      below: 1
   action:
     service: climate.set_fan_mode
     entity_id: climate.apartment
@@ -103,16 +121,26 @@
       fan_mode: 'on'
 
 
-- alias: End circulate to even
+- alias: End circulate air
   trigger:
-    platform: numeric_state
-    entity_id: sensor.apartment_temperatures
-    value_template: '{{ state.attributes.max_value - state.attributes.min_value }}'
-    below: 2
+    - platform: numeric_state
+      entity_id: sensor.hvac_fan_runtime
+      above: 0.35
+    - platform: numeric_state
+      entity_id: sensor.apartment_temperatures
+      value_template: '{{ state.attributes.max_value - state.attributes.min_value }}'
+      below: 1.0
   condition:
-    condition: state
-    entity_id: input_boolean.climate_auto
-    state: 'on'
+    - condition: state
+      entity_id: input_boolean.climate_auto
+      state: 'on'
+    - condition: numeric_state
+      entity_id: sensor.hvac_fan_runtime
+      above: 0.35
+    - condition: numeric_state
+      entity_id: sensor.apartment_temperatures
+      value_template: '{{ state.attributes.max_value - state.attributes.min_value }}'
+      below: 1.0
   action:
     service: climate.set_fan_mode
     entity_id: climate.apartment
