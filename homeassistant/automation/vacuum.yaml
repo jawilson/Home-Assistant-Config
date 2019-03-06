@@ -102,6 +102,10 @@
         data:
           tag: 'doomba'
           vibrate: [0]
+    - condition: template
+      value_template: "{{ is_state_attr('vacuum.doomba', 'status', 'Charging') }}"
+    - service: automation.turn_on
+      entity_id: automation.notify_empty_doomba_bin
 
 
 - alias: Notify Doomba Not Docked
@@ -137,6 +141,34 @@
     data:
       title: Doomba Not Docked
       message: Welcome home, it looks like Doomba isn't docked and charging. Can you help it out?
+
+
+- alias: Notify Empty Doomba Bin
+  trigger:
+    platform: state
+    entity_id:
+      - person.jeff
+      - person.sasha
+    to: 'home'
+  condition:
+    - condition: state
+      entity_id: input_boolean.presence
+      state: 'on'
+    - condition: template
+      value_template: "{{ is_state_attr('vacuum.doomba', 'status', 'Charging') }}"
+  action:
+    - service_template: >-
+        {% if trigger.entity_id == 'person.sasha' -%}
+        notify.ios_sashag_phone
+        {%- else -%}
+        notify.html5_jawilson_phone
+        {%- endif %}
+      data:
+        title: Doomba Ran Today
+        message: Welcome home, Doomba did its duty today, can you please empty its bin?
+    - service: automation.turn_off
+      entity_id: automation.notify_empty_doomba_bin
+
 
 - alias: Notify Doomba Error
   trigger:
