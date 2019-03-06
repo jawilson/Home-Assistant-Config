@@ -1,0 +1,68 @@
+title: Bedroom
+path: bedroom
+icon: mdi:hotel
+cards:
+  - type: entities
+    title: Lights
+    show_header_toggle: false
+    entities:
+      - entity: light.bedroom_lights
+        name: All lights
+      - type: divider
+      - light.tree_lamp
+      - type: divider
+      - light.tree_lamp_1
+      - light.tree_lamp_2
+      - light.tree_lamp_3
+      - light.tree_lamp_4
+      - light.tree_lamp_5
+      - light.nightstand_1
+      - light.nightstand_2
+
+  - type: entities
+    title: Control
+    show_header_toggle: false
+    entities:
+      - entity: switch.humidifier
+        name: Humidifier
+      - entity: switch.bedroom_fluxer
+        name: Fluxer
+      - entity: switch.bedroom_motion
+        name: Motion
+      - type: call-service
+        name: Go to sleep
+        icon: mdi:sleep
+        action_name: Trigger
+        service: automation.trigger
+        service_data:
+          entity_id: automation.go_to_sleep
+      - entity: script.bedroom_wake_up
+        name: Wake-Up
+      - entity: script.sunrise_wake_up
+        icon: mdi:weather-sunset-up
+
+  - type: glance
+    title: Sensors
+    show_name: false
+    entities:
+      - sensor.bedroom_temperature
+      - sensor.bedroom_relative_humidity
+      - sensor.bedroom_luminance
+
+  - type: entities
+    title: Other Lights
+    show_header_toggle: false
+    entities:
+      - light.closet_light
+
+  - type: entities
+    title: Other Control
+    show_header_toggle: false
+    entities:
+      - switch.closet_fluxer
+      - entity: switch.closet_motion
+        name: Closet Motion
+      - script.closet_wake_up
+
+  - type: media-control
+    entity: media_player.cast_bedroom_mini

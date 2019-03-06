@@ -1,0 +1,57 @@
+title: Bathroom
+path: bathroom
+icon: mdi:scale-bathroom
+cards:
+  - type: entities
+    title: Lights
+    show_header_toggle: false
+    entities:
+      - entity: light.bathroom_lights
+        name: All Lights
+      - type: divider
+      - light.bathroom_mirror
+      - light.shower_light
+      - type: divider
+      - light.bathroom_mirror_1
+      - light.bathroom_mirror_2
+      - light.bathroom_mirror_3
+      - light.bathroom_mirror_4
+
+  - type: entities
+    title: Control
+    show_header_toggle: false
+    entities:
+      - entity: switch.bathroom_fan_switch
+        name: Fan
+      - entity: switch.bathroom_fluxer
+        name: Fluxer
+      - entity: switch.bathroom_motion
+        name: Motion
+      - entity: script.bathroom_wake_up
+        name: Wake-Up
+
+  - type: glance
+    title: Sensors
+    show_name: false
+    entities:
+      - sensor.bathroom_temperature
+      - sensor.bathroom_relative_humidity
+      - sensor.bathroom_luminance
+
+  - type: entities
+    title: Other Lights
+    show_header_toggle: false
+    entities:
+      - light.closet_light
+
+  - type: entities
+    title: Other Control
+    show_header_toggle: false
+    entities:
+      - switch.closet_fluxer
+      - entity: switch.closet_motion
+        name: Closet Motion
+      - script.closet_wake_up
+
+  - type: media-control
+    entity: media_player.cast_bathroom_speaker

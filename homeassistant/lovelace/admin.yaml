@@ -1,0 +1,80 @@
+title: Admin
+path: admin
+icon: mdi:settings
+cards:
+  - type: entities
+    title: Scripts
+    show_header_toggle: false
+    entities:
+      - script.bedroom_sleep
+      - script.bathroom_sleep
+      - script.living_area_sleep
+      - script.apartment_sleep
+      - script.alarm_ringing
+      - script.alarm_snooze
+      - script.alarm_dismiss
+      - script.bedroom_wake_up
+      - script.bathroom_wake_up
+      - script.living_area_wake_up
+      - script.apartment_wake_up
+      - script.nest_home
+      - script.bedroom_arrive
+      - script.living_area_arrive
+      - script.nest_home
+      - script.apartment_shutdown
+
+  - type: entities
+    title: Automations
+    show_header_toggle: false
+    entities:
+      - automation.home_assistant_start
+      - automation.alarm_bedtime
+      - automation.someone_leaves_while_jeff_sleeping
+      - automation.alarm_smart_period
+      - automation.alarm_ringing
+      - automation.alarm_snooze
+      - automation.alarm_dismiss
+      - automation.wake_up
+      - automation.wake_up_bedroom
+      - automation.sasha_warm_up
+      - automation.sasha_wake_up
+      - automation.cancel_wake_up
+      - automation.cancel_alarm_ringing
+      - automation.cancel_bedroom_wake_up
+      - automation.fan_while_showering
+      - automation.fan_after_showering
+      - automation.limit_bathroom_fan
+      - automation.handle_lights_when_leaving
+      - automation.nest_away
+      - automation.front_door_open
+      - automation.handle_lights_when_arriving_home
+      - automation.handle_lights_when_turned_on_not_home
+      - automation.run_doomba
+      - automation.dock_doomba_when_arriving_home
+      - automation.notify_doomba_ran
+      - automation.notify_doomba_not_docked
+      - automation.notify_doomba_error
+      - automation.nest_home
+      - automation.nest_while_home
+      - automation.circulate_air
+      - automation.end_circulate_air
+      - automation.humidity_too_low
+      - automation.humidity_too_high
+      - automation.projector_off
+      - automation.shield_plex_idle
+      - automation.location_update_notification
+      - automation.light_intruder_alert
+      - automation.motion_intruder_alert
+      - automation.update_available_notification
+      - automation.jeff_stop_working
+
+  - type: entities
+    title: Input boolean
+    show_header_toggle: false
+    entities:
+      - input_boolean.climate_auto
+      - input_boolean.guests
+      - input_boolean.intruder_alerts
+      - input_boolean.media_automation
+      - input_boolean.motion
+      - input_boolean.presence

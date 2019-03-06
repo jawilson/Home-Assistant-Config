@@ -1,0 +1,57 @@
+title: Living Room
+icon: mdi:sofa
+cards:
+  - type: vertical-stack
+    cards:
+      - type: entities
+        title: Lights
+        show_header_toggle: false
+        entities:
+          - entity: light.living_room_lights
+            name: All lights
+          - type: divider
+          - light.entertainment_lights
+          - type: divider
+          - light.entertainment_light_1
+          - light.entertainment_light_2
+          - light.living_room_lamp
+          - light.desk_lamp
+
+      - type: entities
+        title: Other Lights
+        entities:
+          - light.kitchen_lights
+          - light.entryway_lights
+
+      - type: media-control
+        entity: media_player.cast_living_room_speaker
+
+  - type: vertical-stack
+    cards:
+      - type: entities
+        title: Harmony
+        show_header_toggle: false
+        entities:
+          - type: custom:hui-toggle-entity-row
+            entity: remote.living_room
+            secondary_info: last-changed
+          - switch.shield
+          - switch.xbox_one
+          - switch.xbox_360
+
+      - type: media-control
+        entity: media_player.shield
+
+  - type: glance
+    title: Sensors
+    show_name: false
+    entities:
+      - sensor.living_room_temperature
+      - sensor.living_room_relative_humidity
+
+  - type: entities
+    title: Control
+    show_header_toggle: false
+    entities:
+      - switch.living_area_fluxer
+      - script.living_area_wake_up

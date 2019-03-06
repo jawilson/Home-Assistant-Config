@@ -1,0 +1,83 @@
+title: Lights
+path: lights
+icon: mdi:lightbulb
+cards:
+  - type: entities
+    title: Room Lights
+    show_header_toggle: false
+    entities:
+      - entity: light.entryway_lights
+        name: Entryway
+      - entity: light.kitchen_lights
+        name: Kitchen
+      - entity: light.living_area_lights
+        name: Living Area
+      - entity: light.living_room_lights
+        name: Living Room
+      - entity: light.bedroom_lights
+        name: Bedroom
+      - entity: light.closet_lights
+        name: Closet
+      - entity: light.bathroom_lights
+        name: Bathroom
+
+  - type: entities
+    title: Light Types
+    show_header_toggle: false
+    entities:
+      - entity: light.color_lights
+        name: Color
+      - entity: light.color_temperature_lights
+        name: Color Temperature
+
+  - type: entities
+    title: Fluxers
+    entities:
+      - entity: switch.bedroom_fluxer
+        name: Bedroom
+      - entity: switch.closet_fluxer
+        name: Closet
+      - entity: switch.bathroom_fluxer
+        name: Bathroom
+      - entity: switch.living_area_fluxer
+        name: Living Area
+
+  - type: entities
+    title: Motion Automations
+    entities:
+      - entity: switch.bedroom_motion
+        name: Bedroom
+      - entity: switch.closet_motion
+        name: Closet
+      - entity: switch.bathroom_motion
+        name: Bathroom
+
+  - type: entities
+    title: Wake-Up Scripts
+    entities:
+      - type: call-service
+        name: Wake-Up
+        icon: mdi:sleep-off
+        action_name: Trigger
+        service: automation.trigger
+        service_data:
+          entity_id: automation.wake_up
+      - type: call-service
+        name: Sasha Wake-Up
+        icon: mdi:sleep-off
+        action_name: Trigger
+        service: automation.trigger
+        service_data:
+          entity_id: automation.sasha_wake_up
+      - entity: script.bedroom_wake_up
+        name: Bedroom
+      - entity: script.closet_wake_up
+        name: Closet
+      - entity: script.bathroom_wake_up
+        name: Bathroom
+      - entity: script.living_area_wake_up
+        name: Living Area
+      - entity: script.living_room_wake_up
+        name: Living Room
+      - entity: script.apartment_wake_up
+        name: Apartment

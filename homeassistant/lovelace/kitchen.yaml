@@ -1,0 +1,52 @@
+title: Kitchen
+path: kitchen
+icon: mdi:fridge
+cards:
+  - type: entities
+    title: Lights
+    show_header_toggle: false
+    entities:
+      - entity: light.kitchen_lights
+        name: All lights
+      - type: divider
+      - light.kitchen
+      - light.dining_lights_level
+      - type: divider
+      - light.kitchen_light_1
+      - light.kitchen_light_2
+      - light.kitchen_light_3
+      - light.kitchen_light_4
+
+  - type: entities
+    title: Other Lights
+    show_header_toggle: false
+    entities:
+      - light.entryway
+      - type: divider
+      - light.entryway_light_1
+      - light.entryway_light_2
+
+  - type: entities
+    title: Accent Lights
+    show_header_toggle: false
+    entities:
+      - light.liquor_cabinet_lights
+
+  - type: entities
+    title: Control
+    show_header_toggle: false
+    entities:
+      - entity: switch.living_area_fluxer
+        name: Fluxer
+      - entity: script.living_area_wake_up
+        name: Wake-Up
+
+  - type: glance
+    title: Sensors
+    show_name: false
+    entities:
+      - sensor.living_room_temperature
+      - sensor.living_room_relative_humidity
+
+  - type: media-control
+    entity: media_player.cast_kitchen

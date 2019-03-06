@@ -1,0 +1,167 @@
+title: Home
+path: home
+icon: mdi:home
+cards:
+  #
+  # First column
+  #
+  - type: vertical-stack
+    cards:
+      - type: map
+        title: Locations
+        aspect_ratio: 50%
+        entities:
+          - entity: person.jeff
+          - entity: person.sasha
+          - zone.home
+          - zone.bline
+          - zone.sashas_apartment
+          - zone.river
+      - type: custom:vertical-stack-in-card
+        title: Jeff
+        cards:
+          - type: entities
+            show_header_toggle: false
+            entities:
+              - entity: sensor.google_reverse_geocode_jeff
+                name: Location
+                secondary_info: last-changed
+          - type: conditional
+            conditions:
+              - entity: person.jeff
+                state: B-Line
+            card:
+              type: glance
+              show_name: false
+              column_width: calc(100% / 3)
+              entities:
+                - sensor.jeff_at_work_this_week
+                - sensor.jeff_at_work_today
+                - sensor.jeff_leave_work_today
+          - type: conditional
+            conditions:
+              - entity: person.jeff
+                state: not_home
+            card:
+              type: glance
+              title: Travel Times Home
+              show_name: false
+              column_width: calc(100% / 3)
+              entities:
+                - sensor.jeff_drive_home
+                - sensor.jeff_transit_home
+                - sensor.jeff_walk_home
+          - type: entities
+            show_header_toggle: false
+            entities:
+              - entity: sensor.jeff_sleep_state
+                name: Sleeping
+              - entity: sensor.jeff_alarm
+                name: Alarm
+      - type: entities
+        title: Sasha
+        show_header_toggle: false
+        entities:
+          - entity: sensor.google_reverse_geocode_sasha
+            name: Location
+            secondary_info: last-changed
+      - type: 'custom:entity-hidden-filter-card'
+        entities: !include /config/device_groups/guests.yaml
+        show_empty: false
+        secondary_info: last-changed
+        card:
+          type: entities
+          title: Guests
+          show_header_toggle: false
+
+  #
+  # Second column
+  #
+  - type: vertical-stack
+    cards:
+      - type: custom:vertical-stack-in-card
+        title: Climate
+        cards:
+          - type: thermostat
+            entity: climate.apartment
+          - type: entities
+            show_header_toggle: false
+            entities:
+              - type: section
+                label: Info
+              - type: custom:fold-entity-row
+                head: sensor.apartment_temperatures
+                items:
+                  - sensor.apartment_feels_like
+                  - sensor.apartment_thermostat_temperature
+                  - sensor.bathroom_temperature
+                  - sensor.bedroom_temperature
+                  - sensor.living_room_temperature
+              - type: custom:fold-entity-row
+                head: sensor.apartment_humidities
+                items:
+                  - sensor.apartment_thermostat_humidity
+                  - sensor.bathroom_relative_humidity
+                  - sensor.bedroom_relative_humidity
+                  - sensor.living_room_relative_humidity
+              - type: custom:fold-entity-row
+                head:
+                  type: section
+                  label: Control
+                items:
+                  - switch.apartment_home
+                  - switch.apartment_fan
+                  - switch.humidifier
+      - type: entities
+        title: Vacuum
+        show_header_toggle: false
+        entities:
+          - type: custom:fold-entity-row
+            head:
+                entity: vacuum.doomba
+                secondary_info: last-changed
+            items:
+              - entity: automation.run_doomba
+                name: Automatically Run
+              - input_boolean.schedule_vacuum
+      - type: media-control
+        entity: media_player.cast_home_group
+
+  #
+  # Third column
+  #
+  - type: vertical-stack
+    cards:
+      - type: entities
+        title: Scenes
+        show_header_toggle: false
+        entities:
+          - script.getting_ready
+          - scene.couch_reading
+          - script.cooking
+          - script.dinner
+          - scene.tv_dinner
+          - scene.romantic
+          - entity: script.bedtime
+            name: Bedtime Lights
+          - type: call-service
+            name: Go to Sleep
+            icon: mdi:sleep
+            action_name: Trigger
+            service: automation.trigger
+            service_data:
+              entity_id: automation.go_to_sleep
+          - type: call-service
+            name: Sasha Wake-Up
+            icon: mdi:sleep-off
+            action_name: Trigger
+            service: automation.trigger
+            service_data:
+              entity_id: automation.sasha_wake_up
+          - type: call-service
+            name: Lights Out
+            icon: mdi:flashlight-off
+            action_name: Execute
+            service: script.turn_on
+            service_data:
+              entity_id: script.lights_out

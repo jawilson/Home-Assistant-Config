@@ -13,9 +13,9 @@ class MoreInfoMap extends LitElement {
   _render({hass, stateObj}) {
     var src;
     if (stateObj && 'latitude' in stateObj.attributes) {
-      src = "https://maps.googleapis.com/maps/api/staticmap?size=640x640&maptype=roadmap" +
-        `&markers=color:blue%7Clabel:${ stateObj.attributes.friendly_name[0] }%7C` +
-        `${ stateObj.attributes.latitude },${ stateObj.attributes.longitude }`
+      var entity_id = stateObj.attributes.entity_id;
+      var entity = entity_id.split('.')[1]; 
+      src = hass.states['camera.' + entity].attributes.entity_picture
     }
     else {
       src = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
