@@ -1,0 +1,8 @@
+living_room_activity:
+  name: Projector Activity
+  options:
+    - PowerOff
+    - Play Shield
+    - Listen to Shield
+    - Play Xbox One
+    - Play Xbox 360

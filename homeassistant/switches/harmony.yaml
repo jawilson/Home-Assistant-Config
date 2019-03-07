@@ -6,6 +6,8 @@
       turn_on:
         service: remote.turn_on
         entity_id: remote.living_room
+        data:
+          activity: 'Play Shield'
       turn_off:
         service: remote.turn_off
         entity_id: remote.living_room

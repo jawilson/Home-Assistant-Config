@@ -34,5 +34,12 @@
         entity_id: remote.living_room
         device: 31874484
         command: Mute
+    select_source:
+      service: remote.turn_on
+      data_template:
+        entity_id: remote.living_room
+        activity: '{{ source }}'
   attributes:
     state: remote.living_room
+    source: remote.living_room|current_activity
+    source_list: input_select.living_room_activity|options
