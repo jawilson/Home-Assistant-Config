@@ -1,3 +1,13 @@
 - name: P3Steel
   platform: mjpeg
   mjpeg_url: 'http://p3steel.singularity.net/webcam/?action=stream'
+
+- name: Jeff
+  platform: generic
+  still_image_url: !secret jawilson_camera_url
+  limit_refetch_to_url_change: true
+
+- name: Sasha
+  platform: generic
+  still_image_url: !secret sashag_camera_url
+  limit_refetch_to_url_change: true

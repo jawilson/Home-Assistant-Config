@@ -14,14 +14,14 @@ class MoreInfoMap extends LitElement {
     var src;
     if (stateObj && 'latitude' in stateObj.attributes) {
       var entity_id = stateObj.attributes.entity_id;
-      var entity = entity_id.split('.')[1]; 
+      var entity = entity_id.split('.')[1];
       src = hass.states['camera.' + entity].attributes.entity_picture
     }
     else {
       src = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
     }
 
-    var keys = ['source_type', 'gps_accuracy', 'location_type'];
+    var keys = ['source', 'source_type', 'gps_accuracy', 'location_type'];
     var attributes = keys.reduce(function(attributes, key) {
       if (key in stateObj.attributes) {
         var attribute = document.createElement('div');

@@ -8,6 +8,7 @@ import voluptuous as vol
 from homeassistant.components.sensor import PLATFORM_SCHEMA
 from homeassistant.components.zone.zone import active_zone
 from homeassistant.components.device_tracker import ATTR_SOURCE_TYPE
+from homeassistant.components.person import ATTR_SOURCE, ATTR_USER_ID
 from homeassistant.helpers.entity import Entity
 from homeassistant.helpers.event import track_state_change
 from homeassistant.const import (
@@ -181,6 +182,8 @@ class GoogleReverseGeocodeSensor(Entity):
         self._dev_attrs = {key: value for key, value in
                            ((ATTR_SOURCE_TYPE,
                                entity.attributes.get(ATTR_SOURCE_TYPE)),
+                            (ATTR_SOURCE,
+                               entity.attributes.get(ATTR_SOURCE)),
                             (ATTR_LATITUDE,
                                 entity.attributes.get(ATTR_LATITUDE)),
                             (ATTR_LONGITUDE,
