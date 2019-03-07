@@ -27,12 +27,12 @@
             - condition: state
               entity_id: vacuum.doomba
               state: 'off'
-              # Only run Doomba ounce every 40 hours max
+              # Only run Doomba ounce every 20 hours max
               for:
-                hours: 40
+                hours: 20
             - condition: template
               value_template: >
-                {{ (as_timestamp(now()) - (as_timestamp(states.automation.run_doomba.attributes.last_triggered)|float))/60/60 > 40 }}
+                {{ (as_timestamp(now()) - (as_timestamp(states.automation.run_doomba.attributes.last_triggered)|float))/60/60 > 20 }}
     - condition: or
       conditions:
         - condition: template
