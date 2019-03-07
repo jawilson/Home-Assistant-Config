@@ -6,7 +6,7 @@ sequence:
   - condition: numeric_state
     entity_id: sun.sun
     value_template: "{{ state.attributes.elevation }}"
-    below: -5
+    below: 10
 
   # Disable fluxer
   - service: switch.turn_off
