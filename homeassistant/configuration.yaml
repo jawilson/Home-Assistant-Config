@@ -87,6 +87,8 @@ logbook:
       - binary_sensor.sasha_home
       - binary_sensor.bathroom_humidity_trend
       - binary_sensor.bathroom_temp_trend
+      - device_tracker.jawilson_phone
+      - device_tracker.sashag_phone
       - light.living_area_lights
       - light.entryway_lights
       - light.entryway_light_1
@@ -123,6 +125,8 @@ logbook:
       - sensor.jeff_sleeping_at_home
       - sensor.sashag_phone_battery_level
       - sensor.sashag_phone_battery_state
+      - sensor.neo_coolcam_door_window_detector_access_control
+      - sensor.neo_coolcam_door_window_detector_alarm_level
       - switch.apartment_fan
   include:
     entities:
