@@ -19,5 +19,3 @@ views:
   - !include /config/lovelace/lights.yaml
   - !include /config/lovelace/other.yaml
   - !include /config/lovelace/admin.yaml
-
-excluded_entities: !include /config/lovelace/excluded-entities.yaml
