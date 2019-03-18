@@ -2,14 +2,16 @@ title: Home
 resources:
   - url: /local/ui/more-info-map.js
     type: module
-  - url: /local/ui/card-tools.js?v=0.4
-    type: js
   - url: /local/ui/entity-hidden-filter-card.js
     type: js
-  - url: /local/ui/vertical-stack-in-card.js?v=0.0.9
+  - url: /local/ui/card-tools.js?track=true
     type: js
-  - url: /local/ui/fold-entity-row.js?v=0
+  - url: /local/ui/vertical-stack-in-card.js?track=true
     type: js
+  - url: /local/ui/fold-entity-row.js?track=true
+    type: js
+  - url: /customcards/github/custom-cards/tracker-card.js?track=true
+    type: module
 views:
   - !include /config/lovelace/home.yaml
   - !include /config/lovelace/kitchen.yaml

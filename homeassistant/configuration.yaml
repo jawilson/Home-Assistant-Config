@@ -13,6 +13,7 @@ homeassistant:
   customize_glob: !include customize_glob.yaml
 
 default_config:
+custom_updater:
 
 # Web
 http:

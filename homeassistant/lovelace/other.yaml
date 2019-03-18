@@ -52,3 +52,5 @@ cards:
       - sensor.ups_battery
       - sensor.ups_load
       - sensor.ups_time_left
+
+  - type: custom:tracker-card
