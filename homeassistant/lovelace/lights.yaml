@@ -6,20 +6,71 @@ cards:
     title: Room Lights
     show_header_toggle: false
     entities:
-      - entity: light.entryway_lights
-        name: Entryway
-      - entity: light.kitchen_lights
-        name: Kitchen
-      - entity: light.living_area_lights
-        name: Living Area
-      - entity: light.living_room_lights
-        name: Living Room
-      - entity: light.bedroom_lights
-        name: Bedroom
-      - entity: light.closet_lights
-        name: Closet
-      - entity: light.bathroom_lights
-        name: Bathroom
+      - type: custom:fold-entity-row
+        head:
+          entity: light.entryway_lights
+          name: Entryway
+        items:
+          - light.entryway_light_1
+          - light.entryway_light_2
+      - type: custom:fold-entity-row
+        head:
+          entity: light.kitchen_lights
+          name: Kitchen
+        items:
+          - light.kitchen_light_1
+          - light.kitchen_light_2
+          - light.kitchen_light_3
+          - light.kitchen_light_4
+          - light.dining_lights_level
+      - type: custom:fold-entity-row
+        head:
+          entity: light.living_area_lights
+          name: Living Area
+        items:
+          - light.entryway
+          - light.kitchen
+          - light.dining_lights_level
+          - light.entertainment_lights
+          - light.living_room_lamp
+          - light.desk_lamp
+      - type: custom:fold-entity-row
+        head:
+          entity: light.living_room_lights
+          name: Living Room
+        items:
+          - light.entertainment_light_1
+          - light.entertainment_light_2
+          - light.living_room_lamp
+          - light.desk_lamp
+      - type: custom:fold-entity-row
+        head:
+          entity: light.bedroom_lights
+          name: Bedroom
+        items:
+          - light.tree_lamp_1
+          - light.tree_lamp_2
+          - light.tree_lamp_3
+          - light.tree_lamp_4
+          - light.tree_lamp_5
+          - light.nightstand_1
+          - light.nightstand_2
+      - type: custom:fold-entity-row
+        head:
+          entity: light.closet_lights
+          name: Closet
+        items:
+          - light.closet_light
+      - type: custom:fold-entity-row
+        head:
+          entity: light.bathroom_lights
+          name: Bathroom
+        items:
+          - light.shower_light
+          - light.bathroom_mirror_1
+          - light.bathroom_mirror_2
+          - light.bathroom_mirror_3
+          - light.bathroom_mirror_4
 
   - type: entities
     title: Light Types
