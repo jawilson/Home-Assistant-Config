@@ -1,0 +1,1 @@
+[{"id":"7da0383f.82fa88","type":"tab","label":"Flow 1","disabled":false,"info":""},{"id":"fd7c2892.538878","type":"server","z":"","name":"Home Assistant","legacy":false,"hassio":false,"rejectUnauthorizedCerts":true,"ha_boolean":"y|yes|true|on|home|open","connectionDelay":true}]
