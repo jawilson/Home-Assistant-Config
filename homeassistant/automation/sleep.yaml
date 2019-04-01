@@ -68,9 +68,15 @@
     - service: script.living_area_wake_up
     - service: script.apartment_wake_up
     # Provide a way to cancel
-    - service: notify.html5
+    - service_template: >
+        {% if is_state('person.jeff', 'home') and is_state('person.sasha', 'home') %}
+        notify.family_phones
+        {%- elif is_state('person.jeff', 'home') %}
+        notify.html5_jawilson_phone
+        {%- elif is_state('person.sasha', 'home') %}
+        notefiy.ios_sashag_phone
+        {%- endif %}
       data:
-        target: jawilson_phone
         title: 'Good Morning!'
         message: 'Turning on the apartment lights'
         data:
@@ -82,6 +88,9 @@
               title: 'Wake-Up Bedroom'
             - action: 'cancel_wake_up'
               title: 'Cancel All'
+          push:
+            category: 'non_bedroom_wake_up'
+            thread-id: 'wake-up'
     - condition: time
       after: '5:00:00'
       before: '10:00:00'
@@ -96,9 +105,15 @@
       state: 'off'
     - service: script.closet_wake_up
     - service: script.bedroom_wake_up
-    - service: notify.html5
+    - service_template: >
+        {% if is_state('person.jeff', 'home') and is_state('person.sasha', 'home') %}
+        notify.family_phones
+        {%- elif is_state('person.jeff', 'home') %}
+        notify.html5_jawilson_phone
+        {%- elif is_state('person.sasha', 'home') %}
+        notify.ios_sashag_phone
+        {%- endif %}
       data:
-        target: jawilson_phone
         title: 'Good Morning!'
         message: 'Turning on the bedroom and apartment lights'
         data:
@@ -110,6 +125,9 @@
               title: 'Cancel Bedroom'
             - action: 'cancel_wake_up'
               title: 'Cancel All'
+          push:
+            category: 'wake_up'
+            thread-id: 'wake-up'
 
 
 - alias: 'Sasha Warm-Up'
@@ -162,9 +180,13 @@
         - script.bathroom_sleep
         - script.living_area_sleep
     # Provide a way to cancel
-    - service: notify.html5
+    - service_template: >
+        {% if is_state('person.jeff', 'home') %}
+        notify.family_phones
+        {%- elif is_state('person.sasha', 'home') %}
+        notify.ios_sashag_phone
+        {%- endif %}
       data:
-        target: jawilson_phone
         title: 'Good Morning!'
         message: 'Sasha is waking up'
         data:
@@ -176,6 +198,9 @@
               title: 'Cancel Bedroom'
             - action: 'cancel_wake_up'
               title: 'Cancel All'
+          push:
+            category: 'wake_up'
+            thread-id: 'wake-up'
     - service: script.bathroom_wake_up
     - service: script.closet_wake_up
     - service: script.living_area_wake_up
@@ -299,14 +324,23 @@
 
 - alias: 'Cancel Bedroom Wake-Up'
   trigger:
-    platform: event
-    event_type: html5_notification.clicked
-    event_data:
-      action: cancel_bedroom_wake_up
+    - platform: event
+      event_type: html5_notification.clicked
+      event_data:
+        action: cancel_bedroom_wake_up
+    - platform: event
+      event_type: ios.notification_action_fired
+      event_data:
+        actionName: 'CANCEL_BEDROOM_WAKE_UP'
   action:
-    - service: notify.html5
-      data_template:
-        target: '{{ trigger.event.data.target }}'
+    - service_template: >
+        {% if is_state('person.jeff', 'home') and is_state('person.sasha', 'home') %}
+        notify.family_phones
+        {%- elif is_state('person.jeff', 'home') %}
+        notify.html5_jawilson_phone
+        {%- elif is_state('person.sasha', 'home') %}
+        notify.ios_sashag_phone
+        {%- endif %}
       data:
         title: 'Sorry!'
         message: Turning the lights back off
@@ -317,23 +351,37 @@
           actions:
             - action: 'cancel_wake_up'
               title: 'Cancel All'
+          push:
+            category: 'canceled_bedroom_wake_up'
+            thread-id: 'wake-up'
     - service: script.turn_off
       entity_id: script.bedroom_wake_up
+    - service: script.turn_off
+      entity_id: script.sunrise_wake_up
     - service: script.bedroom_sleep
 
 
 - alias: 'Wake-Up Bedroom'
   trigger:
-    platform: event
-    event_type: html5_notification.clicked
-    event_data:
-      action: wake_up_bedroom
+    - platform: event
+      event_type: html5_notification.clicked
+      event_data:
+        action: wake_up_bedroom
+    - platform: event
+      event_type: ios.notification_action_fired
+      event_data:
+        actionName: 'WAKE_UP_BEDROOM'
   action:
     - service: script.closet_wake_up
     - service: script.bedroom_wake_up
-    - service: notify.html5
-      data_template:
-        target: '{{ trigger.event.data.target }}'
+    - service_template: >
+        {% if is_state('person.jeff', 'home') and is_state('person.sasha', 'home') %}
+        notify.family_phones
+        {%- elif is_state('person.jeff', 'home') %}
+        notify.html5_jawilson_phone
+        {%- elif is_state('person.sasha', 'home') %}
+        notify.ios_sashag_phone
+        {%- endif %}
       data:
         title: 'Good Morning!'
         message: 'Turning on the bedroom and apartment lights'
@@ -346,14 +394,21 @@
               title: 'Cancel Bedroom'
             - action: 'cancel_wake_up'
               title: 'Cancel All'
+          push:
+            category: 'wake_up'
+            thread-id: 'wake-up'
 
 
 - alias: 'Cancel Wake-Up'
   trigger:
-    platform: event
-    event_type: html5_notification.clicked
-    event_data:
-      action: cancel_wake_up
+    - platform: event
+      event_type: html5_notification.clicked
+      event_data:
+        action: cancel_wake_up
+    - platform: event
+      event_type: ios.notification_action_fired
+      event_data:
+        actionName: 'CANCEL_WAKE_UP'
   action:
     - service: script.turn_off
       entity_id:

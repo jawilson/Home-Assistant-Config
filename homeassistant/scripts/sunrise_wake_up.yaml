@@ -3,9 +3,15 @@ sequence:
   - condition: state
     entity_id: binary_sensor.jeff_sleeping_at_home
     state: 'on'
-  - service: notify.html5
+  - service_template: >
+      {% if is_state('person.jeff', 'home') and is_state('person.sasha', 'home') %}
+      notify.family_phones
+      {%- elif is_state('person.jeff', 'home') %}
+      notify.html5_jawilson_phone
+      {%- elif is_state('person.sasha', 'home') %}
+      notefiy.ios_sashag_phone
+      {%- endif %}
     data:
-      target: jawilson_phone
       title: 'Good Morning!'
       message: 'The sun is rising'
       data:
@@ -15,6 +21,9 @@ sequence:
         actions:
           - action: 'cancel_bedroom_wake_up'
             title: 'Cancel Bedroom'
+        push:
+          category: 'bedroom_only_wake_up'
+          thread-id: 'wake-up'
   - service: switch.turn_off
     entity_id: switch.bedroom_fluxer
   - service: light.turn_on
