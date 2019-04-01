@@ -17,7 +17,6 @@ custom_updater:
 
 # Web
 http:
-  server_host: 192.168.0.60
   api_password: !secret http_password
   base_url: !secret http_base_url
   use_x_forwarded_for: true
