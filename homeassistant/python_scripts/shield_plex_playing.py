@@ -2,10 +2,10 @@ hass.services.call('python_script', 'call_service_if_state', {
     'state': 'playing',
     'service': 'media_player.media_pause',
     'entity_id': [
-        'media_player.cast_kitchen',
-        'media_player.cast_bedroom_mini',
+        'media_player.cast_kitchen_display',
+        'media_player.cast_bedroom',
         'media_player.cast_living_room_speaker',
-        'media_player.cast_home_group'
+        'media_player.cast_everything_group'
     ]
 })
 

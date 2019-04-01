@@ -55,6 +55,6 @@
     - service: automation.trigger
       entity_id: automation.handle_lights_when_arriving_home
     - service: tts.google_say
-      entity_id: media_player.cast_kitchen
+      entity_id: media_player.cast_kitchen_display
       data:
         message: 'Welcome home.'

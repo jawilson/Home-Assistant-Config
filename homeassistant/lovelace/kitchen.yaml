@@ -49,4 +49,4 @@ cards:
       - sensor.living_room_relative_humidity
 
   - type: media-control
-    entity: media_player.cast_kitchen
+    entity: media_player.cast_kitchen_display

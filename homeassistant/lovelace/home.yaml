@@ -125,7 +125,7 @@ cards:
                 name: Automatically Run
               - input_boolean.schedule_vacuum
       - type: media-control
-        entity: media_player.cast_home_group
+        entity: media_player.cast_everything_group
 
   #
   # Third column

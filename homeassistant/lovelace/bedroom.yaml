@@ -65,4 +65,4 @@ cards:
       - script.closet_wake_up
 
   - type: media-control
-    entity: media_player.cast_bedroom_mini
+    entity: media_player.cast_bedroom

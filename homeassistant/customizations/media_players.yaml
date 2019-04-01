@@ -1,6 +1,6 @@
-media_player.cast_kitchen:
+media_player.cast_kitchen_display:
   friendly_name: 'Kitchen Google Home'
-media_player.cast_bedroom_mini:
+media_player.cast_bedroom:
   friendly_name: 'Bedroom Google Home Mini'
 media_player.cast_living_room_speaker:
   friendly_name: 'JBL Speaker'

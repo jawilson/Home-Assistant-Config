@@ -1,7 +1,7 @@
 alias: Apartment Sleep
 sequence:
   - service: media_player.media_stop
-    entity_id: media_player.cast_home_group
+    entity_id: media_player.cast_everything_group
   - condition: state
     entity_id: input_boolean.climate_auto
     state: 'on'

@@ -1,7 +1,7 @@
 alias: Bedroom Sleep
 sequence:
   - service: media_player.media_stop
-    entity_id: media_player.cast_bedroom_mini
+    entity_id: media_player.cast_bedroom
   - service: automation.turn_off
     entity_id:
       - automation.bedroom_motion

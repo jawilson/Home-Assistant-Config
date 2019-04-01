@@ -9,7 +9,7 @@ sequence:
       - switch.projector
   - service: media_player.media_stop
     entity_id:
-      - media_player.cast_kitchen
+      - media_player.cast_kitchen_display
       - media_player.cast_living_room_speaker
       - media_player.gpm_desktop_player
   - service: homeassistant.turn_on
