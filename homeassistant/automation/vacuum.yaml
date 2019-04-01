@@ -166,6 +166,35 @@
       data:
         title: Doomba Ran Today
         message: Welcome home, Doomba did its duty today, can you please empty its bin?
+        data:
+          tag: 'doomba-bin'
+          renotify: false
+          actions:
+            - action: 'ok'
+              title: 'Ok'
+            - action: 'nope'
+              title: 'Nope'
+          push:
+            category: 'ok_nope'
+            thread-id: 'doomba-bin'
+            action_data:
+              tag: 'doomba-bin'
+
+
+- alias: Doomba Bin Emptied
+  trigger:
+    - platform: event
+      event_type: html5_notification.clicked
+      event_data:
+        action: ok
+        tag: 'doomba-bin'
+    - platform: event
+      event_type: ios.notification_action_fired
+      event_data:
+        actionName: 'OK'
+        actionData:
+          tag: 'doomba-bin'
+  action:
     - service: automation.turn_off
       entity_id: automation.notify_empty_doomba_bin
 
