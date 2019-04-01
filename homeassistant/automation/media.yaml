@@ -51,18 +51,23 @@
       entity_id: input_boolean.media_automation
       state: 'on'
   action:
-    - service: light.turn_on
-      entity_id:
-        - light.living_room
-        - light.kitchen
-        - light.entryway
+    - service: python_script.call_service_if_state
       data:
-        profile: nightlight
-        transition: 15
-    - service: light.turn_on
-      entity_id: light.dining_lights_level
+        service: light.turn_on
+        state: 'off'
+        entity_id:
+          - light.living_room
+          - light.kitchen
+          - light.entryway
+        data:
+          profile: nightlight
+    - service: python_script.call_service_if_state
       data:
-        brightness_pct: 2
+        service: light.turn_on
+        state: 'off'
+        entity_id: light.dining_lights_level
+        data:
+          brightness_pct: 2
     - service: switch.turn_on
       entity_id: switch.living_area_fluxer
     - service: switch.entryway_fluxer_update
@@ -73,7 +78,7 @@
 - alias: 'Update Source Select'
   trigger:
     platform: state
-    entity_id: media_player.shield
+    entity_id: remote.living_room
   action:
     service: input_select.select_option
     data:
