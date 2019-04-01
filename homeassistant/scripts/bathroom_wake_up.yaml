@@ -1,11 +1,5 @@
 alias: Bathroom Wake-Up
 sequence:
-  # Don't allow script to run on top of itself
-  - condition: state
-    entity_id: automation.bathroom_motion
-    state: 'on'
-
-
   - service: homeassistant.turn_off
     entity_id:
       - switch.bathroom_fluxer
