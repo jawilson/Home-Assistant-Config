@@ -1,0 +1,51 @@
+push:
+  categories:
+    - name: Wake-Up
+      identifier: 'wake_up'
+      actions:
+        - identifier: 'CANCEL_BEDROOM_WAKE_UP'
+          title: 'Cancel Bedroom'
+          destructive: true
+          authenticationRequired: false
+        - identifier: 'CANCEL_WAKE_UP'
+          title: 'Cancel All'
+          destructive: true
+          authenticationRequired: false
+
+    - name: Non-Bedroom Wake-Up
+      identifier: 'non_bedroom_wake_up'
+      actions:
+        - identifier: 'WAKE_UP_BEDROOM'
+          title: 'Wake-Up Bedroom'
+          authenticationRequired: false
+        - identifier: 'CANCEL_WAKE_UP'
+          title: 'Cancel All'
+          destructive: true
+          authenticationRequired: false
+
+    - name: Bedroom-Only Wake-Up
+      identifier: 'bedroom_only_wake_up'
+      actions:
+        - identifier: 'CANCEL_BEDROOM_WAKE_UP'
+          title: 'Cancel Bedroom'
+          destructive: true
+          authenticationRequired: false
+
+    - name: Canceled Bedroom Wake-Up
+      identifier: 'canceled_bedroom_wake_up'
+      actions:
+        - identifier: 'CANCEL_WAKE_UP'
+          title: 'Cancel All'
+          destructive: true
+          authenticationRequired: false
+
+    - name: OK/Nope
+      identifier: 'ok_nope'
+      actions:
+        - identifier: 'OK'
+          title: 'Ok'
+          authenticationRequired: false
+        - identifier: 'NOPE'
+          title: 'Nope'
+          destructive: true
+          authenticationRequired: false
