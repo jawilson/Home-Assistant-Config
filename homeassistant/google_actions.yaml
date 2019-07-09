@@ -22,14 +22,22 @@ filter:
     - light.entryway_lights
     - light.bedroom
     - light.bedroom_lights
+    - light.bedroom_nook
     - light.tree_lamp
     - light.closet
     - light.closet_lights
+    - light.discoagroup
+    - light.discoagroupeven
+    - light.discoagroupodd
     - light.bathroom
     - light.bathroom_lights
     - light.bathroom_mirror
+    - light.projector
     - light.living_room
     - light.living_room_lights
+    - light.sunroom
+    - light.sunroom_fan_light
+    - light.sunroom_lights
     - light.entertainment_lights
     - light.kitchen
     - light.kitchen_lights
@@ -41,6 +49,7 @@ filter:
     - switch.entryway_fluxer
     - switch.kitchen_fluxer
     - switch.living_room_fluxer
+    - switch.tree_lamp_fluxer
     - switch.shield
 
 entity_config:
@@ -103,3 +112,4 @@ entity_config:
     aliases:
       - Living area fluxer
       - Living area color
+      - Livingarea color

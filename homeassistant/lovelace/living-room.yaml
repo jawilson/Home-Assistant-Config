@@ -11,11 +11,15 @@ cards:
             name: All lights
           - type: divider
           - light.entertainment_lights
+          - light.tree_lamp
           - type: divider
           - light.entertainment_light_1
           - light.entertainment_light_2
-          - light.living_room_lamp
-          - light.desk_lamp
+          - light.tree_lamp_1
+          - light.tree_lamp_2
+          - light.tree_lamp_3
+          - light.tree_lamp_4
+          - light.tree_lamp_5
 
       - type: entities
         title: Other Lights
@@ -24,7 +28,7 @@ cards:
           - light.entryway_lights
 
       - type: media-control
-        entity: media_player.cast_living_room_speaker
+        entity: media_player.living_room_speaker
 
   - type: vertical-stack
     cards:
@@ -42,12 +46,12 @@ cards:
       - type: media-control
         entity: media_player.shield
 
-  - type: glance
-    title: Sensors
-    show_name: false
-    entities:
-      - sensor.living_room_temperature
-      - sensor.living_room_relative_humidity
+  #- type: glance
+  #  title: Sensors
+  #  show_name: false
+  #  entities:
+  #    - sensor.living_room_temperature
+  #    - sensor.living_room_relative_humidity
 
   - type: entities
     title: Control

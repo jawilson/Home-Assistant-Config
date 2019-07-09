@@ -1,0 +1,13 @@
+log:
+  logfile: STDOUT
+  errorfile: STDERR
+appdaemon:
+  threads: 10
+  disable_apps: 1
+  plugins:
+    HASS:
+      type: hass
+      ha_url: "http://homeassistant:8123"
+      token: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiI1ZjZhMGQ5ZTU1YmM0MGE5OGYwMjg5ZmE1YTc0ZWE3OSIsImlhdCI6MTU1MzAxMzE4NCwiZXhwIjoxODY4MzczMTg0fQ.jKdUAaYoiWt1zbAzNeB3EXaWPHc1KspeBeUfc9CqOME
+hadashboard:
+  dash_url: "http://0.0.0.0:5051"

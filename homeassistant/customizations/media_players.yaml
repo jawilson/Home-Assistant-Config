@@ -1,16 +1,2 @@
-media_player.cast_kitchen_display:
-  friendly_name: 'Kitchen Google Home'
-media_player.cast_bedroom:
-  friendly_name: 'Bedroom Google Home Mini'
-media_player.cast_living_room_speaker:
-  friendly_name: 'JBL Speaker'
-media_player.gpm_desktop_player:
-  friendly_name: 'Maxwell Google Play Music'
-media_player.cast_bedroom:
-  friendly_name: 'Bedroom Chromecast'
-media_player.cast_shield:
-  friendly_name: 'SHIELD Cast'
-media_player.plex_shield:
-  friendly_name: 'SHIELD Plex'
 media_player.plex_plex_web_chrome:
   hidden: true

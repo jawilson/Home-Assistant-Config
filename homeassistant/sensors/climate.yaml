@@ -25,7 +25,7 @@
     - sensor.apartment_thermostat_temperature
     - sensor.bathroom_temperature
     - sensor.bedroom_temperature
-    - sensor.living_room_temperature
+    - sensor.sunroom_temperature
 
 - platform: min_max
   name: Apartment Humidities
@@ -34,7 +34,7 @@
     - sensor.apartment_thermostat_humidity
     - sensor.bathroom_relative_humidity
     - sensor.bedroom_relative_humidity
-    - sensor.living_room_relative_humidity
+    - sensor.sunroom_relative_humidity
 
 - platform: statistics
   entity_id: sensor.bathroom_temperature

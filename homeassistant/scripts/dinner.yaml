@@ -1,12 +1,15 @@
 alias: Dinner
 sequence:
-  - service: switch.turn_on
-    entity_id: switch.plex
   - service: switch.turn_off
     entity_id: switch.living_area_fluxer
   - service: light.turn_on
-    entity_id: light.living_room
+    entity_id: light.living_room_lights
     data:
       profile: nightlight
       brightness: 100
       transition: 15
+  - condition: state
+    entity_id: remote.living_room
+    state: 'off'
+  - service: switch.turn_on
+    entity_id: switch.plex

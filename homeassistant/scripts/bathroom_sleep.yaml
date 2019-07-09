@@ -4,7 +4,11 @@ sequence:
     entity_id: binary_sensor.guests
     state: 'off'
   - service: light.turn_off
-    entity_id: light.bathroom
+    entity_id: light.bathroom_lights
+
+  - delay:
+      seconds: 30
+
   - service: switch.turn_on
     entity_id:
       - switch.bathroom_fluxer

@@ -4,8 +4,8 @@ sequence:
     entity_id: switch.living_area_fluxer
   - service: light.turn_on
     entity_id:
-      - light.kitchen
-      - light.entryway
+      - light.kitchen_lights
+      - light.entryway_lights
       - light.dining_lights_level
     data:
       profile: concentrate

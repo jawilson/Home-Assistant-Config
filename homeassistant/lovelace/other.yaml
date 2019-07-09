@@ -12,7 +12,7 @@ cards:
           - sensor.apartment_thermostat_temperature
           - sensor.bathroom_temperature
           - sensor.bedroom_temperature
-          - sensor.living_room_temperature
+          - sensor.sunroom_temperature
 
       - type: entities
         title: Humidities
@@ -22,7 +22,7 @@ cards:
           - sensor.apartment_thermostat_humidity
           - sensor.bathroom_relative_humidity
           - sensor.bedroom_relative_humidity
-          - sensor.living_room_relative_humidity
+          - sensor.sunroom_relative_humidity
 
   - type: vertical-stack
     cards:

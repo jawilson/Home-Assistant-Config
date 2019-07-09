@@ -3,11 +3,21 @@ sequence:
   - condition: state
     entity_id: input_boolean.climate_auto
     state: 'on'
-  - delay:
-      minutes: 2
+  - wait_template: "{{ not is_state('climate.apartment', 'off') and not is_state('climate.apartment', 'eco') }}"
+    timeout: '00:45:00'
+    continue_on_timeout: 'true'
   - service: climate.set_temperature
-    data:
+    data_template:
       entity_id: climate.apartment
-      target_temp_high: 74
-      temperature: 74
-      target_temp_low: 70
+      target_temp_high: "{{ states('input_number.default_high_temp')|int + 1 }}"
+      temperature: "{{ states('input_number.default_low_temp')|int + 1 }}"
+      target_temp_low: "{{ states('input_number.default_low_temp')|int + 1 }}"
+  - wait_template: "{{ states.climate.apartment.attributes.current_temperature|float >= states('input_number.default_low_temp')|float }}"
+    timeout: '00:45:00'
+    continue_on_timeout: 'true'
+  - service: climate.set_temperature
+    data_template:
+      entity_id: climate.apartment
+      target_temp_high: "{{ states('input_number.default_high_temp')|int }}"
+      temperature: "{{ states('input_number.default_low_temp')|int if is_state('climate.apartment', 'heat') else states('input_number.default_high_temp')|int }}"
+      target_temp_low: "{{ states('input_number.default_low_temp')|int }}"

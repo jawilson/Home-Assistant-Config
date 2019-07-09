@@ -14,7 +14,7 @@
       value_template: >
         {{ (as_timestamp(now()) - as_timestamp(states.script.dinner.attributes.last_triggered)|float)/60 > 60 }}
     - service: light.turn_off
-      entity_id: light.living_room
+      entity_id: light.living_room_lights
 
 - alias: 'SHIELD Plex Idle'
   trigger:
@@ -29,13 +29,15 @@
       entity_id: input_boolean.media_automation
       state: 'on'
     - condition: state
-      entity_id: light.living_room_lamp
+      entity_id: light.entertainment_lights
       state: 'off'
   action:
     - service: switch.turn_off
-      entity_id: switch.living_area_fluxer
+      entity_id:
+        - switch.tree_lamp_fluxer
+        - switch.living_area_fluxer
     - service: light.turn_on
-      entity_id: light.living_room
+      entity_id: light.living_room_lights
       data:
         profile: nightlight
         transition: 15
@@ -56,9 +58,9 @@
         service: light.turn_on
         state: 'off'
         entity_id:
-          - light.living_room
-          - light.kitchen
-          - light.entryway
+          - light.living_room_lights
+          - light.kitchen_lights
+          - light.entryway_lights
         data:
           profile: nightlight
     - service: python_script.call_service_if_state
@@ -67,11 +69,12 @@
         state: 'off'
         entity_id: light.dining_lights_level
         data:
-          brightness_pct: 2
+          brightness_pct: 10
     - service: switch.turn_on
       entity_id: switch.living_area_fluxer
     - service: switch.entryway_fluxer_update
     - service: switch.living_room_fluxer_update
+    - service: switch.tree_lamp_fluxer_update
     - service: switch.kitchen_fluxer_update
     - service: switch.dining_fluxer_update
 
@@ -81,6 +84,6 @@
     entity_id: remote.living_room
   action:
     service: input_select.select_option
-    data:
+    data_template:
       entity_id: input_select.living_room_activity
-      option: '{{ trigger.to_state.attributes.current_activity }}'
+      option: "{{ trigger.to_state.attributes.current_activity|default('PowerOff') }}"

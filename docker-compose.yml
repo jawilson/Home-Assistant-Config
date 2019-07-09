@@ -26,19 +26,12 @@ services:
       - ./postgres/initdb.d:/docker-entrypoint-initdb.d:ro
     env_file:
       - ./postgres/secrets.env
-  influxdb:
-    image: library/influxdb
-    restart: unless-stopped
-    user: '114:118'
-    volumes:
-      - ./influxdb:/var/lib/influxdb
   homeassistant:
     image: homeassistant/home-assistant:latest
     links:
       - mqtt
       - mqtt:mqtt.singularity.net
       - database
-      - influxdb
     restart: unless-stopped
     user: '0:118'
     dns: 192.168.0.1
@@ -68,10 +61,6 @@ services:
       - '-s'
       - 'database:5432'
       - '--'
-      - '/opt/tools/wait-for-it/wait-for-it.sh'
-      - '-s'
-      - 'influxdb:8086'
-      - '--'
       - 'python'
       - '-m'
       - 'homeassistant'
@@ -87,36 +76,20 @@ services:
       - 1880:1880
     volumes:
       - ./node-red/data:/data
-  plexpy2influx:
-    image: matthewvantassel/plexpy2influx
+  appdaemon:
+    image: acockburn/appdaemon:latest
     restart: unless-stopped
+    user: '114:118'
     links:
-      - influxdb
-    environment:
-      - INFLUX_HOST=influxdb
-      - INFLUX_DB=plex
-      - PLEXPY_HOST=plexpy.singularity.net
-    env_file: ./plexpy.env
-  grafana:
-    image: grafana/grafana
-    restart: unless-stopped
-    links:
-      - database
-      - influxdb
+      - homeassistant
     ports:
-      - 3000:3000
-    volumes:
-      - ./grafana:/etc/grafana:ro
-      - ./tools:/opt/tools:ro
+      - 5051:5051
     environment:
-      - GF_INSTALL_PLUGINS=natel-discrete-panel
-    entrypoint:
-      - '/opt/tools/wait-for-it/wait-for-it.sh'
-      - '-s'
-      - 'database:5432'
-      - '--'
-      - '/run.sh'
-
+      - HA_URL="http://homeassistant:8123"
+      - DASH_URL="http://0.0.0.0:5051"
+    env_file: ./appdaemon/appdaemon.env
+    volumes:
+      - ./appdaemon/conf:/conf
 networks:
   default:
   macvlan:

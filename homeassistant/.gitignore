@@ -1,6 +1,8 @@
 .HA_VERSION
 .uuid
 *.db-journal
+.adbkey
+.google_maps_location_sharing.cookies
 
 known_devices.yaml
 entity_registry.yaml

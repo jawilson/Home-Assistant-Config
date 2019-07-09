@@ -17,7 +17,7 @@
   action:
     service_template: >-
       {% if trigger.entity_id == 'person.jeff' -%}
-      notify.ios_sashag_phone
+      notify.ios_sashag_phone_ios
       {%- else -%}
       notify.html5_jawilson_phone
       {%- endif %}
@@ -31,6 +31,7 @@
         arrived at {{ trigger.to_state.state }}
         {%- endif %}
       data:
+        ttl: 7200
         tag: 'location-update'
         push:
           thread-id: 'location-update'
@@ -56,6 +57,7 @@
         {{ states[trigger.to_state.domain][trigger.to_state.object_id].attributes.value }}
         {{ 'today' if trigger.entity_id == 'sensor.jeff_at_work_today' else 'this week' }}
       data:
+        priority: high
         requireInteraction: true
         vibrate: [500, 250, 500, 250, 500, 250, 500, 250, 500]
         image: 'https://render.bitstrips.com/v2/cpanel/efd60697-b088-412c-b450-e2d914c2007a-51c44532-b4a5-4f9d-b914-db4ffc9e30c0-v1.png?transparent=1&palette=1'
@@ -133,6 +135,8 @@
       data_template:
         title: New Device Detected
         message: '{{trigger.event.data.host_name}} with id {{trigger.event.data.entity_id}}'
+        data:
+          priority: high
 
 
 - alias: Update Available Notification

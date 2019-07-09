@@ -9,22 +9,19 @@ cards:
       - entity: light.bedroom_lights
         name: All lights
       - type: divider
-      - light.tree_lamp
+      - light.bedroom_nook
       - type: divider
-      - light.tree_lamp_1
-      - light.tree_lamp_2
-      - light.tree_lamp_3
-      - light.tree_lamp_4
-      - light.tree_lamp_5
+      - light.bedroom_nook_1
+      - light.bedroom_nook_2
+      - light.bedroom_nook_3
       - light.nightstand_1
       - light.nightstand_2
+      - light.bedroom_lamp
 
   - type: entities
     title: Control
     show_header_toggle: false
     entities:
-      - entity: switch.humidifier
-        name: Humidifier
       - entity: switch.bedroom_fluxer
         name: Fluxer
       - entity: switch.bedroom_motion
@@ -65,4 +62,4 @@ cards:
       - script.closet_wake_up
 
   - type: media-control
-    entity: media_player.cast_bedroom
+    entity: media_player.bedroom_speaker

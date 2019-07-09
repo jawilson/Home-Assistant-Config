@@ -9,7 +9,7 @@ sequence:
       {%- elif is_state('person.jeff', 'home') %}
       notify.html5_jawilson_phone
       {%- elif is_state('person.sasha', 'home') %}
-      notefiy.ios_sashag_phone
+      notefiy.ios_sashag_phone_ios
       {%- endif %}
     data:
       title: 'Good Morning!'

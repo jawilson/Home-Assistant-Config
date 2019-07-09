@@ -4,8 +4,10 @@ sequence:
     entity_id: group.all_lights
     data:
       transition: 5
+
   - delay:
       seconds: 30
+
   - service: switch.turn_on
     entity_id:
       - switch.living_area_fluxer

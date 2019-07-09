@@ -12,6 +12,10 @@ sequence:
       - media_player.cast_kitchen_display
       - media_player.cast_living_room_speaker
       - media_player.gpm_desktop_player
+
+  - delay:
+      seconds: 30
+
   - service: homeassistant.turn_on
     entity_id:
       - switch.living_area_fluxer

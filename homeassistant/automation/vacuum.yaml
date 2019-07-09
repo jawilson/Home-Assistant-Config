@@ -89,8 +89,6 @@
     entity_id: vacuum.doomba
   condition:
     - condition: template
-      value_template: "{{ not is_state('person.jeff', 'home') }}"
-    - condition: template
       value_template: >
         {{ trigger.from_state.attributes.status|lower in ['new mission', 'running', 'user docking', 'docking', 'docking - end mission'] and trigger.to_state.attributes.status|lower in ['charging', 'recharging', 'stuck', 'cancelled', 'stopped', 'paused', 'user docking', 'docking - end mission', 'end mission'] }}
   action:
@@ -105,7 +103,7 @@
     - condition: template
       value_template: "{{ is_state_attr('vacuum.doomba', 'status', 'Charging') }}"
     - service: automation.turn_on
-      entity_id: automation.notify_empty_doomba_bin
+      entity_id: automation.doomba_notify_empty_bin
 
 
 - alias: Notify Doomba Not Docked
@@ -134,7 +132,7 @@
   action:
     service_template: >-
       {% if trigger.entity_id == 'person.sasha' -%}
-      notify.ios_sashag_phone
+      notify.ios_sashag_phone_ios
       {%- else -%}
       notify.html5_jawilson_phone
       {%- endif %}
@@ -143,7 +141,7 @@
       message: Welcome home, it looks like Doomba isn't docked and charging. Can you help it out?
 
 
-- alias: Notify Empty Doomba Bin
+- alias: Doomba Notify Empty Bin
   trigger:
     platform: state
     entity_id:
@@ -158,8 +156,8 @@
       value_template: "{{ is_state_attr('vacuum.doomba', 'status', 'Charging') }}"
   action:
     - service_template: >-
-        {% if trigger.entity_id == 'person.sasha' -%}
-        notify.ios_sashag_phone
+        {% if (trigger != null and trigger.entity_id == 'person.sasha') -%}
+        notify.ios_sashag_phone_ios
         {%- else -%}
         notify.html5_jawilson_phone
         {%- endif %}
@@ -186,7 +184,7 @@
     - platform: event
       event_type: html5_notification.clicked
       event_data:
-        action: ok
+        action: 'ok'
         tag: 'doomba-bin'
     - platform: event
       event_type: ios.notification_action_fired
@@ -196,7 +194,10 @@
           tag: 'doomba-bin'
   action:
     - service: automation.turn_off
-      entity_id: automation.notify_empty_doomba_bin
+      entity_id: automation.doomba_notify_empty_bin
+    - service: notify.html5_dismiss
+      data:
+        tag: 'doomba-bin'
 
 
 - alias: Notify Doomba Error

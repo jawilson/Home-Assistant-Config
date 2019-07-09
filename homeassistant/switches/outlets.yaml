@@ -1,6 +1,0 @@
-- platform: orvibo
-  discovery: false
-  switches:
-    - host: 192.168.0.56
-      mac: 'AC:CF:23:8D:35:F8'
-      name: 'Humidifier'

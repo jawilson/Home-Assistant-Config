@@ -183,6 +183,7 @@ class {
       switch: "toggle",
       vacuum: "toggle",
       water_heater: "climate",
+      input_datetime: "input-datetime",
     };
 
     if(!config || typeof config !== "object" || (!config.entity && !config.type)) {
@@ -300,7 +301,7 @@ class {
       const lhs = this.parseTemplateString(str[1]);
       const rhs = this.parseTemplateString(str[3]);
       var expr = ''
-      if(!parseFloat(lhs))
+      if(parseFloat(lhs) != lhs)
         expr = `"${lhs}" ${str[2]} "${rhs}"`;
       else
         expr = `${parseFloat(lhs)} ${str[2]} ${parseFloat(rhs)}`

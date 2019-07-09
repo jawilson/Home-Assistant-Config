@@ -2,17 +2,17 @@
   entities:
     switch.plex: on
     switch.living_area_fluxer: off
-    light.living_room:
+    light.living_room_lights:
       state: on
       profile: nightlight
       brightness: 100
       transition: 15
-    light.entryway: off
-    light.kitchen: off
+    light.entryway_lights: off
+    light.kitchen_lights: off
     light.dining_lights_level: off
-    light.bathroom: off
-    light.closet: off
-    light.bedroom: off
+    light.bathroom_lights: off
+    light.closet_lights: off
+    light.bedroom_lights: off
     light.liquor_cabinet_lights: off
 
 
@@ -20,14 +20,6 @@
   entities:
     switch.living_area_fluxer:
       state: off
-    light.living_room_lamp:
-      state: on
-      xy_color: [0.4449, 0.4066]
-      brightness: 173
-    light.desk_lamp:
-      state: on
-      xy_color: [0.4449, 0.4066]
-      brightness: 173
     light.entertainment_lights:
       state: on
       xy_color: [0.4449, 0.4066]
@@ -39,17 +31,10 @@
 
 - name: Up Late
   entities:
-    light.entryway_light_1:
+    light.entryway_light:
       state: on
       color_temp: 454
       brightness: 1
-    light.living_room_lamp:
-      state: on
-      profile: late
-    light.desk_lamp:
-      state: on
-      profile: late
-      brightness: 140
     light.entertainment_light_1:
       state: on
       profile: late
@@ -57,32 +42,27 @@
       state: on
       brightness: 28
 
-    light.entryway_light_2: off
     light.liquor_cabinet_lights: off
-    light.bathroom: off
-    light.closet_light: off
-    light.bedroom: off
+    light.bathroom_lights: off
+    light.closet_lights: off
+    light.bedroom_lights: off
     switch.living_area_fluxer: off
 
 
 - name: Romantic
   entities:
-    light.entryway_light_1:
+    light.entryway_light:
       state: on
       color_temp: 454
       brightness: 1
-    light.kitchen:
+    light.kitchen_lights:
       state: on
       xy_color: [0.5923,0.3829]
       brightness: 1
     light.dining_lights_level:
       state: on
       brightness: 25
-    light.living_room_lamp:
-      state: on
-      xy_color: [0.5923,0.3829]
-      brightness: 100
-    light.desk_lamp:
+    light.bedroom_lamp:
       state: on
       xy_color: [0.5923,0.3829]
       brightness: 100
@@ -126,7 +106,6 @@
     light.tree_lamp_1: off
     light.tree_lamp_3: off
     light.tree_lamp_5: off
-    light.entryway_light_2: off
     light.bathroom_mirror_1: off
     light.bathroom_mirror_3: off
     switch.living_area_fluxer: off

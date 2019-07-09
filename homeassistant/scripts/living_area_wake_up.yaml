@@ -18,46 +18,50 @@ sequence:
   - service: light.turn_on
     entity_id:
       - light.dining_lights_level
-      - light.entryway
-      - light.kitchen
+      - light.entryway_lights
+      - light.kitchen_lights
     data:
       color_temp: 450
-      brightness: 3
+      brightness: 1
+  - delay:
+      seconds: 5
   - service: light.turn_on
     entity_id:
       - light.dining_lights_level
-      - light.entryway
-      - light.kitchen
+      - light.entryway_lights
+      - light.kitchen_lights
     data:
       transition: 480
       color_temp: 450
       brightness: 160
+  - service: light.turn_on
+    entity_id: light.kitchen_cabinet_lights
   - delay:
-      minutes: 10
+      minutes: 5
 
   - service: light.turn_on
     entity_id:
       - light.dining_lights_level
-      - light.entryway
-      - light.kitchen
+      - light.entryway_lights
+      - light.kitchen_lights
     data:
       transition: 480
       color_temp: 400
       brightness: 180
   - delay:
-      minutes: 10
+      minutes: 5
 
   - service: light.turn_on
     entity_id:
       - light.dining_lights_level
-      - light.entryway
-      - light.kitchen
+      - light.entryway_lights
+      - light.kitchen_lights
     data:
       transition: 600
       color_temp: 225
       brightness: 180
   - delay:
-      minutes: 15
+      minutes: 10
 
 
   # Restore fluxer

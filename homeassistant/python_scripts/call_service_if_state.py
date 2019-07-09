@@ -1,7 +1,8 @@
 entity_ids = data.get('entity_id')
 state = data.get('state')
 service = data.get('service')
-call_data = data.get('data', {})
+call_data = {}
+call_data.update(data.get('data', {}))
 
 if isinstance(entity_ids, str):
     entity_ids = [entity_ids]

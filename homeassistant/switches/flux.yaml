@@ -1,14 +1,14 @@
 - platform: flux
   name: Entryway Fluxer
   lights:
-    - light.entryway
-  mode: mired
+    - light.entryway_lights
+  mode: xy
 
   start_time: '6:00'
   stop_time: '22:00'
 
   start_colortemp: 5000
-  sunset_colortemp: 3000
+  sunset_colortemp: 4000
   stop_colortemp: 1900
 
 
@@ -16,7 +16,7 @@
 - platform: flux
   name: Kitchen Fluxer
   lights:
-    - light.kitchen
+    - light.kitchen_lights
   mode: xy
 
   start_time: '6:00'
@@ -46,7 +46,36 @@
 - platform: flux
   name: Living Room Fluxer
   lights:
-    - light.living_room
+    - light.entertainment_lights
+  mode: xy
+
+  start_time: '6:00'
+  stop_time: '22:00'
+
+  start_colortemp: 5000
+  sunset_colortemp: 3500
+  stop_colortemp: 1900
+
+
+- platform: flux
+  name: Tree Lamp Fluxer
+  lights:
+    - light.tree_lamp
+  mode: mired
+
+  start_time: '6:00'
+  stop_time: '22:00'
+
+  start_colortemp: 5000
+  sunset_colortemp: 3000
+  stop_colortemp: 1900
+
+
+
+- platform: flux
+  name: Sunroom Fluxer
+  lights:
+    - light.sunroom_lights
   mode: xy
 
   start_time: '6:00'
@@ -66,28 +95,34 @@
         {{ is_state('switch.entryway_fluxer', 'on') and
           is_state('switch.kitchen_fluxer', 'on') and
           is_state('switch.dining_fluxer', 'on') and
-          is_state('switch.living_room_fluxer', 'on') }}
+          is_state('switch.tree_lamp_fluxer', 'on') and
+          is_state('switch.living_room_fluxer', 'on') and
+          is_state('switch.sunroom_fluxer', 'on') }}
       turn_on:
         service: switch.turn_on
         entity_id:
           - switch.entryway_fluxer
           - switch.kitchen_fluxer
           - switch.dining_fluxer
+          - switch.tree_lamp_fluxer
           - switch.living_room_fluxer
+          - switch.sunroom_fluxer
       turn_off:
         service: switch.turn_off
         entity_id:
           - switch.entryway_fluxer
           - switch.kitchen_fluxer
           - switch.dining_fluxer
+          - switch.tree_lamp_fluxer
           - switch.living_room_fluxer
+          - switch.sunroom_fluxer
 
 
 
 - platform: flux
   name: Bedroom Fluxer
   lights:
-    - light.bedroom
+    - light.bedroom_lights
   mode: mired
 
   start_time: '6:00'
@@ -102,7 +137,7 @@
 - platform: flux
   name: Closet Fluxer
   lights:
-    - light.closet
+    - light.closet_lights
   mode: mired
 
   start_time: '6:00'
@@ -117,7 +152,7 @@
 - platform: flux
   name: Bathroom Fluxer
   lights:
-    - light.bathroom
+    - light.bathroom_lights
   mode: mired
 
   start_time: '6:00'

@@ -18,31 +18,38 @@
   name: Kitchen Lights
   entities:
     - light.kitchen
-    - light.dining_lights_level
 
 - platform: group
   name: Living Area Lights
   entities:
-    - light.entryway
-    - light.kitchen
+    - light.entryway_lights
+    - light.kitchen_lights
     - light.dining_lights_level
-    - light.entertainment_lights
-    - light.living_room_lamp
-    - light.desk_lamp
+    - light.living_room_lights
+    - light.sunroom_lights
 
 - platform: group
   name: Living Room Lights
   entities:
-    - light.entertainment_lights
-    - light.living_room_lamp
-    - light.desk_lamp
+    - light.living_room
+
+- platform: group
+  name: Sunroom Lights
+  entities:
+    - light.sunroom
+
+- platform: group
+  name: Bedroom Nook
+  entities:
+    - light.bedroom_nook_1
+    - light.bedroom_nook_2
+    - light.bedroom_nook_3
 
 - platform: group
   name: Bedroom Lights
   entities:
-    - light.tree_lamp
-    - light.nightstand_1
-    - light.nightstand_2
+    - light.bedroom
+    - light.bedroom_nook
 
 - platform: group
   name: Closet Lights
@@ -52,29 +59,28 @@
 - platform: group
   name: Bathroom Lights
   entities:
-    - light.shower_light
-    - light.bathroom_mirror
+    - light.bathroom
 
 - platform: group
   name: Color Lights
   entities:
-    - light.kitchen
+    - light.kitchen_lights
     - light.liquor_cabinet_lights
     - light.entertainment_lights
-    - light.living_room_lamp
-    - light.desk_lamp
+    - light.bedroom_lamp
+    - light.bedroom_nook
 
 - platform: group
   name: Color Temperature Lights
   entities:
-    - light.entryway
+    - light.entryway_lights
     - light.tree_lamp
     - light.nightstand_1
     - light.nightstand_2
-    - light.closet
+    - light.closet_lights
     - light.bathroom_mirror
     - light.shower
-    - light.kitchen
+    - light.kitchen_lights
     - light.entertainment_lights
-    - light.living_room_lamp
-    - light.desk_lamp
+    - light.bedroom_lamp
+    - light.sunroom_nightstand_lamp

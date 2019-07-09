@@ -3,54 +3,56 @@ sequence:
   - condition: state
     entity_id: binary_sensor.guests
     state: 'off'
-  - condition: numeric_state
-    entity_id: sun.sun
-    value_template: "{{ state.attributes.elevation }}"
-    below: 10
 
   # Disable fluxer
   - service: switch.turn_off
-    entity_id: switch.living_room_fluxer
+    entity_id:
+      - switch.living_room_fluxer
+      - switch.tree_lamp_fluxer
 
 
   # Turn on lights softly
   - service: light.turn_on
     entity_id:
-      - light.living_room
+      - light.living_room_lights
     data:
       color_temp: 450
-      brightness: 3
+      brightness: 1
+  - delay:
+      seconds: 5
   - service: light.turn_on
     entity_id:
-      - light.living_room
+      - light.living_room_lights
     data:
       transition: 480
       color_temp: 450
       brightness: 160
   - delay:
-      minutes: 10
+      minutes: 5
 
   - service: light.turn_on
     entity_id:
-      - light.living_room
+      - light.living_room_lights
     data:
       transition: 480
       color_temp: 400
       brightness: 180
   - delay:
-      minutes: 10
+      minutes: 5
 
   - service: light.turn_on
     entity_id:
-      - light.living_room
+      - light.living_room_lights
     data:
       transition: 600
       color_temp: 225
       brightness: 180
   - delay:
-      minutes: 15
+      minutes: 10
 
 
   # Restore fluxer
   - service: switch.turn_on
-    entity_id: switch.living_room_fluxer
+    entity_id:
+      - switch.living_room_fluxer
+      - switch.tree_lamp_fluxer

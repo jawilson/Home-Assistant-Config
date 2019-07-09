@@ -10,6 +10,6 @@ sequence:
     data:
       entity_id: climate.apartment
     data_template:
-      target_temp_high: "{{ 74 if not is_state('sensor.jeff_alarm', 'Bedtime') else 71 }}"
-      temperature: "{{ 72 if not is_state('sensor.jeff_alarm', 'Bedtime') else 70 }}"
-      target_temp_low: "{{ 70 if not is_state('sensor.jeff_alarm', 'Bedtime') else 68 }}"
+      target_temp_high: "{{ states('input_number.default_high_temp')|int if not is_state('sensor.jeff_alarm', 'Bedtime') else 71 }}"
+      temperature: "{{ (states('input_number.default_low_temp')|int if is_state('climate.apartment', 'heat') else states('input_number.default_high_temp')|int) if not is_state('sensor.jeff_alarm', 'Bedtime') else 70 }}"
+      target_temp_low: "{{ states('input_number.default_low_temp')|int if not is_state('sensor.jeff_alarm', 'Bedtime') else 68 }}"

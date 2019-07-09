@@ -38,11 +38,17 @@ entities:
     hidden: true
   light.kitchen_lights:
     hidden: true
+  light.sunroom:
+    hidden: true
+  light.sunroom_lights:
+    hidden: true
   light.living_area_lights:
     hidden: true
   light.living_room:
     hidden: true
   light.living_room_lights:
+    hidden: true
+  light.projector:
     hidden: true
   light.tree_lamp:
     hidden: true

@@ -3,9 +3,11 @@
   user_id: 94f1fb97e8374becb77c3979bbd3fc0b
   device_trackers:
     - device_tracker.jawilson_phone
+    - device_tracker.jawilson_phone_owntracks
 
 - name: Sasha
   id: sashag
-  user_id: 5eb7be7d843f4a2b956b1112f617855f
+  user_id: e153c700e62f4120a579fc1b66af609d
   device_trackers:
     - device_tracker.sashag_phone
+    - device_tracker.sashag_phone_ios

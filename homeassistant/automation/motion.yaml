@@ -15,7 +15,7 @@
       entity_id: binary_sensor.presume_home
       state: 'on'
     - condition: state
-      entity_id: light.bedroom
+      entity_id: light.bedroom_lights
       state: 'off'
     - condition: state
       entity_id: binary_sensor.jeff_sleeping_at_home
@@ -35,7 +35,7 @@
       below: '60'
   action:
     - service: light.turn_on
-      entity_id: light.bedroom
+      entity_id: light.bedroom_lights
 
 
 - alias: Bedroom No Motion
@@ -46,7 +46,7 @@
       for:
         minutes: 3
     - platform: state
-      entity_id: light.bedroom
+      entity_id: light.bedroom_lights
       to: 'on'
       for:
         minutes: 5
@@ -55,7 +55,7 @@
       entity_id: input_boolean.motion
       state: 'on'
     - condition: state
-      entity_id: light.bedroom
+      entity_id: light.bedroom_lights
       state: 'on'
     - condition: state
       entity_id: sensor.bedroom_alarm_level
@@ -69,14 +69,14 @@
       state: 'on'
   action:
     - service: light.turn_off
-      entity_id: light.bedroom
+      entity_id: light.bedroom_lights
     - service: switch.turn_on
       entity_id: switch.bedroom_fluxer
     - condition: state
-      entity_id: light.bathroom
+      entity_id: light.bathroom_lights
       state: 'off'
     - service: light.turn_off
-      entity_id: light.closet
+      entity_id: light.closet_lights
 
 
 - alias: Bathroom Motion
@@ -96,7 +96,7 @@
       entity_id: binary_sensor.presume_home
       state: 'on'
     - condition: state
-      entity_id: light.bathroom
+      entity_id: light.bathroom_lights
       state: 'off'
   action:
     - service: python_script.bathroom_motion
@@ -110,7 +110,7 @@
       for:
         minutes: 3
     - platform: state
-      entity_id: light.bathroom
+      entity_id: light.bathroom_lights
       to: 'on'
       for:
         minutes: 5
@@ -119,7 +119,7 @@
       entity_id: input_boolean.motion
       state: 'on'
     - condition: state
-      entity_id: light.bathroom
+      entity_id: light.bathroom_lights
       state: 'on'
     - condition: state
       entity_id: sensor.bathroom_alarm_level
@@ -149,14 +149,14 @@
                 minutes: 3
   action:
     - service: light.turn_off
-      entity_id: light.bathroom
+      entity_id: light.bathroom_lights
     - service: switch.turn_on
       entity_id: switch.bathroom_fluxer
     - condition: state
-      entity_id: light.bedroom
+      entity_id: light.bedroom_lights
       state: 'off'
     - service: light.turn_off
-      entity_id: light.closet
+      entity_id: light.closet_lights
 
 
 - alias: Closet Motion
@@ -183,7 +183,7 @@
       entity_id: group.all_lights
       state: 'on'
     - condition: state
-      entity_id: light.closet
+      entity_id: light.closet_lights
       state: 'off'
     - condition: state
       entity_id: binary_sensor.jeff_sleeping_at_home
@@ -200,7 +200,7 @@
             {{ (as_timestamp(now()) - as_timestamp(states.automation.home_assistant_start.attributes.last_triggered))/60 < 30 }}
   action:
     - service: light.turn_on
-      entity_id: light.closet_light
+      entity_id: light.closet_lights
 
 
 - alias: Closet No Motion
@@ -216,7 +216,7 @@
       for:
         minutes: 3
     - platform: state
-      entity_id: light.closet
+      entity_id: light.closet_lights
       to: 'on'
       for:
         minutes: 5
@@ -225,7 +225,7 @@
       entity_id: input_boolean.motion
       state: 'on'
     - condition: state
-      entity_id: light.closet_light
+      entity_id: light.closet_lights
       state: 'on'
     - condition: or
       conditions:
@@ -253,4 +253,4 @@
   action:
     - service: light.turn_off
       entity_id:
-        - light.closet_light
+        - light.closet_lights

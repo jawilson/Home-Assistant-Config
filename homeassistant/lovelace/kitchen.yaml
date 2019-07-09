@@ -21,10 +21,7 @@ cards:
     title: Other Lights
     show_header_toggle: false
     entities:
-      - light.entryway
-      - type: divider
-      - light.entryway_light_1
-      - light.entryway_light_2
+      - light.entryway_light
 
   - type: entities
     title: Accent Lights
@@ -41,12 +38,12 @@ cards:
       - entity: script.living_area_wake_up
         name: Wake-Up
 
-  - type: glance
-    title: Sensors
-    show_name: false
-    entities:
-      - sensor.living_room_temperature
-      - sensor.living_room_relative_humidity
+  #- type: glance
+  #  title: Sensors
+  #  show_name: false
+  #  entities:
+  #    - sensor.living_room_temperature
+  #    - sensor.living_room_relative_humidity
 
   - type: media-control
-    entity: media_player.cast_kitchen_display
+    entity: media_player.kitchen_display

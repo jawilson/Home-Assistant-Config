@@ -96,14 +96,14 @@ cards:
                   - sensor.apartment_thermostat_temperature
                   - sensor.bathroom_temperature
                   - sensor.bedroom_temperature
-                  - sensor.living_room_temperature
+                  - sensor.sunroom_temperature
               - type: custom:fold-entity-row
                 head: sensor.apartment_humidities
                 items:
                   - sensor.apartment_thermostat_humidity
                   - sensor.bathroom_relative_humidity
                   - sensor.bedroom_relative_humidity
-                  - sensor.living_room_relative_humidity
+                  - sensor.sunroom_relative_humidity
               - type: custom:fold-entity-row
                 head:
                   type: section
@@ -111,7 +111,10 @@ cards:
                 items:
                   - switch.apartment_home
                   - switch.apartment_fan
-                  - switch.humidifier
+                  - entity: input_number.default_high_temp
+                    name: High
+                  - entity: input_number.default_low_temp
+                    name: Low
       - type: entities
         title: Vacuum
         show_header_toggle: false
@@ -125,7 +128,7 @@ cards:
                 name: Automatically Run
               - input_boolean.schedule_vacuum
       - type: media-control
-        entity: media_player.cast_everything_group
+        entity: media_player.home
 
   #
   # Third column

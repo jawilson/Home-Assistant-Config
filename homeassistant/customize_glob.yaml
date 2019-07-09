@@ -6,6 +6,11 @@
   hidden: true
 
 
+"light.disco*":
+  hidden: true
+  emulated_hue_hidden: true
+
+
 "script.*location_update":
   icon: mdi:crosshairs-gps
 "script.*_wake_up":

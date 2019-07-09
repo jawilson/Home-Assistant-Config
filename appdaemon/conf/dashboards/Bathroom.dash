@@ -1,0 +1,63 @@
+title: Bathroom
+widget_dimensions: [120, 120]
+widget_margins: [5, 5]
+columns: 5
+global_parameters:
+    use_hass_icon: 1
+
+layout:
+    - lights,   getting-ready,  fluxer, speaker(2x2)
+    - fan,      wake-up,        motion
+    - spacer(3x1),                      temperature,    humidity
+
+lights:
+    widget_type: light
+    entity: light.bathroom
+    title: Lights
+    icon_off: mdi-lightbulb-outline
+    icon_on: mdi-lightbulb-on
+
+fluxer:
+    widget_type: switch
+    entity: switch.bathroom_fluxer
+    title: Fluxer
+
+fan:
+    widget_type: switch
+    entity: switch.bathroom_fan_switch
+    title: Fan
+
+motion:
+    widget_type: switch
+    entity: switch.bathroom_motion
+    title: Motion
+
+temperature:
+    widget_type: sensor
+    entity: sensor.bathroom_temperature
+    title: Temperature
+
+humidity:
+    widget_type: sensor
+    entity: sensor.bathroom_relative_humidity
+    title: Humidity
+
+speaker:
+    widget_type: media_player
+    entity: media_player.cast_bathroom_speaker
+    title: Speaker
+    icon_on: mdi-speaker-wireless
+    icon_off: mdi-speaker-wireless
+
+wake-up:
+    widget_type: switch
+    entity: script.bathroom_wake_up
+    title: Wake-Up
+    use_hass_icon: 0
+    icon_off: mdi-sleep
+    icon_on: mdi-sleep-off
+
+getting-ready:
+    widget_type: script
+    entity: script.getting_ready
+    title: Getting Ready

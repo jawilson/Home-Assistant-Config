@@ -671,9 +671,25 @@
      "file": "/data/node_modules/node-red-contrib-home-assistant-websocket/nodes/api/api.js"
     }
    }
+  },
+  "node-red-contrib-aggregator": {
+   "name": "node-red-contrib-aggregator",
+   "version": "1.5.0",
+   "local": true,
+   "nodes": {
+    "aggregator": {
+     "name": "aggregator",
+     "types": [
+      "aggregator"
+     ],
+     "enabled": true,
+     "local": true,
+     "module": "node-red-contrib-aggregator",
+     "file": "/data/node_modules/node-red-contrib-aggregator/aggregator/aggregator.js"
+    }
+   }
   }
  },
- "_credentialSecret": "286049b5891dad890460be6df549ef830559885420e99462d1a9de0d02871e44",
  "users": {
   "_": {
    "editor": {
@@ -681,11 +697,13 @@
      "view-grid-size": "20",
      "view-node-status": true,
      "view-node-show-label": true,
-     "view-show-tips": true,
+     "view-show-tips": false,
      "view-snap-grid": false,
      "view-show-grid": false
     }
-   }
+   },
+   "menu-menu-item-sidebar": true,
+   "menu-menu-item-palette": true
   }
  }
 }

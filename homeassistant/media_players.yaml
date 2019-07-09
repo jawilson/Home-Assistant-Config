@@ -1,6 +1,24 @@
 - platform: plex
   entity_namespace: plex
 
+- platform: androidtv
+  entity_namespace: androidtv
+  name: SHIELD
+  host: SHIELD.singularity.net
+  adbkey: '/config/.adbkey'
+  apps:
+    com.google.android.tvlauncher: Homescreen
+    com.google.android.apps.mediashell: Cast
+    com.netflix.ninja: Netflix
+    com.plexapp.android: Plex
+    com.nbcuni.nbc.androidtv: NBC/Universal
+    com.hbo.hbonow: HBO Now
+    com.jackboxgames.TJPP3Loader: Jackbox 3
+    com.espn.score_center: Watch ESPN
+    com.google.android.youtube.tv: YouTube
+    com.amazon.amazonvideo.livingroom: Amazon Video
+
+
 - platform: universal
   name: Shield
   children:
@@ -43,3 +61,195 @@
     state: remote.living_room
     source: remote.living_room|current_activity
     source_list: input_select.living_room_activity|options
+
+- platform: universal
+  name: Kitchen Display
+  children:
+    - media_player.cast_kitchen_display
+    - media_player.cast_home_group
+    - media_player.cast_everything_group
+  commands:
+    turn_on:
+      service: media_player.turn_on
+      data:
+        entity_id: media_player.cast_kitchen_display
+    turn_off:
+      service: media_player.turn_on
+      data:
+        entity_id: media_player.cast_kitchen_display
+    volume_set:
+      service: media_player.volume_set
+      data:
+        entity_id: media_player.cast_kitchen_display
+        volume_level: '{{ volume_level }}'
+    volume_up:
+      service: media_player.volume_up
+      data:
+        entity_id: media_player.cast_kitchen_display
+    volume_down:
+      service: media_player.volume_down
+      data:
+        entity_id: media_player.cast_kitchen_display
+    volume_mute:
+      service: media_player.volume_mute
+      data:
+        entity_id: media_player.cast_kitchen_display
+  attributes:
+    is_volume_muted: media_player.cast_kitchen_display|is_volume_muted
+    volume_level: media_player.cast_kitchen_display|volume_level
+
+
+- platform: universal
+  name: Living Room Speaker
+  children:
+    - media_player.cast_living_room_speaker
+    - media_player.cast_entertaining_group
+    - media_player.cast_home_group
+    - media_player.cast_everything_group
+  commands:
+    turn_on:
+      service: media_player.turn_on
+      data:
+        entity_id: media_player.cast_living_room_speaker
+    turn_off:
+      service: media_player.turn_on
+      data:
+        entity_id: media_player.cast_living_room_speaker
+    volume_set:
+      service: media_player.volume_set
+      data:
+        entity_id: media_player.cast_living_room_speaker
+        volume_level: '{{ volume_level }}'
+    volume_up:
+      service: media_player.volume_up
+      data:
+        entity_id: media_player.cast_living_room_speaker
+    volume_down:
+      service: media_player.volume_down
+      data:
+        entity_id: media_player.cast_living_room_speaker
+    volume_mute:
+      service: media_player.volume_mute
+      data:
+        entity_id: media_player.cast_living_room_speaker
+  attributes:
+    is_volume_muted: media_player.cast_living_room_speaker|is_volume_muted
+    volume_level: media_player.cast_living_room_speaker|volume_level
+
+- platform: universal
+  name: Sunroom
+  children:
+    - media_player.cast_sunroom
+    - media_player.cast_entertaining_group
+    - media_player.cast_home_group
+    - media_player.cast_everything_group
+  commands:
+    turn_on:
+      service: media_player.turn_on
+      data:
+        entity_id: media_player.cast_sunroom
+    turn_off:
+      service: media_player.turn_on
+      data:
+        entity_id: media_player.cast_sunroom
+    volume_set:
+      service: media_player.volume_set
+      data:
+        entity_id: media_player.cast_sunroom
+        volume_level: '{{ volume_level }}'
+    volume_up:
+      service: media_player.volume_up
+      data:
+        entity_id: media_player.cast_sunroom
+    volume_down:
+      service: media_player.volume_down
+      data:
+        entity_id: media_player.cast_sunroom
+    volume_mute:
+      service: media_player.volume_mute
+      data:
+        entity_id: media_player.cast_sunroom
+  attributes:
+    is_volume_muted: media_player.cast_sunroom|is_volume_muted
+    volume_level: media_player.cast_sunroom|volume_level
+
+- platform: universal
+  name: Bedroom Speaker
+  children:
+    - media_player.cast_bedroom_speaker
+    - media_player.cast_entertaining_group
+    - media_player.cast_home_group
+    - media_player.cast_everything_group
+  commands:
+    turn_on:
+      service: media_player.turn_on
+      data:
+        entity_id: media_player.cast_bedroom_speaker
+    turn_off:
+      service: media_player.turn_on
+      data:
+        entity_id: media_player.cast_bedroom_speaker
+    volume_set:
+      service: media_player.volume_set
+      data:
+        entity_id: media_player.cast_bedroom_speaker
+        volume_level: '{{ volume_level }}'
+    volume_up:
+      service: media_player.volume_up
+      data:
+        entity_id: media_player.cast_bedroom_speaker
+    volume_down:
+      service: media_player.volume_down
+      data:
+        entity_id: media_player.cast_bedroom_speaker
+    volume_mute:
+      service: media_player.volume_mute
+      data:
+        entity_id: media_player.cast_bedroom_speaker
+  attributes:
+    is_volume_muted: media_player.cast_bedroom_speaker|is_volume_muted
+    volume_level: media_player.cast_bedroom_speaker|volume_level
+
+- platform: universal
+  name: Bathroom Mini
+  children:
+    - media_player.cast_bathroom_mini
+    - media_player.cast_entertaining_group
+    - media_player.cast_home_group
+    - media_player.cast_everything_group
+  commands:
+    turn_on:
+      service: media_player.turn_on
+      data:
+        entity_id: media_player.cast_bathroom_mini
+    turn_off:
+      service: media_player.turn_on
+      data:
+        entity_id: media_player.cast_bathroom_mini
+    volume_set:
+      service: media_player.volume_set
+      data:
+        entity_id: media_player.cast_bathroom_mini
+        volume_level: '{{ volume_level }}'
+    volume_up:
+      service: media_player.volume_up
+      data:
+        entity_id: media_player.cast_bathroom_mini
+    volume_down:
+      service: media_player.volume_down
+      data:
+        entity_id: media_player.cast_bathroom_mini
+    volume_mute:
+      service: media_player.volume_mute
+      data:
+        entity_id: media_player.cast_bathroom_mini
+  attributes:
+    is_volume_muted: media_player.cast_bathroom_mini|is_volume_muted
+    volume_level: media_player.cast_bathroom_mini|volume_level
+
+- platform: universal
+  name: Home
+  children:
+    - media_player.cast_entertaining_group
+    - media_player.cast_home_group
+    - media_player.cast_everything_group

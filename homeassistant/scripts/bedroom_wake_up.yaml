@@ -10,39 +10,41 @@ sequence:
   # Turn on lights softly
   - service: light.turn_on
     entity_id:
-      - light.bedroom
+      - light.bedroom_lights
     data:
       color_temp: 450
       brightness: 1
+  - delay:
+      seconds: 5
   - service: light.turn_on
     entity_id:
-      - light.bedroom
+      - light.bedroom_lights
     data:
       transition: 480
       color_temp: 450
       brightness: 160
   - delay:
-      minutes: 10
+      minutes: 5
 
   - service: light.turn_on
     entity_id:
-      - light.bedroom
+      - light.bedroom_lights
     data:
       transition: 480
       color_temp: 400
       brightness: 180
   - delay:
-      minutes: 10
+      minutes: 5
 
   - service: light.turn_on
     entity_id:
-      - light.bedroom
+      - light.bedroom_lights
     data:
       transition: 600
       color_temp: 333
       brightness: 180
   - delay:
-      minutes: 15
+      minutes: 10
 
 
   # Restore fluxer and motion automations
@@ -59,4 +61,4 @@ sequence:
     for:
       minutes: 10
   - service: light.turn_off
-    entity_id: light.bedroom
+    entity_id: light.bedroom_lights

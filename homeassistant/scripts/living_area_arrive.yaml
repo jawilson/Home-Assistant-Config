@@ -7,15 +7,19 @@ sequence:
     entity_id: switch.living_area_fluxer
   - service: light.turn_on
     entity_id:
-      - light.entryway
-      - light.kitchen
+      - light.entryway_lights
+      - light.kitchen_lights
       - light.dining_lights_level
-  - service: switch.living_room_fluxer_update
+      - light.living_room_lights
+  - service: switch.entryway_fluxer_update
   - service: switch.kitchen_fluxer_update
   - service: switch.dining_fluxer_update
+  - service: switch.living_room_fluxer_update
+  - service: switch.tree_lamp_fluxer_update
   - condition: numeric_state
     entity_id: sun.sun
     value_template: "{{ state.attributes.elevation }}"
-    below: 14
+    below: 5
   - service: light.turn_on
-    entity_id: light.living_room
+    entity_id: light.sunroom_lights
+  - service: switch.sunroom_fluxer_update

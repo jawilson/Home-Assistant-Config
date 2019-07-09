@@ -18,8 +18,6 @@ from homeassistant.const import (
 import homeassistant.helpers.config_validation as cv
 import homeassistant.helpers.location as location
 
-REQUIREMENTS = ['googlemaps==2.4.6']
-
 _LOGGER = logging.getLogger(__name__)
 
 ATTR_LOCATION_TYPE = 'location_type'
@@ -63,15 +61,18 @@ PLATFORM_SCHEMA = PLATFORM_SCHEMA.extend({
 })
 
 TRACKABLE_DOMAINS = ['device_tracker', 'sensor', 'person']
+DATA_KEY = 'google_reverse_geocode'
 
 
 def setup_platform(hass, config, add_devices_callback, discovery_info=None):
     """Set up the Google reverse geocoding platform."""
-    def run_setup(event):
+    @callback
+    def run_setup(now):
         """Delay the setup until Home Assistant is fully initialized.
 
         This allows any entities to be created already
         """
+        hass.data.setdefault(DATA_KEY, [])
         options = config.get(CONF_OPTIONS)
 
         entity_id = config.get(CONF_ENTITY_ID)
@@ -80,8 +81,9 @@ def setup_platform(hass, config, add_devices_callback, discovery_info=None):
         name = config.get(CONF_NAME, formatted_name)
         api_key = config.get(CONF_API_KEY)
 
-        sensor = GoogleReverseGeocodeSensor(hass, name, api_key, entity_id,
-                                            options)
+        sensor = GoogleReverseGeocodeSensor(
+            hass, name, api_key, entity_id, options)
+        hass.data[DATA_KEY].append(sensor)
 
         if sensor.valid_api_connection:
             add_devices_callback([sensor])
