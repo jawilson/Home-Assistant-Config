@@ -59,6 +59,13 @@ entity_config:
       - Schedule Vacuum
       - Schedule Cleaning
 
+  lights.kitchen_cabinet_lights:
+    name: Kitchen cabinet lights
+    aliases:
+      - Kitchen cabinet lights
+      - Kitchen counter lights
+      - Kitchen countertop lights
+
   scene.romantic:
     name: Romantic
     aliases:
