@@ -66,7 +66,6 @@ DATA_KEY = 'google_reverse_geocode'
 
 def setup_platform(hass, config, add_devices_callback, discovery_info=None):
     """Set up the Google reverse geocoding platform."""
-    @callback
     def run_setup(now):
         """Delay the setup until Home Assistant is fully initialized.
 

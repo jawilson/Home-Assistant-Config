@@ -16,8 +16,6 @@ default_config:
 custom_updater:
 discovery:
 
-google_reverse_geocode:
-
 # Web
 http:
   base_url: !secret http_base_url
