@@ -1,9 +1,9 @@
 alias: Nest Home
 sequence:
-  - service: climate.set_away_mode
+  - service: climate.set_preset_mode
     data:
       entity_id: climate.apartment
-      away_mode: false
+      preset_mode: none
   - delay:
       seconds: 15
   - service: climate.set_temperature

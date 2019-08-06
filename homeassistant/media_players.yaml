@@ -1,5 +1,4 @@
 - platform: plex
-  entity_namespace: plex
 
 - platform: androidtv
   entity_namespace: androidtv

@@ -255,7 +255,7 @@ nest:
       - 'temperature'
       - 'target'
       - 'humidity'
-      - 'operation_mode'
+      - 'hvac_mode'
       - 'hvac_state'
 
 hue:
