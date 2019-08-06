@@ -34,7 +34,7 @@
 - alias: Nest while home
   trigger:
     platform: template
-    value_template: "{{ is_state_attr('climate.apartment', 'away_mode', 'on') }}"
+    value_template: "{{ not is_state_attr('climate.apartment', 'preset_mode', 'away') }}"
   condition:
     - condition: state
       entity_id: group.everyone
