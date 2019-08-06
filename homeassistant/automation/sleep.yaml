@@ -103,6 +103,10 @@
     - condition: state
       entity_id: calendar.jawilson_office_closed
       state: 'off'
+    - condition: template
+      value_template: >
+        {{ as_timestamp(state_attr('calendar.sashag_school_start', 'start_time')) == None or
+            as_timestamp(state_attr('calendar.sashag_school_end', 'end_time'))|default(0, true) < as_timestamp(state_attr('calendar.sashag_school_start', 'start_time')) }}
     - service: script.closet_wake_up
     - service: script.bedroom_wake_up
     - service_template: >
