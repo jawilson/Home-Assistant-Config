@@ -6,11 +6,12 @@ import logging
 import voluptuous as vol
 
 from homeassistant.components.sensor import PLATFORM_SCHEMA
-from homeassistant.components.zone.zone import active_zone
+from homeassistant.components.zone import async_active_zone
 from homeassistant.components.device_tracker import ATTR_SOURCE_TYPE
 from homeassistant.components.person import ATTR_SOURCE, ATTR_USER_ID
 from homeassistant.helpers.entity import Entity
 from homeassistant.helpers.event import track_state_change
+from homeassistant.util.async_ import run_callback_threadsafe
 from homeassistant.const import (
     CONF_API_KEY, CONF_NAME, CONF_ENTITY_ID, EVENT_HOMEASSISTANT_START,
     ATTR_LATITUDE, ATTR_LONGITUDE, ATTR_GPS_ACCURACY, STATE_NOT_HOME,
@@ -232,10 +233,13 @@ class GoogleReverseGeocodeSensor(Entity):
                     entity.entity_id)
             return None
 
-        zone_state = active_zone(self._hass,
+        zone_state = run_callback_threadsafe(
+                self._hass.loop,
+                async_active_zone,
+                self._hass,
                 entity.attributes.get(ATTR_LATITUDE),
                 entity.attributes.get(ATTR_LONGITUDE),
-                entity.attributes.get(ATTR_GPS_ACCURACY, 0))
+                entity.attributes.get(ATTR_GPS_ACCURACY, 0)).result()
 
         if zone_state is None:
             _LOGGER.warn("Failed to get state of zone %s for entity %s",

@@ -1,0 +1,8 @@
+{
+  "domain": "google_reverse_geocode",
+  "name": "Google Reverse Geocode",
+  "documentation": "https://github.com/jawilson/Home-Assistant-Config/tree/master/homeassistant/custom_components/google_reverse_geocode",
+  "dependencies": [],
+  "codeowners": ["@jawilson"],
+  "requirements": ["googlemaps==2.5.1"]
+}
