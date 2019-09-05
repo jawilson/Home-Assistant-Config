@@ -30,3 +30,12 @@ sensor.neo_coolcam_door_window_detector_access_control:
 sensor.neo_coolcam_door_window_detector_alarm_level:
   ignored: true
   polling_intensity: 0
+light.dining_lights_level:
+  ignored: false
+  polling_intensity: 2
+light.kitchen_cabinet_lights:
+  ignored: false
+  polling_intensity: 2
+fan.sunroom:
+  ignored: false
+  polling_intensity: 5

@@ -24,3 +24,12 @@
   action:
     - service: light.turn_off
       entity_id: light.closet_light
+
+- alias: Force Kitchen Cabinet Lights Off
+  trigger:
+    - platform: state
+      entity_id: light.kitchen_cabinet_lights
+      to: 'off'
+  action:
+    - service: light.turn_off
+      entity_id: light.kitchen_cabinet_lights
