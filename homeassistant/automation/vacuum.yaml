@@ -24,15 +24,20 @@
           state: 'on'
         - condition: and
           conditions:
-            - condition: state
-              entity_id: vacuum.doomba
-              state: 'off'
-              # Only run Doomba ounce every 20 hours max
-              for:
-                hours: 20
+            - condition: or
+              conditions:
+                - condition: state
+                  entity_id: vacuum.doomba
+                  state: 'off'
+                  # Only run Doomba ounce every 20 hours max
+                  for:
+                    hours: 20
+                - condition: template
+                  value_template: >
+                    {{ (as_timestamp(now()) - (as_timestamp(state_attr('automation.home_assistant_start', 'last_triggered'))|float))/60/60 < 20 }}
             - condition: template
               value_template: >
-                {{ (as_timestamp(now()) - (as_timestamp(states.automation.run_doomba.attributes.last_triggered)|float))/60/60 > 20 }}
+                {{ (as_timestamp(now()) - (as_timestamp(state_attr('automation.run_doomba', 'last_triggered'))|float))/60/60 > 20 }}
     - condition: or
       conditions:
         - condition: template
