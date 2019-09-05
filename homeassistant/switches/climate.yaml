@@ -23,14 +23,16 @@
   switches:
     apartment_home:
       friendly_name: 'Home'
-      value_template: "{{ not is_state_attr('climate.apartment', 'preset_mode', 'away') }}"
+      value_template: "{{ state_attr('climate.apartment', 'preset_mode') not in ['away', 'Away and Eco'] }}"
       turn_on:
-        service: climate.set_preset_mode
-        entity_id: climate.apartment
+        service: nest.set_away_mode
         data:
-          preset_mode: none
+          away_mode: home
+          structure:
+            - Meridian
       turn_off:
-        service: climate.set_preset_mode
-        entity_id: climate.apartment
+        service: nest.set_away_mode
         data:
-          preset_mode: away
+          away_mode: away
+          structure:
+            - Meridian

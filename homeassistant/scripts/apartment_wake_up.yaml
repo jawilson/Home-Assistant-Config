@@ -3,7 +3,7 @@ sequence:
   - condition: state
     entity_id: input_boolean.climate_auto
     state: 'on'
-  - wait_template: "{{ not is_state('climate.apartment', 'off') and not is_state('climate.apartment', 'eco') }}"
+  - wait_template: "{{ not is_state('climate.apartment', 'off') and state_attr('climate.apartment', 'preset_mode') not in ['eco', 'Away and Eco'] }}"
     timeout: '00:45:00'
     continue_on_timeout: 'true'
   - service: climate.set_temperature

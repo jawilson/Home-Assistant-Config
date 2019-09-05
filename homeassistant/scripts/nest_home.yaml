@@ -1,9 +1,8 @@
 alias: Nest Home
 sequence:
-  - service: climate.set_preset_mode
+  - service: switch.turn_on
     data:
-      entity_id: climate.apartment
-      preset_mode: none
+      entity_id: switch.apartment_home
   - delay:
       seconds: 15
   - service: climate.set_temperature
