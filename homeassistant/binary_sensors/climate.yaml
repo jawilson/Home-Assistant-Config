@@ -3,7 +3,7 @@
 - platform: trend
   sensors:
     showering:
-      friendly_name: Bathroom Humidity Trend
+      friendly_name: Showering
       entity_id: sensor.bathroom_relative_humidity
       device_class: moisture
       max_samples: 10

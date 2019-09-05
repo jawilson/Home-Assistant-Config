@@ -64,5 +64,8 @@ sequence:
     state: '0'
     for:
       minutes: 10
+  - condition: state
+    entity_id: binary_sensor.showering
+    state: 'off'
   - service: light.turn_off
     entity_id: light.closet_light
