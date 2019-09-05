@@ -21,8 +21,6 @@
               (8 - states.sensor.jeff_at_work_today.state|float) * 60 * 60
            )|timestamp_custom('%-I:%M %p') }}
 
-- platform: example_sensor
-
 - platform: google_reverse_geocode
   api_key: !secret google_api_key
   entity_id: person.jeff

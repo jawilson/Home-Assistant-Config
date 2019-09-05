@@ -1,15 +1,10 @@
 - name: TV Dinner
   entities:
-    switch.plex: on
-    switch.living_area_fluxer: off
-    light.living_room_lights:
-      state: on
-      profile: nightlight
-      brightness: 100
-      transition: 15
+    script.dinner: on
     light.entryway_lights: off
     light.kitchen_lights: off
     light.dining_lights_level: off
+    light.sunroom_lights: off
     light.bathroom_lights: off
     light.closet_lights: off
     light.bedroom_lights: off

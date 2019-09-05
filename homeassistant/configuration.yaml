@@ -324,21 +324,6 @@ person: !include people.yaml
 
 device_tracker:
 
-googlehome:
-  devices:
-    - host: SunroomGoogleHome.singularity.net
-      track_alarms: true
-      track_devices: false
-    - host: BathroomGoogleHomeMini.singularity.net
-      track_alarms: true
-      track_devices: false
-    - host: BedroomSpeaker.singularity.net
-      track_alarms: true
-      track_devices: false
-    - host: KitchenGoogleHomeHub.singularity.net
-      track_alarms: true
-      track_devices: false
-
 owntracks:
   max_gps_accuracy: 45
 
