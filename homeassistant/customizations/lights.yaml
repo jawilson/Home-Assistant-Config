@@ -10,6 +10,8 @@ light.living_room:
   hidden: true
 light.kitchen:
   friendly_name: 'Kitchen lights'
+light.projector:
+  hidden: true
 
 group.all_lights:
   friendly_name: All Lights

@@ -1,0 +1,1 @@
+adb: '/opt/tools/adb -H adbd {{ command }}'

@@ -7,6 +7,8 @@
     - condition: state
       entity_id: input_boolean.media_automation
       state: 'on'
+    - condition: template
+      value_template: "{{ trigger.from_state.state != 'playing' }}"
   action:
     - service: python_script.shield_plex_playing
     # Turn off the rest of the lights if we haven't started dinner in the last hour
@@ -19,7 +21,7 @@
 - alias: 'SHIELD Plex Idle'
   trigger:
     - platform: state
-      entity_id: media_player.plex_shield
+      entity_id: media_player.shield
       to: 'idle'
   condition:
     - condition: template
@@ -71,7 +73,9 @@
         data:
           brightness_pct: 10
     - service: switch.turn_on
-      entity_id: switch.living_area_fluxer
+      entity_id:
+        - switch.living_area_fluxer
+        - switch.bathroom_fluxer
     - service: switch.entryway_fluxer_update
     - service: switch.living_room_fluxer_update
     - service: switch.tree_lamp_fluxer_update

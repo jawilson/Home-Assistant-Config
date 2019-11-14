@@ -6,8 +6,8 @@
       entity_id: proximity.home
       above: 500
     - platform: state
-      entity_id: group.everyone
-      to: 'not_home'
+      entity_id: binary_sensor.presume_home
+      to: 'off'
       for:
         minutes: 30
   condition:
@@ -61,8 +61,8 @@
       entity_id: proximity.home
       below: 1000
     - platform: state
-      entity_id: group.everyone
-      to: 'home'
+      entity_id: binary_sensor.presume_home
+      to: 'on'
   condition:
     - condition: state
       entity_id: input_boolean.presence
@@ -202,7 +202,8 @@
       entity_id: automation.doomba_notify_empty_bin
     - service: notify.html5_dismiss
       data:
-        tag: 'doomba-bin'
+        data:
+          tag: 'doomba-bin'
 
 
 - alias: Notify Doomba Error

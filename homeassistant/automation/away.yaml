@@ -1,15 +1,17 @@
 - alias: Handle lights when leaving
   trigger:
-    platform: state
-    entity_id: group.everyone
-    to: 'not_home'
+    - platform: state
+      entity_id: binary_sensor.presume_home
+      to: 'off'
+    - platform: state
+      entity_id: binary_sensor.apartment_occupied
+      to: 'off'
+      for:
+        minutes: 10
   condition:
     - condition: state
       entity_id: input_boolean.presence
       state: 'on'
-    - condition: state
-      entity_id: binary_sensor.presume_home
-      state: 'off'
   action:
     service: script.turn_on
     entity_id: script.apartment_shutdown

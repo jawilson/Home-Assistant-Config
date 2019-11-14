@@ -26,12 +26,21 @@ services:
       - ./postgres/initdb.d:/docker-entrypoint-initdb.d:ro
     env_file:
       - ./postgres/secrets.env
+  adbd:
+    image: sorccu/adb:latest
+    restart: unless-stopped
+    dns: 192.168.0.1
+    dns_search: singularity.net
+    volumes:
+      - ./adb:/root/.android
+    command: /root/.android/startup.sh
   homeassistant:
     image: homeassistant/home-assistant:latest
     links:
       - mqtt
       - mqtt:mqtt.singularity.net
       - database
+      - adbd
     restart: unless-stopped
     user: '0:118'
     dns: 192.168.0.1

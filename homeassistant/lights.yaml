@@ -18,6 +18,7 @@
   name: Kitchen Lights
   entities:
     - light.kitchen
+    - light.kitchen_cabinet_lights
 
 - platform: group
   name: Living Area Lights

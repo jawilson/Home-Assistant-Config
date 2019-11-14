@@ -16,7 +16,7 @@
 - platform: flux
   name: Kitchen Fluxer
   lights:
-    - light.kitchen_lights
+    - light.kitchen
   mode: xy
 
   start_time: '6:00'

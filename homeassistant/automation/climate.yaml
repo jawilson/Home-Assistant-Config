@@ -4,8 +4,8 @@
       entity_id: proximity.home
       below: 1000
     - platform: state
-      entity_id: group.everyone
-      to: 'home'
+      entity_id: binary_sensor.presume_home
+      to: 'on'
   condition:
     - condition: state
       entity_id: input_boolean.presence
@@ -38,8 +38,8 @@
     to: 'off'
   condition:
     - condition: state
-      entity_id: group.everyone
-      state: 'home'
+      entity_id: binary_sensor.presume_home
+      state: 'on'
     - condition: state
       entity_id: input_boolean.climate_auto
       state: 'on'
@@ -54,8 +54,8 @@
       entity_id: proximity.home
       above: 500
     - platform: state
-      entity_id: group.everyone
-      to: 'not_home'
+      entity_id: binary_sensor.presume_home
+      to: 'off'
       for:
         minutes: 30
     - platform: state

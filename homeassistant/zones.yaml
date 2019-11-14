@@ -1,6 +1,7 @@
 - name: Home
-  latitude: 38.9039
-  longitude: -77.0165
+  latitude: 38.904135
+  longitude: -77.016510
+  radius: 70
   icon: mdi:home-modern
 
 - name: B-Line

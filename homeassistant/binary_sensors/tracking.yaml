@@ -19,10 +19,16 @@
       value_template: >-
         {{ is_state('input_boolean.guests', 'on') or is_state('group.guests', 'home') }}
     presume_home:
-      friendly_name: 'Someone presumed home'
+      friendly_name: 'Someone presumed in home region'
       device_class: 'presence'
       value_template: >-
         {{ is_state('input_boolean.guests', 'on') or is_state('group.everyone', 'home') }}
+    apartment_occupied:
+      friendly_name: 'Apartment is occupied'
+      device_class: 'presence'
+      value_template: >-
+        {{ is_state('binary_sensor.guests', 'on') or is_state('device_tracker.jawilson_phone', 'home')
+            or is_state('device_tracker.sashag_phone', 'home') }}
 
 - platform: workday
   country: US

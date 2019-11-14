@@ -12,7 +12,7 @@
       entity_id: input_boolean.motion
       state: 'on'
     - condition: state
-      entity_id: binary_sensor.presume_home
+      entity_id: binary_sensor.apartment_occupied
       state: 'on'
     - condition: state
       entity_id: light.bedroom_lights
@@ -93,7 +93,7 @@
       entity_id: input_boolean.motion
       state: 'on'
     - condition: state
-      entity_id: binary_sensor.presume_home
+      entity_id: binary_sensor.apartment_occupied
       state: 'on'
     - condition: state
       entity_id: light.bathroom_lights
@@ -177,7 +177,7 @@
       entity_id: input_boolean.motion
       state: 'on'
     - condition: state
-      entity_id: binary_sensor.presume_home
+      entity_id: binary_sensor.apartment_occupied
       state: 'on'
     - condition: state
       entity_id: group.all_lights

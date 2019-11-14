@@ -5,7 +5,7 @@
     to: 'on'
   condition:
     - condition: state
-      entity_id: binary_sensor.presume_home
+      entity_id: binary_sensor.apartment_occupied
       state: 'on'
     - condition: state
       entity_id: input_boolean.climate_auto

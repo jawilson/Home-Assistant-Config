@@ -4,7 +4,7 @@
   entity_namespace: androidtv
   name: SHIELD
   host: SHIELD.singularity.net
-  adbkey: '/config/.adbkey'
+  adb_server_ip: adbd
   apps:
     com.google.android.tvlauncher: Homescreen
     com.google.android.apps.mediashell: Cast
@@ -13,9 +13,39 @@
     com.nbcuni.nbc.androidtv: NBC/Universal
     com.hbo.hbonow: HBO Now
     com.jackboxgames.TJPP3Loader: Jackbox 3
+    com.jackboxgames.TJPP5Loader: Jackbox 5
     com.espn.score_center: Watch ESPN
     com.google.android.youtube.tv: YouTube
     com.amazon.amazonvideo.livingroom: Amazon Video
+  state_detection_rules:
+    'com.google.android.tvlauncher':
+      - 'standby'
+    'com.netflix.ninja':
+      - 'paused':
+          'audio_state': 'paused'
+      - 'playing':
+          'media_session_state': 3
+          'wake_lock_size': 3
+      - 'standby'
+    'com.plexapp.android':
+      - 'playing':
+          'media_session_state': 3
+          'wake_lock_size': 4
+      - 'paused':
+          'media_session_state': 3
+      - 'standby'
+    'com.amazon.amazonvideo.livingroom':
+      - 'paused':
+          'audio_state': 'paused'
+      - 'playing':
+          'wake_lock_size': 3
+      - 'standby'
+    'com.espn.score_center':
+      - 'paused':
+          'audio_state': 'paused'
+      - 'playing':
+          'wake_lock_size': 3
+      - 'standby'
 
 
 - platform: universal
@@ -23,6 +53,7 @@
   children:
     - media_player.plex_shield
     - media_player.cast_shield
+    - media_player.androidtv_shield
   commands:
     turn_on:
       service: remote.turn_on

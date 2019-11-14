@@ -4,6 +4,7 @@
 .adbkey
 .google_maps_location_sharing.cookies
 
+core
 known_devices.yaml
 entity_registry.yaml
 google_calendars.yaml

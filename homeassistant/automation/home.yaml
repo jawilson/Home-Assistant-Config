@@ -1,8 +1,8 @@
 - alias: Handle lights when arriving home
   trigger:
     platform: state
-    entity_id: group.everyone
-    to: 'home'
+    entity_id: binary_sensor.apartment_occupied
+    to: 'on'
   condition:
     - condition: state
       entity_id: input_boolean.guests
@@ -49,11 +49,14 @@
       entity_id: input_boolean.presence
       state: 'on'
     - condition: state
-      entity_id: binary_sensor.presume_home
+      entity_id: binary_sensor.apartment_occupied
       state: 'off'
   action:
     - service: automation.trigger
       entity_id: automation.handle_lights_when_arriving_home
+    - condition: state
+      entity_id: group.family
+      state: 'home'
     - service: tts.google_say
       entity_id: media_player.cast_kitchen_display
       data:

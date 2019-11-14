@@ -65,14 +65,15 @@ cards:
           - entity: sensor.google_reverse_geocode_sasha
             name: Location
             secondary_info: last-changed
-      - type: 'custom:entity-hidden-filter-card'
+      - type: entity-filter
         entities: !include /config/device_groups/guests.yaml
+        state_filter:
+          - home
         show_empty: false
-        secondary_info: last-changed
         card:
-          type: entities
+          type: glance
           title: Guests
-          show_header_toggle: false
+          show_state: false
 
   #
   # Second column
