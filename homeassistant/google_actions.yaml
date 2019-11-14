@@ -49,8 +49,9 @@ filter:
     - switch.entryway_fluxer
     - switch.kitchen_fluxer
     - switch.living_room_fluxer
-    - switch.tree_lamp_fluxer
     - switch.shield
+    - switch.sunroom_fluxer
+    - switch.tree_lamp_fluxer
 
 entity_config:
   input_boolean.schedule_vacuum:
@@ -65,6 +66,9 @@ entity_config:
       - Kitchen cabinet lights
       - Kitchen counter lights
       - Kitchen countertop lights
+
+  media_player.shield:
+    room: Living Room
 
   scene.romantic:
     name: Romantic
@@ -82,12 +86,14 @@ entity_config:
       - Lunch Time
       - Breakfast
       - Breakfast Time
+    room: Living Room
   script.cooking:
     name: Cooking
     aliases:
       - Cooking
       - Food prep
       - Dishes
+    room: Kitchen
 
   switch.apartment_fan:
     name: HVAC Fan
@@ -95,28 +101,44 @@ entity_config:
     aliases:
       - Bathroom fluxer
       - Bathroom color
+    room: Bathroom
   switch.bathroom_motion:
     aliases:
       - Bathroom motion automations
       - Bathroom motion
+    room: Bathroom
   switch.bedroom_fluxer:
     aliases:
       - Bedroom fluxer
       - Bedroom color
+    room: Bedroom
   switch.bedroom_motion:
     aliases:
       - Bedroom motion automations
       - Bedroom motion
+    room: Bedroom
   switch.closet_fluxer:
     aliases:
       - Closet fluxer
       - Closet color
+    room: Closet
   switch.closet_motion:
     aliases:
       - Closet motion automations
       - Closet motion
+    room: Closet
   switch.living_area_fluxer:
     aliases:
       - Living area fluxer
       - Living area color
       - Livingarea color
+  switch.netflix:
+    room: Living Room
+  switch.plex:
+    room: Living Room
+  switch.projector:
+    room: Living Room
+  switch.xbox_360:
+    room: Living Room
+  switch.xbox_one:
+    room: Living Room
