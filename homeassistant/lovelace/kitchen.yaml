@@ -10,7 +10,6 @@ cards:
         name: All lights
       - type: divider
       - light.kitchen
-      - light.dining_lights_level
       - type: divider
       - light.kitchen_light_1
       - light.kitchen_light_2
@@ -21,6 +20,7 @@ cards:
     title: Other Lights
     show_header_toggle: false
     entities:
+      - light.dining_lights_level
       - light.entryway_light
 
   - type: entities

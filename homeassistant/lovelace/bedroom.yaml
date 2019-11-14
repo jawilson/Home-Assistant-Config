@@ -9,14 +9,16 @@ cards:
       - entity: light.bedroom_lights
         name: All lights
       - type: divider
+      - entity: light.nightstand_1
+        name: Jeff's Nightstand
+      - entity: light.nightstand_2
+        name: Sasha's Nightstand
+      - light.bedroom_lamp
       - light.bedroom_nook
       - type: divider
       - light.bedroom_nook_1
       - light.bedroom_nook_2
       - light.bedroom_nook_3
-      - light.nightstand_1
-      - light.nightstand_2
-      - light.bedroom_lamp
 
   - type: entities
     title: Control
