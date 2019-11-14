@@ -13,3 +13,10 @@ default_low_temp:
   step: 1
   unit_of_measurement: '°F'
   icon: mdi:thermometer-chevron-down
+
+default_sleep_high_temp:
+  name: Default sleep high temp
+  min: 60
+  max: 74
+  unit_of_measurement: '°F'
+  icon: mdi:thermometer-low

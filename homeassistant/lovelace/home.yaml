@@ -116,6 +116,8 @@ cards:
                     name: High
                   - entity: input_number.default_low_temp
                     name: Low
+                  - entity: input_number.default_sleep_high_temp
+                    name: Sleep
       - type: entities
         title: Vacuum
         show_header_toggle: false
