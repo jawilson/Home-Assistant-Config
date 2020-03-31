@@ -42,6 +42,8 @@ cards:
             conditions:
               - entity: person.jeff
                 state: not_home
+              - entity: sensor.google_reverse_geocode_jeff
+                state_not: unknown
             card:
               type: glance
               title: Travel Times Home
@@ -58,13 +60,30 @@ cards:
                 name: Sleeping
               - entity: sensor.jeff_alarm
                 name: Alarm
-      - type: entities
+      - type: custom:vertical-stack-in-card
         title: Sasha
-        show_header_toggle: false
-        entities:
-          - entity: sensor.google_reverse_geocode_sasha
-            name: Location
+        cards:
+          - type: entities
+            show_header_toggle: false
+            entities:
+              - entity: sensor.google_reverse_geocode_sasha
+                name: Location
             secondary_info: last-changed
+          - type: conditional
+            conditions:
+              - entity: person.sasha
+                state_not: home
+              - entity: sensor.google_reverse_geocode_sasha
+                state_not: unknown
+            card:
+              type: glance
+              title: Travel Times Home
+              show_name: false
+              column_width: calc(100% / 3)
+              entities:
+                - sensor.sasha_drive_home
+                - sensor.sasha_transit_home
+                - sensor.sasha_walk_home
       - type: entity-filter
         entities: !include /config/device_groups/guests.yaml
         state_filter:

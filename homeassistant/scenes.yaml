@@ -1,112 +1,181 @@
-- name: TV Dinner
+- id: tv_dinner
+  name: TV Dinner
   entities:
-    script.dinner: on
-    light.entryway_lights: off
-    light.kitchen_lights: off
-    light.dining_lights_level: off
-    light.sunroom_lights: off
-    light.bathroom_lights: off
-    light.closet_lights: off
-    light.bedroom_lights: off
-    light.liquor_cabinet_lights: off
-
-
-- name: Couch Reading
+    light.bathroom_lights:
+      effect_list:
+      - random
+      - colorloop
+      friendly_name: Bathroom Lights
+      max_mireds: 500
+      min_mireds: 153
+      state: 'off'
+      supported_features: 63
+    light.bedroom_lights:
+      effect_list:
+      - effect_pulse
+      - random
+      - effect_stop
+      - colorloop
+      - effect_colorloop
+      friendly_name: Bedroom Lights
+      max_mireds: 500
+      min_mireds: 111
+      state: 'off'
+      supported_features: 63
+    light.closet_lights:
+      effect_list:
+      - random
+      - colorloop
+      friendly_name: Closet Lights
+      max_mireds: 500
+      min_mireds: 153
+      state: 'off'
+      supported_features: 63
+    light.dining_lights_level:
+      friendly_name: Dining lights
+      node_id: 10
+      state: 'off'
+      supported_features: 33
+      value_id: '72057594210516993'
+      value_index: 0
+      value_instance: 1
+    light.entryway_lights:
+      effect_list:
+      - random
+      - colorloop
+      friendly_name: Entryway Lights
+      max_mireds: 500
+      min_mireds: 153
+      state: 'off'
+      supported_features: 63
+    light.kitchen_lights:
+      effect_list:
+      - random
+      - colorloop
+      friendly_name: Kitchen Lights
+      max_mireds: 500
+      min_mireds: 153
+      state: 'off'
+      supported_features: 63
+    light.liquor_cabinet_lights:
+      friendly_name: Liquor cabinet lights
+      state: 'off'
+      supported_features: 57
+    light.sunroom_lights:
+      effect_list:
+      - random
+      - colorloop
+      friendly_name: Sunroom Lights
+      max_mireds: 500
+      min_mireds: 153
+      state: 'off'
+      supported_features: 63
+    script.dinner:
+      friendly_name: Dinner
+      icon: mdi:silverware-fork
+      last_triggered: '2019-12-27T17:45:14.625524+00:00'
+      state: 'off'
+- id: couch_reading
+  name: Couch Reading
   entities:
     switch.living_area_fluxer:
-      state: off
+      state: false
     light.entertainment_lights:
-      state: on
-      xy_color: [0.4449, 0.4066]
+      state: true
+      xy_color:
+      - 0.4449
+      - 0.4066
       brightness: 60
     light.dining_lights_level:
-      state: on
+      state: true
       brightness: 100
-
-
-- name: Up Late
+- id: up_late
+  name: Up Late
   entities:
     light.entryway_light:
-      state: on
+      state: true
       color_temp: 454
       brightness: 1
     light.entertainment_light_1:
-      state: on
+      state: true
       profile: late
     light.dining_lights_level:
-      state: on
+      state: true
       brightness: 28
-
-    light.liquor_cabinet_lights: off
-    light.bathroom_lights: off
-    light.closet_lights: off
-    light.bedroom_lights: off
-    switch.living_area_fluxer: off
-
-
-- name: Romantic
+    light.liquor_cabinet_lights: false
+    light.bathroom_lights: false
+    light.closet_lights: false
+    light.bedroom_lights: false
+    switch.living_area_fluxer: false
+- id: romantic
+  name: Romantic
   entities:
     light.entryway_light:
-      state: on
+      state: true
       color_temp: 454
       brightness: 1
     light.kitchen_lights:
-      state: on
-      xy_color: [0.5923,0.3829]
+      state: true
+      xy_color:
+      - 0.5923
+      - 0.3829
       brightness: 1
     light.dining_lights_level:
-      state: on
+      state: true
       brightness: 25
     light.bedroom_lamp:
-      state: on
-      xy_color: [0.5923,0.3829]
+      state: true
+      xy_color:
+      - 0.5923
+      - 0.3829
       brightness: 100
     light.entertainment_lights:
-      state: on
-      xy_color: [0.5923,0.3829]
+      state: true
+      xy_color:
+      - 0.5923
+      - 0.3829
       brightness: 50
     light.closet_light:
-      state: on
+      state: true
       color_temp: 454
       brightness: 1
     light.nightstand_1:
-      state: on
+      state: true
       color_temp: 454
       brightness: 1
     light.nightstand_2:
-      state: on
+      state: true
       color_temp: 454
       brightness: 1
     light.tree_lamp_2:
-      state: on
+      state: true
       color_temp: 454
       brightness: 1
     light.tree_lamp_4:
-      state: on
+      state: true
       color_temp: 454
       brightness: 1
     light.shower_light:
-      state: on
+      state: true
       color_temp: 454
       brightness: 10
     light.bathroom_mirror_2:
-      state: on
+      state: true
       color_temp: 454
       brightness: 10
     light.bathroom_mirror_4:
-      state: on
+      state: true
       color_temp: 454
       brightness: 10
-
-    light.tree_lamp_1: off
-    light.tree_lamp_3: off
-    light.tree_lamp_5: off
-    light.bathroom_mirror_1: off
-    light.bathroom_mirror_3: off
-    switch.living_area_fluxer: off
-    switch.bedroom_fluxer: off
-    switch.bedroom_motion: off
-    switch.closet_fluxer: off
-    switch.closet_motion: off
-    switch.bathroom_fluxer: off
-    switch.bathroom_motion: off
+    light.tree_lamp_1: false
+    light.tree_lamp_3: false
+    light.tree_lamp_5: false
+    light.bathroom_mirror_1: false
+    light.bathroom_mirror_3: false
+    switch.living_area_fluxer: false
+    switch.bedroom_fluxer: false
+    switch.bedroom_motion: false
+    switch.closet_fluxer: false
+    switch.closet_motion: false
+    switch.bathroom_fluxer: false
+    switch.bathroom_motion: false

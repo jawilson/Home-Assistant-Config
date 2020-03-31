@@ -57,7 +57,7 @@
       entity_id: binary_sensor.presume_home
       to: 'off'
       for:
-        minutes: 30
+        minutes: 5
     - platform: state
       entity_id: switch.apartment_home
       to: 'on'

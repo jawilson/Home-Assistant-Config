@@ -200,7 +200,7 @@
   action:
     - service: automation.turn_off
       entity_id: automation.doomba_notify_empty_bin
-    - service: notify.html5_dismiss
+    - service: html5.dismiss
       data:
         data:
           tag: 'doomba-bin'

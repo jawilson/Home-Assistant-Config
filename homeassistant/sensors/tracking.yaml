@@ -46,6 +46,7 @@
   end: '{{ now() }}'
 
 - platform: google_travel_time
+  scan_interval: 31556926
   name: Jeff walk home
   api_key: !secret google_api_key
   origin: person.jeff
@@ -54,6 +55,7 @@
     mode: walking
 
 - platform: google_travel_time
+  scan_interval: 31556926
   name: Jeff transit home
   api_key: !secret google_api_key
   origin: person.jeff
@@ -62,9 +64,37 @@
     mode: transit
 
 - platform: google_travel_time
+  scan_interval: 31556926
   name: Jeff drive home
   api_key: !secret google_api_key
   origin: person.jeff
+  destination: zone.home
+  options:
+    mode: driving
+
+- platform: google_travel_time
+  scan_interval: 31556926
+  name: Sasha walk home
+  api_key: !secret google_api_key
+  origin: person.sasha
+  destination: zone.home
+  options:
+    mode: walking
+
+- platform: google_travel_time
+  scan_interval: 31556926
+  name: Sasha transit home
+  api_key: !secret google_api_key
+  origin: person.sasha
+  destination: zone.home
+  options:
+    mode: transit
+
+- platform: google_travel_time
+  scan_interval: 31556926
+  name: Sasha drive home
+  api_key: !secret google_api_key
+  origin: person.sasha
   destination: zone.home
   options:
     mode: driving

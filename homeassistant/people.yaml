@@ -4,6 +4,7 @@
   device_trackers:
     - device_tracker.jawilson_phone
     - device_tracker.jawilson_phone_owntracks
+    - device_tracker.jawilson_phone_android
 
 - name: Sasha
   id: sashag

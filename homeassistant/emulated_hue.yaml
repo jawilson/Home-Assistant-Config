@@ -46,8 +46,6 @@ entities:
     hidden: true
   light.living_room:
     hidden: true
-  light.living_room_lights:
-    hidden: true
   light.projector:
     hidden: true
   light.tree_lamp:

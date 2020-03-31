@@ -11,13 +11,14 @@ from homeassistant.components.device_tracker import ATTR_SOURCE_TYPE
 from homeassistant.components.person import ATTR_SOURCE, ATTR_USER_ID
 from homeassistant.helpers.entity import Entity
 from homeassistant.helpers.event import track_state_change
+from homeassistant.helpers.location import has_location
 from homeassistant.util.async_ import run_callback_threadsafe
+from homeassistant.util.location import distance
 from homeassistant.const import (
     CONF_API_KEY, CONF_NAME, CONF_ENTITY_ID, EVENT_HOMEASSISTANT_START,
     ATTR_LATITUDE, ATTR_LONGITUDE, ATTR_GPS_ACCURACY, STATE_NOT_HOME,
     ATTR_ENTITY_PICTURE, ATTR_ENTITY_ID)
 import homeassistant.helpers.config_validation as cv
-import homeassistant.helpers.location as location
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -124,8 +125,27 @@ class GoogleReverseGeocodeSensor(Entity):
             self.valid_api_connection = False
             return
 
-        def force_refresh(*args):
+        def force_refresh(entity_id, old_state, new_state):
             """Force the component to refresh."""
+            if not has_location(new_state):
+                _LOGGER.warn("Entity %s does not have a location, not refreshing", self._entity_id)
+                self._zone = None
+                self._geocode = None
+                return
+
+            traveled = distance(
+                    self._dev_attrs.get(ATTR_LATITUDE),
+                    self._dev_attrs.get(ATTR_LONGITUDE),
+                    new_state.attributes.get(ATTR_LATITUDE),
+                    new_state.attributes.get(ATTR_LONGITUDE)
+                )
+
+            if (traveled == 0.0 or ATTR_GPS_ACCURACY in new_state.attributes and
+                    new_state.attributes.get(ATTR_GPS_ACCURACY) > traveled):
+                _LOGGER.debug("Entity %s hasn't moved (enough), not refreshing", self._entity_id)
+                return
+
+            _LOGGER.debug("Scheduling update of %s", self._entity_id)
             self.schedule_update_ha_state(True)
 
         # Update value when tracked entity changes its state
@@ -193,8 +213,8 @@ class GoogleReverseGeocodeSensor(Entity):
                             (ATTR_GPS_ACCURACY,
                                 entity.attributes.get(ATTR_GPS_ACCURACY))) if value is not None}
 
-        _LOGGER.info("Found entity %s", self._entity_id)
-        if not location.has_location(entity):
+        _LOGGER.debug("Found entity %s", self._entity_id)
+        if not has_location(entity):
             _LOGGER.warn("Entity %s does not have a location", self._entity_id)
             self._zone = None
             self._geocode = None
@@ -219,7 +239,7 @@ class GoogleReverseGeocodeSensor(Entity):
         options_copy = self._options.copy()
         results = self._client.reverse_geocode(loc, **options_copy)
         if results:
-            _LOGGER.info("Reverse geocode results for %s: %s", entity.entity_id,
+            _LOGGER.debug("Reverse geocode results for %s: %s", entity.entity_id,
                     results)
             self._geocode = results[0]
         else:
@@ -229,7 +249,7 @@ class GoogleReverseGeocodeSensor(Entity):
     def _get_zone_from_entity(self, entity):
         """Get the zone name from the entity state"""
         if entity.state == STATE_NOT_HOME:
-            _LOGGER.info("%s is not home, will reverse geocode",
+            _LOGGER.debug("%s is not home, will reverse geocode",
                     entity.entity_id)
             return None
 
@@ -246,7 +266,7 @@ class GoogleReverseGeocodeSensor(Entity):
                     entity.state, entity.entity_id)
             return None
 
-        _LOGGER.info("%s is in zone %s", entity.entity_id, zone_state.name)
+        _LOGGER.debug("%s is in zone %s", entity.entity_id, zone_state.name)
         return zone_state
 
     @staticmethod

@@ -23,6 +23,9 @@ cards:
       - sensor.sunroom_temperature
       - sensor.sunroom_relative_humidity
 
+  - type: thermostat
+    entity: climate.sunroom
+
   - type: entities
     title: Control
     show_header_toggle: false

@@ -51,6 +51,7 @@ filter:
     - switch.living_room_fluxer
     - switch.shield
     - switch.sunroom_fluxer
+    - switch.sunroom_switch
     - switch.tree_lamp_fluxer
 
 entity_config:

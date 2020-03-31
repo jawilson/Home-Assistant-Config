@@ -1,0 +1,89 @@
+- id: update_jeff_travel_sensors_on_movement
+  alias: "Update Jeff Travel Sensors On Movement"
+  initial_state: 'on'
+  trigger:
+    - platform: state
+      entity_id: person.jeff
+  condition:
+    - condition: template
+      value_template: "{{ state_attr(trigger.entity_id, 'latitude') != None }}"
+    - condition: or
+      conditions:
+        - condition: template
+          value_template: "{{ distance(trigger.from_state, trigger.to_state) == None }}"
+        - condition: template
+          value_template: >
+            {{ distance(trigger.from_state, trigger.to_state) > trigger.to_state.attributes.gps_accuracy|default(0.0)|float }}
+        - condition: template
+          value_template: >
+            {{ (as_timestamp(now()) - (as_timestamp(state_attr('automation.update_jeff_travel_sensors_on_movement', 'last_triggered'))|float))/60 > 2 }}
+  action:
+    - service: homeassistant.update_entity
+      entity_id:
+        - sensor.jeff_drive_home
+        - sensor.jeff_transit_home
+        - sensor.jeff_walk_home
+
+- id: update_jeff_travel_sensors_periodic
+  alias: "Update Jeff Travel Sensors Periodically"
+  initial_state: 'on'
+  trigger:
+    - platform: time_pattern
+      minutes: '/15'
+  condition:
+    - condition: template
+      value_template: "{{ not is_state('person.jeff', 'home') }}"
+    - condition: template
+      value_template: >
+        {{ (as_timestamp(now()) - (as_timestamp(state_attr('automation.update_jeff_travel_sensors_on_movement', 'last_triggered'))|float))/60 > 2 }}
+  action:
+    - service: homeassistant.update_entity
+      entity_id:
+        - sensor.jeff_drive_home
+        - sensor.jeff_transit_home
+
+
+
+- id: update_sasha_travel_sensors_on_movement
+  alias: "Update Sasha Travel Sensors On Movement"
+  initial_state: 'on'
+  trigger:
+    - platform: state
+      entity_id: person.sasha
+  condition:
+    - condition: template
+      value_template: "{{ state_attr(trigger.entity_id, 'latitude') != None }}"
+    - condition: or
+      conditions:
+        - condition: template
+          value_template: "{{ distance(trigger.from_state, trigger.to_state) == None }}"
+        - condition: template
+          value_template: >
+            {{ distance(trigger.from_state, trigger.to_state) > trigger.to_state.attributes.gps_accuracy|default(0.0)|float }}
+        - condition: template
+          value_template: >
+            {{ (as_timestamp(now()) - (as_timestamp(state_attr('automation.update_sasha_travel_sensors_on_movement', 'last_triggered'))|float))/60 > 2 }}
+  action:
+    - service: homeassistant.update_entity
+      entity_id:
+        - sensor.sasha_drive_home
+        - sensor.sasha_transit_home
+        - sensor.sasha_walk_home
+
+- id: update_sasha_travel_sensors_periodic
+  alias: "Update Sasha Travel Sensors Periodically"
+  initial_state: 'on'
+  trigger:
+    - platform: time_pattern
+      minutes: '/5'
+  condition:
+    - condition: template
+      value_template: "{{ not is_state('person.sasha', 'home') }}"
+    - condition: template
+      value_template: >
+        {{ (as_timestamp(now()) - (as_timestamp(state_attr('automation.update_sasha_travel_sensors_on_movement', 'last_triggered'))|float))/60 > 2 }}
+  action:
+    - service: homeassistant.update_entity
+      entity_id:
+        - sensor.sasha_drive_home
+        - sensor.sasha_transit_home

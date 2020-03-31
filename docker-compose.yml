@@ -1,4 +1,4 @@
-version: '2'
+version: '3.7'
 
 services:
   mqtt:
@@ -35,7 +35,8 @@ services:
       - ./adb:/root/.android
     command: /root/.android/startup.sh
   homeassistant:
-    image: homeassistant/home-assistant:latest
+    image: homeassistant/home-assistant:0.103.6
+    init: true
     links:
       - mqtt
       - mqtt:mqtt.singularity.net
@@ -61,6 +62,7 @@ services:
       - ./.ssh:/config/.ssh:ro
     environment:
       - HA_LOG_LEVEL=warning
+      - TZ=America/New_York
     entrypoint:
       - '/opt/tools/wait-for-it/wait-for-it.sh'
       - '-s'
@@ -108,4 +110,4 @@ networks:
     ipam:
       config:
         - subnet: 192.168.0.0/24
-          gateway: 192.168.0.1
+          #gateway: 192.168.0.1

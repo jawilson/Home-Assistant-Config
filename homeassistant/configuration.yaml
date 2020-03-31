@@ -12,7 +12,6 @@ homeassistant:
   customize_glob: !include customize_glob.yaml
 
 default_config:
-custom_updater:
 discovery:
 
 # Web
@@ -58,7 +57,16 @@ logbook:
   exclude:
     domains:
       - group
+      - zwave
     entities:
+      - automation.force_bathroom_fan_off
+      - automation.force_closet_light_off
+      - automation.force_dining_lights_off
+      - automation.force_kitchen_cabinet_lights_off
+      - automation.update_jeff_travel_sensors_on_movement
+      - automation.update_jeff_travel_sensors_periodic
+      - automation.update_sasha_travel_sensors_on_movement
+      - automation.update_sasha_travel_sensors_periodic
       - binary_sensor.jeff_home
       - binary_sensor.sasha_home
       - binary_sensor.bathroom_humidity_trend
@@ -349,7 +357,18 @@ input_number: !include input_number.yaml
 # Devices
 #
 climate:
-  platform: nest
+  - platform: nest
+  - platform: generic_thermostat
+    name: Sunroom
+    heater: switch.sunroom_switch
+    target_sensor: sensor.sunroom_temperature
+    min_cycle_duration: 00:10:00
+    cold_tolerance: 0.5
+    hot_tolerance: 0.5
+    min_temp: 50
+    max_temp: 90
+    away_temp: 55
+    precision: 0.5
 
 light: !include lights.yaml
 
@@ -438,4 +457,4 @@ logger:
     homeassistant.components.device_tracker.owntracks: error
     homeassistant.components.sensor.octoprint: error
     homeassistant.components.switch.orvibo: critical
-    homeassistant.components.sensor.google_reverse_geocode: debug
+    #custom_components.google_reverse_geocode.sensor: debug

@@ -5,6 +5,8 @@
 Family: !include device_groups/family.yaml
 Guests: !include device_groups/guests.yaml
 
+All Lights: !include device_groups/all_lights.yaml
+
 Everyone:
   - group.family
   - group.guests

@@ -34,6 +34,12 @@ sensor.sashag_phone_battery_level:
 sensor.sashag_phone_battery_state:
   friendly_name: Sasha's Phone Battery State
   hidden: true
+sensor.sasha_drive_home:
+  icon: mdi:car
+sensor.sasha_transit_home:
+  icon: mdi:bus
+sensor.sasha_walk_home:
+  icon: mdi:walk
 sensor.google_reverse_geocode_sasha:
   friendly_name: 'Sasha Location'
   custom_ui_more_info: more-info-map

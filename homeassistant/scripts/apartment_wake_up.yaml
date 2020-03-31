@@ -13,7 +13,7 @@ sequence:
       temperature: "{{ states('input_number.default_low_temp')|int + 1 }}"
       target_temp_low: "{{ states('input_number.default_low_temp')|int + 1 }}"
   - wait_template: "{{ states.climate.apartment.attributes.current_temperature|float >= states('input_number.default_low_temp')|float }}"
-    timeout: '00:45:00'
+    timeout: '01:00:00'
     continue_on_timeout: 'true'
   - service: climate.set_temperature
     data_template:

@@ -1,0 +1,8 @@
+{
+  "domain": "opm",
+  "name": "OPM Operating Status",
+  "documentation": "https://github.com/jawilson/Home-Assistant-Config/tree/master/homeassistant/custom_components/opm_status",
+  "dependencies": [],
+  "codeowners": ["@jawilson"],
+  "requirements": []
+}

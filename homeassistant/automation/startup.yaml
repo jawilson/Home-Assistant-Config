@@ -11,6 +11,10 @@
         - automation.motion_intruder_alert
         - automation.handle_lights_when_turned_on_not_home
         - automation.notify_doomba_error
+    - service: automation.turn_on
+      entity_id:
+        - automation.update_jeff_travel_sensors_on_movement
+        - automation.update_sasha_travel_sensors_on_movement
     - service: switch.turn_on
       entity_id:
         - switch.living_area_fluxer
