@@ -22,6 +22,15 @@ http:
 
 lovelace:
   mode: yaml
+  resources:
+    - url: /local/ui/more-info-map.js
+      type: module
+    - url: /hacsfiles/lovelace-card-tools/card-tools.js
+      type: module
+    - url: /hacsfiles/vertical-stack-in-card/vertical-stack-in-card.js
+      type: module
+    - url: /hacsfiles/lovelace-fold-entity-row/fold-entity-row.js
+      type: module
 
 cloud:
   google_actions: !include google_actions.yaml
