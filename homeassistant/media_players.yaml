@@ -6,17 +6,16 @@
   host: SHIELD.singularity.net
   adb_server_ip: adbd
   apps:
-    com.google.android.tvlauncher: Homescreen
     com.google.android.apps.mediashell: Cast
-    com.netflix.ninja: Netflix
-    com.plexapp.android: Plex
     com.nbcuni.nbc.androidtv: NBC/Universal
     com.hbo.hbonow: HBO Now
-    com.jackboxgames.TJPP3Loader: Jackbox 3
-    com.jackboxgames.TJPP5Loader: Jackbox 5
+    com.jackboxgames.JackboxPartyLoaderFull: Jackbox Party Pack 1
+    com.jackboxgames.TJPP3Loader: Jackbox Party Pack 3
+    com.jackboxgames.TJPP4Loader: Jackbox Party Pack 4
+    com.jackboxgames.TJPP5Loader: Jackbox Party Pack 5
+    com.jackboxgames.TJPP6Loader: Jackbox Party Pack 6
     com.espn.score_center: Watch ESPN
-    com.google.android.youtube.tv: YouTube
-    com.amazon.amazonvideo.livingroom: Amazon Video
+    us.zoom.videomeetings: Zoom Meetings
   state_detection_rules:
     'com.google.android.tvlauncher':
       - 'standby'
@@ -45,6 +44,18 @@
           'audio_state': 'paused'
       - 'playing':
           'wake_lock_size': 3
+      - 'standby'
+    'us.zoom.videomeetings':
+      - 'standby'
+    'com.jackboxgames.JackboxPartyLoaderFull':
+      - 'standby'
+    'com.jackboxgames.TJPP3Loader':
+      - 'standby'
+    'com.jackboxgames.TJPP4Loader':
+      - 'standby'
+    'com.jackboxgames.TJPP5Loader':
+      - 'standby'
+    'com.jackboxgames.TJPP6Loader':
       - 'standby'
 
 

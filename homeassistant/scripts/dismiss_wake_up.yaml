@@ -1,0 +1,32 @@
+alias: Dismiss Wake-Up Notification
+sequence:
+  - delay: '00:00:30'
+  - condition: state
+    entity_id: script.bathroom_wake_up
+    state: 'off'
+  - condition: state
+    entity_id: switch.bathroom_motion
+    state: 'on'
+  - condition: state
+    entity_id: script.living_area_wake_up
+    state: 'off'
+  - condition: state
+    entity_id: script.apartment_wake_up
+    state: 'off'
+  - condition: state
+    entity_id: script.closet_wake_up
+    state: 'off'
+  - condition: state
+    entity_id: switch.closet_motion
+    state: 'on'
+  - condition: state
+    entity_id: script.bedroom_wake_up
+    state: 'off'
+  - condition: state
+    entity_id: switch.bedroom_motion
+    state: 'on'
+  - service: notify.jeff_phone
+    data:
+      message: clear_notification
+      data:
+        tag: 'wake-up'

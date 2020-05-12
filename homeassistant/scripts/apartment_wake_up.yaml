@@ -21,3 +21,5 @@ sequence:
       target_temp_high: "{{ states('input_number.default_high_temp')|int }}"
       temperature: "{{ states('input_number.default_low_temp')|int if is_state('climate.apartment', 'heat') else states('input_number.default_high_temp')|int }}"
       target_temp_low: "{{ states('input_number.default_low_temp')|int }}"
+
+  - service: script.dismiss_wake_up

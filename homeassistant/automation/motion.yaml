@@ -103,12 +103,12 @@
       entity_id: sensor.bathroom_alarm_level
       to: '0'
       for:
-        minutes: 3
+        minutes: 5
     - platform: state
       entity_id: light.bathroom_lights
       to: 'on'
       for:
-        minutes: 5
+        minutes: 10
   condition:
     - condition: state
       entity_id: input_boolean.motion
@@ -120,7 +120,7 @@
       entity_id: sensor.bathroom_alarm_level
       state: '0'
       for:
-        minutes: 3
+        minutes: 5
     # Don't turn off if we're showering
     - condition: state
       entity_id: binary_sensor.showering
@@ -141,7 +141,7 @@
               entity_id: sensor.bathroom_alarm_level
               state: '0'
               for:
-                minutes: 3
+                minutes: 5
   action:
     - service: light.turn_off
       entity_id: light.bathroom_lights

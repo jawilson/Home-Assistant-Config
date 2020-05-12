@@ -53,6 +53,7 @@ sequence:
       - switch.bedroom_fluxer
       - switch.bedroom_motion
 
+  - service: script.dismiss_wake_up
 
   # Turn off lights if no motion
   - condition: state
@@ -62,3 +63,5 @@ sequence:
       minutes: 10
   - service: light.turn_off
     entity_id: light.bedroom_lights
+
+  - service: script.dismiss_wake_up

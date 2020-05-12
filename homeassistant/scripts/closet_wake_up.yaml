@@ -52,6 +52,8 @@ sequence:
       - switch.closet_fluxer
       - switch.closet_motion
 
+  - service: script.dismiss_wake_up
+
 
   # Turn off lights if no motion
   - condition: state
@@ -69,3 +71,5 @@ sequence:
     state: 'off'
   - service: light.turn_off
     entity_id: light.closet_light
+
+  - service: script.dismiss_wake_up

@@ -110,72 +110,312 @@
 - id: romantic
   name: Romantic
   entities:
-    light.entryway_light:
-      state: true
-      color_temp: 454
-      brightness: 1
-    light.kitchen_lights:
-      state: true
-      xy_color:
-      - 0.5923
-      - 0.3829
-      brightness: 1
-    light.dining_lights_level:
-      state: true
-      brightness: 25
-    light.bedroom_lamp:
-      state: true
-      xy_color:
-      - 0.5923
-      - 0.3829
-      brightness: 100
-    light.entertainment_lights:
-      state: true
-      xy_color:
-      - 0.5923
-      - 0.3829
-      brightness: 50
-    light.closet_light:
-      state: true
-      color_temp: 454
-      brightness: 1
-    light.nightstand_1:
-      state: true
-      color_temp: 454
-      brightness: 1
-    light.nightstand_2:
-      state: true
-      color_temp: 454
-      brightness: 1
-    light.tree_lamp_2:
-      state: true
-      color_temp: 454
-      brightness: 1
-    light.tree_lamp_4:
-      state: true
-      color_temp: 454
-      brightness: 1
-    light.shower_light:
-      state: true
-      color_temp: 454
-      brightness: 10
+    light.bathroom_mirror_1:
+      friendly_name: Bathroom mirror 1
+      max_mireds: 500
+      min_mireds: 153
+      state: 'off'
+      supported_features: 43
     light.bathroom_mirror_2:
-      state: true
-      color_temp: 454
       brightness: 10
+      color_temp: 454
+      friendly_name: Bathroom mirror 2
+      max_mireds: 500
+      min_mireds: 153
+      state: 'on'
+      supported_features: 43
+    light.bathroom_mirror_3:
+      friendly_name: Bathroom mirror 3
+      max_mireds: 500
+      min_mireds: 153
+      state: 'off'
+      supported_features: 43
     light.bathroom_mirror_4:
-      state: true
-      color_temp: 454
       brightness: 10
-    light.tree_lamp_1: false
-    light.tree_lamp_3: false
-    light.tree_lamp_5: false
-    light.bathroom_mirror_1: false
-    light.bathroom_mirror_3: false
-    switch.living_area_fluxer: false
-    switch.bedroom_fluxer: false
-    switch.bedroom_motion: false
-    switch.closet_fluxer: false
-    switch.closet_motion: false
-    switch.bathroom_fluxer: false
-    switch.bathroom_motion: false
+      color_temp: 454
+      friendly_name: Bathroom mirror 4
+      max_mireds: 500
+      min_mireds: 153
+      state: 'on'
+      supported_features: 43
+    light.bedroom_lamp:
+      brightness: 15
+      color_temp: 454
+      friendly_name: Bedroom lamp
+      max_mireds: 500
+      min_mireds: 153
+      state: 'on'
+      supported_features: 43
+    light.bedroom_nook_1:
+      effect_list:
+      - effect_colorloop
+      - effect_pulse
+      - effect_stop
+      friendly_name: Bedroom Nook 1
+      max_mireds: 400
+      min_mireds: 111
+      state: 'off'
+      supported_features: 55
+    light.bedroom_nook_2:
+      brightness: 35
+      effect_list:
+      - effect_colorloop
+      - effect_pulse
+      - effect_stop
+      friendly_name: Bedroom Nook 2
+      hs_color:
+      - 44.995
+      - 57.142
+      max_mireds: 400
+      min_mireds: 111
+      rgb_color:
+      - 255
+      - 218
+      - 109
+      state: 'on'
+      supported_features: 55
+      xy_color:
+      - 0.453
+      - 0.432
+    light.bedroom_nook_3:
+      effect_list:
+      - effect_colorloop
+      - effect_pulse
+      - effect_stop
+      friendly_name: Bedroom Nook 3
+      max_mireds: 400
+      min_mireds: 111
+      state: 'off'
+      supported_features: 55
+    light.closet_light:
+      brightness: 1
+      color_temp: 454
+      friendly_name: Closet light
+      max_mireds: 500
+      min_mireds: 153
+      state: 'on'
+      supported_features: 43
+    light.desk_lamp:
+      brightness: 54
+      effect: none
+      effect_list:
+      - colorloop
+      - random
+      friendly_name: Desk lamp
+      hs_color:
+      - 28.778
+      - 86.667
+      max_mireds: 500
+      min_mireds: 153
+      rgb_color:
+      - 255
+      - 139
+      - 33
+      state: 'on'
+      supported_features: 63
+      xy_color:
+      - 0.59
+      - 0.382
+    light.dining_lights_level:
+      brightness: 26
+      friendly_name: Dining lights
+      node_id: 10
+      state: 'on'
+      supported_features: 33
+      value_id: '72057594210516993'
+      value_index: 0
+      value_instance: 1
+    light.entertainment_lights:
+      brightness: 50
+      effect_list:
+      - colorloop
+      - random
+      friendly_name: Entertainment lights
+      hs_color:
+      - 28.778
+      - 86.667
+      is_hue_group: true
+      max_mireds: 500
+      min_mireds: 153
+      rgb_color:
+      - 255
+      - 139
+      - 33
+      state: 'on'
+      supported_features: 63
+      xy_color:
+      - 0.59
+      - 0.382
+    light.entryway_light:
+      brightness: 1
+      effect: none
+      effect_list:
+      - colorloop
+      - random
+      friendly_name: Entryway light
+      hs_color:
+      - 29.722
+      - 84.706
+      max_mireds: 500
+      min_mireds: 153
+      rgb_color:
+      - 255
+      - 145
+      - 38
+      state: 'on'
+      supported_features: 63
+      xy_color:
+      - 0.581
+      - 0.387
+    light.kitchen_lights:
+      brightness: 2
+      effect_list:
+      - colorloop
+      - random
+      friendly_name: Kitchen Lights
+      hs_color:
+      - 28.778
+      - 86.667
+      max_mireds: 500
+      min_mireds: 153
+      rgb_color:
+      - 255
+      - 139
+      - 33
+      state: 'on'
+      supported_features: 63
+      xy_color:
+      - 0.59
+      - 0.382
+    light.nightstand_1:
+      brightness: 1
+      color_temp: 454
+      friendly_name: Nightstand 1
+      max_mireds: 500
+      min_mireds: 153
+      state: 'on'
+      supported_features: 43
+    light.nightstand_2:
+      brightness: 1
+      color_temp: 454
+      friendly_name: Nightstand 2
+      max_mireds: 500
+      min_mireds: 153
+      state: 'on'
+      supported_features: 43
+    light.shower_light:
+      brightness: 10
+      color_temp: 454
+      friendly_name: Shower light
+      max_mireds: 500
+      min_mireds: 153
+      state: 'on'
+      supported_features: 43
+    light.sunroom_fan_light:
+      brightness: 68
+      effect_list:
+      - colorloop
+      - random
+      friendly_name: Sunroom fan light
+      hs_color:
+      - 28.778
+      - 86.667
+      is_hue_group: true
+      max_mireds: 500
+      min_mireds: 153
+      rgb_color:
+      - 255
+      - 139
+      - 33
+      state: 'on'
+      supported_features: 63
+      xy_color:
+      - 0.59
+      - 0.382
+    light.sunroom_nightstand_lamp:
+      brightness: 29
+      effect: none
+      effect_list:
+      - colorloop
+      - random
+      friendly_name: Sunroom nightstand lamp
+      hs_color:
+      - 28.778
+      - 86.667
+      max_mireds: 500
+      min_mireds: 153
+      rgb_color:
+      - 255
+      - 139
+      - 33
+      state: 'on'
+      supported_features: 63
+      xy_color:
+      - 0.59
+      - 0.382
+    light.tree_lamp_1:
+      friendly_name: Tree lamp 1
+      max_mireds: 500
+      min_mireds: 153
+      state: 'off'
+      supported_features: 43
+    light.tree_lamp_2:
+      brightness: 1
+      color_temp: 454
+      friendly_name: Tree lamp 2
+      max_mireds: 500
+      min_mireds: 153
+      state: 'on'
+      supported_features: 43
+    light.tree_lamp_3:
+      friendly_name: Tree lamp 3
+      max_mireds: 500
+      min_mireds: 153
+      state: 'off'
+      supported_features: 43
+    light.tree_lamp_4:
+      brightness: 1
+      color_temp: 454
+      friendly_name: Tree lamp 4
+      max_mireds: 500
+      min_mireds: 153
+      state: 'on'
+      supported_features: 43
+    light.tree_lamp_5:
+      friendly_name: Tree lamp 5
+      max_mireds: 500
+      min_mireds: 153
+      state: 'off'
+      supported_features: 43
+    switch.bathroom_fluxer:
+      emulated_hue_hidden: true
+      friendly_name: Bathroom Fluxer
+      icon: mdi:invert-colors
+      state: 'off'
+    switch.bathroom_motion:
+      friendly_name: Bathroom Motion Automations
+      icon: mdi:walk
+      state: 'off'
+    switch.bedroom_fluxer:
+      emulated_hue_hidden: true
+      friendly_name: Bedroom Fluxer
+      icon: mdi:invert-colors
+      state: 'off'
+    switch.bedroom_motion:
+      friendly_name: Bedroom Motion Automations
+      icon: mdi:walk
+      state: 'off'
+    switch.closet_fluxer:
+      emulated_hue_hidden: true
+      friendly_name: Closet Fluxer
+      icon: mdi:invert-colors
+      state: 'off'
+    switch.closet_motion:
+      friendly_name: Closet Motion Automations
+      icon: mdi:walk
+      state: 'off'
+    switch.living_area_fluxer:
+      emulated_hue_hidden: true
+      friendly_name: Living Area Fluxer
+      icon: mdi:invert-colors
+      state: 'off'

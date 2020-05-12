@@ -10,12 +10,12 @@ cards:
       - type: map
         title: Locations
         aspect_ratio: 50%
+        hours_to_show: 3
         entities:
           - entity: person.jeff
           - entity: person.sasha
           - zone.home
           - zone.bline
-          - zone.sashas_apartment
           - zone.river
       - type: custom:vertical-stack-in-card
         title: Jeff

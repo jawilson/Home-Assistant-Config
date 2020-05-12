@@ -70,3 +70,5 @@ sequence:
       - switch.dining_fluxer
       - switch.entryway_fluxer
       - switch.kitchen_fluxer
+
+  - service: script.dismiss_wake_up

@@ -46,3 +46,76 @@
   action:
     - service: switch.turn_off
       entity_id: switch.bathroom_fan_switch
+
+- alias: 'Bathroom Light Switch On'
+  trigger:
+    platform: device
+    domain: zha
+    device_id: 0900287a0c5d414f8cbd5099baee1b68
+    type: remote_button_short_press
+    subtype: turn_on
+  action:
+    - service: light.turn_on
+      entity_id: light.bathroom
+
+- alias: 'Bathroom Light Switch Off'
+  trigger:
+    platform: device
+    domain: zha
+    device_id: 0900287a0c5d414f8cbd5099baee1b68
+    type: remote_button_short_press
+    subtype: turn_off
+  action:
+    - service: light.turn_off
+      entity_id: light.bathroom
+
+- alias: 'Bathroom Light Switch Dim Up'
+  trigger:
+    platform: device
+    domain: zha
+    device_id: 0900287a0c5d414f8cbd5099baee1b68
+    type: remote_button_short_press
+    subtype: dim_up
+  action:
+    - service: light.turn_on
+      entity_id: light.bathroom
+      data:
+        brightness_step_pct: 10
+
+- alias: 'Bathroom Light Switch Dim Down'
+  trigger:
+    platform: device
+    domain: zha
+    device_id: 0900287a0c5d414f8cbd5099baee1b68
+    type: remote_button_short_press
+    subtype: dim_down
+  action:
+    - service: light.turn_on
+      entity_id: light.bathroom
+      data:
+        brightness_step_pct: -10
+
+- alias: 'Bathroom Light Switch Scene'
+  trigger:
+    platform: device
+    domain: zha
+    device_id: 0900287a0c5d414f8cbd5099baee1b68
+    type: remote_button_long_press
+    subtype: dim_up
+  action:
+    - service: switch.turn_off
+      entity_id: switch.bathroom_fluxer
+
+- alias: 'Bathroom Light Switch Reset'
+  trigger:
+    platform: device
+    domain: zha
+    device_id: 0900287a0c5d414f8cbd5099baee1b68
+    type: remote_button_long_press
+    subtype: dim_down
+  action:
+    - service: switch.bathroom_fluxer_update
+    - service: switch.turn_on
+      entity_id: switch.bathroom_fluxer
+    - service: automation.turn_on
+      entity_id: automation.bathroom_motion

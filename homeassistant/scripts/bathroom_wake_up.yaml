@@ -52,6 +52,7 @@ sequence:
       - switch.bathroom_fluxer
       - switch.bathroom_motion
 
+  - service: script.dismiss_wake_up
 
   # Turn off lights if no motion
   - condition: state
@@ -64,3 +65,5 @@ sequence:
     state: 'off'
   - service: light.turn_off
     entity_id: light.bathroom_lights
+
+  - service: script.dismiss_wake_up
