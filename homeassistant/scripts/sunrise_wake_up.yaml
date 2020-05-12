@@ -7,17 +7,17 @@ sequence:
       {% if is_state('person.jeff', 'home') and is_state('person.sasha', 'home') %}
       notify.family_phones
       {%- elif is_state('person.jeff', 'home') %}
-      notify.html5_jawilson_phone
+      notify.jeff_phone
       {%- elif is_state('person.sasha', 'home') %}
-      notefiy.ios_sashag_phone_ios
+      notefiy.sasha_phone
       {%- endif %}
     data:
       title: 'Good Morning!'
       message: 'The sun is rising'
       data:
         tag: 'wake-up'
-        vibrate: [0]
-        renotify: false
+        apns_headers:
+          'apns-collapse-id': 'wake-up'
         actions:
           - action: 'cancel_bedroom_wake_up'
             title: 'Cancel Bedroom'

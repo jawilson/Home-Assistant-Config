@@ -262,18 +262,24 @@ notify:
     vapid_pub_key: !secret vapid_pub_key
     vapid_prv_key: !secret vapid_prv_key
     vapid_email: !secret vapid_email
-  - platform: ios
-    name: ios
+  - platform: group
+    name: jeff_phone
+    services:
+      - service: mobile_app_chlorine
   - platform: group
     name: jeff
     services:
-      - service: html5_jawilson_phone
+      - service: jeff_phone
       - service: html5_jawilson_work
       - service: html5_jawilson_maxwell
   - platform: group
+    name: sasha_phone
+    services:
+      - service: mobile_app_alexandra_s_iphone
+  - platform: group
     name: sasha
     services:
-      - service: ios_sashag_phone_ios
+      - service: sasha_phone
   - platform: group
     name: family
     services:
@@ -282,8 +288,8 @@ notify:
   - platform: group
     name: family_phones
     services:
-      - service: html5_jawilson_phone
-      - service: ios_sashag_phone_ios
+      - service: jeff_phone
+      - service: sasha_phone
 
 # Intent services
 alexa:

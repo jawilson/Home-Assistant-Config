@@ -17,9 +17,9 @@
   action:
     service_template: >-
       {% if trigger.entity_id == 'person.jeff' -%}
-      notify.ios_sashag_phone_ios
+      notify.sasha_phone
       {%- else -%}
-      notify.html5_jawilson_phone
+      notify.jeff_phone
       {%- endif %}
     data_template:
       title: Location Update
@@ -33,6 +33,8 @@
       data:
         ttl: 7200
         tag: 'location-update'
+        apns_headers:
+          'apns-collapse-id': 'location-update'
         push:
           thread-id: 'location-update'
 
@@ -46,11 +48,8 @@
       entity_id: sensor.jeff_at_work_this_week
       above: 40
   action:
-    service: notify.html5
+    service: notify.jeff
     data_template:
-      target:
-        - jawilson_phone
-        - jawilson_work
       title: Time To Head Home
       message: >
         You have been at work for
@@ -89,6 +88,8 @@
         message: No one is home and a light was turned on
         data:
           tag: 'intruder'
+          apns_headers:
+            'apns-collapse-id': 'intruder'
           renotify: 1
           service: 'script.turn_on'
           entity_id: 'script.apartment_shutdown'

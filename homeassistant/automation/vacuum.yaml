@@ -97,14 +97,15 @@
       value_template: >
         {{ trigger.from_state.attributes.status|lower in ['new mission', 'running', 'user docking', 'docking', 'docking - end mission'] and trigger.to_state.attributes.status|lower in ['charging', 'recharging', 'stuck', 'cancelled', 'stopped', 'paused', 'user docking', 'docking - end mission', 'end mission'] }}
   action:
-    - service: notify.html5_jawilson_phone
+    - service: notify.jeff_phone
       data_template:
         title: 'Doomba Stopped'
         message: >
           Doomba has stopped {{ trigger.from_state.attributes.status|lower }} and is now {{ states[trigger.to_state.domain][trigger.to_state.object_id].attributes.status|lower }}
         data:
+          apns_headers:
+            'apns-collapse-id': 'doomba'
           tag: 'doomba'
-          vibrate: [0]
     - condition: template
       value_template: "{{ is_state_attr('vacuum.doomba', 'status', 'Charging') }}"
     - service: automation.turn_on
@@ -137,9 +138,9 @@
   action:
     service_template: >-
       {% if trigger.entity_id == 'person.sasha' -%}
-      notify.ios_sashag_phone_ios
+      notify.sasha_phone
       {%- else -%}
-      notify.html5_jawilson_phone
+      notify.jeff_phone
       {%- endif %}
     data:
       title: Doomba Not Docked
@@ -162,15 +163,17 @@
   action:
     - service_template: >-
         {% if (trigger != null and trigger.entity_id == 'person.sasha') -%}
-        notify.ios_sashag_phone_ios
+        notify.sasha_phone
         {%- else -%}
-        notify.html5_jawilson_phone
+        notify.jeff_phone
         {%- endif %}
       data:
         title: Doomba Ran Today
         message: Welcome home, Doomba did its duty today, can you please empty its bin?
         data:
           tag: 'doomba-bin'
+          apns_headers:
+            'apns-collapse-id': 'doomba-bin'
           renotify: false
           actions:
             - action: 'ok'
@@ -179,7 +182,7 @@
               title: 'Nope'
           push:
             category: 'ok_nope'
-            thread-id: 'doomba-bin'
+            thread-id: 'doomba'
             action_data:
               tag: 'doomba-bin'
 
@@ -187,7 +190,7 @@
 - alias: Doomba Bin Emptied
   trigger:
     - platform: event
-      event_type: html5_notification.clicked
+      event_type: mobile_app_notification_action
       event_data:
         action: 'ok'
         tag: 'doomba-bin'
@@ -200,8 +203,9 @@
   action:
     - service: automation.turn_off
       entity_id: automation.doomba_notify_empty_bin
-    - service: html5.dismiss
+    - service: notify.family_phones
       data:
+        message: clear_notification
         data:
           tag: 'doomba-bin'
 
@@ -216,7 +220,7 @@
     - condition: template
       value_template: "{{ 'error' in trigger.to_state.attributes }}"
   action:
-    - service: notify.html5
+    - service: notify.jeff
       data_template:
         title: 'Doomba Error!'
         message: "Doomba encountered error: {{ trigger.to_state.attributes.error }}"

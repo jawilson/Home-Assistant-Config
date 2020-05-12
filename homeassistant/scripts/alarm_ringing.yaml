@@ -2,7 +2,7 @@ alias: Alarm Ringing
 sequence:
   - service: switch.turn_off
     entity_id: switch.bedroom_fluxer
-  - service: notify.html5
+  - service: notify.jeff_phone
     data_template:
       target: '{{ target }}'
     data:
@@ -10,11 +10,11 @@ sequence:
       message: 'Turning on your wake-up light'
       data:
         tag: 'wake-up'
-        renotify: false
+        apns_headers:
+          'apns-collapse-id': 'wake-up'
         actions:
           - action: 'alarm_ringing_cancel'
             title: 'Cancel'
-        script: 'script.alarm_ringing'
   - service: light.turn_on
     data_template:
       entity_id: '{{ light }}'

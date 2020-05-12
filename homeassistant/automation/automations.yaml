@@ -1,7 +1,7 @@
 - alias: Run Service
   trigger:
     - platform: event
-      event_type: html5_notification.clicked
+      event_type: mobile_app_notification_action
       event_data:
         action: run_service
   action:
