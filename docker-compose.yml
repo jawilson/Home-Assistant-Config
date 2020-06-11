@@ -35,7 +35,7 @@ services:
       - ./adb:/root/.android
     command: /root/.android/startup.sh
   homeassistant:
-    image: homeassistant/home-assistant:0.107.7
+    image: homeassistant/home-assistant:0.110.3
     init: true
     links:
       - mqtt

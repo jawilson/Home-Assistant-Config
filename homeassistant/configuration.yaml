@@ -8,6 +8,9 @@ homeassistant:
   # Pick yours from here: http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone: America/New_York
 
+  external_url: !secret http_base_url
+  internal_url: http://192.168.0.60:8123
+
   customize: !include_dir_merge_named customizations
   customize_glob: !include customize_glob.yaml
 
@@ -16,7 +19,6 @@ discovery:
 
 # Web
 http:
-  base_url: !secret http_base_url
   use_x_forwarded_for: true
   trusted_proxies: 192.168.0.100
 
@@ -350,10 +352,6 @@ zwave:
   device_config: !include zwave_device_config.yaml
   device_config_glob: !include zwave_device_config_glob.yaml
 
-zha:
-  usb_path: /dev/zigbee
-  database_path: /config/zigbee.db
-
 apcupsd:
   host: feynman.singularity.net
   port: 3551
@@ -414,12 +412,6 @@ camera: !include cameras.yaml
 
 switch: !include_dir_merge_list switches
 
-vacuum:
-  - platform: roomba
-    name: Doomba
-    host: Doomba.singularity.net
-    username: !secret doomba_blid
-    password: !secret doomba_password
 
 # Groups
 group: !include groups.yaml

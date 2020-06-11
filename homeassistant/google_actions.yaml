@@ -2,6 +2,7 @@ filter:
   include_entities:
     - light.living_area_lights
     - input_boolean.schedule_vacuum
+    - input_boolean.media_automation
     - media_player.shield
     - script.apartment_shutdown
     - script.bedtime
@@ -55,6 +56,10 @@ filter:
     - switch.tree_lamp_fluxer
 
 entity_config:
+  input_boolean.media_automation:
+    aliases:
+      - Media Automations
+    room: Living Room
   input_boolean.schedule_vacuum:
     name: Schedule Vacuum
     aliases:
