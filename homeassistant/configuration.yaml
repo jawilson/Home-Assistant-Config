@@ -75,9 +75,9 @@ logbook:
       - automation.force_dining_lights_off
       - automation.force_kitchen_cabinet_lights_off
       - automation.update_jeff_travel_sensors_on_movement
-      - automation.update_jeff_travel_sensors_periodic
+      - automation.update_jeff_travel_sensors_periodically
       - automation.update_sasha_travel_sensors_on_movement
-      - automation.update_sasha_travel_sensors_periodic
+      - automation.update_sasha_travel_sensors_periodically
       - binary_sensor.jeff_home
       - binary_sensor.sasha_home
       - binary_sensor.bathroom_humidity_trend

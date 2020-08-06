@@ -53,8 +53,8 @@ cards:
                 - sensor.jeff_drive_home
                 - sensor.jeff_transit_home
                 - sensor.jeff_walk_home
-          - type: entities
-            show_header_toggle: false
+          - type: glance
+            show_name: false
             entities:
               - entity: sensor.jeff_sleep_state
                 name: Sleeping
@@ -69,6 +69,10 @@ cards:
               - entity: sensor.google_reverse_geocode_sasha
                 name: Location
             secondary_info: last-changed
+          - type: glance
+            show_name: false
+            entities:
+              - sensor.sashag_phone_activity
           - type: conditional
             conditions:
               - entity: person.sasha

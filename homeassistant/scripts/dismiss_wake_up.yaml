@@ -30,3 +30,4 @@ sequence:
       message: clear_notification
       data:
         tag: 'wake-up'
+        group: Wake-Up

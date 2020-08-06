@@ -74,13 +74,14 @@
         {%- elif is_state('person.jeff', 'home') %}
         notify.jeff_phone
         {%- elif is_state('person.sasha', 'home') %}
-        notefiy.sasha_phone
+        notify.sasha_phone
         {%- endif %}
       data:
         title: 'Good Morning!'
         message: 'Turning on the apartment lights'
         data:
           tag: 'wake-up'
+          group: Wake-Up
           apns_headers:
             'apns-collapse-id': 'wake-up'
           actions:
@@ -104,8 +105,11 @@
       state: 'off'
     - condition: template
       value_template: >
+        {{ as_timestamp(state_attr('calendar.sashag_school_end', 'end_time')) != None }}
+    - condition: template
+      value_template: >
         {{ as_timestamp(state_attr('calendar.sashag_school_start', 'start_time')) == None or
-            as_timestamp(state_attr('calendar.sashag_school_end', 'end_time'))|default(0, true) < as_timestamp(state_attr('calendar.sashag_school_start', 'start_time')) }}
+            as_timestamp(state_attr('calendar.sashag_school_end', 'end_time')) < as_timestamp(state_attr('calendar.sashag_school_start', 'start_time')) }}
     - service: script.closet_wake_up
     - service: script.bedroom_wake_up
     - service_template: >
@@ -121,6 +125,7 @@
         message: 'Turning on the bedroom and apartment lights'
         data:
           tag: 'wake-up'
+          group: Wake-Up
           apns_headers:
             'apns-collapse-id': 'wake-up'
           actions:
@@ -193,6 +198,7 @@
         message: 'Sasha is waking up'
         data:
           tag: 'wake-up'
+          group: Wake-Up
           apns_headers:
             'apns-collapse-id': 'wake-up'
           actions:
@@ -345,6 +351,7 @@
         message: Turning the lights back off
         data:
           tag: 'wake-up'
+          group: Wake-Up
           apns_headers:
             'apns-collapse-id': 'wake-up'
           actions:
@@ -389,6 +396,7 @@
         message: 'Turning on the bedroom and apartment lights'
         data:
           tag: 'wake-up'
+          group: Wake-Up
           apns_headers:
             'apns-collapse-id': 'wake-up'
           actions:

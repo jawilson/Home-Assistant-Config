@@ -10,6 +10,7 @@ sequence:
       message: 'Turning on your wake-up light'
       data:
         tag: 'wake-up'
+        group: Wake-Up
         apns_headers:
           'apns-collapse-id': 'wake-up'
         actions:

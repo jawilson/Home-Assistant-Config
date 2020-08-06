@@ -12,6 +12,7 @@ from homeassistant.components.person import ATTR_SOURCE, ATTR_USER_ID
 from homeassistant.helpers.entity import Entity
 from homeassistant.helpers.event import track_state_change
 from homeassistant.helpers.location import has_location
+from homeassistant.helpers.network import get_url
 from homeassistant.util.async_ import run_callback_threadsafe
 from homeassistant.util.location import distance
 from homeassistant.const import (
@@ -117,7 +118,10 @@ class GoogleReverseGeocodeSensor(Entity):
             return
 
         import googlemaps
-        self._client = googlemaps.Client(api_key, timeout=10)
+        external_ip = get_url(hass, allow_internal=False, allow_ip=False, require_ssl=True,
+                require_standard_port=True);
+        self._client = googlemaps.Client(api_key, timeout=10, requests_kwargs={"headers":
+            {"Referer": external_ip}});
         try:
             self.update()
         except googlemaps.exceptions.ApiError as exp:
