@@ -316,12 +316,6 @@ nest:
       - 'hvac_mode'
       - 'hvac_state'
 
-hue:
-  bridges:
-    - host: 192.168.0.54
-      allow_unreachable: true
-      filename: hue_hub_token.conf
-
 ios: !include ios.yaml
 
 octoprint:
