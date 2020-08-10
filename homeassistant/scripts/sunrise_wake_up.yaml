@@ -16,7 +16,7 @@ sequence:
       message: 'The sun is rising'
       data:
         tag: 'wake-up'
-        group: Wake-Up
+        channel: Wake-Up
         apns_headers:
           'apns-collapse-id': 'wake-up'
         actions:

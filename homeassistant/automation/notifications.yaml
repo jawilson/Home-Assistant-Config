@@ -33,7 +33,7 @@
       data:
         ttl: 7200
         tag: 'location-update'
-        group: Location
+        channel: Location
         apns_headers:
           'apns-collapse-id': 'location-update'
         push:
@@ -89,7 +89,7 @@
         message: No one is home and a light was turned on
         data:
           tag: 'intruder'
-          group: Intruder
+          channel: Important
           apns_headers:
             'apns-collapse-id': 'intruder'
           renotify: 1

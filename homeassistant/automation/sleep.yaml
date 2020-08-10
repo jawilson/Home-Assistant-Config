@@ -81,7 +81,7 @@
         message: 'Turning on the apartment lights'
         data:
           tag: 'wake-up'
-          group: Wake-Up
+          channel: Wake-Up
           apns_headers:
             'apns-collapse-id': 'wake-up'
           actions:
@@ -125,7 +125,7 @@
         message: 'Turning on the bedroom and apartment lights'
         data:
           tag: 'wake-up'
-          group: Wake-Up
+          channel: Wake-Up
           apns_headers:
             'apns-collapse-id': 'wake-up'
           actions:
@@ -198,7 +198,7 @@
         message: 'Sasha is waking up'
         data:
           tag: 'wake-up'
-          group: Wake-Up
+          channel: Wake-Up
           apns_headers:
             'apns-collapse-id': 'wake-up'
           actions:
@@ -351,7 +351,7 @@
         message: Turning the lights back off
         data:
           tag: 'wake-up'
-          group: Wake-Up
+          channel: Wake-Up
           apns_headers:
             'apns-collapse-id': 'wake-up'
           actions:
@@ -396,7 +396,7 @@
         message: 'Turning on the bedroom and apartment lights'
         data:
           tag: 'wake-up'
-          group: Wake-Up
+          channel: Wake-Up
           apns_headers:
             'apns-collapse-id': 'wake-up'
           actions:
