@@ -91,6 +91,8 @@
           actions:
             - action: 'wake_up_bedroom'
               title: 'Wake-Up Bedroom'
+            - action: 'reset_bedroom'
+              title: 'Reset Bedroom'
             - action: 'cancel_wake_up'
               title: 'Cancel All'
           push:
@@ -137,6 +139,8 @@
           actions:
             - action: 'cancel_bedroom_wake_up'
               title: 'Cancel Bedroom'
+            - action: 'reset_bedroom'
+              title: 'Reset Bedroom'
             - action: 'cancel_wake_up'
               title: 'Cancel All'
           push:
@@ -211,6 +215,8 @@
           actions:
             - action: 'cancel_bedroom_wake_up'
               title: 'Cancel Bedroom'
+            - action: 'reset_bedroom'
+              title: 'Reset Bedroom'
             - action: 'cancel_wake_up'
               title: 'Cancel All'
           push:
@@ -372,6 +378,8 @@
           actions:
             - action: 'wake_up_bedroom'
               title: 'Wake-Up Bedroom'
+            - action: 'reset_bedroom'
+              title: 'Reset Bedroom'
             - action: 'cancel_wake_up'
               title: 'Cancel All'
           push:
@@ -419,10 +427,33 @@
           actions:
             - action: 'cancel_bedroom_wake_up'
               title: 'Cancel Bedroom'
+            - action: 'reset_bedroom'
+              title: 'Reset Bedroom'
             - action: 'cancel_wake_up'
               title: 'Cancel All'
           push:
             category: 'wake_up'
+
+
+- alias: 'Reset Bedroom'
+  trigger:
+    - platform: event
+      event_type: mobile_app_notification_action
+      event_data:
+        action: reset_bedroom
+    - platform: event
+      event_type: ios.notification_action_fired
+      event_data:
+        actionName: 'RESET_BEDROOM'
+  action:
+    - service: script.turn_off
+      entity_id:
+        - script.bedroom_wake_up
+        - script.closet_wake_up
+    - service: script.turn_on
+      entity_id:
+        - script.bedroom_reset
+        - script.closet_reset
 
 
 - alias: 'Cancel Wake-Up'

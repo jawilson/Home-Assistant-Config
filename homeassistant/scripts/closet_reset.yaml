@@ -1,0 +1,44 @@
+alias: Closet Reset
+sequence:
+  # Restore fluxer and motion automations
+  - service: switch.turn_on
+    entity_id:
+      - switch.closet_fluxer
+      - switch.closet_motion
+
+  - service: script.turn_on
+    entity_id: script.dismiss_wake_up
+  - choose:
+      - conditions:
+          - condition: state
+            entity_id: sensor.bedroom_alarm_level
+            state: '0'
+            for:
+              minutes: 10
+          - condition: state
+            entity_id: sensor.bathroom_alarm_level
+            state: '0'
+            for:
+              minutes: 10
+        sequence:
+          - service: light.turn_off
+            entity_id: light.closet_light
+      - conditions:
+          condition: or
+          conditions:
+            - condition: not
+              conditions:
+                - condition: state
+                  entity_id: sensor.bedroom_alarm_level
+                  state: '0'
+            - condition: not
+              conditions:
+                - condition: state
+                  entity_id: sensor.bathroom_alarm_level
+                  state: '0'
+        sequence:
+          - service: light.turn_on
+            entity_id: light.closet_lights
+
+  - service: script.turn_on
+    entity_id: script.dismiss_wake_up

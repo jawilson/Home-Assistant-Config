@@ -46,24 +46,5 @@ sequence:
   - delay:
       minutes: 10
 
-
-  # Restore fluxer and motion automations
-  - service: switch.turn_on
-    entity_id:
-      - switch.bedroom_fluxer
-      - switch.bedroom_motion
-
   - service: script.turn_on
-    entity_id: script.dismiss_wake_up
-
-  # Turn off lights if no motion
-  - condition: state
-    entity_id: sensor.bedroom_alarm_level
-    state: '0'
-    for:
-      minutes: 10
-  - service: light.turn_off
-    entity_id: light.bedroom_lights
-
-  - service: script.turn_on
-    entity_id: script.dismiss_wake_up
+    entity_id: script.bedroom_reset
