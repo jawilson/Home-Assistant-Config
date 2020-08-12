@@ -13,8 +13,10 @@
   action:
     - service: homeassistant.turn_off
       entity_id: script.apartment_shutdown
-    - service: script.living_area_arrive
-    - service: script.bedroom_arrive
+    - service: script.turn_on
+      entity_id:
+        - script.living_area_arrive
+        - script.bedroom_arrive
 
 
 - alias: Handle lights when turned on not home
@@ -32,8 +34,10 @@
   action:
     - service: homeassistant.turn_off
       entity_id: script.apartment_shutdown
-    - service: script.living_area_arrive
-    - service: script.bedroom_arrive
+    - service: script.turn_on
+      entity_id:
+        - script.living_area_arrive
+        - script.bedroom_arrive
 
 
 - alias: Front door open

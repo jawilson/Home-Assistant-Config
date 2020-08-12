@@ -12,10 +12,12 @@
         - script.living_area_wake_up
         - script.living_room_wake_up
         - script.apartment_wake_up
-    - service: script.bedroom_sleep
-    - service: script.bathroom_sleep
-    - service: script.living_area_sleep
-    - service: script.apartment_sleep
+    - service: script.turn_on
+      entity_id:
+        - script.bedroom_sleep
+        - script.bathroom_sleep
+        - script.living_area_sleep
+        - script.apartment_sleep
 
 
 - alias: 'Someone Leaves While Jeff Sleeping'
@@ -64,9 +66,11 @@
         - script.bathroom_sleep
         - script.living_area_sleep
         - script.apartment_sleep
-    - service: script.bathroom_wake_up
-    - service: script.living_area_wake_up
-    - service: script.apartment_wake_up
+    - service: script.turn_on
+      entity_id:
+        - script.bathroom_wake_up
+        - script.living_area_wake_up
+        - script.apartment_wake_up
     # Provide a way to cancel
     - service_template: >
         {% if is_state('person.jeff', 'home') and is_state('person.sasha', 'home') %}
@@ -110,8 +114,10 @@
       value_template: >
         {{ as_timestamp(state_attr('calendar.sashag_school_start', 'start_time')) == None or
             as_timestamp(state_attr('calendar.sashag_school_end', 'end_time')) < as_timestamp(state_attr('calendar.sashag_school_start', 'start_time')) }}
-    - service: script.closet_wake_up
-    - service: script.bedroom_wake_up
+    - service: script.turn_on
+      entity_id:
+        - script.closet_wake_up
+        - script.bedroom_wake_up
     - service_template: >
         {% if is_state('person.jeff', 'home') and is_state('person.sasha', 'home') %}
         notify.family_phones
@@ -153,7 +159,8 @@
       entity_id: 'binary_sensor.workday_sensor'
       state: 'on'
   action:
-    - service: script.apartment_wake_up
+    - service: script.turn_on
+      entity_id: script.apartment_wake_up
 
 
 - alias: 'Sasha Wake-Up'
@@ -208,9 +215,11 @@
               title: 'Cancel All'
           push:
             category: 'wake_up'
-    - service: script.bathroom_wake_up
-    - service: script.closet_wake_up
-    - service: script.living_area_wake_up
+    - service: script.turn_on
+      entity_id:
+        - script.bathroom_wake_up
+        - script.closet_wake_up
+        - script.living_area_wake_up
     - service: switch.turn_off
       entity_id: switch.bedroom_fluxer
     - service: light.turn_on
@@ -218,10 +227,12 @@
       data:
         color_temp: 450
         brightness: 10
-    - service: script.apartment_wake_up
+    - service: script.turn_on
+      entity_id: script.apartment_wake_up
     - condition: template
       value_template: "{{ not is_state('person.jeff', 'home') }}"
-    - service: script.bedroom_wake_up
+    - service: script.turn_on
+      entity_id: script.bedroom_wake_up
 
 
 - alias: 'Alarm Bedtime'
@@ -274,10 +285,11 @@
     entity_id: person.jeff
     state: 'home'
   action:
-    service: script.alarm_ringing
-    data:
-      light: light.nightstand_1
-      target: jawilson_phone
+    - service: script.turn_on
+      entity_id: script.alarm_ringing
+      data:
+        light: light.nightstand_1
+        target: jawilson_phone
 
 
 - alias: 'Alarm Snooze'
@@ -290,9 +302,10 @@
     entity_id: person.jeff
     state: 'home'
   action:
-    service: script.alarm_snooze
-    data:
-      light: light.nightstand_1
+    - service: script.turn_on
+      entity_id: script.alarm_snooze
+      data:
+        light: light.nightstand_1
 
 
 - alias: 'Alarm Dismiss'
@@ -310,9 +323,10 @@
       entity_id: script.bedroom_wake_up
       state: 'off'
   action:
-    service: script.alarm_dismiss
-    data_template:
-      light: light.nightstand_1
+    - service: script.turn_on
+      entity_id: script.alarm_dismiss
+      data_template:
+        light: light.nightstand_1
 
 
 - alias: 'Cancel Alarm Ringing'
@@ -324,7 +338,8 @@
   action:
     - service: script.turn_off
       entity_id: script.alarm_ringing
-    - service: script.bedroom_sleep
+    - service: script.turn_on
+      entity_id: script.bedroom_sleep
 
 
 - alias: 'Cancel Bedroom Wake-Up'
@@ -366,7 +381,8 @@
         - script.bedroom_wake_up
         - script.closet_wake_up
         - script.sunrise_wake_up
-    - service: script.bedroom_sleep
+    - service: script.turn_on
+      entity_id: script.bedroom_sleep
 
 
 - alias: 'Wake-Up Bedroom'
@@ -380,8 +396,10 @@
       event_data:
         actionName: 'WAKE_UP_BEDROOM'
   action:
-    - service: script.closet_wake_up
-    - service: script.bedroom_wake_up
+    - service: script.turn_on
+      entity_id:
+        - script.closet_wake_up
+        - script.bedroom_wake_up
     - service_template: >
         {% if is_state('person.jeff', 'home') and is_state('person.sasha', 'home') %}
         notify.family_phones
@@ -426,6 +444,8 @@
         - script.living_area_wake_up
         - script.living_room_wake_up
         - script.apartment_wake_up
-    - service: script.bedroom_sleep
-    - service: script.bathroom_sleep
-    - service: script.living_area_sleep
+    - service: script.turn_on
+      entity_id:
+        - script.bedroom_sleep
+        - script.bathroom_sleep
+        - script.living_area_sleep
