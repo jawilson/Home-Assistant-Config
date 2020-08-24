@@ -61,6 +61,7 @@ recorder:
       - sensor.p3steel_target_tool0_temp
       - sensor.sunrise
       - sensor.sunset
+      - sensor.time
       - sensor.jeff_leave_work_today
 
 # View all events in a logbook
@@ -135,6 +136,7 @@ logbook:
       - sensor.jeff_sleeping_at_home
       - sensor.sashag_phone_battery_level
       - sensor.sashag_phone_battery_state
+      - sensor.time
       - sensor.neo_coolcam_door_window_detector_access_control
       - sensor.neo_coolcam_door_window_detector_alarm_level
       - switch.apartment_fan
@@ -228,6 +230,7 @@ history:
       - sensor.google_reverse_geocode_sasha
       - sensor.sashag_phone_battery_level
       - sensor.sashag_phone_battery_state
+      - sensor.time
       - switch.apartment_fan
       - switch.bathroom_fluxer
       - switch.bathroom_motion

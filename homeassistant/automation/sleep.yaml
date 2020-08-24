@@ -71,6 +71,11 @@
         - script.bathroom_wake_up
         - script.living_area_wake_up
         - script.apartment_wake_up
+    - service: notify.jeff_phone
+      data:
+        message: clear_notification
+        data:
+          tag: 'alarm-ringing'
     # Provide a way to cancel
     - service_template: >
         {% if is_state('person.jeff', 'home') and is_state('person.sasha', 'home') %}
@@ -197,6 +202,11 @@
       entity_id:
         - script.bathroom_sleep
         - script.living_area_sleep
+    - service: notify.jeff_phone
+      data:
+        message: clear_notification
+        data:
+          tag: 'alarm-ringing'
     # Provide a way to cancel
     - service_template: >
         {% if is_state('person.jeff', 'home') %}
@@ -241,22 +251,72 @@
       entity_id: script.bedroom_wake_up
 
 
-- alias: 'Alarm Bedtime'
+- alias: 'Bedtime Cooldown'
+  mode: restart
   trigger:
-    platform: state
-    entity_id: sensor.jeff_alarm
-    to: 'Bedtime'
+    - platform: state
+      entity_id: sensor.jeff_alarm
+      to: 'Bedtime'
+    - platform: numeric_state
+      entity_id:
+        - sensor.jawilson_phone_next_alarm
+        - sensor.time
+      value_template: "{{ (states('sensor.jawilson_phone_next_alarm')|as_timestamp - states.sensor.time.last_changed|as_timestamp)/60/60 }}"
+      below: 9.5
+    - platform: event
+      event_type: mobile_app_notification_action
+      event_data:
+        action: bedtime_cooldown
+    - platform: event
+      event_type: mobile_app_notification_action
+      event_data:
+        action: cancel_bedtime_cooldown
   condition:
-    condition: state
-    entity_id: person.jeff
-    state: 'home'
+    - condition: state
+      entity_id: person.jeff
+      state: 'home'
   action:
+    - condition: template
+      value_template: "{{ not trigger or not (trigger.platform == 'event' and trigger.event.data.action == 'cancel_bedtime_cooldown') }}"
+    - condition: or
+      conditions:
+        - condition: template
+          value_template: "{{ state_attr('climate.apartment', 'temperature') and state_attr('climate.apartment', 'temperature') > 70 }}"
+        - condition: template
+          value_template: "{{ state_attr('climate.apartment', 'target_temp_high') and state_attr('climate.apartment', 'target_temp_high') > 70 }}"
+        - condition: template
+          value_template: "{{ state_attr('climate.apartment', 'target_temp_low') and state_attr('climate.apartment', 'target_temp_low') > 60 }}"
+    - choose:
+        - conditions:
+            - condition: template
+              value_template: "{{ not trigger or not (trigger.platform == 'event' and trigger.event.data.action == 'bedtime_cooldown') }}"
+          sequence:
+            - service: notify.jeff_phone
+              data:
+                title: 'Bedtime Cooldown'
+                message: 'Good evening, cooling down the apartment in 5 minutes...'
+                data:
+                  timeout: 300
+                  tag: 'evening-cooldown'
+                  actions:
+                    - action: 'bedtime_cooldown'
+                      title: 'Cool Down Now'
+                    - action: 'cancel_bedtime_cooldown'
+                      title: 'Cancel'
+            - delay:
+                minutes: 5
     - service: climate.set_temperature
       data:
         entity_id: climate.apartment
-        target_temp_high: 70
-        temperature: 70
-        target_temp_low: 60
+      data_template:
+        target_temp_high: "{{ state_attr('climate.apartment', 'target_temp_high')|default(70, True)|min(70) }}"
+        temperature: "{{ state_attr('climate.apartment', 'temperature')|default(70, True)|min(70) }}"
+        target_temp_low: "{{ state_attr('climate.apartment', 'target_temp_low')|default(60, True)|min(60) }}"
+    - service: notify.jeff_phone
+      data:
+        message: clear_notification
+        data:
+          tag: 'evening-cooldown'
 
 
 - alias: 'Alarm Smart Period'
@@ -294,8 +354,9 @@
     - service: script.turn_on
       entity_id: script.alarm_ringing
       data:
-        light: light.nightstand_1
-        target: jawilson_phone
+        variables:
+          light: light.nightstand_1
+          target: jawilson_phone
 
 
 - alias: 'Alarm Snooze'
@@ -311,7 +372,13 @@
     - service: script.turn_on
       entity_id: script.alarm_snooze
       data:
-        light: light.nightstand_1
+        variables:
+          light: light.nightstand_1
+    - service: notify.jeff_phone
+      data:
+        message: clear_notification
+        data:
+          tag: 'alarm-ringing'
 
 
 - alias: 'Alarm Dismiss'
@@ -331,8 +398,14 @@
   action:
     - service: script.turn_on
       entity_id: script.alarm_dismiss
-      data_template:
-        light: light.nightstand_1
+      data:
+        variables:
+          light: light.nightstand_1
+    - service: notify.jeff_phone
+      data:
+        message: clear_notification
+        data:
+          tag: 'alarm-ringing'
 
 
 - alias: 'Cancel Alarm Ringing'

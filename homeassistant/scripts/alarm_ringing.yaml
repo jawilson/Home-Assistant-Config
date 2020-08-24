@@ -9,10 +9,10 @@ sequence:
       title: 'Good Morning!'
       message: 'Turning on your wake-up light'
       data:
-        tag: 'wake-up'
+        tag: 'alarm-ringing'
         channel: Wake-Up
         apns_headers:
-          'apns-collapse-id': 'wake-up'
+          'apns-collapse-id': 'alarm-ringing'
         actions:
           - action: 'alarm_ringing_cancel'
             title: 'Cancel'
