@@ -87,20 +87,6 @@ services:
       - 1880:1880
     volumes:
       - ./node-red/data:/data
-  appdaemon:
-    image: acockburn/appdaemon:latest
-    restart: unless-stopped
-    user: '114:118'
-    links:
-      - homeassistant
-    ports:
-      - 5051:5051
-    environment:
-      - HA_URL="http://homeassistant:8123"
-      - DASH_URL="http://0.0.0.0:5051"
-    env_file: ./appdaemon/appdaemon.env
-    volumes:
-      - ./appdaemon/conf:/conf
 networks:
   default:
   macvlan:
