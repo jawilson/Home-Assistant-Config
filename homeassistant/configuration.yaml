@@ -270,7 +270,7 @@ notify:
   - platform: group
     name: jeff_phone
     services:
-      - service: mobile_app_chlorine
+      - service: mobile_app_jawilson_phone
   - platform: group
     name: jeff
     services:
@@ -280,7 +280,7 @@ notify:
   - platform: group
     name: sasha_phone
     services:
-      - service: mobile_app_alexandra_s_iphone
+      - service: mobile_app_sasha_phone
   - platform: group
     name: sasha
     services:

@@ -5,7 +5,7 @@
   mode: xy
 
   start_time: '6:00'
-  stop_time: '23:30'
+  stop_time: '22:00'
 
   start_colortemp: 5000
   sunset_colortemp: 4000
@@ -20,7 +20,7 @@
   mode: xy
 
   start_time: '6:00'
-  stop_time: '23:30'
+  stop_time: '22:00'
 
   start_colortemp: 5000
   sunset_colortemp: 4000
@@ -35,7 +35,7 @@
   mode: xy
 
   start_time: '6:00'
-  stop_time: '23:30'
+  stop_time: '22:00'
 
   start_colortemp: 5000
   sunset_colortemp: 3800
@@ -50,7 +50,7 @@
   mode: xy
 
   start_time: '6:00'
-  stop_time: '23:30'
+  stop_time: '22:00'
 
   start_colortemp: 5000
   sunset_colortemp: 3800
@@ -64,7 +64,7 @@
   mode: mired
 
   start_time: '6:00'
-  stop_time: '23:30'
+  stop_time: '22:00'
 
   start_colortemp: 5000
   sunset_colortemp: 3200
@@ -79,7 +79,7 @@
   mode: xy
 
   start_time: '6:00'
-  stop_time: '23:30'
+  stop_time: '22:00'
 
   start_colortemp: 5000
   sunset_colortemp: 4000
@@ -126,7 +126,7 @@
   mode: mired
 
   start_time: '6:00'
-  stop_time: '23:30'
+  stop_time: '22:00'
 
   start_colortemp: 4000
   sunset_colortemp: 3000
@@ -141,7 +141,7 @@
   mode: mired
 
   start_time: '6:00'
-  stop_time: '23:30'
+  stop_time: '22:00'
 
   start_colortemp: 4000
   sunset_colortemp: 3000
@@ -156,7 +156,7 @@
   mode: mired
 
   start_time: '6:00'
-  stop_time: '23:30'
+  stop_time: '22:00'
 
   start_colortemp: 3500
   sunset_colortemp: 3000

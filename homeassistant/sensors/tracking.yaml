@@ -13,6 +13,14 @@
     jeff_sleep_state:
       friendly_name: 'Jeff Sleeping'
       value_template: "{{ state_attr('sensor.jeff_alarm', 'sleep_state')|capitalize }}"
+      icon_template: >-
+        {% if is_state_attr('sensor.jeff_alarm', 'sleep_state', 'awake') %}
+          mdi:account
+        {% elif is_state_attr('sensor.jeff_alarm', 'sleep_state', 'sleeping') %}
+          mdi:sleep
+        {% else %}
+          mdi:progress-question
+        {% endif %}
     jeff_leave_work_today:
       friendly_name: 'Jeff leave work today'
       value_template: >

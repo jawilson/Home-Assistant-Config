@@ -261,7 +261,7 @@
       entity_id:
         - sensor.jawilson_phone_next_alarm
         - sensor.time
-      value_template: "{{ (states('sensor.jawilson_phone_next_alarm')|as_timestamp - states.sensor.time.last_changed|as_timestamp)/60/60 }}"
+      value_template: "{{ 24 if states('sensor.jawilson_phone_next_alarm') == 'unavailable' else (states('sensor.jawilson_phone_next_alarm')|as_timestamp - states.sensor.time.last_changed|as_timestamp)/60/60 }}"
       below: 9.5
     - platform: event
       event_type: mobile_app_notification_action
@@ -275,6 +275,9 @@
     - condition: state
       entity_id: person.jeff
       state: 'home'
+    - condition: state
+      entity_id: sensor.jeff_sleep_state
+      state: 'Awake'
   action:
     - condition: template
       value_template: "{{ not trigger or not (trigger.platform == 'event' and trigger.event.data.action == 'cancel_bedtime_cooldown') }}"
