@@ -8,7 +8,7 @@ scene.romantic:
   icon: mdi:candle
 
 script.bedtime:
-  icon: mdi:hotel
+  icon: mdi:bed
 
 scene.up_late:
   icon: mdi:weather-night

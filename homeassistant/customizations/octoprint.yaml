@@ -3,7 +3,7 @@ sensor.p3steel_current_state:
   icon: mdi:printer-3d
 sensor.p3steel_job_percentage:
   friendly_name: 'Job Percentage'
-  icon: mdi:worker
+  icon: mdi:account-hard-hat
 sensor.p3steel_actual_tool0_temp:
   friendly_name: 'Hotend Actual'
 sensor.p3steel_target_tool0_temp:

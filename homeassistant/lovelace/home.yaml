@@ -56,6 +56,7 @@ cards:
           - type: glance
             show_name: false
             entities:
+              - sensor.jawilson_phone_detected_activity
               - entity: sensor.jeff_sleep_state
                 name: Sleeping
               - entity: sensor.jeff_alarm

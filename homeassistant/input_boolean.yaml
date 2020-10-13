@@ -6,7 +6,7 @@ schedule_vacuum:
 presence:
   name: Presence
   initial: on
-  icon: mdi:account-location
+  icon: mdi:tooltip-account
 
 motion:
   name: Motion

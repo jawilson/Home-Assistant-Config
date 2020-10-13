@@ -1,6 +1,6 @@
 title: Admin
 path: admin
-icon: mdi:settings
+icon: mdi:cog
 cards:
   - type: entities
     title: Scripts
