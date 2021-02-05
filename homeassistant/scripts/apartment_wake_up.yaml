@@ -1,4 +1,6 @@
 alias: Apartment Wake-Up
+mode: single
+max_exceeded: silent
 sequence:
   - condition: state
     entity_id: input_boolean.climate_auto

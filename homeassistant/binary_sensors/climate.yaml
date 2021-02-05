@@ -1,5 +1,3 @@
-- platform: nest
-
 - platform: trend
   sensors:
     showering:

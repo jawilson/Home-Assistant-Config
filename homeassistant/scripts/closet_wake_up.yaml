@@ -1,4 +1,5 @@
 alias: Closet Wake-Up
+max_exceeded: silent
 sequence:
   - service: homeassistant.turn_off
     entity_id:

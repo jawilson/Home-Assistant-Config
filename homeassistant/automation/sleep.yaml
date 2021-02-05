@@ -32,8 +32,7 @@
     - condition: state
       entity_id: binary_sensor.jeff_sleeping_at_home
       state: 'on'
-    - condition: template
-      value_template: "{{ not is_state('sensor.jeff_alarm', 'Ringing') }}"
+    - "{{ not is_state('sensor.jeff_alarm', 'Ringing') }}"
   action:
     - service: script.turn_off
       entity_id:
@@ -111,9 +110,6 @@
         - wed
         - thu
         - fri
-    - condition: state
-      entity_id: calendar.jawilson_office_closed
-      state: 'off'
     - condition: template
       value_template: >
         {{ as_timestamp(state_attr('calendar.sashag_school_end', 'end_time')) != None }}
@@ -261,8 +257,9 @@
       entity_id:
         - sensor.jawilson_phone_next_alarm
         - sensor.time
+        - input_number.bedtime_cooldown_hours
       value_template: "{{ 24 if states('sensor.jawilson_phone_next_alarm') == 'unavailable' else (states('sensor.jawilson_phone_next_alarm')|as_timestamp - states.sensor.time.last_changed|as_timestamp)/60/60 }}"
-      below: 9.5
+      below: input_number.bedtime_cooldown_hours
     - platform: event
       event_type: mobile_app_notification_action
       event_data:
@@ -335,13 +332,8 @@
     - condition: state
       entity_id: input_boolean.climate_auto
       state: 'on'
-    - service: climate.set_temperature
-      data:
-        entity_id: climate.apartment
-      data_template:
-        target_temp_high: "{{ states('input_number.default_high_temp')|int }}"
-        temperature: "{{ states('input_number.default_low_temp')|int if is_state('climate.apartment', 'heat') else states('input_number.default_high_temp')|int }}"
-        target_temp_low: "{{ states('input_number.default_low_temp')|int }}"
+    - service: script.turn_on
+      entity_id: script.apartment_wake_up
 
 
 - alias: 'Alarm Ringing'

@@ -9,7 +9,7 @@
       entity_id: binary_sensor.presume_home
       to: 'off'
       for:
-        minutes: 30
+        minutes: 15
   condition:
     - condition: state
       entity_id: input_boolean.presence
@@ -28,7 +28,7 @@
               conditions:
                 - condition: state
                   entity_id: vacuum.doomba
-                  state: 'off'
+                  state: 'docked'
                   # Only run Doomba ounce every 20 hours max
                   for:
                     hours: 20
@@ -84,7 +84,7 @@
       value_template: >
         {{ (as_timestamp(now()) - as_timestamp(states.automation.run_doomba.attributes.last_triggered)|float)/60 > 20 }}
   action:
-    service: vacuum.turn_off
+    service: vacuum.return_to_base
     entity_id: vacuum.doomba
 
 
@@ -200,7 +200,7 @@
       event_type: ios.notification_action_fired
       event_data:
         actionName: 'OK'
-        actionData:
+        action_data:
           tag: 'doomba-bin'
   action:
     - service: automation.turn_off

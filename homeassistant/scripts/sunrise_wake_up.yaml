@@ -39,4 +39,4 @@ sequence:
       brightness_pct: 30
     data_template:
       transition: >
-        {{ (as_timestamp(strptime(state_attr('sensor.jeff_alarm', 'next_alarm'), '%Y-%m-%d %H:%M')) - as_timestamp(now()))|int + 300 }}
+        {{ (as_timestamp(states('sensor.jawilson_phone_next_alarm')) - as_timestamp(now()))|int + 300 }}

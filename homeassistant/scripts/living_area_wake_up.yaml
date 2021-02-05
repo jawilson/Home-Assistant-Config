@@ -1,4 +1,5 @@
 alias: Living Area Wake-Up
+max_exceeded: silent
 sequence:
   - condition: state
     entity_id: binary_sensor.guests

@@ -1,4 +1,5 @@
 alias: Apartment Shutdown
+max_exceeded: silent
 sequence:
   - service: python_script.call_service_if_state
     data:

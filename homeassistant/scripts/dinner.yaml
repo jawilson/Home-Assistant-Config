@@ -5,11 +5,11 @@ sequence:
   - service: light.turn_on
     entity_id: light.living_room_lights
     data:
-      profile: nightlight
       brightness: 100
+      color_temp: 358
       transition: 15
   - condition: state
     entity_id: remote.living_room
     state: 'off'
   - service: switch.turn_on
-    entity_id: switch.plex
+    entity_id: switch.projector

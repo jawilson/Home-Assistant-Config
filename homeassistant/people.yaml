@@ -3,7 +3,6 @@
   user_id: 94f1fb97e8374becb77c3979bbd3fc0b
   device_trackers:
     - device_tracker.jawilson_phone
-    - device_tracker.jawilson_phone_owntracks
     - device_tracker.jawilson_phone_android
 
 - name: Sasha

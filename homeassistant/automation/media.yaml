@@ -86,6 +86,7 @@
   trigger:
     platform: state
     entity_id: remote.living_room
+  mode: restart
   action:
     service: input_select.select_option
     data_template:

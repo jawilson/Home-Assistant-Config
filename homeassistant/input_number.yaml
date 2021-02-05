@@ -20,3 +20,17 @@ default_sleep_high_temp:
   max: 74
   unit_of_measurement: '°F'
   icon: mdi:thermometer-low
+
+bedtime_cooldown_hours:
+  name: Cooldown Hours
+  min: 4
+  max: 12
+  step: 0.25
+  unit_of_measurement: hours
+
+apartment_wakeup_period:
+  name: Apartment Wake-Up Period
+  min: 0
+  max: 120
+  step: 5
+  unit_of_measurement: minutes

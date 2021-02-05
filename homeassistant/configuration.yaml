@@ -176,7 +176,6 @@ history:
       - binary_sensor.bathroom_temp_trend
       - binary_sensor.remote_ui
       - device_tracker.jawilson_phone
-      - device_tracker.jawilson_phone_owntracks
       - device_tracker.sashag_phone
       - device_tracker.sashag_phone_ios
       - light.entryway
@@ -304,21 +303,6 @@ intent_script: !include intent_scripts.yaml
 #
 # Hubs
 #
-nest:
-  client_id: !secret nest_id
-  client_secret: !secret nest_secret
-  binary_sensors:
-    monitored_conditions:
-      - 'fan'
-      - 'has_leaf'
-  sensors:
-    monitored_conditions:
-      - 'temperature'
-      - 'target'
-      - 'humidity'
-      - 'hvac_mode'
-      - 'hvac_state'
-
 ios: !include ios.yaml
 
 octoprint:
@@ -367,7 +351,6 @@ input_number: !include input_number.yaml
 # Devices
 #
 climate:
-  - platform: nest
   - platform: generic_thermostat
     name: Sunroom
     heater: switch.sunroom_switch
@@ -386,9 +369,6 @@ person: !include people.yaml
 
 device_tracker:
 
-owntracks:
-  max_gps_accuracy: 45
-
 asuswrt:
   host: 192.168.0.1
   username: !secret asuswrt_username
@@ -399,11 +379,6 @@ asuswrt:
 
 cast:
 media_player: !include media_players.yaml
-
-remote:
-  - platform: harmony
-    name: Living Room
-    host: HarmonyHub.singularity.net
 
 camera: !include cameras.yaml
 
@@ -458,7 +433,6 @@ logger:
     homeassistant.components.recorder: error
     homeassistant.components.remote.harmony: error
     homeassistant.components.device_tracker.asuswrt: error
-    homeassistant.components.device_tracker.owntracks: error
     homeassistant.components.sensor.octoprint: error
     homeassistant.components.switch.orvibo: critical
     #custom_components.google_reverse_geocode.sensor: debug

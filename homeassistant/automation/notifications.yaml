@@ -146,6 +146,8 @@
   trigger:
     platform: state
     entity_id: updater.updater
+    from: 'off'
+    to: 'on'
   action:
     service: notify.jeff
     data_template:

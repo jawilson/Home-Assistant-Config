@@ -1,10 +1,4 @@
 #
-# Nest
-#
-- platform: nest
-
-
-#
 # Templates
 #
 - platform: template
