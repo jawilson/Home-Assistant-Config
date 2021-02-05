@@ -6,3 +6,9 @@ living_room_activity:
     - Listen to Shield
     - Play Xbox One
     - Play Xbox 360
+
+bathroom_light_profile:
+  name: Bathroom Light Profile
+  options:
+    - 'Auto'
+    - 'Daylight'

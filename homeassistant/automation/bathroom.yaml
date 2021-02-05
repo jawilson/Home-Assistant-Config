@@ -100,11 +100,34 @@
     platform: device
     domain: zha
     device_id: 0900287a0c5d414f8cbd5099baee1b68
-    type: remote_button_long_press
-    subtype: dim_up
+    type: remote_button_double_press
+    subtype: turn_on
   action:
-    - service: switch.turn_off
-      entity_id: switch.bathroom_fluxer
+    - service: input_select.select_next
+      entity_id: input_select.bathroom_light_profile
+
+- alias: 'Bathroom Light Scene'
+  trigger:
+    - platform: state
+      entity_id: input_select.bathroom_light_profile
+  action:
+    - choose:
+      - conditions: >
+          {{ trigger.to_state.state == 'Auto' }}
+        sequence:
+          - service: switch.bathroom_fluxer_update
+          - service: switch.turn_on
+            entity_id: switch.bathroom_fluxer
+      - conditions: >
+          {{ trigger.to_state.state == 'Daylight' }}
+        sequence:
+          - service: switch.turn_off
+            entity_id: switch.bathroom_fluxer
+          - service: light.turn_on
+            entity_id: light.bathroom
+            data:
+              kelvin: 5000
+              brightness_pct: 100
 
 - alias: 'Bathroom Light Switch Reset'
   trigger:
@@ -112,10 +135,11 @@
     domain: zha
     device_id: 0900287a0c5d414f8cbd5099baee1b68
     type: remote_button_long_press
-    subtype: dim_down
+    subtype: turn_on
   action:
-    - service: switch.bathroom_fluxer_update
+    - service: input_select.select_option
+      entity_id: input_select.bathroom_light_profile
+      data:
+        option: 'Auto'
     - service: switch.turn_on
-      entity_id: switch.bathroom_fluxer
-    - service: automation.turn_on
-      entity_id: automation.bathroom_motion
+      entity_id: switch.bathroom_motion
