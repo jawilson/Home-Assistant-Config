@@ -45,7 +45,7 @@ filter:
     - light.all_hue_lights
     - light.color_lights
     - light.color_temperature_lights
-    - scene.tv_dinner
+    - script.tv_dinner
     - switch.dining_fluxer
     - switch.entryway_fluxer
     - switch.kitchen_fluxer
@@ -54,6 +54,10 @@ filter:
     - switch.sunroom_fluxer
     - switch.sunroom_switch
     - switch.tree_lamp_fluxer
+    - switch.bathroom_speaker_do_not_disturb
+    - switch.bedroom_speaker_do_not_disturb
+    - switch.kitchen_display_do_not_disturb
+    - switch.sunroom_speaker_do_not_disturb
 
 entity_config:
   input_boolean.media_automation:
@@ -138,13 +142,3 @@ entity_config:
       - Living area fluxer
       - Living area color
       - Livingarea color
-  switch.netflix:
-    room: Living Room
-  switch.plex:
-    room: Living Room
-  switch.projector:
-    room: Living Room
-  switch.xbox_360:
-    room: Living Room
-  switch.xbox_one:
-    room: Living Room

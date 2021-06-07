@@ -1,0 +1,16 @@
+- alias: WFH Sunroom Lights
+  trigger:
+    platform: numeric_state
+    entity_id: sun.sun
+    attribute: elevation
+    below: 3
+  condition:
+    - condition: state
+      entity_id: person.jeff
+      state: 'home'
+    - condition: state
+      entity_id: 'binary_sensor.workday_sensor'
+      state: 'on'
+  action:
+    - service: light.turn_on
+      entity_id: light.sunroom

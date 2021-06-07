@@ -65,6 +65,8 @@ entities:
     hidden: false
   script.dinner:
     hidden: false
+  script.tv_dinner:
+    hidden: false
   script.getting_ready:
     hidden: false
   script.lights_out:

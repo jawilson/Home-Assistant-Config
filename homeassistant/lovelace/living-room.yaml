@@ -40,9 +40,9 @@ cards:
           - type: custom:hui-toggle-entity-row
             entity: remote.living_room
             secondary_info: last-changed
-          - switch.shield
-          - switch.xbox_one
-          - switch.xbox_360
+          - switch.living_room_play_shield
+          - switch.living_room_play_xbox_one
+          - switch.living_room_play_xbox_360
 
       - type: media-control
         entity: media_player.shield

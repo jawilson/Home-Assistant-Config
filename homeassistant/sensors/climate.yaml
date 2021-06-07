@@ -22,6 +22,14 @@
     - sensor.sunroom_temperature
 
 - platform: min_max
+  name: Non-Sunroom Temperatures
+  type: mean
+  entity_ids:
+    - sensor.apartment_thermostat_temperature
+    - sensor.bathroom_temperature
+    - sensor.bedroom_temperature
+
+- platform: min_max
   name: Apartment Humidities
   type: mean
   entity_ids:

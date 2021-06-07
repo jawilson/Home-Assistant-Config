@@ -5,11 +5,10 @@ import logging
 
 import voluptuous as vol
 
-from homeassistant.components.sensor import PLATFORM_SCHEMA
+from homeassistant.components.sensor import PLATFORM_SCHEMA, SensorEntity
 from homeassistant.components.zone import async_active_zone
 from homeassistant.components.device_tracker import ATTR_SOURCE_TYPE
 from homeassistant.components.person import ATTR_SOURCE, ATTR_USER_ID
-from homeassistant.helpers.entity import Entity
 from homeassistant.helpers.event import track_state_change
 from homeassistant.helpers.location import has_location
 from homeassistant.helpers.network import get_url
@@ -64,7 +63,7 @@ PLATFORM_SCHEMA = PLATFORM_SCHEMA.extend({
 })
 
 TRACKABLE_DOMAINS = ['device_tracker', 'sensor', 'person']
-DATA_KEY = 'google_reverse_geocode'
+DOMAIN = 'google_reverse_geocode'
 
 
 def setup_platform(hass, config, add_devices_callback, discovery_info=None):
@@ -74,7 +73,7 @@ def setup_platform(hass, config, add_devices_callback, discovery_info=None):
 
         This allows any entities to be created already
         """
-        hass.data.setdefault(DATA_KEY, [])
+        hass.data.setdefault(DOMAIN, [])
         options = config.get(CONF_OPTIONS)
 
         entity_id = config.get(CONF_ENTITY_ID)
@@ -85,7 +84,7 @@ def setup_platform(hass, config, add_devices_callback, discovery_info=None):
 
         sensor = GoogleReverseGeocodeSensor(
             hass, name, api_key, entity_id, options)
-        hass.data[DATA_KEY].append(sensor)
+        hass.data[DOMAIN].append(sensor)
 
         if sensor.valid_api_connection:
             add_devices_callback([sensor])
@@ -94,13 +93,14 @@ def setup_platform(hass, config, add_devices_callback, discovery_info=None):
     hass.bus.listen_once(EVENT_HOMEASSISTANT_START, run_setup)
 
 
-class GoogleReverseGeocodeSensor(Entity):
+class GoogleReverseGeocodeSensor(SensorEntity):
     """Representation of a Google reverse geocode sensor."""
 
     def __init__(self, hass, name, api_key, entity_id, options):
         """Initialize the sensor."""
         self._hass = hass
         self._name = name
+        self._api_key = api_key
         self._entity_id = entity_id
         self._options = options
         self.valid_api_connection = True
@@ -120,7 +120,7 @@ class GoogleReverseGeocodeSensor(Entity):
         import googlemaps
         external_ip = get_url(hass, allow_internal=False, allow_ip=False, require_ssl=True,
                 require_standard_port=True);
-        self._client = googlemaps.Client(api_key, timeout=10, requests_kwargs={"headers":
+        self._client = googlemaps.Client(self._api_key, timeout=10, requests_kwargs={"headers":
             {"Referer": external_ip}});
         try:
             self.update()
@@ -154,6 +154,20 @@ class GoogleReverseGeocodeSensor(Entity):
 
         # Update value when tracked entity changes its state
         track_state_change(hass, entity_id, force_refresh)
+
+    @property
+    def device_info(self):
+        """Return device specific attributes."""
+        return {
+            "name": DOMAIN,
+            "identifiers": {(DOMAIN, self._api_key)},
+            "entry_type": "service"
+        }
+
+    #@property
+    #def unique_id(self) -> str:
+    #    """Return unique ID of entity."""
+    #    return self._unique_id
 
     @property
     def state(self):

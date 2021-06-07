@@ -49,3 +49,10 @@ push:
           title: 'Nope'
           destructive: true
           authenticationRequired: false
+
+    - name: Turn On
+      identifier: 'turn_on'
+      actions:
+        - identifier: 'RUN_SERVICE'
+          title: 'Turn On'
+          authenticationRequired: false

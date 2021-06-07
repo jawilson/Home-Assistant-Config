@@ -4,5 +4,6 @@
   "documentation": "https://github.com/jawilson/Home-Assistant-Config/tree/master/homeassistant/custom_components/google_reverse_geocode",
   "dependencies": [],
   "codeowners": ["@jawilson"],
-  "requirements": ["googlemaps==2.5.1"]
+  "requirements": ["googlemaps==2.5.1"],
+  "version": "0.0.1"
 }

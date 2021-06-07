@@ -17,17 +17,13 @@
     closet_motion:
       friendly_name: Closet Motion Automations
       value_template: >
-        {{is_state('automation.closet_motion', 'on') and is_state('automation.closet_no_motion', 'on')}}
+        {{is_state('automation.closet_motion', 'on')}}
       turn_on:
         service: automation.turn_on
-        entity_id:
-          - automation.closet_motion
-          - automation.closet_no_motion
+        entity_id: automation.closet_motion
       turn_off:
         service: automation.turn_off
-        entity_id:
-          - automation.closet_motion
-          - automation.closet_no_motion
+        entity_id: automation.closet_motion
     bathroom_motion:
       friendly_name: Bathroom Motion Automations
       value_template: >

@@ -170,7 +170,7 @@ cards:
           - scene.couch_reading
           - script.cooking
           - script.dinner
-          - scene.tv_dinner
+          - script.tv_dinner
           - scene.romantic
           - entity: script.bedtime
             name: Bedtime Lights

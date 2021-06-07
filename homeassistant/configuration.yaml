@@ -75,6 +75,7 @@ logbook:
       - automation.force_closet_light_off
       - automation.force_dining_lights_off
       - automation.force_kitchen_cabinet_lights_off
+      - automation.sunroom_fan
       - automation.update_jeff_travel_sensors_on_movement
       - automation.update_jeff_travel_sensors_periodically
       - automation.update_sasha_travel_sensors_on_movement
@@ -238,16 +239,13 @@ history:
       - switch.closet_fluxer
       - switch.closet_motion
       - switch.living_area_fluxer
-      - switch.plex
-      - switch.projector
-      - switch.shield
-      - switch.xbox_360
-      - switch.xbox_one
 
 
 #
 # Integrations
 #
+
+ffmpeg:
 
 tts:
   - platform: google_translate
@@ -369,15 +367,6 @@ person: !include people.yaml
 
 device_tracker:
 
-asuswrt:
-  host: 192.168.0.1
-  username: !secret asuswrt_username
-  protocol: ssh
-  port: 22
-  mode: router
-  ssh_key: /config/.ssh/asuswrt_id_rsa
-
-cast:
 media_player: !include media_players.yaml
 
 camera: !include cameras.yaml

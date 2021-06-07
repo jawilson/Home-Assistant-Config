@@ -4,5 +4,6 @@
   "documentation": "https://github.com/jawilson/Home-Assistant-Config/tree/master/homeassistant/custom_components/opm_status",
   "dependencies": [],
   "codeowners": ["@jawilson"],
-  "requirements": []
+  "requirements": [],
+  "version": "0.0.1"
 }

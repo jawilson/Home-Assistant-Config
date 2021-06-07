@@ -4,7 +4,18 @@
       event_type: mobile_app_notification_action
       event_data:
         action: run_service
+    - platform: event
+      event_type: ios.notification_action_fired
+      event_data:
+        actionName: 'RUN_SERVICE'
   action:
-    - service_template: '{{ trigger.event.data.data.service }}'
-      data_template:
-        entity_id: '{{ trigger.event.data.data.entity_id }}'
+    - choose:
+        - conditions: "{{ trigger.event.event_type == 'ios.notification_action_fired' }}"
+          sequence:
+            - service_template: '{{ trigger.event.data.action_data.service }}'
+              data_template:
+                entity_id: '{{ trigger.event.data.action_data.entity_id }}'
+      default:
+        - service_template: '{{ trigger.event.data.data.service }}'
+          data_template:
+            entity_id: '{{ trigger.event.data.data.entity_id }}'
