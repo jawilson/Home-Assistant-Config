@@ -1,5 +1,5 @@
 alias: Apartment Wake-Up
-mode: single
+mode: queued
 max_exceeded: silent
 sequence:
   - condition: state

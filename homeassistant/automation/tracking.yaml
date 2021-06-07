@@ -1,3 +1,121 @@
+- id: setup_jeff_alarm
+  alias: "Setup Jeff Sleeping"
+  initial_state: 'on'
+  trigger: 
+    - platform: homeassistant
+      event: start
+    - platform: state
+      entity_id: automation.home_assistant_start
+      to: 'on'
+  action:
+    - service: mqtt.publish
+      data:
+        topic: homeassistant/sensor/jeff_alarm/config
+        retain: yes
+        payload: >
+          {"name": "Jeff Alarm",
+          "state_topic": "homeassistant/sensor/jeff_alarm/state",
+          "unique_id": "jeff_alarm",
+          "device": {
+            "name": "Jeff's Alarm",
+            "manufacturer": "Urbandroid",
+            "model": "Sleep as Android",
+            "identifiers": ["jeff_alarm"],
+            "via_device": "c0725fd05019e202"
+          }}
+    - service: mqtt.publish
+      data:
+        topic: homeassistant/binary_sensor/jeff_sleeping/config
+        retain: yes
+        payload: >
+          {"name": "Jeff Sleeping",
+          "state_topic": "homeassistant/binary_sensor/jeff_sleeping/state",
+          "unique_id": "jeff_sleeping",
+          "device": {
+            "name": "Jeff's Alarm",
+            "manufacturer": "Urbandroid",
+            "model": "Sleep as Android",
+            "identifiers": ["jeff_alarm"],
+            "via_device": "c0725fd05019e202"
+          }}
+
+- id: update_jeff_sleeping
+  alias: "Update Jeff Sleeping"
+  initial_state: 'on'
+  trigger:
+    - platform: event
+      event_type: 'android.intent_received'
+      context:
+        user_id: 94f1fb97e8374becb77c3979bbd3fc0b
+      event_data:
+        intent: 'com.urbandroid.sleep.alarmclock.SLEEP_TRACKING_STARTED_AUTO'
+    - platform: event
+      event_type: 'android.intent_received'
+      context:
+        user_id: 94f1fb97e8374becb77c3979bbd3fc0b
+      event_data:
+        intent: 'com.urbandroid.sleep.alarmclock.SLEEP_TRACKING_STOPPED_AUTO'
+  action:
+    - service: mqtt.publish
+      data:
+        topic: homeassistant/binary_sensor/jeff_sleeping/state
+        retain: yes
+        payload_template: >
+          {{ 'ON' if trigger.event.data.intent.endswith('SLEEP_TRACKING_STARTED_AUTO') else 'OFF' }}
+
+- id: update_jeff_alarm
+  alias: "Update Jeff Alarm"
+  initial_state: 'on'
+  trigger:
+    - platform: event
+      event_type: 'android.intent_received'
+      context:
+        user_id: 94f1fb97e8374becb77c3979bbd3fc0b
+      event_data:
+        intent: 'com.urbandroid.sleep.alarmclock.AUTO_START_SLEEP_TRACK_AUTO'
+    - platform: event
+      event_type: 'android.intent_received'
+      context:
+        user_id: 94f1fb97e8374becb77c3979bbd3fc0b
+      event_data:
+        intent: 'com.urbandroid.sleep.alarmclock.ALARM_ALERT_START_AUTO'
+    - platform: event
+      event_type: 'android.intent_received'
+      context:
+        user_id: 94f1fb97e8374becb77c3979bbd3fc0b
+      event_data:
+        intent: 'com.urbandroid.sleep.alarmclock.ALARM_ALERT_DISMISS_AUTO'
+    - platform: event
+      event_type: 'android.intent_received'
+      context:
+        user_id: 94f1fb97e8374becb77c3979bbd3fc0b
+      event_data:
+        intent: 'com.urbandroid.sleep.alarmclock.ALARM_SNOOZE_CLICKED_ACTION_AUTO'
+    - platform: event
+      event_type: 'android.intent_received'
+      context:
+        user_id: 94f1fb97e8374becb77c3979bbd3fc0b
+      event_data:
+        intent: 'com.urbandroid.sleep.alarmclock.TIME_TO_BED_ALARM_ALERT_AUTO'
+  action:
+    - service: mqtt.publish
+      data:
+        topic: homeassistant/sensor/jeff_alarm/state
+        retain: yes
+        payload_template: >
+          {% if trigger.event.data.intent.endswith('AUTO_START_SLEEP_TRACK_AUTO') %}
+          Smart Period
+          {%- elif trigger.event.data.intent.endswith('ALARM_ALERT_START_AUTO') %}
+          Ringing
+          {%- elif trigger.event.data.intent.endswith('ALARM_ALERT_DISMISS_AUTO') %}
+          Dismissed
+          {%- elif trigger.event.data.intent.endswith('ALARM_SNOOZE_CLICKED_ACTION_AUTO') %}
+          Snoozed
+          {%- elif trigger.event.data.intent.endswith('TIME_TO_BED_ALARM_ALERT_AUTO') %}
+          Bedtime
+          {%- endif %}
+
+
 - id: update_jeff_travel_sensors_on_movement
   alias: "Update Jeff Travel Sensors On Movement"
   initial_state: 'on'

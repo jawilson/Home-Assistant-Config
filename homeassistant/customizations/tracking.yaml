@@ -15,8 +15,6 @@ sensor.jeff_transit_home:
   icon: mdi:bus
 sensor.jeff_walk_home:
   icon: mdi:walk
-sensor.jeff_alarm:
-  friendly_name: "Jeff's Alarm"
 sensor.google_reverse_geocode_jeff:
   friendly_name: 'Jeff Location'
   custom_ui_more_info: more-info-map

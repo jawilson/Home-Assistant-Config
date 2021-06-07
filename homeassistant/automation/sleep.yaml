@@ -73,6 +73,11 @@
         - script.bathroom_wake_up
         - script.living_area_wake_up
         - script.apartment_wake_up
+    - choose:
+      - conditions: "{{ is_state('script.apartment_wake_up', 'off') }}"
+        sequence:
+          service: script.turn_on
+          entity_id: script.apartment_wake_up
     - service: notify.jeff_phone
       data:
         message: clear_notification
@@ -104,22 +109,20 @@
               title: 'Cancel All'
           push:
             category: 'non_bedroom_wake_up'
-    - condition: time
-      after: '5:00:00'
-      before: '10:00:00'
-      weekday:
-        - mon
-        - tue
-        - wed
-        - thu
-        - fri
-    - condition: template
-      value_template: >
-        {{ as_timestamp(state_attr('calendar.sashag_school_end', 'end_time')) != None }}
-    - condition: template
-      value_template: >
-        {{ as_timestamp(state_attr('calendar.sashag_school_start', 'start_time')) == None or
-            as_timestamp(state_attr('calendar.sashag_school_end', 'end_time')) < as_timestamp(state_attr('calendar.sashag_school_start', 'start_time')) }}
+    - condition: and
+      conditions:
+        - condition: time
+          after: '5:00:00'
+          before: '10:00:00'
+          weekday:
+            - mon
+            - tue
+            - wed
+            - thu
+            - fri
+        - "{{ as_timestamp(state_attr('calendar.sashag_school_end', 'end_time')) != None }}"
+        - "{{ as_timestamp(state_attr('calendar.sashag_school_start', 'start_time')) == None or
+                as_timestamp(state_attr('calendar.sashag_school_end', 'end_time')) < as_timestamp(state_attr('calendar.sashag_school_start', 'start_time')) }}"
     - service: script.turn_on
       entity_id:
         - script.closet_wake_up
@@ -159,10 +162,8 @@
     - condition: state
       entity_id: person.sasha
       state: 'home'
-    - condition: template
-      value_template: "{{ not is_state('person.jeff', 'home') }}"
-    - condition: template
-      value_template: "{{ as_timestamp(now()) < as_timestamp(state_attr('calendar.sashag_school_end', 'end_time'))|default(0, true) }}"
+    - "{{ not is_state('person.jeff', 'home') }}"
+    - "{{ as_timestamp(now()) < as_timestamp(state_attr('calendar.sashag_school_end', 'end_time'))|default(0, true) }}"
     - condition: state
       entity_id: 'binary_sensor.workday_sensor'
       state: 'on'
@@ -188,8 +189,7 @@
         - condition: state
           entity_id: binary_sensor.jeff_sleeping_at_home
           state: 'on'
-        - condition: template
-          value_template: "{{ not is_state('person.jeff', 'home') }}"
+        - "{{ not is_state('person.jeff', 'home') }}"
     - condition: state
       entity_id: 'binary_sensor.workday_sensor'
       state: 'on'
@@ -251,7 +251,8 @@
 
 
 - alias: 'Bedtime Cooldown'
-  mode: restart
+  mode: single
+  max_exceeded: silent
   trigger:
     - platform: state
       entity_id: sensor.jeff_alarm
@@ -261,53 +262,54 @@
         - sensor.jawilson_phone_next_alarm
         - sensor.time
         - input_number.bedtime_cooldown_hours
-      value_template: "{{ 24 if states('sensor.jawilson_phone_next_alarm') == 'unavailable' else (states('sensor.jawilson_phone_next_alarm')|as_timestamp - states.sensor.time.last_changed|as_timestamp)/60/60 }}"
+      value_template: "{{ 24 if states('sensor.jawilson_phone_next_alarm') == 'unknown' else (states('sensor.jawilson_phone_next_alarm')|as_timestamp - states.sensor.time.last_changed|as_timestamp)/60/60 }}"
       below: input_number.bedtime_cooldown_hours
-    - platform: event
-      event_type: mobile_app_notification_action
-      event_data:
-        action: bedtime_cooldown
-    - platform: event
-      event_type: mobile_app_notification_action
-      event_data:
-        action: cancel_bedtime_cooldown
   condition:
     - condition: state
       entity_id: person.jeff
       state: 'home'
     - condition: state
-      entity_id: sensor.jeff_sleep_state
-      state: 'Awake'
+      entity_id: binary_sensor.jeff_sleeping
+      state: 'off'
+    - condition: numeric_state
+      entity_id:
+        - sensor.jawilson_phone_next_alarm
+        - input_number.apartment_wakeup_period
+      value_template: >
+        {{ 0 if states('sensor.jawilson_phone_next_alarm') == 'unknown' else (states('sensor.jawilson_phone_next_alarm')|as_timestamp - states.sensor.time.last_changed|as_timestamp)/60 }}
+      above: input_number.apartment_wakeup_period
   action:
-    - condition: template
-      value_template: "{{ not trigger or not (trigger.platform == 'event' and trigger.event.data.action == 'cancel_bedtime_cooldown') }}"
     - condition: or
       conditions:
-        - condition: template
-          value_template: "{{ state_attr('climate.apartment', 'temperature') and state_attr('climate.apartment', 'temperature') > 70 }}"
-        - condition: template
-          value_template: "{{ state_attr('climate.apartment', 'target_temp_high') and state_attr('climate.apartment', 'target_temp_high') > 70 }}"
-        - condition: template
-          value_template: "{{ state_attr('climate.apartment', 'target_temp_low') and state_attr('climate.apartment', 'target_temp_low') > 60 }}"
-    - choose:
-        - conditions:
-            - condition: template
-              value_template: "{{ not trigger or not (trigger.platform == 'event' and trigger.event.data.action == 'bedtime_cooldown') }}"
-          sequence:
-            - service: notify.jeff_phone
-              data:
-                title: 'Bedtime Cooldown'
-                message: 'Good evening, cooling down the apartment in 5 minutes...'
-                data:
-                  timeout: 300
-                  tag: 'evening-cooldown'
-                  actions:
-                    - action: 'bedtime_cooldown'
-                      title: 'Cool Down Now'
-                    - action: 'cancel_bedtime_cooldown'
-                      title: 'Cancel'
-            - delay:
-                minutes: 5
+        - "{{ state_attr('climate.apartment', 'temperature') and state_attr('climate.apartment', 'temperature') > 70 }}"
+        - "{{ state_attr('climate.apartment', 'target_temp_high') and state_attr('climate.apartment', 'target_temp_high') > 70 }}"
+        - "{{ state_attr('climate.apartment', 'target_temp_low') and state_attr('climate.apartment', 'target_temp_low') > 60 }}"
+    - service: notify.jeff_phone
+      data:
+        title: 'Bedtime Cooldown'
+        message: 'Good evening, cooling down the apartment in 5 minutes...'
+        data:
+          timeout: 300
+          tag: 'evening-cooldown'
+          actions:
+            - action: 'bedtime_cooldown'
+              title: 'Cool Down Now'
+            - action: 'cancel_bedtime_cooldown'
+              title: 'Cancel'
+    - wait_for_trigger:
+        - platform: event
+          event_type: mobile_app_notification_action
+          event_data:
+            action: bedtime_cooldown
+        - platform: event
+          event_type: mobile_app_notification_action
+          event_data:
+            action: cancel_bedtime_cooldown
+      timeout:
+        minutes: 5
+    - condition: template
+      value_template: >
+        "{{ wait.trigger == None or wait.trigger.event.data.action == bedtime_cooldown }}"
     - service: climate.set_temperature
       data:
         entity_id: climate.apartment
@@ -324,9 +326,17 @@
 
 - alias: 'Alarm Smart Period'
   trigger:
-    platform: state
-    entity_id: sensor.jeff_alarm
-    to: 'Smart period'
+    - platform: state
+      entity_id: sensor.jeff_alarm
+      to: 'Smart Period'
+    - platform: numeric_state
+      entity_id:
+        - sensor.jawilson_phone_next_alarm
+        - sensor.time
+        - input_number.apartment_wakeup_period
+      value_template: >
+        {{ 1440 if states('sensor.jawilson_phone_next_alarm') == 'unavailable' else (states('sensor.jawilson_phone_next_alarm')|as_timestamp - states.sensor.time.last_changed|as_timestamp)/60 }}
+      below: input_number.apartment_wakeup_period
   condition:
     condition: state
     entity_id: person.jeff
