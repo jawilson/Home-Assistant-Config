@@ -33,3 +33,18 @@
   action:
     - service: light.turn_off
       entity_id: light.kitchen_cabinet_lights
+
+- alias: Z-Wave Resurrection
+  trigger:
+    - platform: state
+      entity_id:
+        - zwave.bathroom_fan
+        - zwave.dining_lights
+        - zwave.inovelli_dimmer
+        - zwave.sunroom_fan
+      to: "dead"
+      for: "00:02:00"
+  action:
+    - service: zwave.test_node
+      data:
+        node_id: "{{ state_attr(trigger.entity_id, 'node_id') }}"
