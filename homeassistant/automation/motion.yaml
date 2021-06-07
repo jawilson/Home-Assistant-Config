@@ -151,58 +151,12 @@
 
 - alias: Closet Motion
   trigger:
-    - platform: event
-      event_type: zwave.node_event
-      event_data:
-        entity_id: zwave.bedroom
-    - platform: event
-      event_type: zwave.node_event
-      event_data:
-        entity_id: zwave.bathroom
-  condition:
-    - condition: template
-      value_template: >
-        {{ trigger.event.data.basic_level|int > 0 }}
-    - condition: state
-      entity_id: input_boolean.motion
-      state: 'on'
-    - condition: state
-      entity_id: binary_sensor.apartment_occupied
-      state: 'on'
-    - condition: state
-      entity_id: group.all_lights
-      state: 'on'
-    - condition: state
-      entity_id: light.closet_lights
-      state: 'off'
-    - condition: state
-      entity_id: binary_sensor.jeff_sleeping_at_home
-      state: 'off'
-    - condition: or
-      conditions:
-        - condition: state
-          entity_id: binary_sensor.jeff_sleeping_at_home
-          state: 'off'
-          for:
-            minutes: 30
-        - condition: template
-          value_template: >
-            {{ (as_timestamp(now()) - as_timestamp(states.automation.home_assistant_start.attributes.last_triggered))/60 < 30 }}
-  action:
-    - service: light.turn_on
-      entity_id: light.closet_lights
-
-
-- alias: Closet No Motion
-  trigger:
     - platform: state
-      entity_id: sensor.bedroom_alarm_level
-      to: '0'
-      for:
-        minutes: 3
+      entity_id: binary_sensor.closet_motion
+      to: 'on'
     - platform: state
-      entity_id: sensor.bathroom_alarm_level
-      to: '0'
+      entity_id: binary_sensor.closet_motion
+      to: 'off'
       for:
         minutes: 3
     - platform: state
@@ -214,33 +168,56 @@
     - condition: state
       entity_id: input_boolean.motion
       state: 'on'
-    - condition: state
-      entity_id: light.closet_lights
-      state: 'on'
-    - condition: or
-      conditions:
-        # If fluxer is off, we're probably doing something specific
-        # There may be a better way to handle this
-        - condition: state
-          entity_id: switch.bathroom_fluxer
-          state: 'on'
-        # If we're sleeping, fluxer will still be off, but we definitely want to turn off
-        - condition: state
-          entity_id: binary_sensor.jeff_sleeping_at_home
-          state: 'on'
-    - condition: and
-      conditions:
-        - condition: state
-          entity_id: sensor.bedroom_alarm_level
-          state: '0'
-          for:
-            minutes: 3
-        - condition: state
-          entity_id: sensor.bathroom_alarm_level
-          state: '0'
-          for:
-            minutes: 3
   action:
-    - service: light.turn_off
-      entity_id:
-        - light.closet_lights
+    - choose:
+        - conditions:
+            - condition: state
+              entity_id: binary_sensor.closet_motion
+              state: 'on'
+            - condition: state
+              entity_id: binary_sensor.apartment_occupied
+              state: 'on'
+            - condition: state
+              entity_id: light.closet_lights
+              state: 'off'
+            - condition: state
+              entity_id: binary_sensor.jeff_sleeping_at_home
+              state: 'off'
+            - condition: or
+              conditions:
+                - condition: state
+                  entity_id: binary_sensor.jeff_sleeping_at_home
+                  state: 'off'
+                  for:
+                    minutes: 30
+                - condition: template
+                  value_template: >
+                    {{ (as_timestamp(now()) - as_timestamp(states.automation.home_assistant_start.attributes.last_triggered))/60 < 30 }}
+          sequence:
+            - service: light.turn_on
+              entity_id: light.closet_lights
+        - conditions:
+            - condition: state
+              entity_id: binary_sensor.closet_motion
+              state: 'off'
+              for:
+                minutes: 3
+            - condition: state
+              entity_id: light.closet_lights
+              state: 'on'
+            - condition: or
+              conditions:
+                # If fluxer is off, we're probably doing something specific
+                # There may be a better way to handle this
+                - condition: state
+                  entity_id: switch.bathroom_fluxer
+                  state: 'on'
+                # If we're sleeping, fluxer will still be off, but we definitely want to turn off
+                - condition: state
+                  entity_id: binary_sensor.jeff_sleeping_at_home
+                  state: 'on'
+          sequence:
+            - service: light.turn_off
+              entity_id: light.closet_lights
+            - service: switch.turn_on
+              entity_id: switch.bedroom_fluxer
