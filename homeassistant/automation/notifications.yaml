@@ -155,3 +155,72 @@
       message: 'Version {{trigger.to_state.state}} of Home Assistant is available'
       data:
         url: '{{trigger.to_state.attributes.release_notes}}'
+
+- alias: Heater Circuit Protector
+  description: Turns off sunroom heater when it is pulling too much power while the
+    projector is on.
+  mode: single
+  trigger:
+    - platform: numeric_state
+      entity_id: sensor.sunroom_switch_power
+      above: 850
+    - platform: state
+      entity_id: remote.living_room
+      from: 'off'
+      to: 'on'
+  condition:
+    - condition: numeric_state
+      entity_id: sensor.sunroom_switch_power
+      above: 850
+    - condition: state
+      entity_id: remote.living_room
+      state: 'on'
+  action:
+    - service: climate.turn_off
+      entity_id: climate.sunroom
+    - service_template: >
+        {% if is_state('person.jeff', 'home') and is_state('person.sasha', 'home') %}
+        notify.family
+        {%- elif is_state('person.jeff', 'home') %}
+        notify.jeff_phone
+        {%- elif is_state('person.sasha', 'home') %}
+        notify.sasha_phone
+        {%- endif %}
+      data:
+        title: Warning ⚠
+        message: >
+          The sunroom heater is pulling too much current while the projector
+          is on so it has been turned off. Set the sunroom heater to '1', then you
+          may turn it back on.
+        data:
+          tag: heater-circuit-protector
+          channel: Important
+          apns_headers:
+            apns-collapse-id: heater-circuit-protector
+          action_data:
+            tag: heater-circuit-protector
+            service: 'climate.turn_on'
+            entity_id: 'climate.sunroom'
+          actions:
+            - action: run_service
+              title: Turn On
+          push:
+            category: turn_on
+
+
+- alias: Heater Circuit Protector Callback
+  trigger:
+    - platform: event
+      event_type: mobile_app_notification_action
+      event_data:
+        action: 'run_service'
+        tag: 'heater-circuit-protector'
+    - platform: event
+      event_type: ios.notification_action_fired
+      event_data:
+        actionName: 'run_service'
+        action_data:
+          tag: 'heater-circuit-protector'
+  action:
+    - service: climate.turn_on
+      entity_id: climate.sunroom
