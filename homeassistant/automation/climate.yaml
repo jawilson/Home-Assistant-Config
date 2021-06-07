@@ -206,3 +206,47 @@
     entity_id: input_number.default_low_temp
     data_template:
       value: "{{ states('input_number.default_high_temp')|int - 2 }}"
+
+
+- alias: Sunroom Fan
+  trigger:
+    - platform: event
+      event_type: state_changed
+      event_data:
+        entity_id: climate.sunroom
+    - platform: state
+      entity_id: sensor.sunroom_temperature
+    - platform: state
+      entity_id: input_boolean.climate_auto
+      to: 'on'
+    - platform: state
+      entity_id: input_boolean.guests
+      to: 'off'
+  mode: restart
+  condition:
+    - condition: state
+      entity_id: input_boolean.climate_auto
+      state: 'on'
+    - condition: state
+      entity_id: input_boolean.guests
+      state: 'off'
+  action:
+    - variables:
+        diff: "{{ states('sensor.sunroom_temperature')|float - states('sensor.non_sunroom_temperatures')|float }}"
+        speed: >-
+          {% set diff = diff|float %}
+          {% if diff >= 3 %}
+          high
+          {% elif diff >= 2 %}
+          medium
+          {% elif diff >= 1 or is_state_attr('climate.sunroom', 'hvac_action', 'heating') %}
+          low
+          {% else %}
+          off
+          {% endif %}
+    - condition: template
+      value_template: "{{ state_attr('fan.sunroom', 'speed') != speed }}"
+    - service: fan.turn_on
+      entity_id: fan.sunroom
+      data:
+        speed: "{{ speed }}"

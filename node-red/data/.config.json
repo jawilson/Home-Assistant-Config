@@ -703,7 +703,7 @@
     }
    },
    "menu-menu-item-sidebar": true,
-   "menu-menu-item-palette": true,
+   "menu-menu-item-palette": false,
    "menu-deploymenu-item-flow": false,
    "menu-deploymenu-item-full": true
   }
