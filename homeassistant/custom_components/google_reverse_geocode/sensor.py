@@ -109,13 +109,17 @@ class GoogleReverseGeocodeSensor(SensorEntity):
         self._zone = None
         self._geocode = None
 
+        entity_domain, entity_name = entity_id.split('.', 1)
+
         # Check if location is a trackable entity
-        if entity_id.split('.', 1)[0] in TRACKABLE_DOMAINS:
+        if entity_domain in TRACKABLE_DOMAINS:
             self._entity_id = entity_id
         else:
             _LOGGER.error("Entity domnain not trackable %s", entity_id)
             self.valid_api_connection = False
             return
+
+        self._unique_id = "{}_{}_{}".format(DOMAIN, entity_domain, entity_name)
 
         import googlemaps
         external_ip = get_url(hass, allow_internal=False, allow_ip=False, require_ssl=True,
@@ -144,7 +148,7 @@ class GoogleReverseGeocodeSensor(SensorEntity):
                     new_state.attributes.get(ATTR_LONGITUDE)
                 )
 
-            if (traveled == 0.0 or ATTR_GPS_ACCURACY in new_state.attributes and
+            if (traveled is None or traveled == 0.0 or ATTR_GPS_ACCURACY in new_state.attributes and
                     new_state.attributes.get(ATTR_GPS_ACCURACY) > traveled):
                 _LOGGER.debug("Entity %s hasn't moved (enough), not refreshing", self._entity_id)
                 return
@@ -164,10 +168,10 @@ class GoogleReverseGeocodeSensor(SensorEntity):
             "entry_type": "service"
         }
 
-    #@property
-    #def unique_id(self) -> str:
-    #    """Return unique ID of entity."""
-    #    return self._unique_id
+    @property
+    def unique_id(self) -> str:
+        """Return unique ID of entity."""
+        return self._unique_id
 
     @property
     def state(self):
@@ -232,18 +236,19 @@ class GoogleReverseGeocodeSensor(SensorEntity):
                                 entity.attributes.get(ATTR_GPS_ACCURACY))) if value is not None}
 
         _LOGGER.debug("Found entity %s", self._entity_id)
+
+        zone = self._hass.states.get(f"zone.{entity.state}")
+        if has_location(zone):
+            self._zone = zone.name
+            entity = zone
+        else:
+            self._zone = None
+
         if not has_location(entity):
             _LOGGER.warn("Entity %s does not have a location", self._entity_id)
             self._zone = None
             self._geocode = None
             return
-
-        zone = self._get_zone_from_entity(entity)
-        if zone is not None:
-            self._zone = zone.name
-            entity = zone
-        else:
-            self._zone = None
 
         # Convert device_trackers to google friendly location
         loc = self._get_location_from_attributes(entity)
@@ -263,29 +268,6 @@ class GoogleReverseGeocodeSensor(SensorEntity):
         else:
             _LOGGER.warn("Failed to reverse geocode location of %s", self._entity_id)
             self._geocode = None
-
-    def _get_zone_from_entity(self, entity):
-        """Get the zone name from the entity state"""
-        if entity.state == STATE_NOT_HOME:
-            _LOGGER.debug("%s is not home, will reverse geocode",
-                    entity.entity_id)
-            return None
-
-        zone_state = run_callback_threadsafe(
-                self._hass.loop,
-                async_active_zone,
-                self._hass,
-                entity.attributes.get(ATTR_LATITUDE),
-                entity.attributes.get(ATTR_LONGITUDE),
-                entity.attributes.get(ATTR_GPS_ACCURACY, 0)).result()
-
-        if zone_state is None:
-            _LOGGER.warn("Failed to get state of zone %s for entity %s",
-                    entity.state, entity.entity_id)
-            return None
-
-        _LOGGER.debug("%s is in zone %s", entity.entity_id, zone_state.name)
-        return zone_state
 
     @staticmethod
     def _get_location_from_attributes(entity):
