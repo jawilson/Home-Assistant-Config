@@ -1,8 +1,8 @@
 """Adds config flow for Google Home"""
 from __future__ import annotations
 
+from datetime import timedelta
 import logging
-from typing import Any, Dict, Optional
 
 from requests.exceptions import RequestException
 import voluptuous as vol
@@ -10,19 +10,22 @@ import voluptuous as vol
 from homeassistant import config_entries
 from homeassistant.config_entries import ConfigEntry
 from homeassistant.core import callback
+from homeassistant.data_entry_flow import FlowResult
 from homeassistant.helpers.aiohttp_client import async_create_clientsession
 
 from .api import GlocaltokensApiClient
 from .const import (
     CONF_ANDROID_ID,
-    CONF_DATA_COLLECTION,
     CONF_MASTER_TOKEN,
     CONF_PASSWORD,
+    CONF_UPDATE_INTERVAL,
     CONF_USERNAME,
+    DATA_COORDINATOR,
     DOMAIN,
+    UPDATE_INTERVAL,
 )
 from .exceptions import InvalidMasterToken
-from .types import OptionsFlowDict
+from .types import ConfigFlowDict, OptionsFlowDict
 
 _LOGGER: logging.Logger = logging.getLogger(__package__)
 
@@ -31,15 +34,14 @@ class GoogleHomeFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
     """Config flow for GoogleHome."""
 
     VERSION = 1
-    CONNECTION_CLASS = config_entries.CONN_CLASS_CLOUD_POLL
 
     def __init__(self) -> None:
         """Initialize."""
-        self._errors: Dict[str, str] = {}
+        self._errors: dict[str, str] = {}
 
     async def async_step_user(
-        self, user_input: Optional[Dict[str, Any]] = None
-    ) -> Dict[str, Any]:
+        self, user_input: ConfigFlowDict | None = None
+    ) -> FlowResult:
         """Handle a flow initialized by the user."""
         self._errors = {}
 
@@ -58,11 +60,14 @@ class GoogleHomeFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
             )
             master_token = await self._test_credentials(client)
             if master_token is not None:
-                user_input[CONF_MASTER_TOKEN] = master_token
-                user_input[CONF_ANDROID_ID] = await client.get_android_id()
-                return self.async_create_entry(title=username, data=user_input)
+                config_data: dict[str, str] = {}
+                config_data[CONF_USERNAME] = user_input[CONF_USERNAME]
+                config_data[CONF_PASSWORD] = user_input[CONF_PASSWORD]
+                config_data[CONF_MASTER_TOKEN] = master_token
+                config_data[CONF_ANDROID_ID] = await client.get_android_id()
+                return self.async_create_entry(title=username, data=config_data)
             self._errors["base"] = "auth"
-        return await self._show_config_form(user_input)
+        return await self._show_config_form()
 
     @staticmethod
     @callback
@@ -71,10 +76,8 @@ class GoogleHomeFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
     ) -> GoogleHomeOptionsFlowHandler:
         return GoogleHomeOptionsFlowHandler(config_entry)
 
-    async def _show_config_form(
-        self, _user_input: Optional[Dict[str, Any]]
-    ) -> Dict[str, Any]:
-        """Show the configuration form to edit location data."""
+    async def _show_config_form(self) -> FlowResult:
+        """Show the configuration form to edit login information."""
         return self.async_show_form(
             step_id="user",
             data_schema=vol.Schema(
@@ -86,7 +89,8 @@ class GoogleHomeFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
             errors=self._errors,
         )
 
-    async def _test_credentials(self, client: GlocaltokensApiClient) -> Optional[str]:
+    @staticmethod
+    async def _test_credentials(client: GlocaltokensApiClient) -> str | None:
         """Returns true and master token if credentials are valid."""
         try:
             master_token = await client.async_get_master_token()
@@ -106,23 +110,33 @@ class GoogleHomeOptionsFlowHandler(config_entries.OptionsFlow):
         self.options = dict(config_entry.options)
 
     async def async_step_init(
-        self, user_input: Optional[OptionsFlowDict] = None
-    ) -> Dict[str, Any]:
+        self, user_input: OptionsFlowDict | None = None
+    ) -> FlowResult:
         """Manage the options."""
         if user_input is not None:
             self.options.update(user_input)
-            return self.async_create_entry(title="", data=self.options)
+            coordinator = self.hass.data[DOMAIN][self.config_entry.entry_id][
+                DATA_COORDINATOR
+            ]
+            update_interval = timedelta(
+                seconds=self.options.get(CONF_UPDATE_INTERVAL, UPDATE_INTERVAL)
+            )
+            _LOGGER.debug("Updating coordinator, update_interval: %s", update_interval)
+            coordinator.update_interval = update_interval
+            return self.async_create_entry(
+                title=self.config_entry.data.get(CONF_USERNAME), data=self.options
+            )
 
         return self.async_show_form(
             step_id="init",
             data_schema=vol.Schema(
                 {
                     vol.Optional(
-                        CONF_DATA_COLLECTION,
+                        CONF_UPDATE_INTERVAL,
                         default=self.config_entry.options.get(
-                            CONF_DATA_COLLECTION, True
+                            CONF_UPDATE_INTERVAL, UPDATE_INTERVAL
                         ),
-                    ): bool,
+                    ): int,
                 }
             ),
         )

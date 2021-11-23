@@ -1,4 +1,5 @@
 - alias: 'Go to Sleep'
+  id: go_to_sleep
   trigger:
     - platform: state
       entity_id: binary_sensor.jeff_sleeping_at_home
@@ -23,6 +24,7 @@
 
 
 - alias: 'Someone Leaves While Jeff Sleeping'
+  id: someone_leaves_while_jeff_sleeping
   trigger:
     - platform: state
       entity_id: group.guests
@@ -44,8 +46,22 @@
         - script.bathroom_wake_up
         - script.living_area_wake_up
         - script.living_room_wake_up
-    - service: homeassistant.turn_off
-      entity_id: group.all_lights
+    - alias: "Turn off lights until they actually turn off"
+      repeat:
+        sequence:
+          - service: homeassistant.turn_off
+            entity_id: group.all_lights
+          - delay:
+              seconds: 30
+        until:
+          condition: or
+          conditions:
+            - condition: state
+              entity_id: group.all_lights
+              state: 'off'
+            - condition: state
+              entity_id: binary_sensor.jeff_sleeping_at_home
+              state: 'off'
     - service: homeassistant.turn_on
       entity_id:
         - switch.bathroom_fluxer
@@ -53,14 +69,26 @@
 
 
 - alias: 'Wake-Up'
+  id: wake_up
   trigger:
     - platform: state
       entity_id: binary_sensor.jeff_sleeping_at_home
       to: 'off'
-    - platform: template
-      value_template: "{{ is_state_attr('sensor.bedroom_speaker_alarms', 'next_alarm_status', 'none') }}"
+    - id: speaker_alarm
+      platform: state
+      entity_id: sensor.bedroom_speaker_alarms
+      to: 'unavailable'
+    - platform: webhook
+      webhook_id: jawilson_sleep
+      id: jawilson_webhook
   condition:
-    - "{{ trigger.entity_id == 'sensor.bedroom_speaker_alarms' or is_state('person.jeff', 'home') }}"
+    - condition: or
+      conditions:
+        - "{{ trigger.id == 'speaker_alarm' and trigger.from_state.state != 'unknown' }}"
+        - condition: and
+          conditions:
+            - "{{ is_state('person.jeff', 'home') }}"
+            - "{{ trigger.id != 'jawilson_webhook' or (trigger.json.event == 'alarm_alert_dismiss' and '#sashaWork' in trigger.json.value2) }}"
   action:
     - service: script.turn_off
       entity_id:
@@ -83,8 +111,8 @@
         message: clear_notification
         data:
           tag: 'alarm-ringing'
-    # Provide a way to cancel
-    - service_template: >
+    - alias: "Send apartment wake-up notification"
+      service_template: >
         {% if is_state('person.jeff', 'home') and is_state('person.sasha', 'home') %}
         notify.family_phones
         {%- elif is_state('person.jeff', 'home') %}
@@ -109,23 +137,43 @@
               title: 'Cancel All'
           push:
             category: 'non_bedroom_wake_up'
-    - condition: and
+    - alias: "Waking hours of the work week"
+      condition: time
+      after: '5:00:00'
+      before: '10:00:00'
+      weekday:
+        - mon
+        - tue
+        - wed
+        - thu
+        - fri
+    - alias: "Wake up the closet only if Sasha is the only one getting up"
+      choose:
+      - conditions:
+          - "{{ not is_state('person.jeff', 'home') or is_state('binary_sensor.jeff_sleeping_at_home', 'on') }}"
+          - "{{ is_state('person.sasha', 'home') }}"
+        sequence:
+          service: script.turn_on
+          entity_id: script.closet_wake_up
+    - alias: "Jeff is still asleep"
+      condition: template
+      value_template: >
+        {{ is_state('binary_sensor.jeff_sleeping_at_home', 'off') }}
+    - condition: or
       conditions:
-        - condition: time
-          after: '5:00:00'
-          before: '10:00:00'
-          weekday:
-            - mon
-            - tue
-            - wed
-            - thu
-            - fri
-        - "{{ as_timestamp(state_attr('calendar.sashag_school_end', 'end_time')) != None }}"
-        - "{{ as_timestamp(state_attr('calendar.sashag_school_start', 'start_time')) == None or
-                as_timestamp(state_attr('calendar.sashag_school_end', 'end_time')) < as_timestamp(state_attr('calendar.sashag_school_start', 'start_time')) }}"
+        - "{{ not is_state('person.sasha', 'home') }}"
+        - condition: and
+          conditions:
+            - "{{ as_timestamp(state_attr('calendar.sashag_school_end', 'end_time')) != None }}"
+            - "{{ as_timestamp(state_attr('calendar.sashag_school_start', 'start_time')) == None or
+                    as_timestamp(state_attr('calendar.sashag_school_end', 'end_time')) < as_timestamp(state_attr('calendar.sashag_school_start', 'start_time')) }}"
+    - choose:
+      - conditions: "{{ is_state('script.closet_wake_up', 'off') }}"
+        sequence:
+          service: script.turn_on
+          entity_id: script.closet_wake_up
     - service: script.turn_on
       entity_id:
-        - script.closet_wake_up
         - script.bedroom_wake_up
     - service_template: >
         {% if is_state('person.jeff', 'home') and is_state('person.sasha', 'home') %}
@@ -154,103 +202,8 @@
             category: 'wake_up'
 
 
-- alias: 'Sasha Warm-Up'
-  trigger:
-    platform: time
-    at: '05:30:00'
-  condition:
-    - condition: state
-      entity_id: person.sasha
-      state: 'home'
-    - "{{ not is_state('person.jeff', 'home') }}"
-    - "{{ as_timestamp(now()) < as_timestamp(state_attr('calendar.sashag_school_end', 'end_time'))|default(0, true) }}"
-    - condition: state
-      entity_id: 'binary_sensor.workday_sensor'
-      state: 'on'
-  action:
-    - service: script.turn_on
-      entity_id: script.apartment_wake_up
-
-
-- alias: 'Sasha Wake-Up'
-  trigger:
-    platform: state
-    entity_id: light.bathroom_mirror_1
-    to: 'on'
-  condition:
-    - condition: state
-      entity_id: script.bathroom_wake_up
-      state: 'off'
-    - condition: state
-      entity_id: person.sasha
-      state: 'home'
-    - condition: or
-      conditions:
-        - condition: state
-          entity_id: binary_sensor.jeff_sleeping_at_home
-          state: 'on'
-        - "{{ not is_state('person.jeff', 'home') }}"
-    - condition: state
-      entity_id: 'binary_sensor.workday_sensor'
-      state: 'on'
-    - condition: time
-      after: '4:00:00'
-      before: '7:30:00'
-  action:
-    - service: script.turn_off
-      entity_id:
-        - script.bathroom_sleep
-        - script.living_area_sleep
-    - service: notify.jeff_phone
-      data:
-        message: clear_notification
-        data:
-          tag: 'alarm-ringing'
-    # Provide a way to cancel
-    - service_template: >
-        {% if is_state('person.jeff', 'home') %}
-        notify.family_phones
-        {%- elif is_state('person.sasha', 'home') %}
-        notify.sasha_phone
-        {%- endif %}
-      data:
-        title: 'Good Morning!'
-        message: 'Sasha is waking up'
-        data:
-          tag: 'wake-up'
-          channel: Wake-Up
-          apns_headers:
-            'apns-collapse-id': 'wake-up'
-          actions:
-            - action: 'cancel_bedroom_wake_up'
-              title: 'Cancel Bedroom'
-            - action: 'reset_bedroom'
-              title: 'Reset Bedroom'
-            - action: 'cancel_wake_up'
-              title: 'Cancel All'
-          push:
-            category: 'wake_up'
-    - service: script.turn_on
-      entity_id:
-        - script.bathroom_wake_up
-        - script.closet_wake_up
-        - script.living_area_wake_up
-    - service: switch.turn_off
-      entity_id: switch.bedroom_fluxer
-    - service: light.turn_on
-      entity_id: light.nightstand_2
-      data:
-        color_temp: 450
-        brightness: 10
-    - service: script.turn_on
-      entity_id: script.apartment_wake_up
-    - condition: template
-      value_template: "{{ not is_state('person.jeff', 'home') }}"
-    - service: script.turn_on
-      entity_id: script.bedroom_wake_up
-
-
 - alias: 'Bedtime Cooldown'
+  id: bedtime_cooldown
   mode: single
   max_exceeded: silent
   trigger:
@@ -262,7 +215,7 @@
         - sensor.jawilson_phone_next_alarm
         - sensor.time
         - input_number.bedtime_cooldown_hours
-      value_template: "{{ 24 if states('sensor.jawilson_phone_next_alarm') == 'unknown' else (states('sensor.jawilson_phone_next_alarm')|as_timestamp - states.sensor.time.last_changed|as_timestamp)/60/60 }}"
+      value_template: "{{ 24 if states('sensor.jawilson_phone_next_alarm') == 'unknown' or state_attr('sensor.jawilson_phone_next_alarm', 'Package') != 'com.urbandroid.sleep' else (states('sensor.jawilson_phone_next_alarm')|as_timestamp - states.sensor.time.last_changed|as_timestamp)/60/60 }}"
       below: input_number.bedtime_cooldown_hours
   condition:
     - condition: state
@@ -325,6 +278,7 @@
 
 
 - alias: 'Alarm Smart Period'
+  id: alarm_smart_period
   trigger:
     - platform: state
       entity_id: sensor.jeff_alarm
@@ -336,6 +290,14 @@
         - input_number.apartment_wakeup_period
       value_template: >
         {{ 1440 if states('sensor.jawilson_phone_next_alarm') == 'unavailable' else (states('sensor.jawilson_phone_next_alarm')|as_timestamp - states.sensor.time.last_changed|as_timestamp)/60 }}
+      below: input_number.apartment_wakeup_period
+    - platform: numeric_state
+      entity_id:
+        - sensor.bedroom_speaker_alarms
+        - sensor.time
+        - input_number.apartment_wakeup_period
+      value_template: >
+        {{ 1440 if states('sensor.bedroom_speaker_alarms') == 'unavailable' else (states('sensor.bedroom_speaker_alarms')|as_timestamp - states.sensor.time.last_changed|as_timestamp)/60 }}
       below: input_number.apartment_wakeup_period
   condition:
     condition: state
@@ -350,6 +312,7 @@
 
 
 - alias: 'Alarm Ringing'
+  id: alarm_ringing
   trigger:
     - platform: state
       entity_id: sensor.jeff_alarm
@@ -368,6 +331,7 @@
 
 
 - alias: 'Alarm Snooze'
+  id: alarm_snooze
   trigger:
     - platform: state
       entity_id: sensor.jeff_alarm
@@ -390,6 +354,7 @@
 
 
 - alias: 'Alarm Dismiss'
+  id: alarm_dismiss
   trigger:
     platform: state
     entity_id: sensor.jeff_alarm
@@ -417,6 +382,7 @@
 
 
 - alias: 'Cancel Alarm Ringing'
+  id: cancel_alarm_ringing
   trigger:
     - platform: event
       event_type: mobile_app_notification_action
@@ -430,6 +396,7 @@
 
 
 - alias: 'Cancel Bedroom Wake-Up'
+  id: cancel_bedroom_wakeup
   trigger:
     - platform: event
       event_type: mobile_app_notification_action
@@ -475,6 +442,7 @@
 
 
 - alias: 'Wake-Up Bedroom'
+  id: wakeup_bedroom
   trigger:
     - platform: event
       event_type: mobile_app_notification_action
@@ -517,6 +485,7 @@
 
 
 - alias: 'Reset Bedroom'
+  id: reset_bedroom
   trigger:
     - platform: event
       event_type: mobile_app_notification_action
@@ -538,6 +507,7 @@
 
 
 - alias: 'Cancel Wake-Up'
+  id: cancel_wakeup
   trigger:
     - platform: event
       event_type: mobile_app_notification_action

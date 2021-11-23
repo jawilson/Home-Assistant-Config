@@ -1,4 +1,5 @@
 - alias: 'Fan While Showering'
+  id: fan_while_showering
   trigger:
     platform: state
     entity_id: binary_sensor.showering
@@ -16,6 +17,7 @@
 
 
 - alias: 'Fan After Showering'
+  id: fan_after_showering
   trigger:
     platform: state
     entity_id: binary_sensor.showering
@@ -30,6 +32,7 @@
 
 
 - alias: 'Limit Bathroom Fan'
+  id: limit_bathroom_fan
   trigger:
     platform: state
     entity_id: switch.bathroom_fan_switch
@@ -48,6 +51,7 @@
       entity_id: switch.bathroom_fan_switch
 
 - alias: 'Bathroom Light Switch On'
+  id: bathroom_light_switch_on
   trigger:
     platform: device
     domain: zha
@@ -59,6 +63,7 @@
       entity_id: light.bathroom
 
 - alias: 'Bathroom Light Switch Off'
+  id: bathroom_light_switch_off
   trigger:
     platform: device
     domain: zha
@@ -70,6 +75,7 @@
       entity_id: light.bathroom
 
 - alias: 'Bathroom Light Switch Dim Up'
+  id: bathroom_light_switch_dim_up
   trigger:
     platform: device
     domain: zha
@@ -83,6 +89,7 @@
         brightness_step_pct: 10
 
 - alias: 'Bathroom Light Switch Dim Down'
+  id: bathroom_light_switch_dim_down
   trigger:
     platform: device
     domain: zha
@@ -96,6 +103,7 @@
         brightness_step_pct: -10
 
 - alias: 'Bathroom Light Switch Scene'
+  id: bathroom_light_switch_scene
   trigger:
     platform: device
     domain: zha
@@ -107,6 +115,7 @@
       entity_id: input_select.bathroom_light_profile
 
 - alias: 'Bathroom Light Scene'
+  id: bathroom_light_scene
   trigger:
     - platform: state
       entity_id: input_select.bathroom_light_profile
@@ -130,6 +139,7 @@
               brightness_pct: 100
 
 - alias: 'Bathroom Light Switch Reset'
+  id: bathroom_light_switch_reset
   trigger:
     platform: device
     domain: zha

@@ -10,6 +10,7 @@ cards:
         name: All lights
       - type: divider
       - light.kitchen
+      - light.kitchen_cabinet_lights
       - type: divider
       - light.kitchen_light_1
       - light.kitchen_light_2

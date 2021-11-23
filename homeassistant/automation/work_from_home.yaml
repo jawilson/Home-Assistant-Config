@@ -1,4 +1,5 @@
 - alias: WFH Sunroom Lights
+  id: wfh_sunroom_lights
   trigger:
     platform: numeric_state
     entity_id: sun.sun

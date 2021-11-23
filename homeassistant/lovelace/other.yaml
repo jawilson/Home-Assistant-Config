@@ -53,4 +53,18 @@ cards:
       - sensor.ups_load
       - sensor.ups_time_left
 
-  - type: custom:tracker-card
+  - type: custom:auto-entities
+    show_empty: false
+    card:
+      type: entities
+      title: Device Trackers
+    filter:
+      exclude:
+        - name: "Jeff*"
+        - name: "Sasha*"
+      include:
+        - domain: device_tracker
+          attributes:
+            source_type: router
+          options:
+            secondary_info: last-changed

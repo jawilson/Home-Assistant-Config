@@ -36,8 +36,6 @@ cards:
       - automation.alarm_dismiss
       - automation.wake_up
       - automation.wake_up_bedroom
-      - automation.sasha_warm_up
-      - automation.sasha_wake_up
       - automation.cancel_wake_up
       - automation.cancel_alarm_ringing
       - automation.cancel_bedroom_wake_up

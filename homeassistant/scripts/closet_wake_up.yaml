@@ -59,18 +59,10 @@ sequence:
 
   # Turn off lights if no motion
   - condition: state
-    entity_id: sensor.bedroom_alarm_level
-    state: '0'
-    for:
-      minutes: 10
-  - condition: state
-    entity_id: sensor.bathroom_alarm_level
-    state: '0'
-    for:
-      minutes: 10
-  - condition: state
-    entity_id: binary_sensor.showering
+    entity_id: binary_sensor.closet_motion
     state: 'off'
+    for:
+      minutes: 10
   - service: light.turn_off
     entity_id: light.closet_light
 

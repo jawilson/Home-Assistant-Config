@@ -1,4 +1,5 @@
-- alias: Run Service
+- id: run_service
+  alias: Run Service
   trigger:
     - platform: event
       event_type: mobile_app_notification_action

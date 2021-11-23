@@ -1,6 +1,7 @@
 .HA_VERSION
 .uuid
 *.db-journal
+*.log*
 .adbkey
 .google_maps_location_sharing.cookies
 

@@ -1,4 +1,5 @@
 - alias: Run Doomba
+  id: run_doomba
   trigger:
     - platform: time
       at: '15:30:00'
@@ -17,32 +18,45 @@
     - condition: state
       entity_id: binary_sensor.presume_home
       state: 'off'
-    - condition: or
+    - alias: Run requested or needs to run
+      condition: or
       conditions:
-        - condition: state
+        - alias: Run requested
+          condition: state
           entity_id: input_boolean.schedule_vacuum
           state: 'on'
-        - condition: and
+        - alias: Needs to run
+          condition: and
           conditions:
-            - condition: or
-              conditions:
-                - condition: state
-                  entity_id: vacuum.doomba
-                  state: 'docked'
-                  # Only run Doomba ounce every 20 hours max
-                  for:
-                    hours: 20
-                - condition: template
-                  value_template: >
-                    {{ (as_timestamp(now()) - (as_timestamp(state_attr('automation.home_assistant_start', 'last_triggered'))|float))/60/60 < 20 }}
-            - condition: template
+            #- alias: Run too often
+            #  condition: or
+            #  conditions:
+            #    - alias: Only run every 20 hours
+            #      condition: state
+            #      entity_id: vacuum.doomba
+            #      state: 'docked'
+            #      for:
+            #        hours: 20
+            #    - condition: template
+            #      value_template: >
+            #        {{ (as_timestamp(now()) - (as_timestamp(state_attr('automation.home_assistant_start', 'last_triggered'))|float))/60/60 < 20 }}
+            - alias: Docked for 20 hours
+              condition: state
+              entity_id: vacuum.doomba
+              state: 'docked'
+              for:
+                hours: 20
+            - alias: Last triggered more than 20 hours
+              condition: template
               value_template: >
                 {{ (as_timestamp(now()) - (as_timestamp(state_attr('automation.run_doomba', 'last_triggered'))|float))/60/60 > 20 }}
     - condition: or
       conditions:
-        - condition: template
+        - alias: Not triggered by proximity
+          condition: template
           value_template: "{{ trigger.platform != 'numeric_state' }}"
-        - condition: or
+        - alias: Not coming home
+          condition: or
           conditions:
             - condition: template
               value_template: "{{ is_state_attr('proximity.home', 'dir_of_travel', 'away_from') }}"
@@ -51,11 +65,13 @@
   action:
     - service: input_boolean.turn_off
       entity_id: input_boolean.schedule_vacuum
-    - service: vacuum.turn_on
-      entity_id: vacuum.doomba
+    - service: vacuum.start
+      target:
+        entity_id: vacuum.doomba
 
 
 - alias: Dock Doomba when arriving home
+  id: dock_doomba_when_arriving_home
   trigger:
     - platform: numeric_state
       entity_id: proximity.home
@@ -89,6 +105,7 @@
 
 
 - alias: Notify Doomba Ran
+  id: notify_doomba_ran
   trigger:
     platform: state
     entity_id: vacuum.doomba
@@ -114,6 +131,7 @@
 
 
 - alias: Notify Doomba Not Docked
+  id: notify_doomba_not_docked
   trigger:
     platform: state
     entity_id:
@@ -149,6 +167,7 @@
 
 
 - alias: Doomba Notify Empty Bin
+  id: doomba_notify_empty_bin
   trigger:
     platform: state
     entity_id:
@@ -190,6 +209,7 @@
 
 
 - alias: Doomba Bin Emptied
+  id: doomba_bin_emptied
   trigger:
     - platform: event
       event_type: mobile_app_notification_action
@@ -214,6 +234,7 @@
 
 
 - alias: Notify Doomba Error
+  id: notify_doomba_error
   trigger:
     platform: state
     entity_id: vacuum.doomba

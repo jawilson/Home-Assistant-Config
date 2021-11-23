@@ -1,28 +1,61 @@
 alias: Apartment Wake-Up
 mode: queued
+max: 2
 max_exceeded: silent
 sequence:
   - condition: state
     entity_id: input_boolean.climate_auto
     state: 'on'
-  - wait_template: "{{ not is_state('climate.apartment', 'off') and state_attr('climate.apartment', 'preset_mode') not in ['eco', 'Away and Eco'] }}"
-    timeout: '00:45:00'
-    continue_on_timeout: 'true'
-  - service: climate.set_temperature
-    data_template:
-      entity_id: climate.apartment
-      target_temp_high: "{{ states('input_number.default_high_temp')|int + 1 }}"
-      temperature: "{{ states('input_number.default_low_temp')|int + 1 }}"
-      target_temp_low: "{{ states('input_number.default_low_temp')|int + 1 }}"
-  - wait_template: "{{ states.climate.apartment.attributes.current_temperature|float >= states('input_number.default_low_temp')|float }}"
+  - alias: "Nest is on and not on eco"
+    wait_template: "{{ not is_state('climate.apartment', 'off') and state_attr('climate.apartment', 'preset_mode') not in ['eco', 'Away and Eco'] }}"
+    timeout: '00:02:00'
+    continue_on_timeout: false
+  - alias: "Set Nest to warm up faster based on HVAC mode"
+    choose:
+    - conditions: "{{ is_state('climate.apartment', 'cool') }}"
+      sequence:
+        - service: climate.set_temperature
+          data_template:
+            entity_id: climate.apartment
+            temperature: "{{ states('input_number.default_high_temp')|int + 1 }}"
+    - conditions: "{{ is_state('climate.apartment', 'heat') }}"
+      sequence:
+        - service: climate.set_temperature
+          data_template:
+            entity_id: climate.apartment
+            temperature: "{{ states('input_number.default_low_temp')|int + 1 }}"
+    - conditions: "{{ is_state('climate.apartment', 'auto') }}"
+      sequence:
+        - service: climate.set_temperature
+          data_template:
+            entity_id: climate.apartment
+            target_temp_high: "{{ states('input_number.default_high_temp')|int + 1 }}"
+            target_temp_low: "{{ states('input_number.default_low_temp')|int + 1 }}"
+  - alias: "Wait for temp to reach target"
+    wait_template: "{{ states.climate.apartment.attributes.current_temperature|float >= states('input_number.default_low_temp')|float }}"
     timeout: '01:00:00'
     continue_on_timeout: 'true'
-  - service: climate.set_temperature
-    data_template:
-      entity_id: climate.apartment
-      target_temp_high: "{{ states('input_number.default_high_temp')|int }}"
-      temperature: "{{ states('input_number.default_low_temp')|int if is_state('climate.apartment', 'heat') else states('input_number.default_high_temp')|int }}"
-      target_temp_low: "{{ states('input_number.default_low_temp')|int }}"
+  - alias: "Set Nest to actual target based on HVAC mode"
+    choose:
+    - conditions: "{{ is_state('climate.apartment', 'cool') }}"
+      sequence:
+        - service: climate.set_temperature
+          data_template:
+            entity_id: climate.apartment
+            temperature: "{{ states('input_number.default_high_temp')|int }}"
+    - conditions: "{{ is_state('climate.apartment', 'heat') }}"
+      sequence:
+        - service: climate.set_temperature
+          data_template:
+            entity_id: climate.apartment
+            temperature: "{{ states('input_number.default_low_temp')|int }}"
+    - conditions: "{{ is_state('climate.apartment', 'auto') }}"
+      sequence:
+        - service: climate.set_temperature
+          data_template:
+            entity_id: climate.apartment
+            target_temp_high: "{{ states('input_number.default_high_temp')|int }}"
+            target_temp_low: "{{ states('input_number.default_low_temp')|int }}"
 
   - service: script.turn_on
     entity_id: script.dismiss_wake_up

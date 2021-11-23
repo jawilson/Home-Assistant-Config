@@ -1,4 +1,5 @@
 - alias: Handle lights when leaving
+  id: handle_lights_when_leaving
   trigger:
     - platform: state
       entity_id: binary_sensor.presume_home

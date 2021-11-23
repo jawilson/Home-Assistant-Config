@@ -27,7 +27,7 @@ hass.services.call('light', 'turn_off', {
     ]
 })
 
-bathroom_motion = int(hass.states.get('sensor.bathroom_alarm_level').state) > 0
+bathroom_motion = hass.states.is_state('binary_sensor.bathroom_motion', 'on')
 showering = hass.states.is_state('binary_sensor.showering', 'on')
 
 if not bathroom_motion and not showering:

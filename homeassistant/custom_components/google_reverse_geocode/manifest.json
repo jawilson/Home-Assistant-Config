@@ -5,5 +5,6 @@
   "dependencies": [],
   "codeowners": ["@jawilson"],
   "requirements": ["googlemaps==2.5.1"],
-  "version": "0.0.2"
+  "version": "0.0.2",
+  "config_flow": true
 }

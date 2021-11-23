@@ -69,7 +69,7 @@ cards:
             entities:
               - entity: sensor.google_reverse_geocode_sasha
                 name: Location
-            secondary_info: last-changed
+                secondary_info: last-changed
           - type: glance
             show_name: false
             entities:
@@ -89,15 +89,27 @@ cards:
                 - sensor.sasha_drive_home
                 - sensor.sasha_transit_home
                 - sensor.sasha_walk_home
-      - type: entity-filter
-        entities: !include /config/device_groups/guests.yaml
-        state_filter:
-          - home
+      - type: custom:auto-entities
         show_empty: false
         card:
-          type: glance
+          type: entities
           title: Guests
-          show_state: false
+        filter:
+          exclude:
+            - name: "Jeff*"
+            - name: "Sasha*"
+          include:
+            - domain: device_tracker
+              state: home
+              options:
+                secondary_info: last-changed
+            - domain: device_tracker
+              state: not_home
+              last_changed: < 240
+              attributes:
+                last_time_reachable: "! None"
+              options:
+                secondary_info: last-changed
 
   #
   # Second column
@@ -146,14 +158,14 @@ cards:
         title: Vacuum
         show_header_toggle: false
         entities:
-          - type: custom:fold-entity-row
-            head:
-                entity: vacuum.doomba
-                secondary_info: last-changed
-            items:
+          - entity: vacuum.doomba
+            secondary_info: last-changed
+          - type: buttons
+            entities:
               - entity: automation.run_doomba
-                name: Automatically Run
-              - input_boolean.schedule_vacuum
+                name: Auto
+              - entity: input_boolean.schedule_vacuum
+                name: Schedule
       - type: media-control
         entity: media_player.home
 

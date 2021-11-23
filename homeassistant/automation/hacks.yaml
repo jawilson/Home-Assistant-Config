@@ -1,4 +1,5 @@
 - alias: Force Dining Lights Off
+  id: force_dining_lights_off
   trigger:
     - platform: state
       entity_id: light.dining_lights_level
@@ -8,6 +9,7 @@
       entity_id: light.dining_lights_level
 
 - alias: Force Bathroom Fan Off
+  id: force_bathroom_fan_off
   trigger:
     - platform: state
       entity_id: switch.bathroom_fan_switch
@@ -17,6 +19,7 @@
       entity_id: switch.bathroom_fan_switch
 
 - alias: Force Closet Light Off
+  id: force_closet_light_off
   trigger:
     - platform: state
       entity_id: light.closet_light
@@ -26,6 +29,7 @@
       entity_id: light.closet_light
 
 - alias: Force Kitchen Cabinet Lights Off
+  id: force_kitchen_cabinet_lights_off
   trigger:
     - platform: state
       entity_id: light.kitchen_cabinet_lights
@@ -35,6 +39,7 @@
       entity_id: light.kitchen_cabinet_lights
 
 - alias: Z-Wave Resurrection
+  id: zwave_resurrection
   trigger:
     - platform: state
       entity_id:

@@ -1,4 +1,5 @@
 - alias: Home Assistant Start
+  id: home_assistant_start
   trigger:
     - platform: homeassistant
       event: start

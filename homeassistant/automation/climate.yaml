@@ -1,4 +1,5 @@
 - alias: Nest home
+  id: nest_home
   trigger:
     - platform: numeric_state
       entity_id: proximity.home
@@ -32,6 +33,7 @@
 
 
 - alias: Nest while home
+  id: nest_while_home
   trigger:
     platform: state
     entity_id: switch.apartment_home
@@ -49,6 +51,7 @@
 
 
 - alias: Nest away
+  id: nest_away
   trigger:
     - platform: numeric_state
       entity_id: proximity.home
@@ -88,6 +91,7 @@
 
 
 - alias: Circulate air
+  id: circulate_air
   max_exceeded: silent
   trigger:
     - platform: numeric_state
@@ -124,6 +128,7 @@
 
 
 - alias: End circulate air
+  id: end_circulate_air
   trigger:
     - platform: numeric_state
       entity_id: sensor.hvac_fan_runtime
@@ -151,6 +156,7 @@
 
 
 - alias: Humidity too low
+  id: humidity_too_low
   trigger:
     platform: numeric_state
     entity_id: sensor.apartment_humidities
@@ -165,6 +171,7 @@
 
 
 - alias: Humidity too high
+  id: humidity_too_high
   trigger:
     platform: numeric_state
     entity_id: sensor.apartment_humidities
@@ -179,6 +186,7 @@
 
 
 - alias: Invalid default high
+  id: invalid_default_high
   trigger:
     platform: state
     entity_id: input_number.default_high_temp
@@ -194,6 +202,7 @@
 
 
 - alias: Invalid default low
+  id: invalid_default_low
   trigger:
     platform: state
     entity_id: input_number.default_low_temp
@@ -209,6 +218,7 @@
 
 
 - alias: Sunroom Fan
+  id: sunroom_fan
   trigger:
     - platform: event
       event_type: state_changed
@@ -232,21 +242,34 @@
       state: 'off'
   action:
     - variables:
-        diff: "{{ states('sensor.sunroom_temperature')|float - states('sensor.non_sunroom_temperatures')|float }}"
-        speed: >-
-          {% set diff = diff|float %}
-          {% if diff >= 3 %}
-          high
-          {% elif diff >= 2 %}
-          medium
-          {% elif diff >= 1 or is_state_attr('climate.sunroom', 'hvac_action', 'heating') %}
-          low
-          {% else %}
-          off
-          {% endif %}
+        percentage: >
+          {{ [[(states('sensor.sunroom_temperature')|float|default(0) - states('sensor.non_sunroom_temperatures')|float|default(0))|round(0, "floor")*33, 0]|max, 100]|min }}
+    - variables:
+        percentage: >
+          {{ [percentage, 33 if is_state_attr('climate.sunroom', 'hvac_action', 'heating') else 0]|max }}
     - condition: template
-      value_template: "{{ state_attr('fan.sunroom', 'speed') != speed }}"
-    - service: fan.turn_on
-      entity_id: fan.sunroom
+      value_template: "{{ state_attr('fan.sunroom', 'percentage') != percentage }}"
+    - service: fan.set_percentage
+      target:
+        entity_id: fan.sunroom
       data:
-        speed: "{{ speed }}"
+        percentage: "{{ percentage }}"
+
+- alias: Sunroom Auto-Temp
+  id: sunroom_auto_temp
+  trigger:
+    - platform: state
+      entity_id: climate.apartment
+    - platform: state
+      entity_id: binary_sensor.apartment_occupied
+  condition:
+    - condition: state
+      entity_id: input_boolean.climate_auto
+      state: 'on'
+    - condition: state
+      entity_id: input_boolean.presence
+      state: 'on'
+    - condition: state
+      entity_id: binary_sensor.presume_home
+      state: 'on'
+  action:

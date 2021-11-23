@@ -7,7 +7,7 @@
       value_template: >
         {{ (
               as_timestamp(states.sensor.jeff_at_work_today.last_changed) +
-              (8 - states.sensor.jeff_at_work_today.state|float) * 60 * 60
+              (8 - states.sensor.jeff_at_work_today.state|default(0)|float) * 60 * 60
            )|timestamp_custom('%-I:%M %p') }}
 
 - platform: google_reverse_geocode

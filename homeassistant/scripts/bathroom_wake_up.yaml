@@ -1,4 +1,5 @@
 alias: Bathroom Wake-Up
+max_exceeded: silent
 sequence:
   - service: homeassistant.turn_off
     entity_id:
@@ -57,8 +58,8 @@ sequence:
 
   # Turn off lights if no motion
   - condition: state
-    entity_id: sensor.bathroom_alarm_level
-    state: '0'
+    entity_id: binary_sensor.bathroom_motion
+    state: 'off'
     for:
       minutes: 10
   - condition: state

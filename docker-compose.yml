@@ -34,6 +34,22 @@ services:
     volumes:
       - ./adb:/root/.android
     command: /root/.android/startup.sh
+  zwavejs2mqtt:
+    container_name: zwavejs2mqtt
+    image: zwavejs/zwavejs2mqtt:latest
+    restart: unless-stopped
+    tty: true
+    stop_signal: SIGINT
+    environment:
+      - TZ=America/New_York
+    env_file:
+      - ./zwave/secrets.env
+    devices:
+      - /dev/serial/by-id/usb-Silicon_Labs_HubZ_Smart_Home_Controller_C0F00963-if00-port0:/dev/zwave
+    volumes:
+      - ./zwave/config:/usr/src/app/store
+    ports:
+      - 8091:8091
   homeassistant:
     image: homeassistant/home-assistant:stable
     init: true
@@ -42,6 +58,7 @@ services:
       - mqtt:mqtt.singularity.net
       - database
       - adbd
+      - zwavejs2mqtt
     restart: unless-stopped
     user: '0:118'
     dns: 192.168.0.1
@@ -51,8 +68,7 @@ services:
       macvlan:
         ipv4_address: 192.168.0.60
     devices:
-      - /dev/zwave
-      - /dev/zigbee
+      - /dev/serial/by-id/usb-Silicon_Labs_HubZ_Smart_Home_Controller_C0F00963-if01-port0:/dev/zigbee
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - ./homeassistant:/config

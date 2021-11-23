@@ -1,7 +1,7 @@
 """Defines base entities for Google Home"""
+from __future__ import annotations
 
 from abc import ABC, abstractmethod
-from typing import List, Optional
 
 from homeassistant.helpers.update_coordinator import (
     CoordinatorEntity,
@@ -21,10 +21,12 @@ class GoogleHomeBaseEntity(CoordinatorEntity, ABC):
         self,
         coordinator: DataUpdateCoordinator,
         client: GlocaltokensApiClient,
+        device_id: str,
         device_name: str,
     ):
         super().__init__(coordinator)
         self.client = client
+        self.device_id = device_id
         self.device_name = device_name
 
     @property
@@ -41,22 +43,22 @@ class GoogleHomeBaseEntity(CoordinatorEntity, ABC):
     @property
     def unique_id(self) -> str:
         """Return a unique ID to use for this entity."""
-        return f"{self.device_name}/{self.label}"
+        return f"{self.device_id}/{self.label}"
 
     @property
     def device_info(self) -> DeviceInfo:
         return {
-            "identifiers": {(DOMAIN, self.device_name)},
+            "identifiers": {(DOMAIN, self.device_id)},
             "name": f"{DEFAULT_NAME} {self.device_name}",
             "manufacturer": MANUFACTURER,
         }
 
-    def get_device(self) -> Optional[GoogleHomeDevice]:
+    def get_device(self) -> GoogleHomeDevice | None:
         """Return the device matched by device name
         from the list of google devices in coordinator_data"""
-        matched_devices: List[GoogleHomeDevice] = [
+        matched_devices: list[GoogleHomeDevice] = [
             device
             for device in self.coordinator.data
-            if device.name == self.device_name
+            if device.device_id == self.device_id
         ]
         return matched_devices[0] if matched_devices else None

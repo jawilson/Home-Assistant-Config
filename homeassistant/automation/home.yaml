@@ -1,4 +1,5 @@
 - alias: Handle lights when arriving home
+  id: handle_lights_when_arriving_home
   trigger:
     platform: state
     entity_id: binary_sensor.apartment_occupied
@@ -20,6 +21,7 @@
 
 
 - alias: Handle lights when turned on not home
+  id: handle_lights_when_turned_on_not_home
   trigger:
     platform: state
     entity_id: group.all_lights
@@ -41,6 +43,7 @@
 
 
 - alias: Front door open
+  id: front_door_open
   trigger:
     platform: state
     entity_id: binary_sensor.front_door_sensor

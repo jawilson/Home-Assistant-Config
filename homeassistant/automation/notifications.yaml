@@ -1,4 +1,5 @@
 - alias: Location Update Notification
+  id: location_update_notification
   trigger:
     - platform: state
       entity_id: person.jeff
@@ -41,6 +42,7 @@
 
 
 - alias: Jeff Stop Working
+  id: jeff_stop_working
   trigger:
     - platform: numeric_state
       entity_id: sensor.jeff_at_work_today
@@ -57,13 +59,17 @@
         {{ states[trigger.to_state.domain][trigger.to_state.object_id].attributes.value }}
         {{ 'today' if trigger.entity_id == 'sensor.jeff_at_work_today' else 'this week' }}
       data:
-        priority: high
+        channel: Important
+        importance: high
         requireInteraction: true
         vibrate: [500, 250, 500, 250, 500, 250, 500, 250, 500]
         image: 'https://render.bitstrips.com/v2/cpanel/efd60697-b088-412c-b450-e2d914c2007a-51c44532-b4a5-4f9d-b914-db4ffc9e30c0-v1.png?transparent=1&palette=1'
 
 
 - alias: Light Intruder Alert
+  id: light_intruder_alert
+  variables:
+    action_turn_off: "{{ 'TURN_OFF_' ~ as_timestamp(utcnow())|round() }}"
   trigger:
     - platform: state
       entity_id: group.all_lights
@@ -83,30 +89,50 @@
       for:
         minutes: 2
   action:
-    - service: notify.jeff
+    - alias: "Notify and task to turn off"
+      service: notify.jeff
       data:
         title: Potential Intruder Alert!
         message: No one is home and a light was turned on
         data:
           tag: 'intruder'
           channel: Important
+          importance: high
           apns_headers:
             'apns-collapse-id': 'intruder'
           renotify: 1
-          service: 'script.turn_on'
-          entity_id: 'script.apartment_shutdown'
           actions:
-            - action: 'run_service'
-              title: 'Turn off'
+            - action: "{{ action_turn_off }}"
+              title: Turn Off
+    - alias: "Wait for a response"
+      wait_for_trigger:
+        - platform: event
+          event_type: mobile_app_notification_action
+          event_data:
+            action: "{{ action_turn_off }}"
+        - platform: event
+          event_type: mobile_app_notification_cleared
+          event_data:
+            action_1_key: "{{ action_turn_off }}"
+    - alias: "Handle the response"
+      choose:
+        - alias: "Shut down the apartment"
+          conditions: "{{ wait.trigger.event.data.action == action_turn_off }}"
+          sequence:
+            - service: script.turn_on
+              target:
+                entity_id: script.apartment_shutdown
+
 
 - alias: Motion Intruder Alert
+  id: motion_intruder_alert
   trigger:
     - platform: state
-      entity_id: sensor.bedroom_alarm_level
-      from: '0'
+      entity_id: binary_sensor.bedroom_motion
+      from: 'off'
     - platform: state
-      entity_id: sensor.bathroom_alarm_level
-      from: '0'
+      entity_id: binary_sensor.bathroom_motion
+      from: 'off'
   condition:
     - condition: state
       entity_id: input_boolean.intruder_alerts
@@ -130,19 +156,46 @@
 
 
 - alias: New Device Notification
+  id: new_device_notification
+  mode: queued
   trigger:
     platform: event
-    event_type: device_tracker_new_device
+    event_type: entity_registry_updated
+    event_data:
+      action: create
+  condition: >
+          {{trigger.event.data.entity_id.startswith('device_tracker')}}
   action:
+    - variables:
+        entity: >
+          {{trigger.event.data.entity_id}}
+    - service: persistent_notification.create
+      data:
+        title: >
+          New device registered: {{state_attr(entity,'friendly_name')}}
+        message: >
+          Entity: {{entity}}<br>
+          Host: {{state_attr(entity,'host_name')}}<br>
+          IP: {{state_attr(entity,'ip')}}<br>
+          MAC: {{state_attr(entity,'mac')}}<br>
+          Data: {{trigger.event.data}}
     - service: notify.jeff
-      data_template:
-        title: New Device Detected
-        message: '{{trigger.event.data.host_name}} with id {{trigger.event.data.entity_id}}'
+      data:
+        title: >
+          New device registered: {{state_attr(entity,'friendly_name')}}
+        message: >
+          Entity: {{entity}}<br>
+          Host: {{state_attr(entity,'host_name')}}<br>
+          IP: {{state_attr(entity,'ip')}}<br>
+          MAC: {{state_attr(entity,'mac')}}
         data:
-          priority: high
+          clickAction: entityId:{{entity}}
+          channel: "Device"
+          importance: high
 
 
 - alias: Update Available Notification
+  id: update_available_notification
   trigger:
     platform: state
     entity_id: updater.updater
@@ -157,9 +210,12 @@
         url: '{{trigger.to_state.attributes.release_notes}}'
 
 - alias: Heater Circuit Protector
+  id: heater_circuit_protector
   description: Turns off sunroom heater when it is pulling too much power while the
     projector is on.
   mode: single
+  variables:
+    action_turn_on: "{{ 'TURN_ON_' ~ as_timestamp(utcnow())|round() }}"
   trigger:
     - platform: numeric_state
       entity_id: sensor.sunroom_switch_power
@@ -195,6 +251,7 @@
         data:
           tag: heater-circuit-protector
           channel: Important
+          importance: high
           apns_headers:
             apns-collapse-id: heater-circuit-protector
           action_data:
@@ -202,25 +259,27 @@
             service: 'climate.turn_on'
             entity_id: 'climate.sunroom'
           actions:
-            - action: run_service
+            - action: "{{ action_turn_on }}"
               title: Turn On
           push:
             category: turn_on
-
-
-- alias: Heater Circuit Protector Callback
-  trigger:
-    - platform: event
-      event_type: mobile_app_notification_action
-      event_data:
-        action: 'run_service'
-        tag: 'heater-circuit-protector'
-    - platform: event
-      event_type: ios.notification_action_fired
-      event_data:
-        actionName: 'run_service'
-        action_data:
-          tag: 'heater-circuit-protector'
-  action:
-    - service: climate.turn_on
-      entity_id: climate.sunroom
+    - alias: "Wait for a response"
+      wait_for_trigger:
+        - platform: event
+          event_type: mobile_app_notification_action
+          event_data:
+            action: "{{ action_turn_on }}"
+        - platform: event
+          event_type: mobile_app_notification_cleared
+          event_data:
+            action_1_key: "{{ action_turn_on }}"
+      timeout:
+        minutes: 60
+      continue_on_timeout: false
+    - alias: "Handle the response"
+      choose:
+        - alias: "Turn on the thermostat"
+          conditions: "{{ wait.trigger.event.data.action == action_turn_on }}"
+          sequence:
+            - service: climate.turn_on
+              entity_id: climate.sunroom

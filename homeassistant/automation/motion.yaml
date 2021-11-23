@@ -1,48 +1,13 @@
 - alias: Bedroom Motion
-  trigger:
-    - platform: event
-      event_type: zwave.node_event
-      event_data:
-        entity_id: zwave.bedroom
-  condition:
-    - condition: template
-      value_template: >
-        {{ trigger.event.data.basic_level|int > 0 }}
-    - condition: state
-      entity_id: input_boolean.motion
-      state: 'on'
-    - condition: state
-      entity_id: binary_sensor.apartment_occupied
-      state: 'on'
-    - condition: state
-      entity_id: light.bedroom_lights
-      state: 'off'
-    - condition: state
-      entity_id: binary_sensor.jeff_sleeping_at_home
-      state: 'off'
-    - condition: or
-      conditions:
-        - condition: state
-          entity_id: binary_sensor.jeff_sleeping_at_home
-          state: 'off'
-          for:
-            minutes: 30
-        - condition: template
-          value_template: >
-            {{ (as_timestamp(now()) - as_timestamp(states.automation.home_assistant_start.attributes.last_triggered))/60 < 30 }}
-    - condition: numeric_state
-      entity_id: sensor.bedroom_luminance
-      below: '60'
-  action:
-    - service: light.turn_on
-      entity_id: light.bedroom_lights
-
-
-- alias: Bedroom No Motion
+  id: bedroom_motion
+  max_exceeded: silent
   trigger:
     - platform: state
-      entity_id: sensor.bedroom_alarm_level
-      to: '0'
+      entity_id: binary_sensor.bedroom_motion
+      to: 'on'
+    - platform: state
+      entity_id: binary_sensor.bedroom_motion
+      to: 'off'
       for:
         minutes: 3
     - platform: state
@@ -54,54 +19,74 @@
     - condition: state
       entity_id: input_boolean.motion
       state: 'on'
-    - condition: state
-      entity_id: light.bedroom_lights
-      state: 'on'
-    - condition: state
-      entity_id: sensor.bedroom_alarm_level
-      state: '0'
-      for:
-        minutes: 3
-    # If fluxer is off, we're probably doing something specific
-    # There may be a better way to handle this
-    - condition: state
-      entity_id: switch.bedroom_fluxer
-      state: 'on'
   action:
-    - service: light.turn_off
-      entity_id: light.bedroom_lights
-    - service: switch.turn_on
-      entity_id: switch.bedroom_fluxer
+    - choose:
+        - conditions:
+            - condition: state
+              entity_id: binary_sensor.bedroom_motion
+              state: 'on'
+            - condition: state
+              entity_id: binary_sensor.apartment_occupied
+              state: 'on'
+            - condition: state
+              entity_id: light.bedroom_lights
+              state: 'off'
+            - condition: state
+              entity_id: binary_sensor.jeff_sleeping_at_home
+              state: 'off'
+            - condition: or
+              conditions:
+                - condition: state
+                  entity_id: binary_sensor.jeff_sleeping_at_home
+                  state: 'off'
+                  for:
+                    minutes: 30
+                - condition: template
+                  value_template: >
+                    {{ (as_timestamp(now()) - as_timestamp(states.automation.home_assistant_start.attributes.last_triggered))/60 < 30 }}
+            - condition: numeric_state
+              entity_id: sensor.bedroom_luminance
+              below: '60'
+          sequence:
+            - service: light.turn_on
+              entity_id: light.bedroom_lights
+        - conditions:
+            - condition: state
+              entity_id: binary_sensor.bedroom_motion
+              state: 'off'
+              for:
+                minutes: 3
+            - condition: state
+              entity_id: light.bedroom_lights
+              state: 'on'
+            - condition: or
+              conditions:
+                # If fluxer is off, we're probably doing something specific
+                # There may be a better way to handle this
+                - condition: state
+                  entity_id: switch.bedroom_fluxer
+                  state: 'on'
+                # If we're sleeping, fluxer will still be off, but we definitely want to turn off
+                - condition: state
+                  entity_id: binary_sensor.jeff_sleeping_at_home
+                  state: 'on'
+          sequence:
+            - service: light.turn_off
+              entity_id: light.bedroom_lights
+            - service: switch.turn_on
+              entity_id: switch.bedroom_fluxer
 
 
 - alias: Bathroom Motion
-  trigger:
-    - platform: event
-      event_type: zwave.node_event
-      event_data:
-        entity_id: zwave.bathroom
-  condition:
-    - condition: template
-      value_template: >
-        {{ trigger.event.data.basic_level|int > 0 }}
-    - condition: state
-      entity_id: input_boolean.motion
-      state: 'on'
-    - condition: state
-      entity_id: binary_sensor.apartment_occupied
-      state: 'on'
-    - condition: state
-      entity_id: light.bathroom_lights
-      state: 'off'
-  action:
-    - service: python_script.bathroom_motion
-
-
-- alias: Bathroom No Motion
+  id: bathroom_motion
+  max_exceeded: silent
   trigger:
     - platform: state
-      entity_id: sensor.bathroom_alarm_level
-      to: '0'
+      entity_id: binary_sensor.bathroom_motion
+      to: 'on'
+    - platform: state
+      entity_id: binary_sensor.bathroom_motion
+      to: 'off'
       for:
         minutes: 5
     - platform: state
@@ -113,43 +98,73 @@
     - condition: state
       entity_id: input_boolean.motion
       state: 'on'
-    - condition: state
-      entity_id: light.bathroom_lights
-      state: 'on'
-    - condition: state
-      entity_id: sensor.bathroom_alarm_level
-      state: '0'
-      for:
-        minutes: 5
-    # Don't turn off if we're showering
-    - condition: state
-      entity_id: binary_sensor.showering
-      state: 'off'
-    - condition: or
-      conditions:
-        - condition: state
-          entity_id: binary_sensor.jeff_sleeping_at_home
-          state: 'on'
-        - condition: and
-          conditions:
-            # If fluxer is off, we're probably doing something specific
-            # There may be a better way to handle this
+  action:
+    - choose:
+        - conditions:
             - condition: state
-              entity_id: switch.bathroom_fluxer
+              entity_id: binary_sensor.bathroom_motion
               state: 'on'
             - condition: state
-              entity_id: sensor.bathroom_alarm_level
-              state: '0'
+              entity_id: binary_sensor.apartment_occupied
+              state: 'on'
+            - condition: state
+              entity_id: light.bathroom_lights
+              state: 'off'
+          sequence:
+            - choose:
+                - conditions:
+                    - condition: state
+                      entity_id: binary_sensor.jeff_sleeping_at_home
+                      state: 'off'
+                    - condition: state
+                      entity_id: group.all_lights
+                      state: 'on'
+                  sequence:
+                    - service: light.turn_on
+                      entity_id: light.bathroom_lights
+              default:
+                - service: switch.turn_off
+                  entity_id: switch.bathroom_fluxer
+                - service: light.turn_on
+                  entity_id: light.bathroom_mirror_2
+                  data:
+                    brightness: 4
+                    color_temp: 454
+                    transition: 10
+        - conditions:
+            - condition: state
+              entity_id: binary_sensor.bathroom_motion
+              state: 'off'
               for:
                 minutes: 5
-  action:
-    - service: light.turn_off
-      entity_id: light.bathroom_lights
-    - service: switch.turn_on
-      entity_id: switch.bathroom_fluxer
+            - condition: state
+              entity_id: light.bathroom_lights
+              state: 'on'
+            # Don't turn off if we're showering
+            - condition: state
+              entity_id: binary_sensor.showering
+              state: 'off'
+            - condition: or
+              conditions:
+                # If fluxer is off, we're probably doing something specific
+                # There may be a better way to handle this
+                - condition: state
+                  entity_id: switch.bathroom_fluxer
+                  state: 'on'
+                # If we're sleeping, fluxer will still be off, but we definitely want to turn off
+                - condition: state
+                  entity_id: binary_sensor.jeff_sleeping_at_home
+                  state: 'on'
+          sequence:
+            - service: light.turn_off
+              entity_id: light.bathroom_lights
+            - service: switch.turn_on
+              entity_id: switch.bathroom_fluxer
 
 
 - alias: Closet Motion
+  id: closet_motion
+  max_exceeded: silent
   trigger:
     - platform: state
       entity_id: binary_sensor.closet_motion
@@ -220,4 +235,4 @@
             - service: light.turn_off
               entity_id: light.closet_lights
             - service: switch.turn_on
-              entity_id: switch.bedroom_fluxer
+              entity_id: switch.closet_fluxer
