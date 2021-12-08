@@ -240,10 +240,12 @@
     - condition: state
       entity_id: input_boolean.guests
       state: 'off'
+    - "{{ not is_state('sensor.sunroom_temperature', 'unavailable') }}"
+    - "{{ not is_state('sensor.non_sunroom_temperatures', 'unavailable') }}"
   action:
     - variables:
         percentage: >
-          {{ [[(states('sensor.sunroom_temperature')|float|default(0) - states('sensor.non_sunroom_temperatures')|float|default(0))|round(0, "floor")*33, 0]|max, 100]|min }}
+          {{ [[(states('sensor.sunroom_temperature')|float - states('sensor.non_sunroom_temperatures')|float)|round(0, "floor")*33, 0]|max, 100]|min }}
     - variables:
         percentage: >
           {{ [percentage, 33 if is_state_attr('climate.sunroom', 'hvac_action', 'heating') else 0]|max }}
