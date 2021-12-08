@@ -1,4 +1,4 @@
-alias: Apartment Wake-Up
+alias: "Apartment Wake-Up"
 mode: queued
 max: 2
 max_exceeded: silent
@@ -12,19 +12,22 @@ sequence:
     continue_on_timeout: false
   - alias: "Set Nest to warm up faster based on HVAC mode"
     choose:
-    - conditions: "{{ is_state('climate.apartment', 'cool') }}"
+    - alias: "Use high temp if cooling"
+      conditions: "{{ is_state('climate.apartment', 'cool') }}"
       sequence:
         - service: climate.set_temperature
           data_template:
             entity_id: climate.apartment
             temperature: "{{ states('input_number.default_high_temp')|int + 1 }}"
-    - conditions: "{{ is_state('climate.apartment', 'heat') }}"
+    - alias: "Use low temp if heating"
+      conditions: "{{ is_state('climate.apartment', 'heat') }}"
       sequence:
         - service: climate.set_temperature
           data_template:
             entity_id: climate.apartment
             temperature: "{{ states('input_number.default_low_temp')|int + 1 }}"
-    - conditions: "{{ is_state('climate.apartment', 'auto') }}"
+    - alias: "Use range if auto"
+      conditions: "{{ is_state('climate.apartment', 'auto') }}"
       sequence:
         - service: climate.set_temperature
           data_template:
@@ -37,19 +40,22 @@ sequence:
     continue_on_timeout: 'true'
   - alias: "Set Nest to actual target based on HVAC mode"
     choose:
-    - conditions: "{{ is_state('climate.apartment', 'cool') }}"
+    - alias: "Use high temp if cooling"
+      conditions: "{{ is_state('climate.apartment', 'cool') }}"
       sequence:
         - service: climate.set_temperature
           data_template:
             entity_id: climate.apartment
             temperature: "{{ states('input_number.default_high_temp')|int }}"
-    - conditions: "{{ is_state('climate.apartment', 'heat') }}"
+    - alias: "Use low temp if heating"
+      conditions: "{{ is_state('climate.apartment', 'heat') }}"
       sequence:
         - service: climate.set_temperature
           data_template:
             entity_id: climate.apartment
             temperature: "{{ states('input_number.default_low_temp')|int }}"
-    - conditions: "{{ is_state('climate.apartment', 'auto') }}"
+    - alias: "Use range if auto"
+      conditions: "{{ is_state('climate.apartment', 'auto') }}"
       sequence:
         - service: climate.set_temperature
           data_template:
