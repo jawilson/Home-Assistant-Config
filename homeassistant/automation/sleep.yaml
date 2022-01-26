@@ -27,17 +27,13 @@
   id: someone_leaves_while_jeff_sleeping
   trigger:
     - platform: state
-      entity_id: group.guests
-      to: 'not_home'
-    - platform: state
       entity_id: person.sasha
       from: 'home'
   condition:
-    - condition: state
-      entity_id: binary_sensor.jeff_sleeping_at_home
-      state: 'on'
+    - "{{ is_state('binary_sensor.jeff_sleeping_at_home', 'on') }}"
     - "{{ not is_state('sensor.jeff_alarm', 'Ringing') }}"
     - "{{ not is_state_attr('sensor.bedroom_speaker_alarms', 'next_alarm_status', 'ringing') }}"
+    - "{{ is_state('binary_sensor.guests', 'off') }}"
   action:
     - service: script.turn_off
       entity_id:
@@ -71,24 +67,21 @@
 - alias: 'Wake-Up'
   id: wake_up
   trigger:
-    - platform: state
+    - id: jeff_wake
+      platform: state
       entity_id: binary_sensor.jeff_sleeping_at_home
       to: 'off'
     - id: speaker_alarm
       platform: state
       entity_id: sensor.bedroom_speaker_alarms
       to: 'unavailable'
-    - platform: webhook
+    - id: jawilson_webhook
+      platform: webhook
       webhook_id: jawilson_sleep
-      id: jawilson_webhook
   condition:
-    - condition: or
-      conditions:
-        - "{{ trigger.id == 'speaker_alarm' and trigger.from_state.state != 'unknown' }}"
-        - condition: and
-          conditions:
-            - "{{ is_state('person.jeff', 'home') }}"
-            - "{{ trigger.id != 'jawilson_webhook' or (trigger.json.event == 'alarm_alert_dismiss' and '#sashaWork' in trigger.json.value2) }}"
+    - "{{ trigger.id != 'speaker_alarm' or trigger.from_state.state != 'unknown' }}"
+    - "{{ trigger.id != 'jeff_wake' or is_state('person.jeff', 'home') }}"
+    - "{{ trigger.id != 'jawilson_webhook' or (is_state('person.jeff', 'home') and trigger.json.event == 'alarm_alert_dismiss' and '#sashaWork' in trigger.json.value2) }}"
   action:
     - service: script.turn_off
       entity_id:
@@ -100,7 +93,6 @@
       entity_id:
         - script.bathroom_wake_up
         - script.living_area_wake_up
-        - script.apartment_wake_up
     - choose:
       - conditions: "{{ is_state('script.apartment_wake_up', 'off') }}"
         sequence:

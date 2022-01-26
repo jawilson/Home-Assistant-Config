@@ -43,13 +43,13 @@
   trigger:
     - platform: state
       entity_id:
-        - zwave.bathroom_fan
-        - zwave.dining_lights
-        - zwave.inovelli_dimmer
-        - zwave.sunroom_fan
+        - sensor.bathroom_fan_node_status
+        - sensor.dining_lights_node_status
+        - sensor.kitchen_cabinet_node_status
+        - sensor.sunroom_fan_node_status
       to: "dead"
       for: "00:02:00"
   action:
-    - service: zwave.test_node
-      data:
-        node_id: "{{ state_attr(trigger.entity_id, 'node_id') }}"
+    - service: zwave_js.ping
+      target:
+        entity_id: "{{ trigger.entity_id }}"

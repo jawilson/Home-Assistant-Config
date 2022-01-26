@@ -1,6 +1,5 @@
 alias: "Apartment Wake-Up"
-mode: queued
-max: 2
+mode: single
 max_exceeded: silent
 sequence:
   - condition: state

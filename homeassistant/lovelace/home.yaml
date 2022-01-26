@@ -207,3 +207,20 @@ cards:
             service: script.turn_on
             service_data:
               entity_id: script.lights_out
+      - type: history-graph
+        hours_to_show: 4
+        entities:
+          - group.family
+          - entity: binary_sensor.guests
+            name: Guests
+          - entity: binary_sensor.front_door_sensor
+            name: Door
+      - type: entities
+        title: Dehydrator
+        show_header_toggle: false
+        entities:
+          - entity: switch.orvibo
+            secondary_info: last-changed
+          - input_datetime.dehydrator_start
+          - input_number.dehydrator_runtime
+          - automation.dehydrator_timer

@@ -41,6 +41,7 @@
 - platform: statistics
   entity_id: sensor.bathroom_temperature
   name: Bathroom Temp Stats
+  state_characteristic: mean
   sampling_size: 400
   max_age:
     hours: 12
@@ -48,6 +49,7 @@
 - platform: statistics
   entity_id: sensor.bathroom_relative_humidity
   name: Bathroom Humidity Stats
+  state_characteristic: mean
   sampling_size: 400
   max_age:
     hours: 12

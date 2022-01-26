@@ -34,3 +34,11 @@ apartment_wakeup_period:
   max: 120
   step: 5
   unit_of_measurement: minutes
+
+dehydrator_runtime:
+  name: Dehydrator Runtime
+  min: 0.25
+  max: 72
+  step: 0.25
+  unit_of_measurement: hours
+  mode: box

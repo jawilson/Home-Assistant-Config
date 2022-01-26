@@ -257,21 +257,3 @@
       data:
         percentage: "{{ percentage }}"
 
-- alias: Sunroom Auto-Temp
-  id: sunroom_auto_temp
-  trigger:
-    - platform: state
-      entity_id: climate.apartment
-    - platform: state
-      entity_id: binary_sensor.apartment_occupied
-  condition:
-    - condition: state
-      entity_id: input_boolean.climate_auto
-      state: 'on'
-    - condition: state
-      entity_id: input_boolean.presence
-      state: 'on'
-    - condition: state
-      entity_id: binary_sensor.presume_home
-      state: 'on'
-  action:

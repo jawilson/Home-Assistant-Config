@@ -30,9 +30,33 @@
     - light.sunroom_lights
 
 - platform: group
+  name: Tree Lamp
+  unique_id: 'tree_lamp'
+  entities:
+    - light.tree_lamp_1
+    - light.tree_lamp_2
+    - light.tree_lamp_3
+    - light.tree_lamp_4
+    - light.tree_lamp_5
+
+- platform: group
+  name: Entertainment Lights
+  unique_id: 'entertainment_lights'
+  entities:
+    - light.entertainment_light_1
+    - light.entertainment_light_2
+
+- platform: group
   name: Living Room Lights
   entities:
     - light.living_room
+
+- platform: group
+  name: Sunroom Fan Light
+  unique_id: 'sunroom_fan_light'
+  entities:
+    - light.sunroom_fan_light_1
+    - light.sunroom_fan_light_2
 
 - platform: group
   name: Sunroom Lights
@@ -48,6 +72,7 @@
 
 - platform: group
   name: Bedroom Lights
+  unique_id: 'bedroom_lights_group'
   entities:
     - light.bedroom
     - light.bedroom_nook
@@ -56,6 +81,14 @@
   name: Closet Lights
   entities:
     - light.closet
+
+- platform: group
+  name: Bathroom Mirror
+  entities:
+    - light.bathroom_mirror_1
+    - light.bathroom_mirror_2
+    - light.bathroom_mirror_3
+    - light.bathroom_mirror_4
 
 - platform: group
   name: Bathroom Lights

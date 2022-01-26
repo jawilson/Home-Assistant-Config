@@ -41,9 +41,5 @@ sensor.google_reverse_geocode_sasha:
   custom_ui_more_info: more-info-map
 
 # Other
-binary_sensor.guests:
-  device_class: occupancy
-binary_sensor.presume_home:
-  device_class: occupancy
 binary_sensor.front_door_sensor:
   device_class: door

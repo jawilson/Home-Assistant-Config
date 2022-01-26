@@ -145,9 +145,6 @@ logbook:
       - switch.bedroom_motion_automations
       - switch.bathroom_motion_automations
       - switch.closet_motion_automations
-  include:
-    entities:
-      - group.everyone
 
 # Enables support for tracking state changes over time.
 history:
@@ -324,6 +321,11 @@ sensor: !include_dir_merge_list sensors
 input_boolean: !include input_boolean.yaml
 input_select: !include input_select.yaml
 input_number: !include input_number.yaml
+input_datetime:
+  dehydrator_start:
+    name: Dehydrator Start Time
+    has_date: true
+    has_time: true
 
 #
 # Devices
