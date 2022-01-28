@@ -194,12 +194,12 @@ cards:
             service_data:
               entity_id: automation.go_to_sleep
           - type: call-service
-            name: Sasha Wake-Up
+            name: Wake-Up
             icon: mdi:sleep-off
             action_name: Trigger
             service: automation.trigger
             service_data:
-              entity_id: automation.sasha_wake_up
+              entity_id: automation.wake_up
           - type: call-service
             name: Lights Out
             icon: mdi:flashlight-off
