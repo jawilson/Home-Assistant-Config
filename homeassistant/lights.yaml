@@ -11,17 +11,20 @@
 
 - platform: group
   name: Entryway Lights
+  unique_id: entryway_lights_group
   entities:
     - light.entryway
 
 - platform: group
   name: Kitchen Lights
+  unique_id: kitchen_lights_group
   entities:
     - light.kitchen
     - light.kitchen_cabinet_lights
 
 - platform: group
   name: Living Area Lights
+  unique_id: living_area_lights_group
   entities:
     - light.entryway_lights
     - light.kitchen_lights
@@ -48,6 +51,7 @@
 
 - platform: group
   name: Living Room Lights
+  unique_id: living_room_lights_group
   entities:
     - light.living_room
 
@@ -60,11 +64,13 @@
 
 - platform: group
   name: Sunroom Lights
+  unique_id: sunroom_lights_group
   entities:
     - light.sunroom
 
 - platform: group
   name: Bedroom Nook
+  unique_id: triple_hanging_lamp_group
   entities:
     - light.bedroom_nook_1
     - light.bedroom_nook_2
@@ -79,11 +85,13 @@
 
 - platform: group
   name: Closet Lights
+  unique_id: closet_lights_group
   entities:
     - light.closet
 
 - platform: group
   name: Bathroom Mirror
+  unique_id: bathroom_mirror
   entities:
     - light.bathroom_mirror_1
     - light.bathroom_mirror_2
@@ -92,20 +100,24 @@
 
 - platform: group
   name: Bathroom Lights
+  unique_id: bathroom_lights_group
   entities:
     - light.bathroom
 
 - platform: group
   name: Color Lights
+  unique_id: color_lights_group
   entities:
+    - light.entryway_lights
     - light.kitchen_lights
     - light.liquor_cabinet_lights
     - light.entertainment_lights
-    - light.bedroom_lamp
     - light.bedroom_nook
+    - light.sunroom_lights
 
 - platform: group
   name: Color Temperature Lights
+  unique_id: color_temperature_lights_group
   entities:
     - light.entryway_lights
     - light.tree_lamp
@@ -115,6 +127,7 @@
     - light.bathroom_mirror
     - light.shower
     - light.kitchen_lights
+    - light.liquor_cabinet_lights
     - light.entertainment_lights
-    - light.bedroom_lamp
-    - light.sunroom_nightstand_lamp
+    - light.bedroom_lights
+    - light.sunroom_lights
