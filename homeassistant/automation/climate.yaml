@@ -248,6 +248,9 @@
           {{ [[(states('sensor.sunroom_temperature')|float - states('sensor.non_sunroom_temperatures')|float)|round(0, "floor")*33, 0]|max, 100]|min }}
     - variables:
         percentage: >
+          {{ percentage if is_state('automation.sunroom_auto_temp', 'on') else 0 }}
+    - variables:
+        percentage: >
           {{ [percentage, 33 if is_state_attr('climate.sunroom', 'hvac_action', 'heating') else 0]|max }}
     - condition: template
       value_template: "{{ state_attr('fan.sunroom', 'percentage') != percentage }}"
@@ -257,3 +260,59 @@
       data:
         percentage: "{{ percentage }}"
 
+- alias: Sunroom Auto-Temp
+  id: sunroom_auto_temp
+  mode: restart
+  trigger:
+    - platform: state
+      entity_id: climate.apartment
+      to:
+    - platform: state
+      entity_id: climate.apartment
+      attribute: temperature
+      id: temperature
+    - platform: state
+      entity_id: climate.apartment
+      attribute: target_temp_low
+    - platform: state
+      entity_id: binary_sensor.apartment_occupied
+      id: presence
+  condition:
+    - condition: state
+      entity_id: input_boolean.climate_auto
+      state: 'on'
+    - "{{ trigger.id != 'presence' or is_state('input_boolean.presence', 'on') }}"
+    - "{{ trigger.id != 'temperature' or not is_state('climate.apartment', 'cool') }}"
+  action:
+    - choose:
+      - conditions: "{{ trigger.id == 'presence' }}"
+        sequence:
+          - service: climate.set_preset_mode
+            target:
+              entity_id: climate.sunroom
+            data:
+              preset_mode: "{{ 'none' if is_state('binary_sensor.apartment_occupied', 'on') else 'away' }}"
+    - choose:
+        - conditions: "{{ is_state('binar_sensor.apartment_occupied', 'off') }}"
+          sequence:
+            service: climate.set_hvac_mode
+            target:
+              entity_id: climate.sunroom
+            data:
+              hvac_mode: "{{ 'off' if states('climate.apartment') in ('off', 'cool') else 'heat' }}"
+        - conditions: >
+            {{ is_state('climate.apartment', 'off') or is_state('climate.apartment', 'cool') }}
+          sequence:
+            service: climate.set_hvac_mode
+            target:
+              entity_id: climate.sunroom
+            data:
+              hvac_mode: 'off'
+      default:
+        service: climate.set_temperature
+        target:
+          entity_id: climate.sunroom
+        data:
+          hvac_mode: heat
+          temperature: >
+            {{ state_attr('climate.apartment', 'target_temp_low') if is_state('climate.apartment', 'auto') else state_attr('climate.apartment', 'temperature') }}

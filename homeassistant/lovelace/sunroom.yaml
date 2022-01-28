@@ -34,7 +34,9 @@ cards:
         name: Fan
       - automation.sunroom_fan
       - input_boolean.climate_auto
+      - automation.sunroom_auto_temp
       - switch.living_area_fluxer
+      - switch.sunroom_fluxer
       - script.living_area_wake_up
 
   - type: media-control

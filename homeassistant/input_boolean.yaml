@@ -19,7 +19,7 @@ guests:
   icon: mdi:account-multiple
 
 climate_auto:
-  name: Control Climate
+  name: Auto Climate Control
   initial: on
   icon: mdi:thermostat
 

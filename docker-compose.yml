@@ -93,16 +93,6 @@ services:
       - 'homeassistant'
       - '--config'
       - '/config'
-  node-red:
-    build: ./node-red
-    restart: unless-stopped
-    user: '114:118'
-    links:
-      - homeassistant
-    ports:
-      - 1880:1880
-    volumes:
-      - ./node-red/data:/data
 networks:
   default:
   macvlan:
