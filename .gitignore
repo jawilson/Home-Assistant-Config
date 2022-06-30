@@ -2,6 +2,8 @@ letsencrypt/
 ssl/
 .ssh/
 
+zwave/
+
 *.env
 
 *.pyc
