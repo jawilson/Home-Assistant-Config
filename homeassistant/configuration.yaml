@@ -16,11 +16,13 @@ homeassistant:
 
 default_config:
 discovery:
+update:
 
 # Web
 http:
   use_x_forwarded_for: true
-  trusted_proxies: 192.168.0.100
+  trusted_proxies:
+    - 172.25.0.2
 
 lovelace:
   mode: yaml
@@ -243,6 +245,8 @@ history:
 # Integrations
 #
 
+circadian_lighting:
+
 ffmpeg:
 
 tts:
@@ -254,7 +258,11 @@ emulated_hue: !include emulated_hue.yaml
 google:
   client_id: !secret google_calendar_client_id
   client_secret: !secret google_calendar_secret
-  track_new_calendar: false
+
+nest:
+  client_id: !secret google_nest_client_id
+  client_secret: !secret google_nest_secret
+  project_id: !secret google_sdm_project_id
 
 notify:
   - platform: html5
@@ -299,23 +307,15 @@ intent_script: !include intent_scripts.yaml
 #
 # Hubs
 #
-ios: !include ios.yaml
+ios:
 
 mqtt:
-  broker: mqtt.singularity.net
-  port: 1883
-  username: !secret mqtt_username
-  password: !secret mqtt_password
   certificate: /config/certs/ca.crt
-
-apcupsd:
-  host: feynman.singularity.net
-  port: 3551
-
 
 # Sensors
 binary_sensor: !include_dir_merge_list binary_sensors
 sensor: !include_dir_merge_list sensors
+template: !include_dir_merge_list template_sensors
 
 # Inputs
 input_boolean: !include input_boolean.yaml
@@ -333,6 +333,7 @@ input_datetime:
 climate:
   - platform: generic_thermostat
     name: Sunroom
+    unique_id: sunroom_thermostat
     heater: switch.sunroom_switch
     target_sensor: sensor.sunroom_temperature
     min_cycle_duration: 00:10:00
@@ -350,8 +351,6 @@ person: !include people.yaml
 device_tracker:
 
 media_player: !include media_players.yaml
-
-camera: !include cameras.yaml
 
 switch: !include_dir_merge_list switches
 
@@ -382,6 +381,7 @@ script: !include_dir_named scripts
 python_script:
 
 # Automation
+automation: !include automations.yaml
 automation old: !include_dir_merge_list automation
 
 # Rest Commands

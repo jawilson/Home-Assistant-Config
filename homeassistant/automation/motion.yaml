@@ -34,16 +34,11 @@
             - condition: state
               entity_id: binary_sensor.jeff_sleeping_at_home
               state: 'off'
-            - condition: or
-              conditions:
-                - condition: state
-                  entity_id: binary_sensor.jeff_sleeping_at_home
-                  state: 'off'
-                  for:
-                    minutes: 30
-                - condition: template
-                  value_template: >
-                    {{ (as_timestamp(now()) - as_timestamp(states.automation.home_assistant_start.attributes.last_triggered))/60 < 30 }}
+            - condition: state
+              entity_id: binary_sensor.jeff_sleeping_at_home
+              state: 'off'
+              for:
+                minutes: 30
             - condition: numeric_state
               entity_id: sensor.bedroom_luminance
               below: '60'
@@ -198,16 +193,8 @@
             - condition: state
               entity_id: binary_sensor.jeff_sleeping_at_home
               state: 'off'
-            - condition: or
-              conditions:
-                - condition: state
-                  entity_id: binary_sensor.jeff_sleeping_at_home
-                  state: 'off'
-                  for:
-                    minutes: 30
-                - condition: template
-                  value_template: >
-                    {{ (as_timestamp(now()) - as_timestamp(states.automation.home_assistant_start.attributes.last_triggered))/60 < 30 }}
+              for:
+                minutes: 30
           sequence:
             - service: light.turn_on
               entity_id: light.closet_lights

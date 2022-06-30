@@ -1,4 +1,5 @@
 alias: Bathroom Sleep
+mode: restart
 sequence:
   - condition: state
     entity_id: binary_sensor.guests

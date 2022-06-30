@@ -1,0 +1,73 @@
+- id: dehydrator_timer
+  alias: Dehydrator Timer
+  description: ''
+  trigger:
+  - platform: time
+    at: input_datetime.dehydrator_start
+  condition: []
+  action:
+  - service: switch.turn_on
+    target:
+      entity_id: switch.orvibo
+  - delay: '{{ states(''input_number.dehydrator_runtime'') | multiply(3600) | int
+      }}'
+  - service: switch.turn_off
+    target:
+      entity_id: switch.orvibo
+  - service: notify.jeff_phone
+    data:
+      title: Dehydrator
+      message: Dehydration is complete!
+  mode: single
+- id: '1646497667520'
+  alias: Track Crosstrek
+  description: Regularly locate the Crosstrek until it is turned off
+  trigger:
+  - type: powered
+    platform: device
+    device_id: 24995f8cf56359dc4e8fdc9976e35e81
+    entity_id: binary_sensor.crosstrek_ignition
+    domain: binary_sensor
+  - platform: template
+    value_template: "{% set devices = state_attr('sensor.jawilson_phone_bluetooth_connections',\
+      \ 'connected_paired_devices') %} {{ 'F8:E8:77:8C:C3:45' in devices\n    or '86:1B:5F:D3:45:C4'\
+      \ in devices }}\n"
+  condition: []
+  action:
+  - repeat:
+      until:
+      - type: is_not_powered
+        condition: device
+        device_id: 24995f8cf56359dc4e8fdc9976e35e81
+        entity_id: binary_sensor.crosstrek_ignition
+        domain: binary_sensor
+      sequence:
+      - delay:
+          hours: 0
+          minutes: 2
+          seconds: 0
+          milliseconds: 0
+      - service: button.press
+        data: {}
+        target:
+          entity_id: button.crosstrek_locate
+  mode: single
+  max_exceeded: silent
+- id: '1647013889004'
+  alias: Update on Remote Start
+  description: ''
+  trigger:
+  - platform: state
+    entity_id: button.crosstrek_remote_start
+  condition: []
+  action:
+  - delay:
+      hours: 0
+      minutes: 2
+      seconds: 0
+      milliseconds: 0
+  - service: button.press
+    data: {}
+    target:
+      entity_id: button.crosstrek_locate
+  mode: single

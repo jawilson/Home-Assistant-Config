@@ -6,7 +6,7 @@ sequence:
     entity_id: input_boolean.climate_auto
     state: 'on'
   - alias: "Nest is on and not on eco"
-    wait_template: "{{ not is_state('climate.apartment', 'off') and state_attr('climate.apartment', 'preset_mode') not in ['eco', 'Away and Eco'] }}"
+    wait_template: "{{ not is_state('climate.apartment', 'off') and state_attr('climate.apartment', 'preset_mode') not in ['eco'] }}"
     timeout: '00:02:00'
     continue_on_timeout: false
   - alias: "Set Nest to warm up faster based on HVAC mode"
@@ -26,7 +26,7 @@ sequence:
             entity_id: climate.apartment
             temperature: "{{ states('input_number.default_low_temp')|int + 1 }}"
     - alias: "Use range if auto"
-      conditions: "{{ is_state('climate.apartment', 'auto') }}"
+      conditions: "{{ is_state('climate.apartment', 'heat_cool') }}"
       sequence:
         - service: climate.set_temperature
           data_template:
@@ -54,7 +54,7 @@ sequence:
             entity_id: climate.apartment
             temperature: "{{ states('input_number.default_low_temp')|int }}"
     - alias: "Use range if auto"
-      conditions: "{{ is_state('climate.apartment', 'auto') }}"
+      conditions: "{{ is_state('climate.apartment', 'heat_cool') }}"
       sequence:
         - service: climate.set_temperature
           data_template:

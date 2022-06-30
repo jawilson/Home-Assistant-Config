@@ -10,3 +10,7 @@ ssl/
 
 *.swp
 *~
+
+*.bak
+*.backup
+backups/

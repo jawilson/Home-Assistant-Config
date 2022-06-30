@@ -20,24 +20,3 @@
         - service_template: '{{ trigger.event.data.data.service }}'
           data_template:
             entity_id: '{{ trigger.event.data.data.entity_id }}'
-- id: dehydrator_timer
-  alias: Dehydrator Timer
-  description: ''
-  trigger:
-  - platform: time
-    at: input_datetime.dehydrator_start
-  condition: []
-  action:
-  - service: switch.turn_on
-    target:
-      entity_id: switch.orvibo
-  - delay: '{{ states(''input_number.dehydrator_runtime'') | multiply(3600) | int
-      }}'
-  - service: switch.turn_off
-    target:
-      entity_id: switch.orvibo
-  - service: notify.jeff_phone
-    data:
-      title: Dehydrator
-      message: 'Dehydration is complete!'
-  mode: single

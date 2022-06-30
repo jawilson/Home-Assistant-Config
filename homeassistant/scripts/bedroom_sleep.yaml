@@ -1,6 +1,8 @@
 alias: Bedroom Sleep
 sequence:
-  - service: media_player.media_stop
+  - alias: "Stop anything playing on the speaker"
+    continue_on_error: true
+    service: media_player.media_stop
     entity_id: media_player.bedroom_speaker
   - service: automation.turn_off
     entity_id:

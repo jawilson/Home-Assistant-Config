@@ -3,6 +3,7 @@
   trigger:
     platform: state
     entity_id: binary_sensor.apartment_occupied
+    from: 'off'
     to: 'on'
   condition:
     - condition: state
@@ -22,9 +23,11 @@
 
 - alias: Handle lights when turned on not home
   id: handle_lights_when_turned_on_not_home
+  initial_state: false
   trigger:
     platform: state
     entity_id: group.all_lights
+    from: 'off'
     to: 'on'
   condition:
     - condition: state

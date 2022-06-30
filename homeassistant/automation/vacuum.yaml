@@ -3,9 +3,8 @@
   trigger:
     - platform: time
       at: '15:30:00'
-    - platform: numeric_state
-      entity_id: proximity.home
-      above: 500
+    - platform: template
+      value_template: "{{ states('proximity.home')|int(0) > 500 }}"
     - platform: state
       entity_id: binary_sensor.presume_home
       to: 'off'
@@ -28,18 +27,6 @@
         - alias: Needs to run
           condition: and
           conditions:
-            #- alias: Run too often
-            #  condition: or
-            #  conditions:
-            #    - alias: Only run every 20 hours
-            #      condition: state
-            #      entity_id: vacuum.doomba
-            #      state: 'docked'
-            #      for:
-            #        hours: 20
-            #    - condition: template
-            #      value_template: >
-            #        {{ (as_timestamp(now()) - (as_timestamp(state_attr('automation.home_assistant_start', 'last_triggered'))|float))/60/60 < 20 }}
             - alias: Docked for 20 hours
               condition: state
               entity_id: vacuum.doomba
@@ -73,9 +60,8 @@
 - alias: Dock Doomba when arriving home
   id: dock_doomba_when_arriving_home
   trigger:
-    - platform: numeric_state
-      entity_id: proximity.home
-      below: 1000
+    - platform: template
+      value_template: "{{ states('proximity.home')|int(1000) < 1000 }}"
     - platform: state
       entity_id: binary_sensor.presume_home
       to: 'on'
@@ -235,6 +221,7 @@
 
 - alias: Notify Doomba Error
   id: notify_doomba_error
+  initial_state: false
   trigger:
     platform: state
     entity_id: vacuum.doomba

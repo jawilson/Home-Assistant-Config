@@ -17,13 +17,12 @@ services:
       - ./ssl/certs:/mosquitto/config/certs:ro
       - ./ssl/private/mqtt.singularity.net.key:/mosquitto/config/private/mqtt.singularity.net.key:ro
   database:
-    image: library/postgres:9
+    image: library/postgres:14
     restart: unless-stopped
     user: '114:118'
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - ./postgres/data:/var/lib/postgresql/data
-      - ./postgres/initdb.d:/docker-entrypoint-initdb.d:ro
     env_file:
       - ./postgres/secrets.env
   adbd:
@@ -35,7 +34,6 @@ services:
       - ./adb:/root/.android
     command: /root/.android/startup.sh
   zwavejs2mqtt:
-    container_name: zwavejs2mqtt
     image: zwavejs/zwavejs2mqtt:latest
     restart: unless-stopped
     tty: true
@@ -50,6 +48,17 @@ services:
       - ./zwave/config:/usr/src/app/store
     ports:
       - 8091:8091
+  esphome:
+    image: esphome/esphome
+    restart: unless-stopped
+    networks:
+      default:
+      macvlan:
+        ipv4_address: 192.168.0.63
+    volumes:
+      - ./esphome:/config
+    command:
+      dashboard --port 80 /config
   homeassistant:
     image: homeassistant/home-assistant:stable
     init: true
@@ -61,24 +70,34 @@ services:
       - zwavejs2mqtt
     restart: unless-stopped
     user: '0:118'
-    dns: 192.168.0.1
+    dns:
+      - 192.168.0.1
+      - 8.8.8.8
     dns_search: singularity.net
     networks:
       default:
       macvlan:
         ipv4_address: 192.168.0.60
+      traefik:
     devices:
       - /dev/serial/by-id/usb-Silicon_Labs_HubZ_Smart_Home_Controller_C0F00963-if01-port0:/dev/zigbee
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - ./homeassistant:/config
-      - ./letsencrypt:/etc/letsencrypt:ro
       - ./tools:/opt/tools:ro
       - ./ssl/certs:/config/certs:ro
       - ./.ssh:/config/.ssh:ro
     environment:
       - HA_LOG_LEVEL=warning
       - TZ=America/New_York
+    labels:
+      traefik.enable: true
+      traefik.http.routers.homeassistant.rule: "Host(`homeassistant.jeffalwilson.com`)"
+      traefik.http.routers.homeassistant.entrypoints: web,websecure
+      traefik.http.routers.homeassistant.tls: true
+      traefik.http.routers.homeassistant.tls.certresolver: production
+      traefik.http.routers.homeassistant.service: homeassistant
+      traefik.http.services.homeassistant.loadbalancer.server.port: 8123
     entrypoint:
       - '/opt/tools/wait-for-it/wait-for-it.sh'
       - '-s'
@@ -88,17 +107,23 @@ services:
       - '-s'
       - 'database:5432'
       - '--'
+      - '/opt/tools/wait-for-it/wait-for-it.sh'
+      - '-s'
+      - 'zwavejs2mqtt:3000'
+      - '--'
       - 'python'
       - '-m'
       - 'homeassistant'
       - '--config'
       - '/config'
 networks:
-  default:
+  traefik:
+    external: true
+    name: traefik
   macvlan:
     driver: macvlan
     driver_opts:
-      parent: 'enp8s0'
+      parent: 'enp5s0'
     ipam:
       config:
         - subnet: 192.168.0.0/24

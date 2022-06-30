@@ -103,11 +103,14 @@ cards:
               state: home
               options:
                 secondary_info: last-changed
+              attributes:
+                source_type: router
             - domain: device_tracker
               state: not_home
-              last_changed: < 240
+              last_changed: < 720
               attributes:
                 last_time_reachable: "! None"
+                source_type: router
               options:
                 secondary_info: last-changed
 
@@ -166,6 +169,7 @@ cards:
                 name: Auto
               - entity: input_boolean.schedule_vacuum
                 name: Schedule
+              - sensor.doomba_battery_level
       - type: media-control
         entity: media_player.home
 
@@ -208,11 +212,16 @@ cards:
             service_data:
               entity_id: script.lights_out
       - type: history-graph
-        hours_to_show: 4
+        hours_to_show: 12
         entities:
           - group.family
           - entity: binary_sensor.guests
             name: Guests
+          - entity: binary_sensor.front_door_sensor
+            name: Door
+      - type: logbook
+        hours_to_show: 12
+        entities:
           - entity: binary_sensor.front_door_sensor
             name: Door
       - type: entities

@@ -1,9 +1,8 @@
 - alias: Nest home
   id: nest_home
   trigger:
-    - platform: numeric_state
-      entity_id: proximity.home
-      below: 1000
+    - platform: template
+      value_template: "{{ states('proximity.home')|int(1000) < 1000 }}"
     - platform: state
       entity_id: binary_sensor.presume_home
       to: 'on'
@@ -11,9 +10,6 @@
     - condition: state
       entity_id: input_boolean.presence
       state: 'on'
-    - condition: template
-      value_template: >
-        {{ (as_timestamp(now()) - as_timestamp(states.automation.home_assistant_start.attributes.last_triggered))/60 > 5 }}
     - condition: or
       conditions:
         - condition: template
@@ -53,9 +49,8 @@
 - alias: Nest away
   id: nest_away
   trigger:
-    - platform: numeric_state
-      entity_id: proximity.home
-      above: 500
+    - platform: template
+      value_template: "{{ states('proximity.home')|int(0) > 500 }}"
     - platform: state
       entity_id: binary_sensor.presume_home
       to: 'off'
@@ -97,10 +92,8 @@
     - platform: numeric_state
       entity_id: sensor.hvac_fan_runtime
       below: 0.15
-    - platform: numeric_state
-      entity_id: sensor.apartment_temperatures
-      value_template: '{{ state.attributes.max_value - state.attributes.min_value }}'
-      above: 1.5
+    - platform: template
+      value_template: "{{ states('sensor.max_apartment_temperature')|float(0) - states('sensor.min_apartment_temperature')|float(0) > 1.5 }}"
     - platform: state
       entity_id: binary_sensor.apartment_thermostat_fan
       to: 'off'
@@ -113,10 +106,7 @@
         - condition: numeric_state
           entity_id: sensor.hvac_fan_runtime
           below: 0.25
-        - condition: numeric_state
-          entity_id: sensor.apartment_temperatures
-          value_template: '{{ state.attributes.max_value - state.attributes.min_value }}'
-          above: 1.5
+        - "{{ states('sensor.max_apartment_temperature')|float(0) - states('sensor.min_apartment_temperature')|float(0) > 1.5 }}"
     - condition: numeric_state
       entity_id: sensor.hvac_fan_runtime
       below: 1
@@ -133,10 +123,8 @@
     - platform: numeric_state
       entity_id: sensor.hvac_fan_runtime
       above: 0.35
-    - platform: numeric_state
-      entity_id: sensor.apartment_temperatures
-      value_template: '{{ state.attributes.max_value - state.attributes.min_value }}'
-      below: 1.0
+    - platform: template
+      value_template: "{{ states('sensor.max_apartment_temperature')|float(0) - states('sensor.min_apartment_temperature')|float(0) < 1.0 }}"
   condition:
     - condition: state
       entity_id: input_boolean.climate_auto
@@ -144,10 +132,7 @@
     - condition: numeric_state
       entity_id: sensor.hvac_fan_runtime
       above: 0.35
-    - condition: numeric_state
-      entity_id: sensor.apartment_temperatures
-      value_template: '{{ state.attributes.max_value - state.attributes.min_value }}'
-      below: 1.0
+    - "{{ states('sensor.max_apartment_temperature')|float(0) - states('sensor.min_apartment_temperature')|float(0) < 1.0 }}"
   action:
     service: climate.set_fan_mode
     entity_id: climate.apartment
@@ -251,7 +236,7 @@
           {{ percentage if is_state('automation.sunroom_auto_temp', 'on') else 0 }}
     - variables:
         percentage: >
-          {{ [percentage, 33 if is_state_attr('climate.sunroom', 'hvac_action', 'heating') else 0]|max }}
+          {{ [percentage, (33 if is_state_attr('climate.sunroom', 'hvac_action', 'heating') else 0)]|max }}
     - condition: template
       value_template: "{{ state_attr('fan.sunroom', 'percentage') != percentage }}"
     - service: fan.set_percentage
@@ -293,7 +278,7 @@
             data:
               preset_mode: "{{ 'none' if is_state('binary_sensor.apartment_occupied', 'on') else 'away' }}"
     - choose:
-        - conditions: "{{ is_state('binar_sensor.apartment_occupied', 'off') }}"
+        - conditions: "{{ is_state('binary_sensor.apartment_occupied', 'off') }}"
           sequence:
             service: climate.set_hvac_mode
             target:
@@ -315,4 +300,4 @@
         data:
           hvac_mode: heat
           temperature: >
-            {{ state_attr('climate.apartment', 'target_temp_low') if is_state('climate.apartment', 'auto') else state_attr('climate.apartment', 'temperature') }}
+            {{ state_attr('climate.apartment', 'target_temp_low')|float if is_state('climate.apartment', 'heat_cool') else state_attr('climate.apartment', 'temperature')|float }}

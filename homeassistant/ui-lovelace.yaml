@@ -7,5 +7,6 @@ views:
   - !include /config/lovelace/bathroom.yaml
   - !include /config/lovelace/sunroom.yaml
   - !include /config/lovelace/lights.yaml
+  - !include /config/lovelace/crosstrek.yaml
   - !include /config/lovelace/other.yaml
   - !include /config/lovelace/admin.yaml

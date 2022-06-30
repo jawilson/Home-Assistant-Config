@@ -55,6 +55,8 @@ cards:
 
   - type: custom:auto-entities
     show_empty: false
+    sort:
+      method: name
     card:
       type: entities
       title: Device Trackers

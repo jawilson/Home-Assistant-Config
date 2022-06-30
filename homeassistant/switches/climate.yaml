@@ -12,27 +12,27 @@
         - service: climate.set_fan_mode
           entity_id: climate.apartment
           data:
-            fan_mode: 'auto'
+            fan_mode: 'off'
       turn_off:
         service: climate.set_fan_mode
         entity_id: climate.apartment
         data:
-          fan_mode: 'auto'
+          fan_mode: 'off'
 
 - platform: template
   switches:
     apartment_home:
       friendly_name: 'Home'
-      value_template: "{{ state_attr('climate.apartment', 'preset_mode') not in ['away', 'Away and Eco'] }}"
+      value_template: "{{ is_state_attr('climate.apartment', 'preset_mode', 'none') }}"
       turn_on:
-        service: nest.set_away_mode
+        service: climate.set_preset_mode
+        target:
+          entity_id: climate.apartment
         data:
-          away_mode: home
-          structure:
-            - Meridian
+          preset_mode: none
       turn_off:
-        service: nest.set_away_mode
+        service: climate.set_preset_mode
+        target:
+          entity_id: climate.apartment
         data:
-          away_mode: away
-          structure:
-            - Meridian
+          preset_mode: eco

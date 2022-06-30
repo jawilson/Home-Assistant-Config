@@ -9,6 +9,8 @@ filter:
     - script.dinner
     - script.getting_ready
     - script.cooking
+    - script.start_crosstrek
+    - script.stop_crosstrek
 
   include_domains:
     - switch
@@ -17,8 +19,10 @@ filter:
     - fan
     - climate
     - vacuum
+    - lock
 
   exclude_entities:
+    - climate.apartment
     - light.entryway
     - light.entryway_lights
     - light.bedroom
@@ -104,6 +108,13 @@ entity_config:
       - Food prep
       - Dishes
     room: Kitchen
+  script.start_crosstrek:
+    name: Start Crosstrek
+    room: Crosstrek
+  script.stop_crosstrek:
+    name: Stop Crosstrek
+    aliases:
+    room: Crosstrek
 
   switch.apartment_fan:
     name: HVAC Fan

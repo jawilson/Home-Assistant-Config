@@ -70,6 +70,7 @@
     - id: jeff_wake
       platform: state
       entity_id: binary_sensor.jeff_sleeping_at_home
+      from: 'on'
       to: 'off'
     - id: speaker_alarm
       platform: state
@@ -156,8 +157,8 @@
         - "{{ not is_state('person.sasha', 'home') }}"
         - condition: and
           conditions:
-            - "{{ as_timestamp(state_attr('calendar.sashag_school_end', 'end_time')) != None }}"
-            - "{{ as_timestamp(state_attr('calendar.sashag_school_start', 'start_time')) == None or
+            - "{{ state_attr('calendar.sashag_school_end', 'end_time') != None }}"
+            - "{{ state_attr('calendar.sashag_school_start', 'start_time') == None or
                     as_timestamp(state_attr('calendar.sashag_school_end', 'end_time')) < as_timestamp(state_attr('calendar.sashag_school_start', 'start_time')) }}"
     - choose:
       - conditions: "{{ is_state('script.closet_wake_up', 'off') }}"

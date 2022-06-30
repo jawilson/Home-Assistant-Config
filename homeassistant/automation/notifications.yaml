@@ -1,5 +1,6 @@
 - alias: Location Update Notification
   id: location_update_notification
+  mode: queued
   trigger:
     - platform: state
       entity_id: person.jeff
@@ -126,6 +127,7 @@
 
 - alias: Motion Intruder Alert
   id: motion_intruder_alert
+  initial_state: false
   trigger:
     - platform: state
       entity_id: binary_sensor.bedroom_motion

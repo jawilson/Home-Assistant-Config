@@ -72,7 +72,7 @@
       context:
         user_id: 94f1fb97e8374becb77c3979bbd3fc0b
       event_data:
-        intent: 'com.urbandroid.sleep.alarmclock.AUTO_START_SLEEP_TRACK_AUTO'
+        intent: 'com.urbandroid.sleep.alarmclock.SMART_PERIOD_AUTO'
     - platform: event
       event_type: 'android.intent_received'
       context:
@@ -103,7 +103,7 @@
         topic: homeassistant/sensor/jeff_alarm/state
         retain: yes
         payload_template: >
-          {% if trigger.event.data.intent.endswith('AUTO_START_SLEEP_TRACK_AUTO') %}
+          {% if trigger.event.data.intent.endswith('SMART_PERIOD_AUTO') %}
           Smart Period
           {%- elif trigger.event.data.intent.endswith('ALARM_ALERT_START_AUTO') %}
           Ringing
@@ -118,7 +118,7 @@
 
 - id: update_jeff_travel_sensors_on_movement
   alias: "Update Jeff Travel Sensors On Movement"
-  initial_state: 'on'
+  initial_state: true
   trigger:
     - platform: state
       entity_id: person.jeff
@@ -144,7 +144,7 @@
 
 - id: update_jeff_travel_sensors_periodic
   alias: "Update Jeff Travel Sensors Periodically"
-  initial_state: 'on'
+  initial_state: true
   trigger:
     - platform: time_pattern
       minutes: '/15'
@@ -164,7 +164,7 @@
 
 - id: update_sasha_travel_sensors_on_movement
   alias: "Update Sasha Travel Sensors On Movement"
-  initial_state: 'on'
+  initial_state: true
   trigger:
     - platform: state
       entity_id: person.sasha
@@ -190,7 +190,7 @@
 
 - id: update_sasha_travel_sensors_periodic
   alias: "Update Sasha Travel Sensors Periodically"
-  initial_state: 'on'
+  initial_state: true
   trigger:
     - platform: time_pattern
       minutes: '/5'

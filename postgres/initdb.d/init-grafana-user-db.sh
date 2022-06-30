@@ -1,9 +1,0 @@
-#!/bin/bash
-set -e
-
-psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" <<-EOSQL
-    CREATE USER $GRAFANA_USER WITH PASSWORD '$GRAFANA_PASSWORD';
-    CREATE DATABASE grafana;
-    ALTER DATABSE grafana OWNER TO grafana;
-    GRANT ALL PRIVILEGES ON DATABASE grafana TO grafana;
-EOSQL
