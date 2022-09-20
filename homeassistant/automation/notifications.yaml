@@ -56,8 +56,7 @@
     data_template:
       title: Time To Head Home
       message: >
-        You have been at work for
-        {{ states[trigger.to_state.domain][trigger.to_state.object_id].attributes.value }}
+        You have been at work for {{ states(trigger.entity_id) }}
         {{ 'today' if trigger.entity_id == 'sensor.jeff_at_work_today' else 'this week' }}
       data:
         channel: Important

@@ -39,6 +39,12 @@ cards:
       - entity: sensor.crosstrek_odometer
         name: Odometer
         type: entity
+      - type: statistics-graph
+        chart_type: line
+        days_to_show: 182
+        period: day
+        entities:
+          - sensor.crosstrek_odometer
       - entity: sensor.crosstrek_avg_fuel_consumption
         name: Avg Fuel Consumption
         type: entity

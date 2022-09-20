@@ -68,6 +68,8 @@
           sequence:
             - service: light.turn_off
               entity_id: light.bedroom_lights
+            - alias: "Wait until lights turn off"
+              wait_template: "{{ is_state('light.bedroom_lights', 'off') }}"
             - service: switch.turn_on
               entity_id: switch.bedroom_fluxer
 
@@ -153,6 +155,8 @@
           sequence:
             - service: light.turn_off
               entity_id: light.bathroom_lights
+            - alias: "Wait until lights turn off"
+              wait_template: "{{ is_state('light.bathroom_lights', 'off') }}"
             - service: switch.turn_on
               entity_id: switch.bathroom_fluxer
 
@@ -221,5 +225,7 @@
           sequence:
             - service: light.turn_off
               entity_id: light.closet_lights
+            - alias: "Wait until lights turn off"
+              wait_template: "{{ is_state('light.closet_lights', 'off') }}"
             - service: switch.turn_on
               entity_id: switch.closet_fluxer

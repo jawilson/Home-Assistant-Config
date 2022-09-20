@@ -22,7 +22,7 @@ update:
 http:
   use_x_forwarded_for: true
   trusted_proxies:
-    - 172.25.0.2
+    - 172.25.0.0/16
 
 lovelace:
   mode: yaml
@@ -255,14 +255,6 @@ tts:
 
 emulated_hue: !include emulated_hue.yaml
 
-google:
-  client_id: !secret google_calendar_client_id
-  client_secret: !secret google_calendar_secret
-
-nest:
-  client_id: !secret google_nest_client_id
-  client_secret: !secret google_nest_secret
-  project_id: !secret google_sdm_project_id
 
 notify:
   - platform: html5

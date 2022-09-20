@@ -1,0 +1,4 @@
+- sensor:
+    - name: "Dehumidifier Humidity"
+      unit_of_measurement: "%"
+      state: "{{ state_attr('humidifier.dehumidifier', 'current_humidity') }}"

@@ -52,6 +52,7 @@
   type: mean
   entity_ids:
     - sensor.apartment_thermostat_humidity
+    - sensor.dehumidifier_humidity
     - sensor.bathroom_relative_humidity
     - sensor.bedroom_relative_humidity
     - sensor.sunroom_relative_humidity
