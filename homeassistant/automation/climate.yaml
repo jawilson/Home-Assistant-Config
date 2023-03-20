@@ -93,7 +93,7 @@
       entity_id: sensor.hvac_fan_runtime
       below: 0.15
     - platform: template
-      value_template: "{{ states('sensor.max_apartment_temperature')|float(0) - states('sensor.min_apartment_temperature')|float(0) > 1.5 }}"
+      value_template: "{{ states('sensor.max_apartment_temperature')|float(0) - states('sensor.min_apartment_temperature')|float(0) > 2.0 }}"
     - platform: state
       entity_id: binary_sensor.apartment_thermostat_fan
       to: 'off'
@@ -106,7 +106,7 @@
         - condition: numeric_state
           entity_id: sensor.hvac_fan_runtime
           below: 0.25
-        - "{{ states('sensor.max_apartment_temperature')|float(0) - states('sensor.min_apartment_temperature')|float(0) > 1.5 }}"
+        - "{{ states('sensor.max_apartment_temperature')|float(0) - states('sensor.min_apartment_temperature')|float(0) > 2.0 }}"
     - condition: numeric_state
       entity_id: sensor.hvac_fan_runtime
       below: 1
@@ -124,7 +124,7 @@
       entity_id: sensor.hvac_fan_runtime
       above: 0.35
     - platform: template
-      value_template: "{{ states('sensor.max_apartment_temperature')|float(0) - states('sensor.min_apartment_temperature')|float(0) < 1.0 }}"
+      value_template: "{{ states('sensor.max_apartment_temperature')|float(0) - states('sensor.min_apartment_temperature')|float(0) < 1.5 }}"
   condition:
     - condition: state
       entity_id: input_boolean.climate_auto
@@ -132,12 +132,12 @@
     - condition: numeric_state
       entity_id: sensor.hvac_fan_runtime
       above: 0.35
-    - "{{ states('sensor.max_apartment_temperature')|float(0) - states('sensor.min_apartment_temperature')|float(0) < 1.0 }}"
+    - "{{ states('sensor.max_apartment_temperature')|float(0) - states('sensor.min_apartment_temperature')|float(0) < 1.5 }}"
   action:
     service: climate.set_fan_mode
     entity_id: climate.apartment
     data:
-      fan_mode: 'auto'
+      fan_mode: 'off'
 
 
 - alias: Humidity too low
