@@ -76,3 +76,27 @@
     target:
       entity_id: button.crosstrek_locate
   mode: single
+- id: '1665878909554'
+  alias: Turn Off Dehumidifier When Sleeping
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - binary_sensor.jeff_sleeping_at_home
+  condition: []
+  action:
+  - if:
+    - condition: state
+      entity_id: binary_sensor.jeff_sleeping_at_home
+      state: 'on'
+    then:
+    - service: humidifier.turn_off
+      data: {}
+      target:
+        entity_id: humidifier.dehumidifier
+    else:
+    - service: humidifier.turn_on
+      data: {}
+      target:
+        entity_id: humidifier.dehumidifier
+  mode: single
