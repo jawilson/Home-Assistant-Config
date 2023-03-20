@@ -23,6 +23,8 @@ pyozw.sqlite
 zwcfg*.xml
 zwscene.xml
 options.xml
+*.db-shm
+*.db-wal
 
 .insteon_cache/
 .cloud/
