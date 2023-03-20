@@ -95,4 +95,4 @@
     service: input_select.select_option
     data_template:
       entity_id: input_select.living_room_activity
-      option: "{{ trigger.to_state.attributes.current_activity|default('PowerOff') }}"
+      option: "{{ trigger.to_state.attributes.current_activity|default('power_off') }}"
