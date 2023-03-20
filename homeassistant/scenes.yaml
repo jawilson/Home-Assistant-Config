@@ -342,3 +342,161 @@
       friendly_name: Living Area Fluxer
       icon: mdi:invert-colors
       state: 'off'
+- id: '1671923624763'
+  name: Dinner party lights
+  entities:
+    light.dining_lights_level:
+      supported_color_modes:
+      - brightness
+      icon: mdi:track-light
+      friendly_name: Dining Lights
+      supported_features: 32
+      color_mode: brightness
+      brightness: 59
+      state: 'on'
+    light.tree_lamp:
+      min_mireds: 153
+      max_mireds: 454
+      supported_color_modes:
+      - color_temp
+      color_mode: color_temp
+      brightness: 150
+      color_temp: 415
+      hs_color:
+      - 29.125
+      - 75.922
+      rgb_color:
+      - 255
+      - 155
+      - 61
+      xy_color:
+      - 0.557
+      - 0.389
+      entity_id:
+      - light.tree_lamp_1
+      - light.tree_lamp_2
+      - light.tree_lamp_3
+      - light.tree_lamp_4
+      - light.tree_lamp_5
+      icon: mdi:floor-lamp-dual
+      friendly_name: Tree Lamp
+      supported_features: 40
+      state: 'on'
+    light.entertainment_lights:
+      min_mireds: 153
+      max_mireds: 500
+      supported_color_modes:
+      - color_temp
+      - xy
+      color_mode: color_temp
+      brightness: 196
+      hs_color:
+      - 29.125
+      - 75.922
+      rgb_color:
+      - 255
+      - 155
+      - 61
+      xy_color:
+      - 0.557
+      - 0.389
+      entity_id:
+      - light.entertainment_light_1
+      - light.entertainment_light_2
+      icon: mdi:lamps
+      friendly_name: Entertainment Lights
+      supported_features: 40
+      color_temp: 415
+      state: 'on'
+    light.sunroom_lights:
+      min_mireds: 153
+      max_mireds: 500
+      supported_color_modes:
+      - color_temp
+      - xy
+      entity_id:
+      - light.sunroom
+      icon: mdi:lightbulb-group
+      friendly_name: Sunroom Lights
+      supported_features: 40
+      state: 'off'
+    light.kitchen:
+      min_mireds: 153
+      max_mireds: 500
+      supported_color_modes:
+      - color_temp
+      - xy
+      color_mode: color_temp
+      brightness: 196
+      hs_color:
+      - 29.125
+      - 75.922
+      rgb_color:
+      - 255
+      - 155
+      - 61
+      xy_color:
+      - 0.557
+      - 0.389
+      is_hue_group: true
+      hue_scenes:
+      - Relax
+      - Read
+      - Spring blossom
+      - Dimmed
+      - Energize
+      - Concentrate
+      - Arctic aurora
+      - Bright
+      - Nightlight
+      - Savanna sunset
+      - Tropical twilight
+      hue_type: room
+      lights:
+      - Kitchen light 3
+      - Kitchen light 4
+      - Kitchen light 1
+      - Kitchen light 2
+      dynamics: false
+      icon: mdi:lightbulb-group
+      friendly_name: Kitchen lights
+      supported_features: 40
+      color_temp: 415
+      state: 'on'
+    light.entryway_lights:
+      min_mireds: 153
+      max_mireds: 500
+      supported_color_modes:
+      - color_temp
+      - xy
+      color_mode: color_temp
+      brightness: 196
+      hs_color:
+      - 29.125
+      - 75.922
+      rgb_color:
+      - 255
+      - 155
+      - 61
+      xy_color:
+      - 0.557
+      - 0.389
+      entity_id:
+      - light.entryway
+      icon: mdi:lightbulb-group
+      friendly_name: Entryway Lights
+      supported_features: 40
+      color_temp: 415
+      state: 'on'
+  metadata:
+    light.tree_lamp:
+      entity_only: true
+    light.entertainment_lights:
+      entity_only: true
+    light.sunroom_lights:
+      entity_only: true
+    light.kitchen:
+      entity_only: true
+    light.entryway_lights:
+      entity_only: true
+  icon: mdi:glass-wine
