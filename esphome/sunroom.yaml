@@ -30,9 +30,9 @@ sensor:
     pin: D2
     temperature:
       name: "Sunroom Temperature"
-      accuracy_decimals: 2
+      accuracy_decimals: 3
       filters:
-        - offset: -0.27
+        - offset: -0.342
     humidity:
       name: "Sunroom Relative Humidity"
       accuracy_decimals: 1
