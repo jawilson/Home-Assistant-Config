@@ -75,7 +75,7 @@
 
 - platform: history_stats
   name: HVAC Fan Runtime
-  entity_id: binary_sensor.apartment_thermostat_fan
+  entity_id: switch.apartment_fan
   state: 'on'
   type: time
   end: '{{ now() }}'

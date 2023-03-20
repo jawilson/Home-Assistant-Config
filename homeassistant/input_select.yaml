@@ -1,7 +1,7 @@
 living_room_activity:
   name: Projector Activity
   options:
-    - PowerOff
+    - power_off
     - Play Shield
     - Listen to Shield
     - Play Xbox One

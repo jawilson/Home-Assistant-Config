@@ -54,51 +54,48 @@ cards:
     type: vertical-stack
     title: Mileage
   - cards:
-      - cards:
-          - entity: sensor.crosstrek_tire_pressure_fl
-            max: 38
-            min: 24
-            name: FL
-            severity:
-              green: 36
-              red: 2
-              yellow: 32
-            type: gauge
-            needle: true
-          - entity: sensor.crosstrek_tire_pressure_fr
-            name: FR
-            severity:
-              green: 36
-              red: 0
-              yellow: 32
-            type: gauge
-            needle: true
-            min: 24
-            max: 38
-        type: horizontal-stack
-      - cards:
-          - entity: sensor.crosstrek_tire_pressure_rl
-            name: RL
-            type: gauge
-            needle: true
-            min: 24
-            severity:
-              green: 36
-              yellow: 32
-              red: 0
-            max: 38
-          - entity: sensor.crosstrek_tire_pressure_rr
-            name: RR
-            severity:
-              green: 36
-              red: 0
-              yellow: 32
-            type: gauge
-            needle: true
-            min: 24
-            max: 38
-        type: horizontal-stack
-    type: vertical-stack
+      - entity: sensor.crosstrek_tire_pressure_fl
+        max: 38
+        min: 24
+        name: FL
+        severity:
+          green: 36
+          red: 2
+          yellow: 32
+        type: gauge
+        needle: true
+      - entity: sensor.crosstrek_tire_pressure_fr
+        name: FR
+        severity:
+          green: 36
+          red: 0
+          yellow: 32
+        type: gauge
+        needle: true
+        min: 24
+        max: 38
+      - entity: sensor.crosstrek_tire_pressure_rl
+        name: RL
+        type: gauge
+        needle: true
+        min: 24
+        severity:
+          green: 36
+          yellow: 32
+          red: 0
+        max: 38
+      - entity: sensor.crosstrek_tire_pressure_rr
+        name: RR
+        severity:
+          green: 36
+          red: 0
+          yellow: 32
+        type: gauge
+        needle: true
+        min: 24
+        max: 38
+    type: grid
+    columns: 2
     title: Tire Pressure
   - type: vertical-stack
     title: Remote Commands

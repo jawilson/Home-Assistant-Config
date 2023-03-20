@@ -44,15 +44,6 @@ cards:
         camera_image: camera.p3steel
         show_state: false
 
-  - type: entities
-    title: UPS
-    show_header_toggle: false
-    entities:
-      - sensor.ups_status
-      - sensor.ups_battery
-      - sensor.ups_load
-      - sensor.ups_time_left
-
   - type: custom:auto-entities
     show_empty: false
     sort:

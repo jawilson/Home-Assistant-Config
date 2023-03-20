@@ -20,6 +20,7 @@ filter:
     - climate
     - vacuum
     - lock
+    - humidifier
 
   exclude_entities:
     - climate.apartment

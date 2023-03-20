@@ -12,3 +12,5 @@
       entity_id: sensor.bathroom_temperature
       device_class: heat
       sample_duration: 900
+
+
