@@ -355,7 +355,7 @@ zone: !include zones.yaml
 proximity:
   home:
     ignored_zones:
-      - bline
+      - lldc
       - river
     devices:
       - person.jeff

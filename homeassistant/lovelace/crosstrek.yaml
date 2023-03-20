@@ -257,5 +257,5 @@ cards:
         icon: mdi:car-hatch
       - entity: zone.home
       - entity: zone.river
-      - entity: zone.b_line
+      - entity: zone.lldc
     hours_to_show: 12

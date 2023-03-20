@@ -15,7 +15,7 @@ cards:
           - entity: person.jeff
           - entity: person.sasha
           - zone.home
-          - zone.bline
+          - zone.lldc
           - zone.river
       - type: custom:vertical-stack-in-card
         title: Jeff
@@ -36,7 +36,7 @@ cards:
           - type: conditional
             conditions:
               - entity: person.jeff
-                state: B-Line
+                state: Laerdal Labs DC
             card:
               type: glance
               show_name: false

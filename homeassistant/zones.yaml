@@ -4,12 +4,6 @@
   radius: 70
   icon: mdi:home-modern
 
-- name: B-Line
-  latitude: 38.907463
-  longitude: -77.043699
-  radius: 100
-  icon: mdi:domain
-
 - name: Dusty Spur Ranch
   latitude: 46.872303
   longitude: -120.772579
