@@ -29,9 +29,14 @@
     entity_id: binary_sensor.crosstrek_ignition
     domain: binary_sensor
   - platform: template
-    value_template: "{% set devices = state_attr('sensor.jawilson_phone_bluetooth_connections',\
-      \ 'connected_paired_devices') %} {{ 'F8:E8:77:8C:C3:45' in devices\n    or '86:1B:5F:D3:45:C4'\
-      \ in devices }}\n"
+    value_template: '{% set devices = state_attr(''sensor.jawilson_phone_bluetooth_connection'',
+      ''connected_paired_devices'') %}
+
+      {{ ''F8:E8:77:8C:C3:45 (Subaru BT)'' in devices
+
+      or ''86:1B:5F:D3:45:C4 (AndroidAuto-AAWNiM5fhLR)'' in devices
+
+      }}'
   condition: []
   action:
   - repeat:
