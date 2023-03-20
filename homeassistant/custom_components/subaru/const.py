@@ -27,24 +27,28 @@ VEHICLE_MODEL_YEAR = "model_year"
 VEHICLE_NAME = "display_name"
 VEHICLE_HAS_EV = "is_ev"
 VEHICLE_API_GEN = "api_gen"
+VEHICLE_HAS_SUNROOF = "has_moonroof"
+VEHICLE_HAS_POWER_WINDOWS = "has_power_windows"
 VEHICLE_HAS_REMOTE_START = "has_res"
 VEHICLE_HAS_REMOTE_SERVICE = "has_remote"
 VEHICLE_HAS_SAFETY_SERVICE = "has_safety"
+VEHICLE_HEALTH = "vehicle_health"
 VEHICLE_LAST_UPDATE = "last_update"
 VEHICLE_LAST_FETCH = "last_fetch"
-VEHICLE_STATUS = "status"
+VEHICLE_STATUS = "vehicle_status"
 VEHICLE_CLIMATE = "climate"
 VEHICLE_CLIMATE_PRESET_NAME = "name"
 VEHICLE_CLIMATE_SELECTED_PRESET = "preset_name"
 
 API_GEN_1 = "g1"
 API_GEN_2 = "g2"
+API_GEN_3 = "g3"
 MANUFACTURER = "Subaru"
 
 ATTR_DOOR = "door"
 
-REMOTE_SERVICE_FETCH = "fetch"
-REMOTE_SERVICE_UPDATE = "update"
+REMOTE_SERVICE_REFRESH = "fetch"
+REMOTE_SERVICE_POLL_VEHICLE = "update"
 REMOTE_SERVICE_LOCK = "lock"
 REMOTE_SERVICE_UNLOCK = "unlock"
 REMOTE_SERVICE_LIGHTS = "lights"
@@ -74,16 +78,3 @@ SUPPORTED_PLATFORMS = [
     Platform.BUTTON,
     Platform.SELECT,
 ]
-
-ICONS = {
-    "Horn Start": "mdi:volume-high",
-    "Horn Stop": "mdi:volume-off",
-    "Lights Start": "mdi:lightbulb-on",
-    "Lights Stop": "mdi:lightbulb-off",
-    "Locate": "mdi:car-connected",
-    "Refresh": "mdi:refresh",
-    "Remote Start": "mdi:power",
-    "Remote Stop": "mdi:stop-circle-outline",
-    "Charge EV": "mdi:ev-station",
-    "Climate Preset": "mdi:thermometer-lines",
-}
