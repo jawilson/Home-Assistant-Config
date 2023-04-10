@@ -1,6 +1,0 @@
-- platform: orvibo
-  discovery: false
-  switches:
-    - host: 192.168.0.56
-      mac: ac:cf:23:8d:35:f8
-      name: Orvibo

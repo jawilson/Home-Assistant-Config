@@ -368,6 +368,7 @@ scene: !include scenes.yaml
 
 # Scripts
 script: !include_dir_named scripts
+script ui: !include scripts.yaml
 python_script:
 
 # Automation

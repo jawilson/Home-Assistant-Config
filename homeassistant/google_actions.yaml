@@ -114,7 +114,6 @@ entity_config:
     room: Crosstrek
   script.stop_crosstrek:
     name: Stop Crosstrek
-    aliases:
     room: Crosstrek
 
   switch.apartment_fan:

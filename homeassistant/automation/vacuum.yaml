@@ -69,9 +69,13 @@
     - condition: state
       entity_id: input_boolean.presence
       state: 'on'
-    - condition: state
-      entity_id: vacuum.doomba
-      state: 'on'
+    - condition: not
+      conditions:
+        - condition: state
+          entity_id: vacuum.doomba
+          state:
+            - 'returning'
+            - 'docked'
     - condition: or
       conditions:
         - condition: template
