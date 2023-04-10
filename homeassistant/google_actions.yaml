@@ -11,6 +11,8 @@ filter:
     - script.cooking
     - script.start_crosstrek
     - script.stop_crosstrek
+    - script.turn_down_cast_group
+    - script.turn_up_cast_group
 
   include_domains:
     - switch
@@ -115,6 +117,16 @@ entity_config:
   script.stop_crosstrek:
     name: Stop Crosstrek
     room: Crosstrek
+  script.turn_down_cast_group:
+    name: Turn down cast group
+    aliases:
+      - Turn down cast group
+      - Turn down home group
+  script.turn_up_cast_group:
+    name: Turn up cast group
+    aliases:
+      - Turn up cast group
+      - Turn up home group
 
   switch.apartment_fan:
     name: HVAC Fan

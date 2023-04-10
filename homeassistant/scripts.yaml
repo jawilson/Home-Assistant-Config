@@ -1,0 +1,19 @@
+turn_up_cast_group:
+  alias: Turn up cast group
+  sequence:
+  - service: media_player.volume_up
+    data: {}
+    target:
+      entity_id: media_player.home
+  mode: parallel
+  icon: mdi:volume-plus
+turn_down_cast_group:
+  alias: Turn down cast group
+  sequence:
+  - service: media_player.volume_down
+    data: {}
+    target:
+      entity_id: media_player.home
+  mode: parallel
+  icon: mdi:volume-minus
+  max: 10
