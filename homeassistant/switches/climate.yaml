@@ -27,14 +27,22 @@
       unique_id: 'hvac_home_switch'
       value_template: "{{ is_state_attr('climate.apartment', 'preset_mode', 'none') }}"
       turn_on:
-        service: climate.set_preset_mode
-        target:
-          entity_id: climate.apartment
-        data:
-          preset_mode: none
+        - enabled: false
+          service: climate.set_preset_mode
+          target:
+            entity_id: climate.apartment
+          data:
+            preset_mode: none
+        - service: google_assistant_sdk.send_text_command
+          data:
+            command: set apartment thermostat to heat/cool
       turn_off:
-        service: climate.set_preset_mode
-        target:
-          entity_id: climate.apartment
-        data:
-          preset_mode: eco
+        - enabled: false
+          service: climate.set_preset_mode
+          target:
+            entity_id: climate.apartment
+          data:
+            preset_mode: eco
+        - service: google_assistant_sdk.send_text_command
+          data:
+            command: set apartment thermostat to eco

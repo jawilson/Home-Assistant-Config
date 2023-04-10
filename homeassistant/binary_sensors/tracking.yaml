@@ -15,9 +15,17 @@
     guests:
       friendly_name: 'Guests Visiting'
       device_class: 'presence'
-      value_template: >-
-        {{ is_state('input_boolean.guests', 'on') 
-            or (states.device_tracker | rejectattr('name','match', '(Jeff|Sasha|Crosstrek)') | selectattr('state', 'eq', 'home') | list | count > 0) }}
+      value_template: |
+        {{
+          is_state('input_boolean.guests', 'on') or
+          (states.device_tracker
+            | rejectattr('name','match',
+                '(' + expand('person.jeff', 'person.crosstrek', 'group.partners')
+                  |map(attribute='attributes.friendly_name')
+                  |map('regex_replace', ' .*', '')
+                  |join('|') + ')')
+            | selectattr('state', 'eq', 'home') | list | count > 0)
+        }}
     presume_home:
       friendly_name: 'Someone presumed in home region'
       device_class: 'presence'
@@ -29,7 +37,7 @@
       device_class: 'presence'
       value_template: >-
         {{ is_state('binary_sensor.guests', 'on') or is_state('device_tracker.jawilson_phone', 'home')
-            or is_state('device_tracker.sashag_phone', 'home') }}
+            or is_state('group.partner_phones', 'home') }}
 
 - platform: workday
   country: US

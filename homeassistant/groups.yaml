@@ -4,6 +4,13 @@
 
 Family:
   - person.jeff
+
+Partners:
   - person.sasha
+  - person.whitney
+
+Partner Phones:
+  - device_tracker.whitney_satra_phone
+  - device_tracker.sashag_phone
 
 All Lights: !include device_groups/all_lights.yaml

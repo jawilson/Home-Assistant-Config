@@ -100,3 +100,66 @@
       target:
         entity_id: humidifier.dehumidifier
   mode: single
+- id: '1679762800279'
+  alias: Romantic Radio
+  description: '[BROKEN] Ask Google to play Good Taste Bad Intentions radio when the
+    romantic scene is activated.'
+  trigger:
+  - platform: event
+    event_type: call_service
+    event_data:
+      domain: scene
+      service: turn_on
+      service_data:
+        entity_id: scene.romantic
+  condition: []
+  action:
+  - service: google_assistant_sdk.send_text_command
+    data:
+      command: Play good taste bad intentions on home group
+  mode: single
+- id: '1680153704895'
+  alias: Sleep Humidifier
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - binary_sensor.jeff_sleeping_at_home
+  condition:
+  - condition: state
+    entity_id: input_boolean.climate_auto
+    state: 'on'
+  action:
+  - if:
+    - condition: state
+      entity_id: binary_sensor.jeff_sleeping_at_home
+      state: 'on'
+    then:
+    - type: turn_on
+      device_id: 81210812f6c61de9ef02bc74a31be9a7
+      entity_id: humidifier.humidifier
+      domain: humidifier
+    - type: turn_on
+      device_id: 81210812f6c61de9ef02bc74a31be9a7
+      entity_id: switch.humidifier_auto_mode
+      domain: switch
+    - device_id: 81210812f6c61de9ef02bc74a31be9a7
+      domain: number
+      entity_id: number.humidifier_target_level
+      type: set_value
+      value: 60
+    - type: turn_off
+      device_id: 81210812f6c61de9ef02bc74a31be9a7
+      entity_id: switch.humidifier_display
+      domain: switch
+    - device_id: 81210812f6c61de9ef02bc74a31be9a7
+      domain: humidifier
+      entity_id: humidifier.humidifier
+      type: set_mode
+      mode: sleep
+    else:
+    - type: turn_off
+      device_id: 81210812f6c61de9ef02bc74a31be9a7
+      entity_id: humidifier.humidifier
+      domain: humidifier
+  mode: single

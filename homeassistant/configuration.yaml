@@ -166,7 +166,6 @@ history:
       - media_player.cast_bedroom_speaker
       - media_player.cast_kitchen_display
       - media_player.cast_living_room_speaker
-      - media_player.cast_everything_group
       - media_player.shield
   exclude:
     entities:
@@ -335,8 +334,6 @@ climate:
     precision: 0.5
 
 light: !include lights.yaml
-
-person: !include people.yaml
 
 device_tracker:
 

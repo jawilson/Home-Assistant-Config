@@ -1,7 +1,7 @@
 alias: Apartment Sleep
 sequence:
   - service: media_player.media_stop
-    entity_id: media_player.cast_everything_group
+    entity_id: media_player.cast_home_group
   - condition: state
     entity_id: input_boolean.climate_auto
     state: 'on'
@@ -12,6 +12,6 @@ sequence:
     data:
       entity_id: climate.apartment
     data_template:
-      target_temp_high: "{{ states('input_number.default_sleep_high_temp')|int if is_state('person.jeff', 'home') and is_state('person.sasha', 'home') else states('input_number.default_sleep_high_temp')|int + 2 }}"
-      temperature: "{{ states('input_number.default_sleep_high_temp')|int if is_state('person.jeff', 'home') and is_state('person.sasha', 'home') else states('input_number.default_sleep_high_temp')|int + 2 }}"
+      target_temp_high: "{{ states('input_number.default_sleep_high_temp')|int if is_state('person.jeff', 'home') and is_state('group.partners', 'home') else states('input_number.default_sleep_high_temp')|int + 2 }}"
+      temperature: "{{ states('input_number.default_sleep_high_temp')|int if is_state('person.jeff', 'home') and is_state('group.partners', 'home') else states('input_number.default_sleep_high_temp')|int + 2 }}"
       target_temp_low: 60

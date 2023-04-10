@@ -1,14 +1,4 @@
 # Ikea Dioder
-- platform: mqtt
-  name: "Liquor cabinet lights"
-  schema: json
-  state_topic: "home/livingroom/liquorcabinet"
-  command_topic: "home/livingroom/liquorcabinet/set"
-  brightness: true
-  rgb: true
-  optimistic: false
-  qos: 0
-
 - platform: group
   name: Entryway Lights
   unique_id: entryway_lights_group

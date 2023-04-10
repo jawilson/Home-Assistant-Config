@@ -47,7 +47,6 @@
   children:
     - media_player.cast_kitchen_display
     - media_player.cast_home_group
-    - media_player.cast_everything_group
   commands:
     turn_on:
       service: media_player.turn_on
@@ -83,9 +82,7 @@
   name: Living Room Speaker
   children:
     - media_player.cast_living_room_speaker
-    - media_player.cast_entertaining_group
     - media_player.cast_home_group
-    - media_player.cast_everything_group
   commands:
     turn_on:
       service: media_player.turn_on
@@ -120,9 +117,7 @@
   name: Sunroom
   children:
     - media_player.cast_sunroom
-    - media_player.cast_entertaining_group
     - media_player.cast_home_group
-    - media_player.cast_everything_group
   commands:
     turn_on:
       service: media_player.turn_on
@@ -157,9 +152,7 @@
   name: Bedroom Speaker
   children:
     - media_player.cast_bedroom_speaker
-    - media_player.cast_entertaining_group
     - media_player.cast_home_group
-    - media_player.cast_everything_group
   commands:
     turn_on:
       service: media_player.turn_on
@@ -194,9 +187,7 @@
   name: Bathroom Mini
   children:
     - media_player.cast_bathroom_mini
-    - media_player.cast_entertaining_group
     - media_player.cast_home_group
-    - media_player.cast_everything_group
   commands:
     turn_on:
       service: media_player.turn_on
@@ -230,6 +221,4 @@
 - platform: universal
   name: Home
   children:
-    - media_player.cast_entertaining_group
     - media_player.cast_home_group
-    - media_player.cast_everything_group

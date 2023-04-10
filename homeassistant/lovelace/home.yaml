@@ -7,23 +7,13 @@ cards:
   #
   - type: vertical-stack
     cards:
-      - type: map
-        title: Locations
-        aspect_ratio: 50%
-        hours_to_show: 3
-        entities:
-          - entity: person.jeff
-          - entity: person.sasha
-          - zone.home
-          - zone.lldc
-          - zone.river
       - type: custom:vertical-stack-in-card
         title: Jeff
         cards:
           - type: entities
             entities:
               - entity: person.jeff
-                secondary_info: none
+                secondary_info: last-changed
               - type: conditional
                 conditions:
                   - entity: person.jeff
@@ -72,41 +62,6 @@ cards:
                   action: toggle
               - entity: input_select.jeff_alarm
                 name: Alarm
-      - type: custom:vertical-stack-in-card
-        title: Sasha
-        cards:
-          - type: entities
-            entities:
-              - entity: person.sasha
-                secondary_info: none
-              - type: conditional
-                conditions:
-                  - entity: person.sasha
-                    state: not_home
-                row:
-                  entity: sensor.sasha_phone_geocoded_location
-                  secondary_info: last-changed
-                  name: Location
-            show_header_toggle: false
-          - type: glance
-            show_name: false
-            entities:
-              - sensor.sashag_phone_activity
-          - type: conditional
-            conditions:
-              - entity: person.sasha
-                state_not: home
-              - entity: sensor.google_reverse_geocode_sasha
-                state_not: unknown
-            card:
-              type: glance
-              title: Travel Times Home
-              show_name: false
-              column_width: calc(100% / 3)
-              entities:
-                - sensor.sasha_drive_home
-                - sensor.sasha_transit_home
-                - sensor.sasha_walk_home
       - type: custom:auto-entities
         show_empty: false
         card:
@@ -115,7 +70,6 @@ cards:
         filter:
           exclude:
             - name: "Jeff*"
-            - name: "Sasha*"
           include:
             - domain: device_tracker
               state: home

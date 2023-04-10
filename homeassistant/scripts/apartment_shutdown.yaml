@@ -13,7 +13,6 @@ sequence:
         - media_player.cast_living_room_tv
         - media_player.cast_sunroom_speaker
         - media_player.cast_home_group
-        - media_player.cast_everything_group
   - service: homeassistant.turn_off
     entity_id:
       - group.all_lights
