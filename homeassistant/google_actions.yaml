@@ -39,7 +39,6 @@ filter:
     - light.bathroom
     - light.bathroom_lights
     - light.bathroom_mirror
-    - light.projector
     - light.living_room
     - light.living_room_lights
     - light.sunroom
