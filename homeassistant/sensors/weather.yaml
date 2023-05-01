@@ -1,15 +1,3 @@
-# Forecast.io
-- platform: darksky
-  api_key: !secret darksky_key
-  monitored_conditions:
-    - summary
-    - icon
-    - temperature
-    - humidity
-    - apparent_temperature
-    - precip_intensity_max
-    - wind_speed
-
 # Sun
 - platform: template
   sensors:
