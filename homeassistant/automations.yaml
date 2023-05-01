@@ -125,15 +125,39 @@
   - platform: state
     entity_id:
     - binary_sensor.jeff_sleeping_at_home
+    id: sleeping
+  - platform: state
+    entity_id:
+    - sensor.jeff_alarm
+    to: Bedtime
+  - platform: numeric_state
+    entity_id:
+    - sensor.jawilson_phone_next_alarm
+    - sensor.time
+    - input_number.bedtime_cooldown_hours
+    value_template: '{{ 24 if states(''sensor.jawilson_phone_next_alarm'') == ''unavailable''
+      or state_attr(''sensor.jawilson_phone_next_alarm'', ''Package'') != ''com.urbandroid.sleep''
+      else (states(''sensor.jawilson_phone_next_alarm'')|as_timestamp - states.sensor.time.last_changed|as_timestamp)/60/60
+      }}'
+    below: input_number.bedtime_cooldown_hours
+    alias: Cooldown time
   condition:
   - condition: state
     entity_id: input_boolean.climate_auto
     state: 'on'
   action:
   - if:
-    - condition: state
-      entity_id: binary_sensor.jeff_sleeping_at_home
-      state: 'on'
+    - condition: or
+      conditions:
+      - condition: state
+        entity_id: binary_sensor.jeff_sleeping_at_home
+        state: 'on'
+      - condition: not
+        conditions:
+        - condition: trigger
+          id: sleeping
+        alias: Not triggered by sleeping
+      alias: Jeff is sleeping at home or not triggered by sleeping
     then:
     - type: turn_on
       device_id: 81210812f6c61de9ef02bc74a31be9a7
@@ -162,4 +186,18 @@
       device_id: 81210812f6c61de9ef02bc74a31be9a7
       entity_id: humidifier.humidifier
       domain: humidifier
+  mode: single
+- id: '1681359196573'
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - input_button.wake_up
+  condition: []
+  action:
+  - service: automation.trigger
+    data:
+      skip_condition: true
+    target:
+      entity_id: automation.wake_up
   mode: single

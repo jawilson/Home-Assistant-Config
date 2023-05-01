@@ -77,6 +77,9 @@
     - id: jawilson_webhook
       platform: webhook
       webhook_id: jawilson_sleep
+    - id: button_pressed
+      platform: state
+      entity_id: input_button.wake_up
   condition:
     - "{{ trigger.id != 'speaker_alarm' or trigger.from_state.state != 'unknown' }}"
     - "{{ trigger.id != 'jeff_wake' or is_state('person.jeff', 'home') }}"
