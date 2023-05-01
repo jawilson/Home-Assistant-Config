@@ -59,12 +59,11 @@ services:
     volumes:
       - ./esphome:/config
     labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.esphome.rule=Host(`esphome.jeffalwilson.com`)"
-      - "traefik.http.routers.esphome.entrypoints=web,websecure"
-      - "traefik.http.routers.esphome.middlewares=traefik-forward-auth"
-      - "traefik.http.routers.esphome.service=esphome"
-      - "traefik.http.services.esphome.loadbalancer.server.port=80"
+      traefik.enable: true
+      traefik.http.routers.esphome.rule: "Host(`esphome.home.jeffalwilson.com`)"
+      traefik.http.routers.esphome.middlewares: traefik-forward-auth
+      traefik.http.routers.esphome.service: esphome
+      traefik.http.services.esphome.loadbalancer.server.port: 80
     command:
       dashboard --port 80 /config
   homeassistant:
