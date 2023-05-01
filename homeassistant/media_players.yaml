@@ -1,5 +1,6 @@
 - platform: universal
   name: Shield
+  unique_id: universal_shield
   children:
     - media_player.plex_shield
     - media_player.cast_shield
@@ -40,10 +41,11 @@
   attributes:
     state: remote.living_room
     source: remote.living_room|current_activity
-    source_list: input_select.living_room_activity|options
+    source_list: select.living_room_activities|options
 
 - platform: universal
   name: Kitchen Display
+  unique_id: universal_kitchen_display
   children:
     - media_player.cast_kitchen_display
     - media_player.cast_home_group
@@ -80,6 +82,7 @@
 
 - platform: universal
   name: Living Room Speaker
+  unique_id: universal_living_room_speaker
   children:
     - media_player.cast_living_room_speaker
     - media_player.cast_home_group
@@ -115,6 +118,7 @@
 
 - platform: universal
   name: Sunroom
+  unique_id: universal_sunroom_speaker
   children:
     - media_player.cast_sunroom
     - media_player.cast_home_group
@@ -150,6 +154,7 @@
 
 - platform: universal
   name: Bedroom Speaker
+  unique_id: universal_bedroom_speaker
   children:
     - media_player.cast_bedroom_speaker
     - media_player.cast_home_group
@@ -185,6 +190,7 @@
 
 - platform: universal
   name: Bathroom Mini
+  unique_id: universal_bathroom_mini
   children:
     - media_player.cast_bathroom_mini
     - media_player.cast_home_group
@@ -220,5 +226,6 @@
 
 - platform: universal
   name: Home
+  unique_id: universal_home
   children:
     - media_player.cast_home_group
