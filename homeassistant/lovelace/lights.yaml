@@ -127,7 +127,5 @@ cards:
         name: Bathroom
       - entity: script.living_area_wake_up
         name: Living Area
-      - entity: script.living_room_wake_up
-        name: Living Room
       - entity: script.apartment_wake_up
         name: Apartment

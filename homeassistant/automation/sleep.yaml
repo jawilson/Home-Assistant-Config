@@ -13,7 +13,6 @@
         - script.closet_wake_up
         - script.bathroom_wake_up
         - script.living_area_wake_up
-        - script.living_room_wake_up
         - script.apartment_wake_up
     - service: script.turn_on
       entity_id:
@@ -41,7 +40,6 @@
         - script.closet_wake_up
         - script.bathroom_wake_up
         - script.living_area_wake_up
-        - script.living_room_wake_up
     - alias: "Turn off lights until they actually turn off"
       repeat:
         sequence:
@@ -517,7 +515,6 @@
         - script.closet_wake_up
         - script.bathroom_wake_up
         - script.living_area_wake_up
-        - script.living_room_wake_up
         - script.apartment_wake_up
     - service: script.turn_on
       entity_id:
