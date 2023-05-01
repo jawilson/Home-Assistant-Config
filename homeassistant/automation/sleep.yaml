@@ -26,7 +26,7 @@
   id: someone_leaves_while_jeff_sleeping
   trigger:
     - platform: state
-      entity_id: person.sasha
+      entity_id: group.partners
       from: 'home'
   condition:
     - "{{ is_state('binary_sensor.jeff_sleeping_at_home', 'on') }}"
