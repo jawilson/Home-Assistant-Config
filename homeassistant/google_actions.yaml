@@ -53,14 +53,8 @@ filter:
     - light.color_lights
     - light.color_temperature_lights
     - script.tv_dinner
-    - switch.dining_fluxer
-    - switch.entryway_fluxer
-    - switch.kitchen_fluxer
-    - switch.living_room_fluxer
     - switch.shield
-    - switch.sunroom_fluxer
     - switch.sunroom_switch
-    - switch.tree_lamp_fluxer
     - switch.bathroom_speaker_do_not_disturb
     - switch.bedroom_speaker_do_not_disturb
     - switch.kitchen_display_do_not_disturb
@@ -160,8 +154,8 @@ entity_config:
       - Closet motion automations
       - Closet motion
     room: Closet
-  switch.living_area_fluxer:
+  switch.circadian_lighting_living_area:
     aliases:
+      - Living area circadian
       - Living area fluxer
       - Living area color
-      - Livingarea color

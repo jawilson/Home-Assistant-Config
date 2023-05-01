@@ -238,7 +238,7 @@ history:
       - switch.bedroom_motion
       - switch.closet_fluxer
       - switch.closet_motion
-      - switch.living_area_fluxer
+      - switch.circadian_lighting_living_area
 
 
 #

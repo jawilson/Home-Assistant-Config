@@ -78,13 +78,5 @@ entities:
     hidden: true
   switch.bedroom_motion:
     hidden: true
-  switch.dining_fluxer:
-    hidden: true
-  switch.entryway_fluxer:
-    hidden: true
-  switch.kitchen_fluxer:
-    hidden: true
-  switch.living_room_fluxer:
-    hidden: true
   switch.shield:
     hidden: true

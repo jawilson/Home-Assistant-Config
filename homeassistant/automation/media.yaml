@@ -37,9 +37,7 @@
       state: 'off'
   action:
     - service: switch.turn_off
-      entity_id:
-        - switch.tree_lamp_fluxer
-        - switch.living_area_fluxer
+      entity_id: switch.circadian_lighting_living_area
     - service: light.turn_on
       entity_id: light.living_room_lights
       data:
@@ -77,13 +75,8 @@
           brightness_pct: 10
     - service: switch.turn_on
       entity_id:
-        - switch.living_area_fluxer
+        - switch.circadian_lighting_living_area
         - switch.bathroom_fluxer
-    - service: switch.entryway_fluxer_update
-    - service: switch.living_room_fluxer_update
-    - service: switch.tree_lamp_fluxer_update
-    - service: switch.kitchen_fluxer_update
-    - service: switch.dining_fluxer_update
 
 - alias: 'Update Source Select'
   id: update_source_select

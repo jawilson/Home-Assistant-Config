@@ -35,8 +35,7 @@ cards:
       - automation.sunroom_fan
       - input_boolean.climate_auto
       - automation.sunroom_auto_temp
-      - switch.living_area_fluxer
-      - switch.sunroom_fluxer
+      - switch.circadian_lighting_living_area
       - script.living_area_wake_up
 
   - type: media-control

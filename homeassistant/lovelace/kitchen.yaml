@@ -34,7 +34,7 @@ cards:
     title: Control
     show_header_toggle: false
     entities:
-      - entity: switch.living_area_fluxer
+      - entity: switch.circadian_lighting_living_area
         name: Fluxer
       - entity: script.living_area_wake_up
         name: Wake-Up

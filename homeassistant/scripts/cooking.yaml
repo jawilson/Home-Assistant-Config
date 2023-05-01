@@ -1,7 +1,7 @@
 alias: Making Dinner
 sequence:
   - service: switch.turn_off
-    entity_id: switch.living_area_fluxer
+    entity_id: switch.circadian_lighting_living_area
   - service: light.turn_on
     entity_id:
       - light.kitchen_lights

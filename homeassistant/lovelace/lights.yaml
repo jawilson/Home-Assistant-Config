@@ -96,7 +96,7 @@ cards:
         name: Closet
       - entity: switch.bathroom_fluxer
         name: Bathroom
-      - entity: switch.living_area_fluxer
+      - entity: switch.circadian_lighting_living_area
         name: Living Area
 
   - type: entities

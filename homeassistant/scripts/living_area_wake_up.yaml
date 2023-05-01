@@ -10,10 +10,7 @@ sequence:
 
   # Disable fluxer
   - service: switch.turn_off
-    entity_id:
-      - switch.dining_fluxer
-      - switch.entryway_fluxer
-      - switch.kitchen_fluxer
+    entity_id: switch.circadian_lighting_living_area
 
 
   # Turn on lights softly
@@ -68,10 +65,7 @@ sequence:
 
   # Restore fluxer
   - service: switch.turn_on
-    entity_id:
-      - switch.dining_fluxer
-      - switch.entryway_fluxer
-      - switch.kitchen_fluxer
+    entity_id: switch.circadian_lighting_living_area
 
   - service: script.turn_on
     entity_id: script.dismiss_wake_up

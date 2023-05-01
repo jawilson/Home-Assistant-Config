@@ -2,7 +2,7 @@ alias: Bedtime
 sequence:
   - service: switch.turn_off
     entity_id:
-      - switch.living_area_fluxer
+      - switch.circadian_lighting_living_area
       - switch.bathroom_fluxer
       - switch.closet_fluxer
 

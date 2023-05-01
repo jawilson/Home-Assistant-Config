@@ -11,7 +11,7 @@ sequence:
 
   - service: switch.turn_on
     entity_id:
-      - switch.living_area_fluxer
+      - switch.circadian_lighting_living_area
       - switch.bathroom_fluxer
       - switch.bedroom_fluxer
       - switch.closet_fluxer

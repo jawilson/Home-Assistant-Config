@@ -4,18 +4,17 @@ sequence:
     entity_id: binary_sensor.jeff_sleeping_at_home
     state: 'off'
   - service: switch.turn_on
-    entity_id: switch.living_area_fluxer
+    entity_id: switch.circadian_lighting_living_area
   - service: light.turn_on
-    entity_id:
-      - light.entryway_lights
-      - light.kitchen_lights
-      - light.dining_lights_level
-      - light.living_room_lights
-  - service: switch.entryway_fluxer_update
-  - service: switch.kitchen_fluxer_update
-  - service: switch.dining_fluxer_update
-  - service: switch.living_room_fluxer_update
-  - service: switch.tree_lamp_fluxer_update
+    target:
+      entity_id:
+        - light.entryway_lights
+        - light.kitchen_lights
+        - light.dining_lights_level
+        - light.living_room_lights
+    data:
+      kelvin: "{{ state_attr('sensor.circadian_values', 'colortemp')|int }}"
+      brightness_pct: "{{ state_attr('switch.circadian_lighting_living_area', 'brightness')|int }}"
   - condition: numeric_state
     entity_id: sun.sun
     value_template: "{{ state.attributes.elevation }}"

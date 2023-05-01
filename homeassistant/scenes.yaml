@@ -1,7 +1,7 @@
 - id: couch_reading
   name: Couch Reading
   entities:
-    switch.living_area_fluxer:
+    switch.circadian_lighting_living_area:
       state: false
     light.entertainment_lights:
       state: true
@@ -29,7 +29,7 @@
     light.bathroom_lights: false
     light.closet_lights: false
     light.bedroom_lights: false
-    switch.living_area_fluxer: false
+    switch.circadian_lighting_living_area: false
 - id: romantic
   name: Romantic
   entities:
@@ -337,7 +337,7 @@
       friendly_name: Closet Motion Automations
       icon: mdi:walk
       state: 'off'
-    switch.living_area_fluxer:
+    switch.circadian_lighting_living_area:
       emulated_hue_hidden: true
       friendly_name: Living Area Fluxer
       icon: mdi:invert-colors
