@@ -95,9 +95,6 @@ logbook:
       - light.kitchen_light_4
       - light.bedroom
       - light.bedroom_lights
-      - light.bedroom_nook_1
-      - light.bedroom_nook_2
-      - light.bedroom_nook_3
       - light.tree_lamp_1
       - light.tree_lamp_2
       - light.tree_lamp_3

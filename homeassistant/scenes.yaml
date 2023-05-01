@@ -25,7 +25,6 @@
     light.dining_lights_level:
       state: true
       brightness: 28
-    light.liquor_cabinet_lights: false
     light.bathroom_lights: false
     light.closet_lights: false
     light.bedroom_lights: false
@@ -69,47 +68,6 @@
       min_mireds: 153
       state: 'on'
       supported_features: 43
-    light.bedroom_nook_1:
-      effect_list:
-      - effect_colorloop
-      - effect_pulse
-      - effect_stop
-      friendly_name: Bedroom Nook 1
-      max_mireds: 400
-      min_mireds: 111
-      state: 'off'
-      supported_features: 55
-    light.bedroom_nook_2:
-      brightness: 35
-      effect_list:
-      - effect_colorloop
-      - effect_pulse
-      - effect_stop
-      friendly_name: Bedroom Nook 2
-      hs_color:
-      - 44.995
-      - 57.142
-      max_mireds: 400
-      min_mireds: 111
-      rgb_color:
-      - 255
-      - 218
-      - 109
-      state: 'on'
-      supported_features: 55
-      xy_color:
-      - 0.453
-      - 0.432
-    light.bedroom_nook_3:
-      effect_list:
-      - effect_colorloop
-      - effect_pulse
-      - effect_stop
-      friendly_name: Bedroom Nook 3
-      max_mireds: 400
-      min_mireds: 111
-      state: 'off'
-      supported_features: 55
     light.closet_light:
       brightness: 1
       color_temp: 454
@@ -244,27 +202,6 @@
       - 28.778
       - 86.667
       is_hue_group: true
-      max_mireds: 500
-      min_mireds: 153
-      rgb_color:
-      - 255
-      - 139
-      - 33
-      state: 'on'
-      supported_features: 63
-      xy_color:
-      - 0.59
-      - 0.382
-    light.sunroom_nightstand_lamp:
-      brightness: 29
-      effect: none
-      effect_list:
-      - colorloop
-      - random
-      friendly_name: Sunroom nightstand lamp
-      hs_color:
-      - 28.778
-      - 86.667
       max_mireds: 500
       min_mireds: 153
       rgb_color:

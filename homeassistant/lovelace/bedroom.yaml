@@ -14,11 +14,6 @@ cards:
       - entity: light.nightstand_2
         name: Sasha's Nightstand
       - light.bedroom_lamp
-      - light.bedroom_nook
-      - type: divider
-      - light.bedroom_nook_1
-      - light.bedroom_nook_2
-      - light.bedroom_nook_3
 
   - type: entities
     title: Control

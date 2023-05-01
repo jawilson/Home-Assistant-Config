@@ -18,6 +18,7 @@
   entities:
     - light.entryway_lights
     - light.kitchen_lights
+    - light.living_room_nook
     - light.dining_lights_level
     - light.living_room_lights
     - light.sunroom_lights
@@ -57,21 +58,13 @@
   unique_id: sunroom_lights_group
   entities:
     - light.sunroom
-
-- platform: group
-  name: Bedroom Nook
-  unique_id: triple_hanging_lamp_group
-  entities:
-    - light.bedroom_nook_1
-    - light.bedroom_nook_2
-    - light.bedroom_nook_3
+    - light.sunroom_lamp
 
 - platform: group
   name: Bedroom Lights
   unique_id: 'bedroom_lights_group'
   entities:
     - light.bedroom
-    - light.bedroom_nook
 
 - platform: group
   name: Closet Lights
@@ -100,10 +93,9 @@
   entities:
     - light.entryway_lights
     - light.kitchen_lights
-    - light.liquor_cabinet_lights
     - light.entertainment_lights
-    - light.bedroom_nook
     - light.sunroom_lights
+    - light.closet_light
 
 - platform: group
   name: Color Temperature Lights
@@ -117,7 +109,6 @@
     - light.bathroom_mirror
     - light.shower
     - light.kitchen_lights
-    - light.liquor_cabinet_lights
     - light.entertainment_lights
     - light.bedroom_lights
     - light.sunroom_lights

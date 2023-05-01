@@ -10,6 +10,7 @@ cards:
           - entity: light.living_room_lights
             name: All lights
           - type: divider
+          - light.living_room_nook
           - light.dining_lights_level
           - light.entertainment_lights
           - light.tree_lamp

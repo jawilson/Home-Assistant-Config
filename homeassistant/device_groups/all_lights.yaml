@@ -2,9 +2,6 @@
 - light.bathroom_mirror_2
 - light.bathroom_mirror_3
 - light.bathroom_mirror_4
-- light.bedroom_nook_1
-- light.bedroom_nook_2
-- light.bedroom_nook_3
 - light.bedroom_lamp
 - light.closet_light
 - light.desk_lamp
@@ -17,14 +14,13 @@
 - light.kitchen_light_2
 - light.kitchen_light_3
 - light.kitchen_light_4
-- light.liquor_cabinet_lights
+- light.living_room_nook
 - light.nightstand_1
 - light.nightstand_2
 - light.shower_light
 - light.sunroom_fan_light
 - light.sunroom_fan_light_1
 - light.sunroom_fan_light_2
-- light.sunroom_nightstand_lamp
 - light.tree_lamp_1
 - light.tree_lamp_2
 - light.tree_lamp_3

@@ -10,11 +10,14 @@ cards:
         name: All Lights
       - type: divider
       - light.sunroom_fan_light
-      - light.sunroom_nightstand_lamp
       - light.desk_lamp
+      - light.sunroom_lamp
       - type: divider
       - light.sunroom_fan_light_1
       - light.sunroom_fan_light_2
+      - light.sunroom_lamp_top
+      - light.sunroom_lamp_middle
+      - light.sunroom_lamp_bottom
 
   - type: glance
     title: Sensors

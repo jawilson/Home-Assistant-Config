@@ -8,6 +8,6 @@ sequence:
       - light.dining_lights_level
       - light.entryway_lights
       - light.kitchen_lights
-      - light.liquor_cabinet_lights
+      - light.sunroom_lights
   - service: script.turn_on
     entity_id: script.dinner

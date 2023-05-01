@@ -30,7 +30,6 @@ filter:
     - light.entryway_lights
     - light.bedroom
     - light.bedroom_lights
-    - light.bedroom_nook
     - light.tree_lamp
     - light.closet
     - light.closet_lights
