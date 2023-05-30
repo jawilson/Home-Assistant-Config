@@ -16,7 +16,7 @@ sequence:
   - service: homeassistant.turn_off
     entity_id:
       - group.all_lights
-      - switch.projector
+      - switch.tv
   - service: homeassistant.turn_on
     entity_id:
       - switch.circadian_lighting_living_area

@@ -12,4 +12,4 @@ sequence:
     entity_id: remote.living_room
     state: 'off'
   - service: switch.turn_on
-    entity_id: switch.projector
+    entity_id: switch.tv

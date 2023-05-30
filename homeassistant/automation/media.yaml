@@ -44,7 +44,7 @@
         profile: nightlight
         transition: 15
 
-- alias: 'Projector Off'
+- alias: 'TV Off'
   id: projector_off
   trigger:
     - platform: state

@@ -1,7 +1,8 @@
 - platform: template
   switches:
-    projector:
-      friendly_name: 'Projector'
+    tv:
+      friendly_name: TV
+      unique_id: template_harmony_tv
       value_template: "{{ is_state('remote.living_room', 'on') }}"
       turn_on:
         - service: remote.send_command
