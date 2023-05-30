@@ -44,6 +44,7 @@ cloud:
 
 # Use a postgresql server for recording data
 recorder:
+  purge_keep_days: 28
   db_url: 'postgresql://hass:automatethethings@database/homeassistant'
   exclude:
     domains:
