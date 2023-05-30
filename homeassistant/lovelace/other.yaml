@@ -8,7 +8,6 @@ cards:
         title: Temperatures
         show_header_toggle: false
         entities:
-          - sensor.dark_sky_temperature
           - sensor.apartment_thermostat_temperature
           - sensor.bathroom_temperature
           - sensor.bedroom_temperature
@@ -18,31 +17,15 @@ cards:
         title: Humidities
         show_header_toggle: false
         entities:
-          - sensor.dark_sky_humidity
           - sensor.apartment_thermostat_humidity
           - sensor.bathroom_relative_humidity
           - sensor.bedroom_relative_humidity
           - sensor.sunroom_relative_humidity
 
-  - type: vertical-stack
-    cards:
-      - type: entities
-        title: P3Steel
-        show_header_toggle: false
-        entities:
-          - sensor.p3steel_current_state
-          - sensor.p3steel_job_percentage
-          - sensor.p3steel_actual_tool0_temp
-          - sensor.p3steel_target_tool0_temp
-          - sensor.p3steel_actual_bed_temp
-          - sensor.p3steel_target_bed_temp
-          - binary_sensor.p3steel_printing
-          - binary_sensor.p3steel_printing_error
-
-      - type: picture-entity
-        entity: camera.p3steel
-        camera_image: camera.p3steel
-        show_state: false
+  - type: picture-entity
+    entity: camera.p3steel
+    camera_image: camera.p3steel
+    show_state: false
 
   - type: custom:auto-entities
     show_empty: false

@@ -37,6 +37,8 @@ cards:
       - sensor.bathroom_temperature
       - sensor.bathroom_relative_humidity
       - sensor.bathroom_luminance
+      - binary_sensor.bathroom_motion
+      - binary_sensor.showering
 
   - type: entities
     title: Other Lights

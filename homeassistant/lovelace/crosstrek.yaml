@@ -41,10 +41,21 @@ cards:
         type: entity
       - type: statistics-graph
         chart_type: line
-        days_to_show: 182
+        days_to_show: 365
         period: day
         entities:
           - sensor.crosstrek_odometer
+        stat_types:
+          - state
+          - sum
+      - type: statistics-graph
+        chart_type: line
+        days_to_show: 365
+        period: month
+        entities:
+          - sensor.crosstrek_odometer
+        stat_types:
+          - change
       - entity: sensor.crosstrek_avg_fuel_consumption
         name: Avg Fuel Consumption
         type: entity
@@ -198,21 +209,14 @@ cards:
         entities:
           - entity: select.crosstrek_climate_preset
         show_header_toggle: true
-  - type: vertical-stack
-    cards:
-      - detail: -2
-        entity: sensor.crosstrek_12v_battery_voltage
-        graph: line
-        name: Auxiliary Battery
-        type: sensor
-      - entity: sensor.crosstrek_external_temp
-        graph: line
-        name: External Temp
-        type: sensor
-      - type: entity
-        entity: binary_sensor.crosstrek_ignition
-        name: ' '
+  - card:
+    type: glance
     title: Miscellaneous Data
+    entities:
+      - entity: binary_sensor.crosstrek_ignition
+        name: Ignition
+      - entity: binary_sensor.crosstrek_trouble
+        name: Trouble
   - card:
       type: glance
       title: Door(s) Open

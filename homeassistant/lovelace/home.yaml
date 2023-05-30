@@ -85,6 +85,39 @@ cards:
                 source_type: router
               options:
                 secondary_info: last-changed
+      - type: entities
+        title: Scenes
+        show_header_toggle: false
+        entities:
+          - script.getting_ready
+          - scene.couch_reading
+          - script.cooking
+          - script.dinner
+          - script.tv_dinner
+          - scene.romantic
+          - entity: script.bedtime
+            name: Bedtime Lights
+          - type: call-service
+            name: Go to Sleep
+            icon: mdi:sleep
+            action_name: Trigger
+            service: automation.trigger
+            service_data:
+              entity_id: automation.go_to_sleep
+          - type: call-service
+            name: Wake-Up
+            icon: mdi:sleep-off
+            action_name: Trigger
+            service: automation.trigger
+            service_data:
+              entity_id: automation.wake_up
+          - type: call-service
+            name: Lights Out
+            icon: mdi:flashlight-off
+            action_name: Execute
+            service: script.turn_on
+            service_data:
+              entity_id: script.lights_out
 
   #
   # Second column
@@ -152,39 +185,6 @@ cards:
   #
   - type: vertical-stack
     cards:
-      - type: entities
-        title: Scenes
-        show_header_toggle: false
-        entities:
-          - script.getting_ready
-          - scene.couch_reading
-          - script.cooking
-          - script.dinner
-          - script.tv_dinner
-          - scene.romantic
-          - entity: script.bedtime
-            name: Bedtime Lights
-          - type: call-service
-            name: Go to Sleep
-            icon: mdi:sleep
-            action_name: Trigger
-            service: automation.trigger
-            service_data:
-              entity_id: automation.go_to_sleep
-          - type: call-service
-            name: Wake-Up
-            icon: mdi:sleep-off
-            action_name: Trigger
-            service: automation.trigger
-            service_data:
-              entity_id: automation.wake_up
-          - type: call-service
-            name: Lights Out
-            icon: mdi:flashlight-off
-            action_name: Execute
-            service: script.turn_on
-            service_data:
-              entity_id: script.lights_out
       - type: history-graph
         hours_to_show: 12
         entities:

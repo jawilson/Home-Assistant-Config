@@ -40,6 +40,7 @@ cards:
       - sensor.bedroom_temperature
       - sensor.bedroom_relative_humidity
       - sensor.bedroom_luminance
+      - binary_sensor.bedroom_motion
 
   - type: entities
     title: Other Lights
