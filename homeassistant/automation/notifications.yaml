@@ -8,7 +8,7 @@
       entity_id: sensor.jeff_at_work_this_week
       above: 40
   action:
-    service: notify.jeff
+    service: notify.jeff_phone
     data_template:
       title: Time To Head Home
       message: >
