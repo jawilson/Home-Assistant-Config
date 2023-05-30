@@ -21,7 +21,9 @@
   trigger:
     platform: state
     entity_id: binary_sensor.showering
-    to: 'off'
+    to:
+      - 'off'
+      - 'unknown'
   condition:
     - condition: state
       entity_id: input_boolean.climate_auto
@@ -45,7 +47,9 @@
       state: 'on'
     - condition: state
       entity_id: binary_sensor.showering
-      state: 'off'
+      state:
+        - 'off'
+        - 'unknown'
   action:
     - service: switch.turn_off
       entity_id: switch.bathroom_fan_switch
