@@ -90,11 +90,11 @@ cards:
   - type: entities
     title: Fluxers
     entities:
-      - entity: switch.bedroom_fluxer
+      - entity: switch.circadian_lighting_bedroom
         name: Bedroom
-      - entity: switch.closet_fluxer
+      - entity: switch.circadian_lighting_closet
         name: Closet
-      - entity: switch.bathroom_fluxer
+      - entity: switch.circadian_lighting_bathroom
         name: Bathroom
       - entity: switch.circadian_lighting_living_area
         name: Living Area

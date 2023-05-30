@@ -4,7 +4,7 @@ sequence:
   - service: homeassistant.turn_off
     entity_id:
       - script.alarm_dismiss
-      - switch.bedroom_fluxer
+      - switch.circadian_lighting_bedroom
       - switch.bedroom_motion
 
 
@@ -42,8 +42,8 @@ sequence:
       - light.bedroom_lights
     data:
       transition: 600
-      color_temp: 333
-      brightness: 180
+      kelvin: "{{ state_attr('switch.circadian_lighting_bedroom', 'colortemp')|int }}"
+      brightness_pct: "{{ state_attr('switch.circadian_lighting_bedroom', 'brightness')|int }}"
   - delay:
       minutes: 10
 

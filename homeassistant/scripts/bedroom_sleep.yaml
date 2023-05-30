@@ -18,5 +18,5 @@ sequence:
 
   - service: switch.turn_on
     entity_id:
-      - switch.bedroom_fluxer
-      - switch.closet_fluxer
+      - switch.circadian_lighting_bedroom
+      - switch.circadian_lighting_closet

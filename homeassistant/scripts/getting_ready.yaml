@@ -2,8 +2,8 @@ alias: Getting Ready
 sequence:
   - service: switch.turn_off
     entity_id:
-      - switch.bathroom_fluxer
-      - switch.closet_fluxer
+      - switch.circadian_lighting_bathroom
+      - switch.circadian_lighting_closet
   - service: light.turn_on
     entity_id:
       - light.bathroom_lights
@@ -15,7 +15,7 @@ sequence:
     entity_id: binary_sensor.jeff_sleeping_at_home
     state: 'off'
   - service: switch.turn_off
-    entity_id: switch.bedroom_fluxer
+    entity_id: switch.circadian_lighting_bedroom
   - service: light.turn_on
     entity_id: light.bedroom_lights
     data:

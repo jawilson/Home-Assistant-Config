@@ -3,8 +3,8 @@ sequence:
   - service: switch.turn_off
     entity_id:
       - switch.circadian_lighting_living_area
-      - switch.bathroom_fluxer
-      - switch.closet_fluxer
+      - switch.circadian_lighting_bathroom
+      - switch.circadian_lighting_closet
 
   - service: climate.set_temperature
     data:
@@ -72,7 +72,7 @@ sequence:
     state: 'off'
 
   - service: switch.turn_off
-    entity_id: switch.bedroom_fluxer
+    entity_id: switch.circadian_lighting_bedroom
 
   - service: light.turn_on
     entity_id:

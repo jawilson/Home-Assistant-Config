@@ -3,7 +3,7 @@ sequence:
   # Restore fluxer and motion automations
   - service: switch.turn_on
     entity_id:
-      - switch.closet_fluxer
+      - switch.circadian_lighting_closet
       - switch.closet_motion
 
   - service: script.turn_on

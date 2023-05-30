@@ -58,8 +58,8 @@ sequence:
       - light.living_room_lights
     data:
       transition: 600
-      color_temp: 225
-      brightness: 180
+      kelvin: "{{ state_attr('switch.circadian_lighting_living_area', 'colortemp')|int }}"
+      brightness_pct: "{{ state_attr('switch.circadian_lighting_living_area', 'brightness')|int }}"
   - delay:
       minutes: 10
 

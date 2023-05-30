@@ -1,7 +1,7 @@
 alias: Alarm Ringing
 sequence:
   - service: switch.turn_off
-    entity_id: switch.bedroom_fluxer
+    entity_id: switch.circadian_lighting_bedroom
   - service: notify.jeff_phone
     data_template:
       target: '{{ target }}'

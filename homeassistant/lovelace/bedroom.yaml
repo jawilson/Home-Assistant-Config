@@ -19,7 +19,7 @@ cards:
     title: Control
     show_header_toggle: false
     entities:
-      - entity: switch.bedroom_fluxer
+      - entity: switch.circadian_lighting_bedroom
         name: Fluxer
       - entity: switch.bedroom_motion
         name: Motion
@@ -53,7 +53,7 @@ cards:
     title: Other Control
     show_header_toggle: false
     entities:
-      - switch.closet_fluxer
+      - switch.circadian_lighting_closet
       - entity: switch.closet_motion
         name: Closet Motion
       - script.closet_wake_up

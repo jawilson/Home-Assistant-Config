@@ -122,7 +122,7 @@ entity_config:
 
   switch.apartment_fan:
     name: HVAC Fan
-  switch.bathroom_fluxer:
+  switch.circadian_lighting_bathroom:
     aliases:
       - Bathroom fluxer
       - Bathroom color
@@ -132,7 +132,7 @@ entity_config:
       - Bathroom motion automations
       - Bathroom motion
     room: Bathroom
-  switch.bedroom_fluxer:
+  switch.circadian_lighting_bedroom:
     aliases:
       - Bedroom fluxer
       - Bedroom color
@@ -142,7 +142,7 @@ entity_config:
       - Bedroom motion automations
       - Bedroom motion
     room: Bedroom
-  switch.closet_fluxer:
+  switch.circadian_lighting_closet:
     aliases:
       - Closet fluxer
       - Closet color

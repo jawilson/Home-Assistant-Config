@@ -20,9 +20,9 @@ sequence:
   - service: homeassistant.turn_on
     entity_id:
       - switch.circadian_lighting_living_area
-      - switch.bathroom_fluxer
-      - switch.bedroom_fluxer
-      - switch.closet_fluxer
+      - switch.circadian_lighting_bathroom
+      - switch.circadian_lighting_bedroom
+      - switch.circadian_lighting_closet
       - switch.bathroom_motion
       - switch.bedroom_motion
       - switch.closet_motion

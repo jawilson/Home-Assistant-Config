@@ -8,4 +8,4 @@ sequence:
       seconds: 30
 
   - service: switch.turn_on
-    entity_id: switch.bedroom_fluxer
+    entity_id: switch.circadian_lighting_bedroom

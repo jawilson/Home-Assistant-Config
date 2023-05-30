@@ -124,14 +124,13 @@
       - conditions: >
           {{ trigger.to_state.state == 'Auto' }}
         sequence:
-          - service: switch.bathroom_fluxer_update
           - service: switch.turn_on
-            entity_id: switch.bathroom_fluxer
+            entity_id: switch.circadian_lighting_bathroom
       - conditions: >
           {{ trigger.to_state.state == 'Daylight' }}
         sequence:
           - service: switch.turn_off
-            entity_id: switch.bathroom_fluxer
+            entity_id: switch.circadian_lighting_bathroom
           - service: light.turn_on
             entity_id: light.bathroom
             data:

@@ -5,13 +5,17 @@ sequence:
     state: 'off'
   - service: switch.turn_on
     entity_id:
-      - switch.bedroom_fluxer
+      - switch.circadian_lighting_bedroom
       - switch.bedroom_motion
-      - switch.closet_fluxer
+      - switch.circadian_lighting_closet
       - switch.closet_motion
   - condition: numeric_state
     entity_id: sensor.bedroom_luminance
     below: '30'
   - service: light.turn_on
-    entity_id: light.bedroom_lights
-  - service: switch.bedroom_fluxer_update
+    target:
+      entity_id:
+        - light.bedroom_lights
+    data:
+      kelvin: "{{ state_attr('sensor.circadian_values', 'colortemp')|int }}"
+      brightness_pct: "{{ state_attr('switch.circadian_lighting_bedroom', 'brightness')|int }}"

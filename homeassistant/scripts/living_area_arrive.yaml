@@ -13,12 +13,16 @@ sequence:
         - light.dining_lights_level
         - light.living_room_lights
     data:
-      kelvin: "{{ state_attr('sensor.circadian_values', 'colortemp')|int }}"
+      kelvin: "{{ state_attr('switch.circadian_lighting_living_area', 'colortemp')|int }}"
       brightness_pct: "{{ state_attr('switch.circadian_lighting_living_area', 'brightness')|int }}"
   - condition: numeric_state
     entity_id: sun.sun
     value_template: "{{ state.attributes.elevation }}"
     below: 5
   - service: light.turn_on
-    entity_id: light.sunroom_lights
-  - service: switch.sunroom_fluxer_update
+    target:
+      entity_id:
+        - light.sunroom_lights
+    data:
+      kelvin: "{{ state_attr('switch.circadian_lighting_living_area', 'colortemp')|int }}"
+      brightness_pct: "{{ state_attr('switch.circadian_lighting_living_area', 'brightness')|int }}"

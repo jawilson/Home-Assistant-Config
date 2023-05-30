@@ -26,7 +26,7 @@ sequence:
           category: 'bedroom_only_wake_up'
           thread-id: 'wake-up'
   - service: switch.turn_off
-    entity_id: switch.bedroom_fluxer
+    entity_id: switch.circadian_lighting_bedroom
   - service: light.turn_on
     entity_id: light.tree_lamp_3
     data:

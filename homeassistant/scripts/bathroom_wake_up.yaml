@@ -3,7 +3,7 @@ max_exceeded: silent
 sequence:
   - service: homeassistant.turn_off
     entity_id:
-      - switch.bathroom_fluxer
+      - switch.circadian_lighting_bathroom
       - switch.bathroom_motion
 
 
@@ -41,8 +41,8 @@ sequence:
       - light.bathroom_lights
     data:
       transition: 600
-      color_temp: 333
-      brightness: 180
+      kelvin: "{{ state_attr('switch.circadian_lighting_bathroom', 'colortemp')|int }}"
+      brightness_pct: "{{ state_attr('switch.circadian_lighting_bathroom', 'brightness')|int }}"
   - delay:
       minutes: 10
 
@@ -50,7 +50,7 @@ sequence:
   # Restore fluxer and motion automations
   - service: switch.turn_on
     entity_id:
-      - switch.bathroom_fluxer
+      - switch.circadian_lighting_bathroom
       - switch.bathroom_motion
 
   - service: script.turn_on

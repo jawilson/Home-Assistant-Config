@@ -21,6 +21,7 @@
       state: 'on'
   action:
     - choose:
+        # Turn on if motion, home, lights off, not sleeping, and not waking up
         - conditions:
             - condition: state
               entity_id: binary_sensor.bedroom_motion
@@ -35,16 +36,18 @@
               entity_id: binary_sensor.jeff_sleeping_at_home
               state: 'off'
             - condition: state
-              entity_id: binary_sensor.jeff_sleeping_at_home
+              entity_id: script.bedroom_wake_up
               state: 'off'
-              for:
-                minutes: 30
             - condition: numeric_state
               entity_id: sensor.bedroom_luminance
               below: '60'
           sequence:
             - service: light.turn_on
               entity_id: light.bedroom_lights
+              data:
+                kelvin: "{{ state_attr('switch.circadian_lighting_bedroom', 'colortemp')|int }}"
+                brightness_pct: "{{ state_attr('switch.circadian_lighting_bedroom', 'brightness')|int }}"
+        # Turn off if no motion for 3 minutes, lights on, not sleeping or doing something special
         - conditions:
             - condition: state
               entity_id: binary_sensor.bedroom_motion
@@ -59,7 +62,7 @@
                 # If fluxer is off, we're probably doing something specific
                 # There may be a better way to handle this
                 - condition: state
-                  entity_id: switch.bedroom_fluxer
+                  entity_id: switch.circadian_lighting_bedroom
                   state: 'on'
                 # If we're sleeping, fluxer will still be off, but we definitely want to turn off
                 - condition: state
@@ -71,7 +74,7 @@
             - alias: "Wait until lights turn off"
               wait_template: "{{ is_state('light.bedroom_lights', 'off') }}"
             - service: switch.turn_on
-              entity_id: switch.bedroom_fluxer
+              entity_id: switch.circadian_lighting_bedroom
 
 
 - alias: Bathroom Motion
@@ -121,7 +124,7 @@
                       entity_id: light.bathroom_lights
               default:
                 - service: switch.turn_off
-                  entity_id: switch.bathroom_fluxer
+                  entity_id: switch.circadian_lighting_bathroom
                 - service: light.turn_on
                   entity_id: light.bathroom_mirror_2
                   data:
@@ -140,13 +143,15 @@
             # Don't turn off if we're showering
             - condition: state
               entity_id: binary_sensor.showering
-              state: 'off'
+              state:
+                - 'off'
+                - 'unknown'
             - condition: or
               conditions:
                 # If fluxer is off, we're probably doing something specific
                 # There may be a better way to handle this
                 - condition: state
-                  entity_id: switch.bathroom_fluxer
+                  entity_id: switch.circadian_lighting_bathroom
                   state: 'on'
                 # If we're sleeping, fluxer will still be off, but we definitely want to turn off
                 - condition: state
@@ -158,7 +163,7 @@
             - alias: "Wait until lights turn off"
               wait_template: "{{ is_state('light.bathroom_lights', 'off') }}"
             - service: switch.turn_on
-              entity_id: switch.bathroom_fluxer
+              entity_id: switch.circadian_lighting_bathroom
 
 
 - alias: Closet Motion
@@ -216,7 +221,7 @@
                 # If fluxer is off, we're probably doing something specific
                 # There may be a better way to handle this
                 - condition: state
-                  entity_id: switch.bathroom_fluxer
+                  entity_id: switch.circadian_lighting_bathroom
                   state: 'on'
                 # If we're sleeping, fluxer will still be off, but we definitely want to turn off
                 - condition: state
@@ -228,4 +233,4 @@
             - alias: "Wait until lights turn off"
               wait_template: "{{ is_state('light.closet_lights', 'off') }}"
             - service: switch.turn_on
-              entity_id: switch.closet_fluxer
+              entity_id: switch.circadian_lighting_closet

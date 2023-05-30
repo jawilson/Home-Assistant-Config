@@ -58,7 +58,7 @@
               state: 'off'
     - service: homeassistant.turn_on
       entity_id:
-        - switch.bathroom_fluxer
+        - switch.circadian_lighting_bathroom
         - automation.bathroom_motion
 
 
