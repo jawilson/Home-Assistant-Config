@@ -19,27 +19,6 @@ sensor.google_reverse_geocode_jeff:
   friendly_name: 'Jeff Location'
   custom_ui_more_info: more-info-map
 
-# Sasha
-person.sasha:
-  entity_picture: /local/people/sasha_grunza.jpg
-binary_sensor.sasha_home:
-  device_class: occupancy
-sensor.sashag_phone_battery_level:
-  friendly_name: Sasha's Phone Battery Level
-  hidden: true
-sensor.sashag_phone_battery_state:
-  friendly_name: Sasha's Phone Battery State
-  hidden: true
-sensor.sasha_drive_home:
-  icon: mdi:car
-sensor.sasha_transit_home:
-  icon: mdi:bus
-sensor.sasha_walk_home:
-  icon: mdi:walk
-sensor.google_reverse_geocode_sasha:
-  friendly_name: 'Sasha Location'
-  custom_ui_more_info: more-info-map
-
 # Other
 binary_sensor.front_door_sensor:
   device_class: door

@@ -256,6 +256,5 @@ cards:
       - entity: device_tracker.crosstrek
         icon: mdi:car-hatch
       - entity: zone.home
-      - entity: zone.river
       - entity: zone.lldc
     hours_to_show: 12

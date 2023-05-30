@@ -4,10 +4,3 @@
   device_trackers:
     - device_tracker.jawilson_phone
     - device_tracker.jawilson_phone_android
-
-- name: Sasha
-  id: sashag
-  user_id: e153c700e62f4120a579fc1b66af609d
-  device_trackers:
-    - device_tracker.sashag_phone
-    - device_tracker.sashag_phone_ios

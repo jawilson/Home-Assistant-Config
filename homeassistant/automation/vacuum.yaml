@@ -126,7 +126,6 @@
     platform: state
     entity_id:
       - person.jeff
-      - person.sasha
     to: 'home'
   condition:
     - condition: state
@@ -146,9 +145,7 @@
               value_template: "{{ is_state_attr('vacuum.doomba', 'battery_level', 0) }}"
   action:
     service_template: >-
-      {% if trigger.entity_id == 'person.sasha' -%}
-      notify.sasha_phone
-      {%- else -%}
+      {% if trigger.entity_id == 'person.jeff' -%}
       notify.jeff_phone
       {%- endif %}
     data:
@@ -162,7 +159,6 @@
     platform: state
     entity_id:
       - person.jeff
-      - person.sasha
     to: 'home'
   condition:
     - condition: state
@@ -172,9 +168,7 @@
       value_template: "{{ is_state_attr('vacuum.doomba', 'status', 'Charging') }}"
   action:
     - service_template: >-
-        {% if (trigger != null and trigger.entity_id == 'person.sasha') -%}
-        notify.sasha_phone
-        {%- else -%}
+        {% if (trigger != null and trigger.entity_id == 'person.jeff') -%}
         notify.jeff_phone
         {%- endif %}
       data:

@@ -3,14 +3,7 @@ sequence:
   - condition: state
     entity_id: binary_sensor.jeff_sleeping_at_home
     state: 'on'
-  - service_template: >
-      {% if is_state('person.jeff', 'home') and is_state('person.sasha', 'home') %}
-      notify.family_phones
-      {%- elif is_state('person.jeff', 'home') %}
-      notify.jeff_phone
-      {%- elif is_state('person.sasha', 'home') %}
-      notefiy.sasha_phone
-      {%- endif %}
+  - service: notify.jeff_phone
     data:
       title: 'Good Morning!'
       message: 'The sun is rising'

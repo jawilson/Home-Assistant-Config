@@ -9,8 +9,3 @@
   longitude: -120.772579
   radius: 200
   icon: mdi:home-variant
-
-- name: River
-  latitude: 38.917846
-  longitude: -77.097927
-  icon: mdi:school

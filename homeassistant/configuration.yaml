@@ -78,10 +78,7 @@ logbook:
       - automation.sunroom_fan
       - automation.update_jeff_travel_sensors_on_movement
       - automation.update_jeff_travel_sensors_periodically
-      - automation.update_sasha_travel_sensors_on_movement
-      - automation.update_sasha_travel_sensors_periodically
       - binary_sensor.jeff_home
-      - binary_sensor.sasha_home
       - binary_sensor.bathroom_humidity_trend
       - binary_sensor.bathroom_temp_trend
       - binary_sensor.remote_ui
@@ -130,10 +127,7 @@ logbook:
       - sensor.sunrise
       - sensor.sunset
       - sensor.google_reverse_geocode_jeff
-      - sensor.google_reverse_geocode_sasha
       - sensor.jeff_sleeping_at_home
-      - sensor.sashag_phone_battery_level
-      - sensor.sashag_phone_battery_state
       - sensor.time
       - sensor.neo_coolcam_door_window_detector_access_control
       - switch.apartment_fan
@@ -163,14 +157,11 @@ history:
     entities:
       - binary_sensor.apartment_thermostat_has_leaf
       - binary_sensor.jeff_home
-      - binary_sensor.sasha_home
       - binary_sensor.jeff_sleeping_at_home
       - binary_sensor.bathroom_humidity_trend
       - binary_sensor.bathroom_temp_trend
       - binary_sensor.remote_ui
       - device_tracker.jawilson_phone
-      - device_tracker.sashag_phone
-      - device_tracker.sashag_phone_ios
       - light.entryway
       - light.entryway_lights
       - light.kitchen
@@ -219,9 +210,6 @@ history:
       - sensor.custom_card_tracker
       - sensor.custom_component_tracker
       - sensor.google_reverse_geocode_jeff
-      - sensor.google_reverse_geocode_sasha
-      - sensor.sashag_phone_battery_level
-      - sensor.sashag_phone_battery_state
       - sensor.time
       - switch.apartment_fan
       - switch.circadian_lighting_bathroom
@@ -265,23 +253,13 @@ notify:
       - service: html5_jawilson_work
       - service: html5_jawilson_maxwell
   - platform: group
-    name: sasha_phone
-    services:
-      - service: mobile_app_sasha_phone
-  - platform: group
-    name: sasha
-    services:
-      - service: sasha_phone
-  - platform: group
     name: family
     services:
       - service: jeff
-      - service: sasha
   - platform: group
     name: family_phones
     services:
       - service: jeff_phone
-      - service: sasha_phone
 
 # Intent services
 alexa:
@@ -345,10 +323,8 @@ proximity:
   home:
     ignored_zones:
       - lldc
-      - river
     devices:
       - person.jeff
-      - person.sasha
     tolerance: 50
     unit_of_measurement: m
 

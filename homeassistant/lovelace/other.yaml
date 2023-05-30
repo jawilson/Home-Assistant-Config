@@ -54,7 +54,6 @@ cards:
     filter:
       exclude:
         - name: "Jeff*"
-        - name: "Sasha*"
       include:
         - domain: device_tracker
           attributes:

@@ -74,16 +74,18 @@
       platform: state
       entity_id: sensor.bedroom_speaker_alarms
       to: 'unavailable'
-    - id: jawilson_webhook
-      platform: webhook
-      webhook_id: jawilson_sleep
+    # Use this trigger when you want to trigger wake-up on Jeff's alarm but he's still sleeping
+    # Modify the trigger condition below if enabling
+    #- id: jawilson_webhook
+    #  platform: webhook
+    #  webhook_id: jawilson_sleep
     - id: button_pressed
       platform: state
       entity_id: input_button.wake_up
   condition:
     - "{{ trigger.id != 'speaker_alarm' or trigger.from_state.state != 'unknown' }}"
     - "{{ trigger.id != 'jeff_wake' or is_state('person.jeff', 'home') }}"
-    - "{{ trigger.id != 'jawilson_webhook' or (is_state('person.jeff', 'home') and trigger.json.event == 'alarm_alert_dismiss' and '#sashaWork' in trigger.json.value2) }}"
+    - "{{ trigger.id != 'jawilson_webhook' or (is_state('person.jeff', 'home') and trigger.json.event == 'alarm_alert_dismiss' and '<SOME_VALUE>' in trigger.json.value2) }}"
   action:
     - service: script.turn_off
       entity_id:
@@ -106,14 +108,7 @@
         data:
           tag: 'alarm-ringing'
     - alias: "Send apartment wake-up notification"
-      service_template: >
-        {% if is_state('person.jeff', 'home') and is_state('person.sasha', 'home') %}
-        notify.family_phones
-        {%- elif is_state('person.jeff', 'home') %}
-        notify.jeff_phone
-        {%- elif is_state('person.sasha', 'home') %}
-        notify.sasha_phone
-        {%- endif %}
+      service: notify.jeff_phone
       data:
         title: 'Good Morning!'
         message: 'Turning on the apartment lights'
@@ -141,11 +136,11 @@
         - wed
         - thu
         - fri
-    - alias: "Wake up the closet only if Sasha is the only one getting up"
+    - alias: "Wake up the closet only if partner is the only one getting up"
       choose:
       - conditions:
           - "{{ not is_state('person.jeff', 'home') or is_state('binary_sensor.jeff_sleeping_at_home', 'on') }}"
-          - "{{ is_state('person.sasha', 'home') }}"
+          - "{{ is_state('group.partners', 'home') }}"
         sequence:
           service: script.turn_on
           entity_id: script.closet_wake_up
@@ -153,14 +148,6 @@
       condition: template
       value_template: >
         {{ is_state('binary_sensor.jeff_sleeping_at_home', 'off') }}
-    - condition: or
-      conditions:
-        - "{{ not is_state('person.sasha', 'home') }}"
-        - condition: and
-          conditions:
-            - "{{ state_attr('calendar.sashag_school_end', 'end_time') != None }}"
-            - "{{ state_attr('calendar.sashag_school_start', 'start_time') == None or
-                    as_timestamp(state_attr('calendar.sashag_school_end', 'end_time')) < as_timestamp(state_attr('calendar.sashag_school_start', 'start_time')) }}"
     - choose:
       - conditions: "{{ is_state('script.closet_wake_up', 'off') }}"
         sequence:
@@ -169,14 +156,7 @@
     - service: script.turn_on
       entity_id:
         - script.bedroom_wake_up
-    - service_template: >
-        {% if is_state('person.jeff', 'home') and is_state('person.sasha', 'home') %}
-        notify.family_phones
-        {%- elif is_state('person.jeff', 'home') %}
-        notify.jeff_phone
-        {%- elif is_state('person.sasha', 'home') %}
-        notify.sasha_phone
-        {%- endif %}
+    - service: notify.jeff_phone
       data:
         title: 'Good Morning!'
         message: 'Turning on the bedroom and apartment lights'
@@ -401,14 +381,7 @@
       event_data:
         actionName: 'CANCEL_BEDROOM_WAKE_UP'
   action:
-    - service_template: >
-        {% if is_state('person.jeff', 'home') and is_state('person.sasha', 'home') %}
-        notify.family_phones
-        {%- elif is_state('person.jeff', 'home') %}
-        notify.jeff_phone
-        {%- elif is_state('person.sasha', 'home') %}
-        notify.sasha_phone
-        {%- endif %}
+    - service: notify.jeff_phone
       data:
         title: 'Sorry!'
         message: Turning the lights back off
@@ -451,14 +424,7 @@
       entity_id:
         - script.closet_wake_up
         - script.bedroom_wake_up
-    - service_template: >
-        {% if is_state('person.jeff', 'home') and is_state('person.sasha', 'home') %}
-        notify.family_phones
-        {%- elif is_state('person.jeff', 'home') %}
-        notify.jeff_phone
-        {%- elif is_state('person.sasha', 'home') %}
-        notify.sasha_phone
-        {%- endif %}
+    - service: notify.jeff_phone
       data:
         title: 'Good Morning!'
         message: 'Turning on the bedroom and apartment lights'

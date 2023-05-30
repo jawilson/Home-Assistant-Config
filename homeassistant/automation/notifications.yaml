@@ -1,47 +1,3 @@
-- alias: Location Update Notification
-  id: location_update_notification
-  mode: queued
-  trigger:
-    - platform: state
-      entity_id: person.jeff
-    - platform: state
-      entity_id: person.sasha
-  condition:
-    - condition: state
-      entity_id: input_boolean.presence
-      state: 'on'
-    - condition: template
-      value_template: >
-        {{ trigger.from_state.state != trigger.to_state.state }}
-    - condition: template
-      value_template: >
-        {{ trigger.from_state.state != 'unknown' or trigger.to_state.state != 'not_home' }}
-  action:
-    service_template: >-
-      {% if trigger.entity_id == 'person.jeff' -%}
-      notify.sasha_phone
-      {%- else -%}
-      notify.jeff_phone
-      {%- endif %}
-    data_template:
-      title: Location Update
-      message: >
-        {{ trigger.from_state.attributes.friendly_name }}
-        {%- if trigger.to_state.state == 'not_home' %}
-        left {{ trigger.from_state.state }}
-        {%- else %}
-        arrived at {{ trigger.to_state.state }}
-        {%- endif %}
-      data:
-        ttl: 7200
-        tag: 'location-update'
-        channel: Location
-        apns_headers:
-          'apns-collapse-id': 'location-update'
-        push:
-          thread-id: 'location-update'
-
-
 - alias: Jeff Stop Working
   id: jeff_stop_working
   trigger:
@@ -235,14 +191,7 @@
   action:
     - service: climate.turn_off
       entity_id: climate.sunroom
-    - service_template: >
-        {% if is_state('person.jeff', 'home') and is_state('person.sasha', 'home') %}
-        notify.family
-        {%- elif is_state('person.jeff', 'home') %}
-        notify.jeff_phone
-        {%- elif is_state('person.sasha', 'home') %}
-        notify.sasha_phone
-        {%- endif %}
+    - service_template: notify.jeff_phone
       data:
         title: Warning ⚠
         message: >
