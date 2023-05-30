@@ -1,0 +1,2 @@
+binary_sensor.showering:
+  icon: mdi:shower
