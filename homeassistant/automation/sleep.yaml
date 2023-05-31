@@ -236,14 +236,14 @@
         minutes: 5
     - condition: template
       value_template: >
-        "{{ wait.trigger == None or wait.trigger.event.data.action == bedtime_cooldown }}"
+        {{ wait.trigger == none or wait.trigger.event.data.action == 'bedtime_cooldown' }}
     - service: climate.set_temperature
       data:
         entity_id: climate.apartment
       data_template:
-        target_temp_high: "{{ state_attr('climate.apartment', 'target_temp_high')|default(70, True)|min(70) }}"
-        temperature: "{{ state_attr('climate.apartment', 'temperature')|default(70, True)|min(70) }}"
-        target_temp_low: "{{ state_attr('climate.apartment', 'target_temp_low')|default(60, True)|min(60) }}"
+        target_temp_high: "{{ [state_attr('climate.apartment', 'target_temp_high')|default(70, True), 70]|min }}"
+        temperature: "{{ [state_attr('climate.apartment', 'temperature')|default(70, True), 70]|min }}"
+        target_temp_low: "{{ [state_attr('climate.apartment', 'target_temp_low')|default(60, True), 60]|min(60) }}"
     - service: notify.jeff_phone
       data:
         message: clear_notification
