@@ -27,7 +27,6 @@ cards:
     title: Automations
     show_header_toggle: false
     entities:
-      - automation.home_assistant_start
       - automation.bedtime_cooldown
       - automation.someone_leaves_while_jeff_sleeping
       - automation.alarm_smart_period

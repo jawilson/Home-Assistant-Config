@@ -139,18 +139,33 @@ cards:
                 head: sensor.apartment_temperatures
                 items:
                   - sensor.apartment_feels_like
-                  - sensor.apartment_thermostat_temperature
-                  - sensor.bathroom_temperature
-                  - sensor.bedroom_temperature
-                  - sensor.sunroom_temperature
+                  - entity: sensor.apartment_thermostat_temperature
+                    name: Thermostat
+                  - entity: sensor.bathroom_temperature
+                    name: Bathroom
+                  - entity: sensor.bedroom_temperature
+                    name: Bedroom
+                  - entity: sensor.sunroom_temperature
+                    name: Sunroom
+                  - entity: sensor.ficus_temperature
+                    name: Ficus
               - type: custom:fold-entity-row
                 head: sensor.apartment_humidities
                 items:
-                  - sensor.apartment_thermostat_humidity
-                  - sensor.dehumidifier_humidity
-                  - sensor.bathroom_relative_humidity
-                  - sensor.bedroom_relative_humidity
-                  - sensor.sunroom_relative_humidity
+                  - entity: sensor.apartment_thermostat_humidity
+                    name: Thermostat
+                  - entity: sensor.dehumidifier_humidity
+                    name: Dehumidifier
+                  - entity: sensor.bathroom_relative_humidity
+                    name: Bathroom
+                  - entity: sensor.bedroom_relative_humidity
+                    name: Bedroom
+                  - entity: sensor.humidifier_current_humidity
+                    name: Humidifier
+                  - entity: sensor.sunroom_relative_humidity
+                    name: Sunroom
+                  - entity: sensor.ficus_humidity
+                    name: Ficus
               - type: custom:fold-entity-row
                 head:
                   type: section
@@ -172,6 +187,38 @@ cards:
             secondary_info: last-changed
           - type: buttons
             entities:
+              - entity: vacuum.doomba
+                icon: mdi:play
+                show_name: false
+                tap_action:
+                  action: call-service
+                  service: vacuum.start
+                  data:
+                    entity_id: vacuum.doomba
+              - entity: vacuum.doomba
+                icon: mdi:pause
+                show_name: false
+                tap_action:
+                  action: call-service
+                  service: vacuum.pause
+                  data:
+                    entity_id: vacuum.doomba
+              - entity: vacuum.doomba
+                icon: mdi:stop
+                show_name: false
+                tap_action:
+                  action: call-service
+                  service: vacuum.stop
+                  data:
+                    entity_id: vacuum.doomba
+              - entity: vacuum.doomba
+                icon: mdi:home-map-marker
+                show_name: false
+                tap_action:
+                  action: call-service
+                  service: vacuum.return_to_base
+                  data:
+                    entity_id: vacuum.doomba
               - entity: automation.run_doomba
                 name: Auto
               - entity: input_boolean.schedule_vacuum
