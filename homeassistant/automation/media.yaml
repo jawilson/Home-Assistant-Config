@@ -45,7 +45,7 @@
         transition: 15
 
 - alias: 'TV Off'
-  id: projector_off
+  id: living_room_tv_off
   trigger:
     - platform: state
       entity_id: remote.living_room
@@ -77,15 +77,3 @@
       entity_id:
         - switch.circadian_lighting_living_area
         - switch.circadian_lighting_bathroom
-
-- alias: 'Update Source Select'
-  id: update_source_select
-  trigger:
-    platform: state
-    entity_id: remote.living_room
-  mode: restart
-  action:
-    service: input_select.select_option
-    data_template:
-      entity_id: input_select.living_room_activity
-      option: "{{ trigger.to_state.attributes.current_activity|default('power_off')|replace('PowerOff', 'power_off') }}"

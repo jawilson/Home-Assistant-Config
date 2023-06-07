@@ -35,15 +35,24 @@ cards:
   - type: vertical-stack
     cards:
       - type: entities
-        title: Harmony
         show_header_toggle: false
         entities:
-          - type: custom:hui-toggle-entity-row
-            entity: remote.living_room
+          - entity: remote.living_room
             secondary_info: last-changed
-          - switch.living_room_play_shield
-          - switch.living_room_play_xbox_one
-          - switch.living_room_play_xbox_360
+          - type: buttons
+            entities:
+              - entity: switch.living_room_play_shield
+                show_name: true
+              - entity: switch.living_room_watch_tv
+                show_name: true
+              - entity: switch.living_room_play_xbox_one
+                name: One
+                show_name: true
+              - entity: switch.living_room_play_xbox_360
+                show_name: true
+                name: 360
+              - entity: switch.living_room_play_xbox
+                show_name: true
 
       - type: media-control
         entity: media_player.shield

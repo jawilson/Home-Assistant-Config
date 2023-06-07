@@ -1,12 +1,3 @@
-living_room_activity:
-  name: Projector Activity
-  options:
-    - power_off
-    - Play Shield
-    - Listen to Shield
-    - Play Xbox One
-    - Play Xbox 360
-
 bathroom_light_profile:
   name: Bathroom Light Profile
   options:

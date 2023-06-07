@@ -7,7 +7,7 @@ sequence:
   - service: homeassistant.turn_off
     entity_id:
       - light.living_area_lights
-      - switch.tv
+      - remote.living_room
   - service: media_player.media_stop
     entity_id:
       - media_player.cast_kitchen_display

@@ -58,7 +58,7 @@ cards:
       - automation.end_circulate_air
       - automation.humidity_too_low
       - automation.humidity_too_high
-      - automation.projector_off
+      - automation.living_room_tv_off
       - automation.shield_plex_idle
       - automation.location_update_notification
       - automation.light_intruder_alert

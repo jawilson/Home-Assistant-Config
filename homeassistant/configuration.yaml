@@ -102,7 +102,6 @@ logbook:
       - light.living_room_lights
       - light.entertainment_light_1
       - light.entertainment_light_2
-      - light.projector
       - light.bathroom
       - light.bathroom_lights
       - light.bathroom_mirror_1
