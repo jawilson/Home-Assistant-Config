@@ -226,6 +226,13 @@ media_player: !include media_players.yaml
 
 switch: !include_dir_merge_list switches
 
+plant:
+  ficus:
+    sensors:
+      moisture: sensor.ficus_moisture
+      temperature: sensor.ficus_temperature
+      brightness: sensor.ficus_illuminance
+
 
 # Groups
 group: !include groups.yaml

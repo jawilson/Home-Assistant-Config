@@ -29,6 +29,19 @@ cards:
   - type: thermostat
     entity: climate.sunroom
 
+  - title: Ficus 🪴
+    type: glance
+    entities:
+      - entity: sensor.ficus_moisture
+        name: Soil Moisture
+      - entity: sensor.ficus_illuminance
+        name: Brightness
+      - entity: sensor.ficus_temperature
+        name: Temperature
+      - entity: sensor.ficus_humidity
+        name: Humidity
+    state_color: true
+
   - type: entities
     title: Control
     show_header_toggle: false

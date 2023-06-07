@@ -94,6 +94,7 @@ services:
       - ./tools:/opt/tools:ro
       - ./ssl/certs:/config/certs:ro
       - ./.ssh:/config/.ssh:ro
+      - /run/dbus:/run/dbus:ro
     environment:
       - HA_LOG_LEVEL=warning
       - TZ=America/New_York

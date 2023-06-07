@@ -20,6 +20,7 @@
     - sensor.bathroom_temperature
     - sensor.bedroom_temperature
     - sensor.sunroom_temperature
+    - sensor.ficus_temperature
 
 - platform: min_max
   name: Min Apartment Temperature
@@ -29,6 +30,7 @@
     - sensor.bathroom_temperature
     - sensor.bedroom_temperature
     - sensor.sunroom_temperature
+    - sensor.ficus_temperature
 
 - platform: min_max
   name: Max Apartment Temperature
@@ -38,6 +40,7 @@
     - sensor.bathroom_temperature
     - sensor.bedroom_temperature
     - sensor.sunroom_temperature
+    - sensor.ficus_temperature
 
 - platform: min_max
   name: Non-Sunroom Temperatures
@@ -56,6 +59,7 @@
     - sensor.bathroom_relative_humidity
     - sensor.bedroom_relative_humidity
     - sensor.sunroom_relative_humidity
+    - sensor.ficus_humidity
 
 - platform: statistics
   entity_id: sensor.bathroom_temperature
