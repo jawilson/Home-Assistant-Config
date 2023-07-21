@@ -49,8 +49,8 @@ cards:
       - entity: fan.sunroom
         name: Fan
       - automation.sunroom_fan
-      - input_boolean.climate_auto
       - automation.sunroom_auto_temp
+      - input_boolean.climate_auto
       - switch.circadian_lighting_living_area
       - script.living_area_wake_up
 

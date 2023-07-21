@@ -5,6 +5,7 @@
     - media_player.plex_shield
     - media_player.cast_shield
     - media_player.androidtv_shield
+    - media_player.androidtv_remote_shield
   commands:
     turn_on:
       service: remote.turn_on

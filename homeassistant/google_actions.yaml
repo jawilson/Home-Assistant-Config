@@ -52,7 +52,6 @@ filter:
     - light.color_temperature_lights
     - script.tv_dinner
     - switch.shield
-    - switch.sunroom_switch
     - switch.bathroom_speaker_do_not_disturb
     - switch.bedroom_speaker_do_not_disturb
     - switch.kitchen_display_do_not_disturb
