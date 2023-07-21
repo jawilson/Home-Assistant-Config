@@ -4,7 +4,7 @@ services:
   mqtt:
     image: eclipse-mosquitto
     restart: unless-stopped
-    dns: 192.168.0.1
+    dns: 192.168.0.2
     dns_search: singularity.net
     user: '114:118'
     ports:
@@ -28,7 +28,7 @@ services:
   adbd:
     image: sorccu/adb:latest
     restart: unless-stopped
-    dns: 192.168.0.1
+    dns: 192.168.0.2
     dns_search: singularity.net
     volumes:
       - ./adb:/root/.android
@@ -54,7 +54,7 @@ services:
     networks:
       default:
       macvlan:
-        ipv4_address: 192.168.0.63
+        ipv4_address: 192.168.0.61
       traefik:
     volumes:
       - ./esphome:/config
@@ -77,9 +77,7 @@ services:
       - zwavejs2mqtt
     restart: unless-stopped
     user: '0:118'
-    dns:
-      - 192.168.0.1
-      - 8.8.8.8
+    dns: 192.168.0.2
     dns_search: singularity.net
     networks:
       default:
@@ -96,6 +94,9 @@ services:
       - ./.ssh:/config/.ssh:ro
       - /run/dbus:/run/dbus:ro
     environment:
+      - PUID=114
+      - PGID=118
+      - UMASK=007
       - HA_LOG_LEVEL=warning
       - TZ=America/New_York
     labels:
@@ -129,10 +130,5 @@ networks:
     external: true
     name: traefik
   macvlan:
-    driver: macvlan
-    driver_opts:
-      parent: 'enp5s0'
-    ipam:
-      config:
-        - subnet: 192.168.0.0/24
-          #gateway: 192.168.0.1
+    external: true
+    name: HomeNetwork
