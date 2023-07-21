@@ -36,7 +36,7 @@ sequence:
   - alias: "Wait for temp to reach target"
     wait_template: "{{ states.climate.apartment.attributes.current_temperature|float >= states('input_number.default_low_temp')|float }}"
     timeout: '01:00:00'
-    continue_on_timeout: 'true'
+    continue_on_timeout: true
   - alias: "Set Nest to actual target based on HVAC mode"
     choose:
     - alias: "Use high temp if cooling"

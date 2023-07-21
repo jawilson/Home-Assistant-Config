@@ -201,3 +201,176 @@
     target:
       entity_id: automation.wake_up
   mode: single
+- id: '1686175328990'
+  alias: Notify Jeff Watch Charged
+  description: Notify Jeff when his Pixel watch is fully charged.
+  trigger:
+  - type: battery_level
+    platform: device
+    device_id: b9264bcc99a8feea5c137ab34af1345e
+    entity_id: sensor.jeff_s_pixel_watch_battery_level
+    domain: sensor
+    above: 99
+    enabled: false
+  - platform: state
+    entity_id:
+    - sensor.jawilson_watch_battery_state
+    to: full
+    from: charging
+  - platform: state
+    entity_id:
+    - sensor.jeff_s_pixel_watch_battery_level
+    to: '100'
+  condition:
+  - type: is_plugged_in
+    condition: device
+    device_id: b9264bcc99a8feea5c137ab34af1345e
+    entity_id: binary_sensor.jeff_s_pixel_watch_is_charging
+    domain: binary_sensor
+  - type: is_off
+    condition: device
+    device_id: b9264bcc99a8feea5c137ab34af1345e
+    entity_id: binary_sensor.jeff_s_pixel_watch_on_body_sensor
+    domain: binary_sensor
+  action:
+  - wait_template: '{{ is_state(''binary_sensor.jeff_sleeping'', ''off'') }}'
+    continue_on_timeout: true
+    timeout: 00:30:00
+    alias: Wait for Jeff to be awake
+  - service: notify.jeff_phone
+    data:
+      message: Your Pixel watch has finished charging.
+      title: Watch Charged
+      data:
+        tag: watch-charged
+  - wait_for_trigger:
+    - platform: state
+      entity_id:
+      - binary_sensor.jeff_s_pixel_watch_on_body_sensor
+      to: 'on'
+      alias: When Jeff puts his watch on
+    - platform: event
+      event_type: mobile_app_notification_cleared
+      context:
+        user_id:
+        - 94f1fb97e8374becb77c3979bbd3fc0b
+      event_data:
+        tag: watch-charged
+      alias: When the notification is cleared
+      id: notification_cleared
+    - type: not_plugged_in
+      platform: device
+      device_id: b9264bcc99a8feea5c137ab34af1345e
+      entity_id: binary_sensor.jeff_s_pixel_watch_is_charging
+      domain: binary_sensor
+    timeout:
+      hours: 0
+      minutes: 30
+      seconds: 0
+      milliseconds: 0
+  - if:
+    - condition: template
+      value_template: '{{ wait.trigger.id != ''notification_cleared'' }}'
+      alias: Notification not cleared
+    then:
+    - service: notify.jeff_phone
+      data:
+        message: clear_notification
+        data:
+          tag: watch-charged
+    alias: Clear notification if Jeff put his watch on
+  mode: single
+- id: '1687403992329'
+  alias: Play news when waking up bedroom
+  description: ''
+  trigger:
+  - platform: event
+    event_type: automation_triggered
+    event_data:
+      entity_id: automation.wake_up_bedroom
+  condition:
+  - condition: state
+    entity_id: person.jeff
+    state: home
+  action:
+  - service: notify.jeff_phone
+    data:
+      message: Would you like to hear the latest news?
+      data:
+        tag: morning-news
+        actions:
+        - action: 'yes'
+          title: 'Yes'
+        - action: 'no'
+          title: 'No'
+  - wait_for_trigger:
+    - platform: event
+      event_type: mobile_app_notification_cleared
+      event_data:
+        tag: morning-news
+      context:
+        user_id:
+        - 94f1fb97e8374becb77c3979bbd3fc0b
+      alias: Notification is cleared
+    - platform: event
+      event_type: mobile_app_notification_action
+      alias: Notification responded to
+      event_data:
+        tag: morning-news
+      context:
+        user_id:
+        - 94f1fb97e8374becb77c3979bbd3fc0b
+    - platform: state
+      entity_id:
+      - person.jeff
+      from: home
+      alias: Jeff Leaves Home
+    - platform: state
+      entity_id:
+      - binary_sensor.jeff_sleeping
+      alias: Jeff Goes Back to Sleep
+      to: 'on'
+    timeout:
+      hours: 0
+      minutes: 30
+      seconds: 0
+      milliseconds: 0
+  - choose:
+    - conditions:
+      - condition: template
+        value_template: '{{ wait.trigger.event.data.action == ''yes'' }}'
+        alias: Responded Yes to Notification
+      sequence:
+      - service: google_assistant_sdk.send_text_command
+        data:
+          command: listen to the latest news on home group
+    - conditions:
+      - condition: template
+        value_template: '{{ wait.trigger.event.event_type != ''mobile_app_notification_cleared''
+          }}'
+        alias: Notification wasn't cleared
+      sequence:
+      - service: notify.jeff_phone
+        data:
+          message: clear_notification
+          data:
+            tag: morning-news
+        alias: Clear notification
+  mode: single
+- id: '1687406200035'
+  alias: Notify Tasker When Sleeping at Home Alone
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - binary_sensor.jeff_sleeping_at_home_alone
+    to: 'on'
+  condition: []
+  action:
+  - service: notify.jeff_phone
+    data:
+      message: command_broadcast_intent
+      data:
+        intent_package_name: net.dinglisch.android.taskerm
+        intent_action: net.dinglisch.android.taskerm.SLEEPING_AT_HOME_ALONE
+  mode: single

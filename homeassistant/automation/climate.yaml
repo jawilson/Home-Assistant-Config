@@ -10,6 +10,9 @@
     - condition: state
       entity_id: input_boolean.presence
       state: 'on'
+    - condition: state
+      entity_id: input_boolean.climate_auto
+      state: 'on'
     - condition: or
       conditions:
         - condition: template
@@ -35,6 +38,9 @@
     entity_id: switch.apartment_home
     to: 'off'
   condition:
+    - condition: state
+      entity_id: input_boolean.presence
+      state: 'on'
     - condition: state
       entity_id: binary_sensor.presume_home
       state: 'on'
@@ -68,6 +74,9 @@
     - condition: state
       entity_id: binary_sensor.presume_home
       state: 'off'
+    - condition: state
+      entity_id: input_boolean.climate_auto
+      state: 'on'
     - condition: or
       conditions:
         - condition: template
@@ -202,7 +211,7 @@
       value: "{{ states('input_number.default_high_temp')|int - 2 }}"
 
 
-- alias: Sunroom Fan
+- alias: Auto Sunroom Fan
   id: sunroom_fan
   trigger:
     - platform: event

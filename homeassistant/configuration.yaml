@@ -232,6 +232,11 @@ plant:
       moisture: sensor.ficus_moisture
       temperature: sensor.ficus_temperature
       brightness: sensor.ficus_illuminance
+  ficus_filtered:
+    sensors:
+      moisture: sensor.ficus_moisture_filtered
+      temperature: sensor.ficus_temperature_filtered
+      brightness: sensor.ficus_illuminance_filtered
 
 
 # Groups

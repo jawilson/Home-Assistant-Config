@@ -7,6 +7,22 @@
       value_template: >-
         {{ is_state('person.jeff', 'home') and is_state('binary_sensor.jeff_sleeping', 'on') }}
 
+    jeff_sleeping_at_whitneys:
+      friendly_name: "Jeff Sleeping at Whitney's"
+      value_template: >-
+        {{ is_state('person.jeff', 'Whitney\'s') and is_state('binary_sensor.jeff_sleeping', 'on') }}
+
+    jeff_sleeping_at_home_alone:
+      friendly_name: 'Jeff Sleeping at Home Alone'
+      value_template: >-
+        {{ is_state('binary_sensor.jeff_sleeping_at_home', 'on') and not is_state('group.partners', 'home') }}
+
+    whitney_sleeping_over:
+      friendly_name: 'Whitney Sleeping Over'
+      value_template: >-
+        {{ is_state('binary_sensor.jeff_sleeping_at_home', 'on') and is_state('person.whitney', 'home') }}
+
+
 
 # All
 

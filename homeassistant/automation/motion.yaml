@@ -27,6 +27,9 @@
               entity_id: binary_sensor.bedroom_motion
               state: 'on'
             - condition: state
+              entity_id: input_boolean.presence
+              state: 'on'
+            - condition: state
               entity_id: binary_sensor.apartment_occupied
               state: 'on'
             - condition: state
@@ -103,6 +106,9 @@
         - conditions:
             - condition: state
               entity_id: binary_sensor.bathroom_motion
+              state: 'on'
+            - condition: state
+              entity_id: input_boolean.presence
               state: 'on'
             - condition: state
               entity_id: binary_sensor.apartment_occupied
@@ -192,6 +198,9 @@
         - conditions:
             - condition: state
               entity_id: binary_sensor.closet_motion
+              state: 'on'
+            - condition: state
+              entity_id: input_boolean.presence
               state: 'on'
             - condition: state
               entity_id: binary_sensor.apartment_occupied

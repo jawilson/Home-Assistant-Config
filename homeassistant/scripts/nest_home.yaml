@@ -3,8 +3,9 @@ sequence:
   - service: switch.turn_on
     data:
       entity_id: switch.apartment_home
-  - delay:
-      seconds: 15
+  - alias: "Wait until Nest turns off eco mode"
+    wait_template: "{{ is_state_attr('climate.apartment', 'preset_mode', 'none') }}"
+    timeout: "00:00:30"
   - choose:
       - conditions:
           - condition: state

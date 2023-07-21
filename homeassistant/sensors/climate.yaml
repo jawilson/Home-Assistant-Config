@@ -15,6 +15,7 @@
 - platform: min_max
   name: Apartment Temperatures
   type: mean
+  unique_id: min_max_apartment_temps_mean
   entity_ids:
     - sensor.apartment_thermostat_temperature
     - sensor.bathroom_temperature
@@ -25,6 +26,7 @@
 - platform: min_max
   name: Min Apartment Temperature
   type: min
+  unique_id: min_max_apartment_temps_min
   entity_ids:
     - sensor.apartment_thermostat_temperature
     - sensor.bathroom_temperature
@@ -35,6 +37,7 @@
 - platform: min_max
   name: Max Apartment Temperature
   type: max
+  unique_id: min_max_apartment_temps_max
   entity_ids:
     - sensor.apartment_thermostat_temperature
     - sensor.bathroom_temperature
@@ -43,8 +46,17 @@
     - sensor.ficus_temperature
 
 - platform: min_max
+  name: Sunroom Temperatures
+  type: mean
+  unique_id: min_max_sunroom_temps_mean
+  entity_ids:
+    - sensor.sunroom_temperature
+    - sensor.ficus_temperature
+
+- platform: min_max
   name: Non-Sunroom Temperatures
   type: mean
+  unique_id: min_max_non_sunroom_temps_mean
   entity_ids:
     - sensor.apartment_thermostat_temperature
     - sensor.bathroom_temperature
@@ -53,6 +65,7 @@
 - platform: min_max
   name: Apartment Humidities
   type: mean
+  unique_id: min_max_apartment_humidities_mean
   entity_ids:
     - sensor.apartment_thermostat_humidity
     - sensor.dehumidifier_humidity
@@ -63,20 +76,36 @@
     - sensor.ficus_humidity
 
 - platform: statistics
-  entity_id: sensor.bathroom_temperature
-  name: Bathroom Temp Stats
-  state_characteristic: mean
-  sampling_size: 400
+  name: Ficus Moisture (Filtered)
+  entity_id: sensor.ficus_moisture
+  state_characteristic: average_linear
+  unique_id: stats_ficus_moisture_average_linear
   max_age:
-    hours: 12
+    hours: 2
 
 - platform: statistics
-  entity_id: sensor.bathroom_relative_humidity
-  name: Bathroom Humidity Stats
-  state_characteristic: mean
-  sampling_size: 400
+  name: Ficus Brightness (Filtered)
+  entity_id: sensor.ficus_illuminance
+  state_characteristic: average_linear
+  unique_id: stats_ficus_brightness_average_linear
   max_age:
-    hours: 12
+    hours: 2
+
+- platform: statistics
+  name: Ficus Temperature (Filtered)
+  entity_id: sensor.ficus_temperature
+  state_characteristic: average_linear
+  unique_id: stats_ficus_temperature_average_linear
+  max_age:
+    hours: 2
+
+- platform: statistics
+  name: Ficus Humidity (Filtered)
+  entity_id: sensor.ficus_humidity
+  state_characteristic: average_linear
+  unique_id: stats_ficus_humidity_average_linear
+  max_age:
+    hours: 2
 
 - platform: history_stats
   name: HVAC Fan Runtime

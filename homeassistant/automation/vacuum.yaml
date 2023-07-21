@@ -11,12 +11,15 @@
       for:
         minutes: 15
   condition:
-    - condition: state
-      entity_id: input_boolean.presence
-      state: 'on'
-    - condition: state
-      entity_id: binary_sensor.presume_home
-      state: 'off'
+    - alias: Presence check
+      condition: or
+      conditions:
+        - condition: state
+          entity_id: input_boolean.presence
+          state: 'off'
+        - condition: state
+          entity_id: binary_sensor.presume_home
+          state: 'off'
     - alias: Run requested or needs to run
       condition: or
       conditions:

@@ -193,6 +193,9 @@
       below: input_number.bedtime_cooldown_hours
   condition:
     - condition: state
+      entity_id: input_boolean.climate_auto
+      state: 'on'
+    - condition: state
       entity_id: person.jeff
       state: 'home'
     - condition: state
@@ -274,13 +277,13 @@
         {{ 1440 if states('sensor.bedroom_speaker_alarms') == 'unavailable' else (states('sensor.bedroom_speaker_alarms')|as_timestamp - states.sensor.time.last_changed|as_timestamp)/60 }}
       below: input_number.apartment_wakeup_period
   condition:
-    condition: state
-    entity_id: person.jeff
-    state: 'home'
-  action:
+    - condition: state
+      entity_id: person.jeff
+      state: 'home'
     - condition: state
       entity_id: input_boolean.climate_auto
       state: 'on'
+  action:
     - service: script.turn_on
       entity_id: script.apartment_wake_up
 
