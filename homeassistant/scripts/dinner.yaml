@@ -11,5 +11,5 @@ sequence:
   - condition: state
     entity_id: remote.living_room
     state: 'off'
-  - service: remote.turn_off
+  - service: remote.turn_on
     entity_id: remote.living_room
