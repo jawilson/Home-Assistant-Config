@@ -1,2 +1,11 @@
 switch.humidifier:
   icon: mdi:water
+
+switch.circadian_lighting_bathroom:
+  friendly_name: Bathroom circadian lighting
+switch.circadian_lighting_bedroom:
+  friendly_name: Bedroom circadian lighting
+switch.circadian_lighting_closet:
+  friendly_name: Closet circadian lighting
+switch.circadian_lighting_living_area:
+  friendly_name: Living area circadian lighting

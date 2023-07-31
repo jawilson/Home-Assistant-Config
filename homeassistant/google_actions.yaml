@@ -56,6 +56,10 @@ filter:
     - switch.bedroom_speaker_do_not_disturb
     - switch.kitchen_display_do_not_disturb
     - switch.sunroom_speaker_do_not_disturb
+    - switch.living_room_speaker_do_not_disturb
+    - switch.humidifier_auto_mode
+    - switch.humidifier_automatic_stop
+    - switch.humidifier_display
 
 entity_config:
   input_boolean.media_automation:
@@ -156,3 +160,4 @@ entity_config:
       - Living area circadian
       - Living area fluxer
       - Living area color
+    room: Living Area
