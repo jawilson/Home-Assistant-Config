@@ -1,0 +1,60 @@
+esphome:
+  name: sunroom32
+  friendly_name: Sunroom32
+  project:
+    name: jawilson.sunroom-sensor
+    version: "0.0.2"
+
+esp32:
+  board: esp32dev
+  framework:
+    type: esp-idf
+
+# Enable logging
+logger:
+
+# Enable Home Assistant API
+api:
+  encryption:
+    key: "Y8JyHN9qgEmJUXZ0/+5N9Z2FbzTWW5cuoYUq33K02YY="
+
+ota:
+  password: "e3016d698103a034909fdd14a931cb24"
+
+wifi:
+  ssid: !secret wifi_ssid
+  password: !secret wifi_password
+
+  # Enable fallback hotspot (captive portal) in case wifi connection fails
+  ap:
+    ssid: "Sunroom32 Fallback Hotspot"
+    password: "xnGQ4IcmowAT"
+
+#esp32_ble_tracker:
+#  scan_parameters:
+#    # We currently use the defaults to ensure Bluetooth
+#    # can co-exist with WiFi In the future we may be able to
+#    # enable the built-in coexistence logic in ESP-IDF
+#    active: true
+
+bluetooth_proxy:
+  active: true
+
+button:
+- platform: safe_mode
+  name: Safe Mode Boot
+  entity_category: diagnostic
+
+sensor:
+  - platform: dht
+    pin: GPIO4
+    temperature:
+      name: "Sunroom Temperature"
+      accuracy_decimals: 3
+      filters:
+        - offset: -0.342
+    humidity:
+      name: "Sunroom Relative Humidity"
+      accuracy_decimals: 1
+      filters:
+        - offset: -9
