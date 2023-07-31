@@ -187,20 +187,6 @@
       entity_id: humidifier.humidifier
       domain: humidifier
   mode: single
-- id: '1681359196573'
-  description: ''
-  trigger:
-  - platform: state
-    entity_id:
-    - input_button.wake_up
-  condition: []
-  action:
-  - service: automation.trigger
-    data:
-      skip_condition: true
-    target:
-      entity_id: automation.wake_up
-  mode: single
 - id: '1686175328990'
   alias: Notify Jeff Watch Charged
   description: Notify Jeff when his Pixel watch is fully charged.
