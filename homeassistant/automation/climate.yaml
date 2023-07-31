@@ -234,8 +234,8 @@
     - condition: state
       entity_id: input_boolean.guests
       state: 'off'
-    - "{{ not is_state('sensor.sunroom_temperature', 'unavailable') }}"
-    - "{{ not is_state('sensor.non_sunroom_temperatures', 'unavailable') }}"
+    - "{{ has_value('sensor.sunroom_temperature') }}"
+    - "{{ has_value('sensor.non_sunroom_temperatures') }}"
   action:
     - variables:
         percentage: >

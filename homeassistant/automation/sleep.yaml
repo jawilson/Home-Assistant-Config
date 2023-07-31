@@ -189,7 +189,7 @@
         - sensor.jawilson_phone_next_alarm
         - sensor.time
         - input_number.bedtime_cooldown_hours
-      value_template: "{{ 24 if states('sensor.jawilson_phone_next_alarm') == 'unavailable' or state_attr('sensor.jawilson_phone_next_alarm', 'Package') != 'com.urbandroid.sleep' else (states('sensor.jawilson_phone_next_alarm')|as_timestamp - states.sensor.time.last_changed|as_timestamp)/60/60 }}"
+      value_template: "{{ 24 if not has_value('sensor.jawilson_phone_next_alarm') or state_attr('sensor.jawilson_phone_next_alarm', 'Package') != 'com.urbandroid.sleep' else (states('sensor.jawilson_phone_next_alarm')|as_timestamp - states.sensor.time.last_changed|as_timestamp)/60/60 }}"
       below: input_number.bedtime_cooldown_hours
   condition:
     - condition: state
@@ -206,7 +206,7 @@
         - sensor.jawilson_phone_next_alarm
         - input_number.apartment_wakeup_period
       value_template: >
-        {{ 0 if states('sensor.jawilson_phone_next_alarm') == 'unavailable' else (states('sensor.jawilson_phone_next_alarm')|as_timestamp - states.sensor.time.last_changed|as_timestamp)/60 }}
+        {{ 0 if not has_value('sensor.jawilson_phone_next_alarm') else (states('sensor.jawilson_phone_next_alarm')|as_timestamp - states.sensor.time.last_changed|as_timestamp)/60 }}
       above: input_number.apartment_wakeup_period
   action:
     - condition: or
@@ -266,7 +266,7 @@
         - sensor.time
         - input_number.apartment_wakeup_period
       value_template: >
-        {{ 1440 if states('sensor.jawilson_phone_next_alarm') == 'unknown' else (states('sensor.jawilson_phone_next_alarm')|as_timestamp - states.sensor.time.last_changed|as_timestamp)/60 }}
+        {{ 1440 if not has_value('sensor.jawilson_phone_next_alarm') else (states('sensor.jawilson_phone_next_alarm')|as_timestamp - states.sensor.time.last_changed|as_timestamp)/60 }}
       below: input_number.apartment_wakeup_period
     - platform: numeric_state
       entity_id:
@@ -274,7 +274,7 @@
         - sensor.time
         - input_number.apartment_wakeup_period
       value_template: >
-        {{ 1440 if states('sensor.bedroom_speaker_alarms') == 'unavailable' else (states('sensor.bedroom_speaker_alarms')|as_timestamp - states.sensor.time.last_changed|as_timestamp)/60 }}
+        {{ 1440 if not has_value('sensor.bedroom_speaker_alarms') else (states('sensor.bedroom_speaker_alarms')|as_timestamp - states.sensor.time.last_changed|as_timestamp)/60 }}
       below: input_number.apartment_wakeup_period
   condition:
     - condition: state
