@@ -1,0 +1,21 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "data": {
+          "name": "Name",
+          "binary_sensor": "Predicted entity",
+          "fading": "Fading parameter",
+          "unique_id": "Unique ID",
+          "threshold": "Threshold"
+        },
+        "description": "You can set binary sensor predictor here. For more information visit project's website.",
+        "title": "Setup binary sensor predictor"
+      }
+    },
+    "error": {
+      "already_configured": "The unique ID is already used!"
+    },
+    "abort": {}
+  }
+}

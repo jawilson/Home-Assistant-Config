@@ -1,0 +1,21 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "data": {
+          "name": "Megnevezés",
+          "binary_sensor": "Előrejelezni kívánt szenzor",
+          "fading": "Felejtés paraméter",
+          "unique_id": "Egyedi azonosító",
+          "threshold": "Küszöbérték"
+        },
+        "description": "Bináris előrejelző szenzor beállítás részleteiért látogasd meg az integráció weboldalát!",
+        "title": "Bináris előrejelző szenzor beállítása"
+      }
+    },
+    "error": {
+      "already_configured": "Ez az egyedi azonosító már használva van!"
+    },
+    "abort": {}
+  }
+}

@@ -1,0 +1,15 @@
+"""Module of binary sensor predictor constants."""
+DOMAIN = "binary_sensor_predictor"
+
+CONF_BINARY_SENSOR = "binary_sensor"
+CONF_FADING = "fading"
+CONF_THRESHOLD = "threshold"
+CONF_PERIOD = "period"
+CONF_TIME_BLOCK_PERIOD = "time_block_period"
+CONF_FILTER_BINARY_SENSOR = "filter_binary_sensor"
+
+ATTR_CURRENT_TIME_BLOCK_STATE = "current_time_block_state"
+ATTR_CURRENT_STATE = "current_state"
+ATTR_CURRENT_TIME_BLOCK = "current_time_block"
+ATTR_PROBABILITIES = "probabilities"
+ATTR_PROBABILITY = "probability"
