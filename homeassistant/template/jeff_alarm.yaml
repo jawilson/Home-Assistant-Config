@@ -1,0 +1,114 @@
+- trigger:
+    - platform: event
+      event_type: jeff_alarm_option_selected
+      id: manual
+    - platform: event
+      event_type: 'android.intent_received'
+      context:
+        user_id: 94f1fb97e8374becb77c3979bbd3fc0b
+      event_data:
+        intent: 'com.urbandroid.sleep.alarmclock.SMART_PERIOD_AUTO'
+    - platform: event
+      event_type: 'android.intent_received'
+      context:
+        user_id: 94f1fb97e8374becb77c3979bbd3fc0b
+      event_data:
+        intent: 'com.urbandroid.sleep.alarmclock.ALARM_ALERT_START_AUTO'
+    - platform: event
+      event_type: 'android.intent_received'
+      context:
+        user_id: 94f1fb97e8374becb77c3979bbd3fc0b
+      event_data:
+        intent: 'com.urbandroid.sleep.alarmclock.ALARM_ALERT_DISMISS_AUTO'
+    - platform: event
+      event_type: 'android.intent_received'
+      context:
+        user_id: 94f1fb97e8374becb77c3979bbd3fc0b
+      event_data:
+        intent: 'com.urbandroid.sleep.alarmclock.ALARM_SNOOZE_CLICKED_ACTION_AUTO'
+    - platform: event
+      event_type: 'android.intent_received'
+      context:
+        user_id: 94f1fb97e8374becb77c3979bbd3fc0b
+      event_data:
+        intent: 'com.urbandroid.sleep.alarmclock.TIME_TO_BED_ALARM_ALERT_AUTO'
+  sensor:
+    - name: "Jeff's Alarm Sensor"
+      unique_id: jeff_alarm_sensor_template
+      state: >
+        {% if trigger.id == 'manual' %}
+        {{ trigger.event.data.option }}
+        {%- elif trigger.event.data.intent.endswith('SMART_PERIOD_AUTO') %}
+        Smart Period
+        {%- elif trigger.event.data.intent.endswith('ALARM_ALERT_START_AUTO') %}
+        Ringing
+        {%- elif trigger.event.data.intent.endswith('ALARM_ALERT_DISMISS_AUTO') %}
+        Dismissed
+        {%- elif trigger.event.data.intent.endswith('ALARM_SNOOZE_CLICKED_ACTION_AUTO') %}
+        Snoozed
+        {%- elif trigger.event.data.intent.endswith('TIME_TO_BED_ALARM_ALERT_AUTO') %}
+        Bedtime
+        {%- endif %}
+
+- select:
+  - name: "Jeff's Alarm"
+    unique_id: jeff_alarm_select_template
+    state: "{{ states('sensor.jeff_alarm') }}"
+    options: >
+      {{ [
+        'Smart Period',
+        'Ringing',
+        'Dismissed',
+        'Snoozed',
+        'Bedtime'
+      ] }}
+    select_option:
+      - event: jeff_alarm_option_selected
+        event_data:
+          option: "{{ option }}"
+    icon: >
+      {% if is_state('sensor.jeff_alarm', 'Smart Period') %}
+        mdi:alarm-check
+      {% elif is_state('sensor.jeff_alarm', 'Ringing') %}
+        mdi:alarm
+      {% elif is_state('sensor.jeff_alarm', 'Dismissed') %}
+        mdi:alarm-off
+      {% elif is_state('sensor.jeff_alarm', 'Snoozed') %}
+        mdi:alarm-snooze
+      {% elif is_state('sensor.jeff_alarm', 'Bedtime') %}
+        mdi:bed
+      {% else %}
+        mdi:help
+      {% endif %}
+
+- trigger:
+    - platform: state
+      entity_id: input_boolean.jeff_sleeping
+      id: manual
+    - platform: event
+      event_type: 'android.intent_received'
+      context:
+        user_id: 94f1fb97e8374becb77c3979bbd3fc0b
+      event_data:
+        intent: 'com.urbandroid.sleep.alarmclock.SLEEP_TRACKING_STARTED_AUTO'
+    - platform: event
+      event_type: 'android.intent_received'
+      context:
+        user_id: 94f1fb97e8374becb77c3979bbd3fc0b
+      event_data:
+        intent: 'com.urbandroid.sleep.alarmclock.SLEEP_TRACKING_STOPPED_AUTO'
+  binary_sensor:
+    - name: "Jeff Sleeping"
+      unique_id: jeff_sleeping_binary_sensor_template
+      state: >
+        {% if trigger.id == 'manual' %}
+        {{ states(trigger.entity_id) }}
+        {% else %}
+        {{ 'on' if trigger.event.data.intent.endswith('SLEEP_TRACKING_STARTED_AUTO') else 'off' }}
+        {% endif %}
+      icon: >
+        {% if (trigger.id != 'manual' and trigger.event.data.intent.endswith('SLEEP_TRACKING_STARTED_AUTO')) or (trigger.id == 'manual' and is_state(trigger.entity_id, 'on'))  %}
+          mdi:sleep
+        {% else %}
+          mdi:sleep-off
+        {% endif %}
