@@ -54,13 +54,24 @@ cards:
             show_name: false
             entities:
               - sensor.jawilson_phone_detected_activity
-              - entity: input_boolean.jeff_sleeping
-                name: Sleeping
+              - entity: binary_sensor.jeff_sleeping
+                tap_action:
+                  action: fire-dom-event
+                  browser_mod:
+                    service: browser_mod.more_info
+                    data:
+                      entity: input_boolean.jeff_sleeping
                 hold_action:
-                  action: toggle
+                  action: call-service
+                  service: input_boolean.toggle
+                  data:
+                    entity_id: input_boolean.jeff_sleeping
                 double_tap_action:
-                  action: toggle
-              - entity: input_select.jeff_alarm
+                  action: call-service
+                  service: input_boolean.toggle
+                  data:
+                    entity_id: input_boolean.jeff_sleeping
+              - entity: select.jeff_alarm
                 name: Alarm
       - type: custom:auto-entities
         show_empty: false
