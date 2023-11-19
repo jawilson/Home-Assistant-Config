@@ -16,7 +16,6 @@ homeassistant:
   customize_glob: !include customize_glob.yaml
 
 default_config:
-discovery:
 update:
 
 # Web

@@ -3,7 +3,6 @@ filter:
     - light.living_area_lights
     - input_boolean.schedule_vacuum
     - input_boolean.media_automation
-    - media_player.shield
     - script.apartment_shutdown
     - script.bedtime
     - script.dinner
@@ -51,6 +50,7 @@ filter:
     - light.all_hue_lights
     - light.color_lights
     - light.color_temperature_lights
+    - media_player.shield
     - script.tv_dinner
     - switch.shield
     - switch.bathroom_speaker_do_not_disturb
