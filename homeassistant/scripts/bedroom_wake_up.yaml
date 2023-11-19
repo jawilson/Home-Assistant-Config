@@ -39,11 +39,11 @@ sequence:
 
   - service: light.turn_on
     entity_id:
-      - light.bedroom_lights
+      - light.bedroom
     data:
       transition: 600
       kelvin: "{{ state_attr('switch.circadian_lighting_bedroom', 'colortemp')|int }}"
-      brightness_pct: "{{ state_attr('switch.circadian_lighting_bedroom', 'brightness')|int }}"
+      brightness_pct: "{{ state_attr('switch.circadian_lighting_bedroom', 'brightness')|float }}"
   - delay:
       minutes: 10
 

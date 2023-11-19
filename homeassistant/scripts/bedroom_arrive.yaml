@@ -17,5 +17,5 @@ sequence:
       entity_id:
         - light.bedroom_lights
     data:
-      kelvin: "{{ state_attr('sensor.circadian_values', 'colortemp')|int }}"
-      brightness_pct: "{{ state_attr('switch.circadian_lighting_bedroom', 'brightness')|int }}"
+      kelvin: "{{ state_attr('switch.circadian_lighting_bedroom', 'colortemp')|int }}"
+      brightness_pct: "{{ state_attr('switch.circadian_lighting_bedroom', 'brightness')|float }}"

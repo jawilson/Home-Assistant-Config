@@ -49,7 +49,7 @@
               entity_id: light.bedroom_lights
               data:
                 kelvin: "{{ state_attr('switch.circadian_lighting_bedroom', 'colortemp')|int }}"
-                brightness_pct: "{{ state_attr('switch.circadian_lighting_bedroom', 'brightness')|int }}"
+                brightness_pct: "{{ state_attr('switch.circadian_lighting_bedroom', 'brightness')|float }}"
         # Turn off if no motion for 3 minutes, lights on, not sleeping or doing something special
         - conditions:
             - condition: state
@@ -128,6 +128,9 @@
                   sequence:
                     - service: light.turn_on
                       entity_id: light.bathroom_lights
+                      data:
+                        kelvin: "{{ state_attr('switch.circadian_lighting_bathroom', 'colortemp')|int }}"
+                        brightness_pct: "{{ state_attr('switch.circadian_lighting_bathroom', 'brightness')|float }}"
               default:
                 - service: switch.turn_off
                   entity_id: switch.circadian_lighting_bathroom
@@ -216,6 +219,9 @@
           sequence:
             - service: light.turn_on
               entity_id: light.closet_lights
+              data:
+                kelvin: "{{ state_attr('switch.circadian_lighting_closet', 'colortemp')|int }}"
+                brightness_pct: "{{ state_attr('switch.circadian_lighting_closet', 'brightness')|float }}"
         - conditions:
             - condition: state
               entity_id: binary_sensor.closet_motion

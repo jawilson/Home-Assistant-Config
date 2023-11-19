@@ -14,20 +14,21 @@
     - light.sunroom_lamp_top
     - light.sunroom_lamp_middle
     - light.sunroom_lamp_bottom
-  lights_brightness:
-    - light.dining_lights_level
   lights_ct:
+    - light.kitchen_cabinet_lights
     - light.living_room_nook
     - light.tree_lamp_1
     - light.tree_lamp_2
     - light.tree_lamp_3
     - light.tree_lamp_4
     - light.tree_lamp_5
+  lights_brightness:
+    - light.dining_lights_level
 
 - name: Bedroom
   platform: circadian_lighting
   lights_ct:
-    - light.bedroom_lights
+    - light.bedroom
 
 - name: Closet
   platform: circadian_lighting

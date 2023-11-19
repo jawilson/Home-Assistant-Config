@@ -14,4 +14,4 @@
       state: 'on'
   action:
     - service: light.turn_on
-      entity_id: light.sunroom
+      entity_id: light.sunroom_lights

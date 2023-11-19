@@ -42,7 +42,7 @@ sequence:
     data:
       transition: 600
       kelvin: "{{ state_attr('switch.circadian_lighting_closet', 'colortemp')|int }}"
-      brightness_pct: "{{ state_attr('switch.circadian_lighting_closet', 'brightness')|int }}"
+      brightness_pct: "{{ state_attr('switch.circadian_lighting_closet', 'brightness')|float }}"
   - delay:
       minutes: 10
 

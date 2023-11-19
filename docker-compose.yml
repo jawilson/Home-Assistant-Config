@@ -4,8 +4,6 @@ services:
   mqtt:
     image: eclipse-mosquitto
     restart: unless-stopped
-    dns: 192.168.0.2
-    dns_search: singularity.net
     user: '114:118'
     ports:
       - 1883:1883
@@ -28,8 +26,6 @@ services:
   adbd:
     image: sorccu/adb:latest
     restart: unless-stopped
-    dns: 192.168.0.2
-    dns_search: singularity.net
     volumes:
       - ./adb:/root/.android
     command: /root/.android/startup.sh
@@ -66,6 +62,20 @@ services:
       traefik.http.services.esphome.loadbalancer.server.port: 80
     command:
       dashboard --port 80 /config
+  matter-server:
+    image: ghcr.io/home-assistant-libs/python-matter-server:stable
+    container_name: matter-server
+    restart: unless-stopped
+    networks:
+      default:
+      macvlan:
+        ipv4_address: 192.168.0.62
+    security_opt:
+      # Needed for Bluetooth via dbus
+      - apparmor:unconfined
+    volumes:
+      - ./matter:/data/
+      - /run/dbus:/run/dbus:ro
   homeassistant:
     image: homeassistant/home-assistant:stable
     init: true
@@ -75,10 +85,9 @@ services:
       - database
       - adbd
       - zwavejs2mqtt
+      - matter-server:matter
     restart: unless-stopped
     user: '0:118'
-    dns: 192.168.0.2
-    dns_search: singularity.net
     networks:
       default:
       macvlan:
@@ -131,4 +140,4 @@ networks:
     name: traefik
   macvlan:
     external: true
-    name: HomeNetwork
+    name: HomeNetworkIPv6
