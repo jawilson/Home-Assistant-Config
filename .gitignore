@@ -3,6 +3,8 @@ ssl/
 .ssh/
 
 zwave/
+matter/
+code-server/
 
 *.env
 
