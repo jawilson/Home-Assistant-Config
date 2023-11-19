@@ -359,3 +359,47 @@
         intent_package_name: net.dinglisch.android.taskerm
         intent_action: net.dinglisch.android.taskerm.SLEEPING_AT_HOME_ALONE
   mode: single
+- id: '1696556669196'
+  alias: TV Backlight
+  description: Automatically turn on/off the TV backlight
+  trigger:
+  - platform: state
+    entity_id:
+    - remote.samsung_s95bd_65_tv
+    - remote.living_room
+  condition: []
+  action:
+  - if:
+    - condition: template
+      value_template: '{{ is_state(trigger.entity_id, ''on'') }}'
+    then:
+    - service: light.turn_on
+      data: {}
+      target:
+        device_id: d052047005cfd61019e74aff64eb6279
+    else:
+    - service: light.turn_off
+      data: {}
+      target:
+        device_id: d052047005cfd61019e74aff64eb6279
+  mode: restart
+- id: '1696564120027'
+  alias: Turn off Harmony with TV
+  description: Turn off the Logitech Harmony when the TV turns off
+  trigger:
+  - platform: state
+    entity_id:
+    - media_player.samsung_tv
+    to: 'off'
+  condition:
+  - condition: not
+    conditions:
+    - condition: state
+      entity_id: remote.living_room
+      state: 'off'
+  action:
+  - service: remote.turn_off
+    data: {}
+    target:
+      entity_id: remote.living_room
+  mode: single

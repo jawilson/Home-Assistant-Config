@@ -16,6 +16,7 @@ sequence:
       - light.dining_lights_level
       - light.entryway_lights
       - light.kitchen_lights
+      - light.kitchen_cabinet_lights
       - light.living_room_lights
     data:
       color_temp: 450
@@ -27,13 +28,12 @@ sequence:
       - light.dining_lights_level
       - light.entryway_lights
       - light.kitchen_lights
+      - light.kitchen_cabinet_lights
       - light.living_room_lights
     data:
       transition: 480
       color_temp: 450
       brightness: 160
-  - service: light.turn_on
-    entity_id: light.kitchen_cabinet_lights
   - delay:
       minutes: 5
 
@@ -42,6 +42,7 @@ sequence:
       - light.dining_lights_level
       - light.entryway_lights
       - light.kitchen_lights
+      - light.kitchen_cabinet_lights
       - light.living_room_lights
     data:
       transition: 480

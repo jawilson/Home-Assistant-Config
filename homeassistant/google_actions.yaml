@@ -43,6 +43,7 @@ filter:
     - light.living_room_lights
     - light.sunroom
     - light.sunroom_fan_light
+    - light.sunroom_lamp
     - light.sunroom_lights
     - light.entertainment_lights
     - light.kitchen

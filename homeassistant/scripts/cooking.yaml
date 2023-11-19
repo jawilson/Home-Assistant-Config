@@ -5,6 +5,7 @@ sequence:
   - service: light.turn_on
     entity_id:
       - light.kitchen_lights
+      - light.kitchen_cabinet_lights
       - light.entryway_lights
     data:
       profile: concentrate

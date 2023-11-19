@@ -22,8 +22,8 @@ hass.services.call('light', 'turn_off', {
         'light.bedroom_lights',
         'light.entryway_lights',
         'light.kitchen_lights',
-        'light.liquor_cabinet_lights',
-        'light.sunroom_lights'
+        'light.sunroom_lights',
+        'light.living_room_nook'
     ]
 })
 
