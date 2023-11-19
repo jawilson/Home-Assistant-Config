@@ -1,0 +1,38 @@
+esphome:
+  name: bathroom-esp32
+  friendly_name: Bathroom ESP32
+  project:
+    name: jawilson.bathroom-esp32
+    version: "0.0.2"
+
+esp32:
+  board: esp32dev
+  framework:
+    type: esp-idf
+
+# Enable logging
+logger:
+
+# Enable Home Assistant API
+api:
+  encryption:
+    key: "fjhqvBNtTuurG5CXXYBZgYhF0hJvc99jRpZ6KuSY7oc="
+
+ota:
+  password: "ca4f2aa04c8710443e02612d8f2997ac"
+
+wifi:
+  ssid: !secret wifi_ssid
+  password: !secret wifi_password
+
+  # Enable fallback hotspot (captive portal) in case wifi connection fails
+  ap:
+    ssid: "Bathroom-Esp32 Fallback Hotspot"
+    password: "8dXchVu8STQ9"
+
+bluetooth_proxy:
+
+button:
+- platform: safe_mode
+  name: Safe Mode Boot
+  entity_category: diagnostic
