@@ -1,0 +1,101 @@
+- alias: Water Pathos Warning
+  id: "water_pathos_warning"
+  trigger:
+    - platform: numeric_state
+      entity_id: "plant.pathos"
+      attribute: moisture
+      below: 60
+      above: 49
+    - platform: state
+      entity_id: person.jeff
+      to: 'home'
+  condition:
+    - condition: numeric_state
+      entity_id: plant.pathos
+      attribute: moisture
+      below: 60
+      above: 49
+    - condition: state
+      entity_id: person.jeff
+      state: 'home'
+  action:
+    - variables:
+        entity_id: "plant.pathos"
+        plant_name: "{{ state_attr(entity_id, 'friendly_name') }}"
+        message: >-
+          It's time to water the {{ plant_name }}, its current moisture level is
+          {{ state_attr(entity_id, 'moisture') }}{{ state_attr(entity_id, 'unit_of_measurement_dict')['moisture'] }}
+    - service: notify.jeff_phone
+      data:
+        title: "Water the {{ plant_name|capitalize }}"
+        message: "{{ message }}"
+        data:
+          tag: "{{ states[entity_id].object_id }}-water"
+          clickAction: "entityId:{{ entity_id }}"
+          channel: "Plants"
+
+- alias: Water Pathos Critical
+  id: "water_pathos_critical"
+  trigger:
+    - platform: numeric_state
+      entity_id: "plant.pathos"
+      attribute: moisture
+      below: 50
+    - platform: state
+      entity_id: person.jeff
+      to: 'home'
+  condition:
+    - condition: numeric_state
+      entity_id: plant.pathos
+      attribute: moisture
+      below: 50
+    - condition: state
+      entity_id: person.jeff
+      state: 'home'
+  action:
+    - variables:
+        entity_id: "plant.pathos"
+        plant_name: "{{ state_attr(entity_id, 'friendly_name') }}"
+        message: >-
+          The {{ plant_name }} needs water, its current moisture level is
+          {{ state_attr(entity_id, 'moisture') }}{{ state_attr(entity_id, 'unit_of_measurement_dict')['moisture'] }}
+    - service: notify.jeff_phone
+      data:
+        title: "Water the {{ plant_name|capitalize }}!"
+        message: "{{ message }}"
+        data:
+          tag: "{{ states[entity_id].object_id }}-water"
+          clickAction: "entityId:{{ entity_id }}"
+          channel: "Plants"
+          sticky: "true"
+          persistent: true
+
+- alias: Dismiss Water Pathos
+  id: "water_pathos_dismiss"
+  trigger:
+    - platform: numeric_state
+      entity_id: "plant.pathos"
+      attribute: moisture
+      above: 59
+    - platform: state
+      entity_id: person.jeff
+      from: 'home'
+  condition:
+    - condition: or
+      conditions:
+      - condition: numeric_state
+        entity_id: plant.pathos
+        attribute: moisture
+        above: 59
+      - not:
+        - condition: state
+          entity_id: person.jeff
+          state: 'home'
+  action:
+    - variables:
+        entity_id: "plant.pathos"
+    - service: notify.jeff_phone
+      data:
+        message: "clear_notification"
+        data:
+          tag: "{{ states[entity_id].object_id }}-water"

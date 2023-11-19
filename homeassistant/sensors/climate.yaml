@@ -107,6 +107,38 @@
   max_age:
     hours: 2
 
+- platform: statistics
+  name: Pathos Moisture (Filtered)
+  entity_id: sensor.pathos_moisture
+  state_characteristic: average_linear
+  unique_id: stats_pathos_moisture_average_linear
+  max_age:
+    hours: 2
+
+- platform: statistics
+  name: Pathos Brightness (Filtered)
+  entity_id: sensor.pathos_illuminance
+  state_characteristic: average_linear
+  unique_id: stats_pathos_brightness_average_linear
+  max_age:
+    hours: 2
+
+- platform: statistics
+  name: Pathos Temperature (Filtered)
+  entity_id: sensor.pathos_temperature
+  state_characteristic: average_linear
+  unique_id: stats_pathos_temperature_average_linear
+  max_age:
+    hours: 2
+
+- platform: statistics
+  name: Pathos Humidity (Filtered)
+  entity_id: sensor.pathos_humidity
+  state_characteristic: average_linear
+  unique_id: stats_pathos_humidity_average_linear
+  max_age:
+    hours: 2
+
 - platform: history_stats
   name: HVAC Fan Runtime
   entity_id: switch.apartment_fan

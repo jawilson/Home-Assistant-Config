@@ -1,0 +1,101 @@
+- alias: Water Ficus Warning
+  id: "water_ficus_warning"
+  trigger:
+    - platform: numeric_state
+      entity_id: "plant.ficus"
+      attribute: moisture
+      below: 70
+      above: 59
+    - platform: state
+      entity_id: person.jeff
+      to: 'home'
+  condition:
+    - condition: numeric_state
+      entity_id: plant.ficus
+      attribute: moisture
+      below: 70
+      above: 59
+    - condition: state
+      entity_id: person.jeff
+      state: 'home'
+  action:
+    - variables:
+        entity_id: "plant.ficus"
+        plant_name: "{{ state_attr(entity_id, 'friendly_name') }}"
+        message: >-
+          It's time to water the {{ plant_name }}, its current moisture level is
+          {{ state_attr(entity_id, 'moisture') }}{{ state_attr(entity_id, 'unit_of_measurement_dict')['moisture'] }}
+    - service: notify.jeff_phone
+      data:
+        title: "Water the {{ plant_name|capitalize }}"
+        message: "{{ message }}"
+        data:
+          tag: "{{ states[entity_id].object_id }}-water"
+          clickAction: "entityId:{{ entity_id }}"
+          channel: "Plants"
+
+- alias: Water Ficus Critical
+  id: "water_ficus_critical"
+  trigger:
+    - platform: numeric_state
+      entity_id: "plant.ficus"
+      attribute: moisture
+      below: 60
+    - platform: state
+      entity_id: person.jeff
+      to: 'home'
+  condition:
+    - condition: numeric_state
+      entity_id: plant.ficus
+      attribute: moisture
+      below: 60
+    - condition: state
+      entity_id: person.jeff
+      state: 'home'
+  action:
+    - variables:
+        entity_id: "plant.ficus"
+        plant_name: "{{ state_attr(entity_id, 'friendly_name') }}"
+        message: >-
+          The {{ plant_name }} needs water, its current moisture level is
+          {{ state_attr(entity_id, 'moisture') }}{{ state_attr(entity_id, 'unit_of_measurement_dict')['moisture'] }}
+    - service: notify.jeff_phone
+      data:
+        title: "Water the {{ plant_name|capitalize }}!"
+        message: "{{ message }}"
+        data:
+          tag: "{{ states[entity_id].object_id }}-water"
+          clickAction: "entityId:{{ entity_id }}"
+          channel: "Plants"
+          sticky: "true"
+          persistent: true
+
+- alias: Dismiss Water Ficus
+  id: "water_ficus_dismiss"
+  trigger:
+    - platform: numeric_state
+      entity_id: "plant.ficus"
+      attribute: moisture
+      above: 69
+    - platform: state
+      entity_id: person.jeff
+      from: 'home'
+  condition:
+    - condition: or
+      conditions:
+        - condition: numeric_state
+          entity_id: plant.ficus
+          attribute: moisture
+          above: 59
+        - not:
+          - condition: state
+            entity_id: person.jeff
+            state: 'home'
+  action:
+    - variables:
+        entity_id: "plant.ficus"
+    - service: notify.jeff_phone
+      data:
+        message: "clear_notification"
+        data:
+          tag: "{{ states[entity_id].object_id }}-water"

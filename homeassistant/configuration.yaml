@@ -165,6 +165,7 @@ notify:
     name: jeff
     services:
       - service: jeff_phone
+      - service: mobile_app_jeff_s_pixel_watch
       - service: html5_jawilson_work
       - service: html5_jawilson_maxwell
   - platform: group

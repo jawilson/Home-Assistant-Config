@@ -1,12 +1,15 @@
 - alias: Jeff Stop Working
   id: jeff_stop_working
   trigger:
-    - platform: numeric_state
-      entity_id: sensor.jeff_at_work_today
-      above: 8
+    - platform: template
+      value_template: "{{ states('sensor.jeff_at_work_today')|float(0) >= 8 }}"
+    - platform: template
+      value_template: "{{ states('sensor.jeff_at_work_this_week')|float(0) >= 40 }}"
     - platform: numeric_state
       entity_id: sensor.jeff_at_work_this_week
       above: 40
+    - platform: template
+      value_template: "{{ (0 if states('sensor.jeff_days_at_work_this_week')|float(0) < 1 else states('sensor.jeff_at_work_this_week')|float(0) / states('sensor.jeff_days_at_work_this_week')|float(0)) >= 8 }}"
   action:
     service: notify.jeff_phone
     data_template:
