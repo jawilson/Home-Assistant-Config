@@ -5,6 +5,12 @@ services:
     image: eclipse-mosquitto
     restart: unless-stopped
     user: '114:118'
+    healthcheck:
+      test: ["CMD", "mosquitto_sub", "-p", "1880", "-t", "$$SYS/#", "-C", "1", "-i", "healthcheck", "-W", "3"]
+      interval: 30s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
     ports:
       - 1883:1883
       - 8883:8883
@@ -23,6 +29,11 @@ services:
       - ./postgres/data:/var/lib/postgresql/data
     env_file:
       - ./postgres/secrets.env
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $$POSTGRES_USER"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
   adbd:
     image: sorccu/adb:latest
     restart: unless-stopped
@@ -30,10 +41,16 @@ services:
       - ./adb:/root/.android
     command: /root/.android/startup.sh
   zwavejs2mqtt:
-    image: zwavejs/zwavejs2mqtt:latest
+    image: zwavejs/zwave-js-ui:latest
     restart: unless-stopped
     tty: true
     stop_signal: SIGINT
+    healthcheck:
+      test: |
+        wget --no-verbose --tries=1 --spider localhost:8091/health/zwave --header "Accept: text/plain" || exit 1
+      interval: 30s
+      timeout: 5s
+      retries: 5
     environment:
       - TZ=America/New_York
     env_file:
@@ -79,6 +96,18 @@ services:
   homeassistant:
     image: homeassistant/home-assistant:stable
     init: true
+    depends_on:
+      database:
+        condition: service_healthy
+        restart: true
+      mqtt:
+        condition: service_healthy
+      adbd:
+        condition: service_started
+      zwavejs2mqtt:
+        condition: service_healthy
+      matter-server:
+        condition: service_started
     links:
       - mqtt
       - mqtt:mqtt.singularity.net
